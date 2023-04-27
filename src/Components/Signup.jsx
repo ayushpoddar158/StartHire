@@ -3,6 +3,7 @@ import Signup1 from "../assets/signup1.jpg"
 import { Link } from 'react-router-dom'
 import { v4 as uuidv4 } from "uuid";
 import Login from './Login';
+import '../style/SignUp.css'
 
 const Signup = () => {
 
@@ -15,16 +16,7 @@ const Signup = () => {
 
 
 
-const getLocalItems=()=>{
-  var list=localStorage.getItem("lists");
-  console.log(list);
-  if(list != ""){
-    return JSON.parse(localStorage.getItem('lists'))
-  }
-  else{
-    return []
-  }
-}
+
 
 
 const [inpVal,setInpVal]=useState({
@@ -36,11 +28,9 @@ const [inpVal,setInpVal]=useState({
 
 
 })
-const [items,SetItems]=useState(getLocalItems())
 
-useEffect(() => {
-  localStorage.setItem("lists",JSON.stringify(items));
-}, [items])
+
+
 
 const getdata=(e)=>{
   // console.log(e.target.value)
@@ -117,6 +107,20 @@ else{
 
   return (
     <>
+     <div className="container" id='Signupchangediv'>
+     {/* <!-- Pills navs --> */}
+<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <Link class="nav-link active Signupchangebtn1" id="tab-login" data-mdb-toggle="pill" to="/Signup" role="tab"
+      aria-controls="pills-login" aria-selected="true">Student Signup</Link>
+  </li>
+  <li class="nav-item" role="presentation">
+    <Link class="nav-link Signupchangebtn2" id="tab-register" data-mdb-toggle="pill" to="/signupstartup" role="tab"
+      aria-controls="pills-register" aria-selected="false">Startup Signup</Link>
+  </li>
+</ul>
+{/* <!-- Pills navs --> */}
+     </div>
 <section className="vh-90" id='sign1main' >
   <div className="container h-100">
     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -177,10 +181,10 @@ else{
                 </form>
 
               </div>
-              <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+              <div className="float-area col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                  className="img-fluid" alt="Sample image"/>
+                  className="img-fluid floating-img" alt="Sample image"/>
 
               </div>
             </div>

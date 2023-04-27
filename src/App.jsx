@@ -12,6 +12,17 @@ import LoginStartUp from "./Components/LoginStartUp";
 import { useState } from "react";
 import Studentprofileform from "./Components/Studentprofileform";
 import Studentprofile from "./Components/Studentprofile"
+import Filteredstudentlist from "./Components/Filteredstudentlist";
+import Forgetpassword from "./Components/Forgetpassword";
+import VerifyemailOtp from "./Components/VerifyemailOtp";
+import ChangePassword from "./Components/ChangePassword";
+import  Dashboard  from './DashboardArea/Dashboard';
+import Aside from './DashboardArea/Aside'
+import StudentLists from "./DashboardArea/StudentLists";
+import SearchInterns from "./DashboardArea/SearchInterns";
+import StartUpprofileForm from "./Components/StartUpProfileForm";
+import Notification from './DashboardArea/Notification'
+import StartUpProfile from './Components/StartUpProfile'
 
 
 
@@ -31,8 +42,10 @@ const App = () => {
 
 
 
-
-
+const [loginIsTrue,setLoginIsTrue]=useState(false)
+const [userName,setUserName]=useState("")
+const [generateotp,setGenerateotp]=useState("")
+const [uniqueId,setUniqueId]=useState("")
 
   return (
     <>
@@ -40,15 +53,33 @@ const App = () => {
         <Navbar />
         {/* <Home/> */}
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/"  element={<Home  userName={userName}  loginIsTrue={loginIsTrue}/>}/>
+          <Route path="/Home"  element={<Home  userName={userName}  loginIsTrue={loginIsTrue}/>}/>
           <Route path="About" element={<About/>}/>
           <Route path="Contact" element={<Contact/>}/>
-          <Route path="Login" element={<Login/>}/>
+          <Route path="Login" element={<Login   setUserName={setUserName} loginIsTrue={loginIsTrue}  userName={userName}  setLoginIsTrue={setLoginIsTrue}/>}/>
           <Route path="LoginStartUp" element={<LoginStartUp/>}/>
           <Route path="Signup"  element={<Signup/>}/>
           <Route path="Signupstartup" element={<Signupstartup/>}/>
           <Route path="Studentprofileform" element={<Studentprofileform/>}/>
           <Route path="Studentprofile" element={<Studentprofile/>}/>
+          <Route path="Filteredstudentlist" element={<Filteredstudentlist/>}/>
+          <Route path="Forgetpassword" element={<Forgetpassword  uniqueId={uniqueId} setUniqueId ={setUniqueId}  generateotp={generateotp} setGenerateotp={setGenerateotp}/>}/>
+          <Route path="VerifyemailOtp" element={<VerifyemailOtp uniqueId={uniqueId} setUniqueId={setUniqueId} generateotp={generateotp} setGenerateotp={setGenerateotp}/>}/>
+          <Route path="ChangePassword" element={<ChangePassword  uniqueId={uniqueId} setUniqueId ={setUniqueId} />}/>
+          <Route path="Dashboard" element={<Dashboard />}/>
+          <Route path="Aside" element={<Aside />}/>
+          <Route path="StudentLists" element={<StudentLists />}/>
+          <Route path="SearchInterns" element={<SearchInterns />}/>
+          <Route path="StartUpprofileForm" element={<StartUpprofileForm />}/>
+          <Route path="Notification" element={<Notification />}/>
+          <Route path="StartUpProfile" element={<StartUpProfile />}/>
+        
+
+
+          
+
+          
           
         </Routes>
         <Footer/>

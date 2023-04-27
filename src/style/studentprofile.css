@@ -102,3 +102,13 @@ section {
 .rounded {
     border-radius: 0.25rem!important;
 }
+
+/* edit btn */
+#stuprofileedit{
+    position: absolute;
+    right: 77px;
+    z-index: 1000;
+    width: 100px;
+    padding: 10px;
+    font-size: 4rem;
+}

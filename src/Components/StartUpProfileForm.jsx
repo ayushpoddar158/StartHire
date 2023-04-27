@@ -22,7 +22,7 @@ const suggestions = Codinglanginfo.map((country) => {
   const delimiters = [KeyCodes.comma, KeyCodes.enter];  
 
 
-const Studentprofileform = () => {
+const StartUpprofileForm = () => {
 
     const [tags, setTags] = React.useState([
         { id: 'C', text: 'C' },
@@ -222,4 +222,4 @@ const Studentprofileform = () => {
   )
 }
 
-export default Studentprofileform;
+export default StartUpprofileForm;

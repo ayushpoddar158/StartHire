@@ -1,30 +1,74 @@
 /* home */
+/* body */
+
+
+
+
+*{
+
+  font-family: 'Roboto', sans-serif !important;
+}  
+body{
+  font-size: 16px !important;
+ 
+  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+}
+button{
+  font-size: 15px !important;
+}
+
+
+/* dropdown  navbar*/
+.dropnav{
+  font-size: 16px !important;
+}
+
+.navbar-brand{
+  font-size: 25px !important;
+  color: #fdb801 !important;
+}
+
+
+/* home  start */
+
 .homemaindiv{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 40vh;
+    margin-bottom: 60px;
 }
 
+.homemaindiv{
+  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+}
+
+.homemaindiv >h4{
+  color: white;
+}
+.homemaindiv > button{
+  background-color: red;
+  color: white;
+}
+
+/* home end */
+.dummy_page{
+
+  padding: 10px;
+  background-color: rgb(134, 131, 132);
+  color: white;
+}
 
 
 /* login */
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+#loginId{
+  /* padding-bottom: 100px; */
+  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+
+  
 }
-.h-custom {
-height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
-}
+
 
 
 #loginregisterbtn{
@@ -32,6 +76,10 @@ height: 100%;
   padding-right: 2.5rem;
 }
 
+
+#loginmain{
+  margin-top: -100px;
+}
 
 #mainlogin{
     width: 60vw;
@@ -48,7 +96,7 @@ height: 100%;
 /* signup1 student */
 
 #sign1main{
-  background-color: #eee;
+  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
 }
 
 #signup1card{
@@ -80,18 +128,7 @@ html,body {
     font-family: Arial, Helvetica, Sans-serif;
     /* background-color: #070617; */
   }
-  .dummy_page {
- 
-    width: 100%;
-    background-color: #f0f0f0;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 20px 0px;
-    display: flex;
-    /* margin-bottom: 10px; */
-    word-wrap: break-word;
 
-  }
   
   /* STYLES SPECIFIC TO FOOTER  */
   .footer {

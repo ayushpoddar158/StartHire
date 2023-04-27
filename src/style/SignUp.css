@@ -1,0 +1,48 @@
+#Signupchangediv{
+       z-index: 100000;
+      
+       position: absolute;
+       width: 80vw;
+       /* background-color: red; */
+       /* margin-left: 250px; */
+    
+       margin-top: 119px;
+       left: 9.5%;
+       
+       
+    }
+    .Signupchangebtn1{
+   
+    background-color: grey !important;
+   
+}
+.Signupchangebtn2{
+color: orangered !important;
+
+/* background-color: red !important; */
+}
+
+HTML CSSResult Skip Results Iframe
+EDIT ON
+.float-area{
+  height:100vh;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-img{
+  transform: translateY(-10%);
+  animation: floater 1.5s infinite;
+  transition: ease 0.5s;
+  /* width: 80px; */
+  /* height:80px; */
+}
+
+
+
+@keyframes floater {
+  0%{transform: translateY(-10%);transition: ease 0.5s;}
+  50%{transform: translateY(10%);transition: ease 0.5s;}
+}

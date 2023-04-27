@@ -1,0 +1,18 @@
+#Loginchangediv{
+    /* z-index: 100000; */
+    margin-top: 40px;
+    position: relative;
+    width: 73.5vw;
+    /* background-color: red; */
+    /* margin-left: 250px; */
+    margin-left: auto;
+    margin-top: 50px;
+    margin-bottom: -90px;
+}
+.Loginchangebtn1{
+    background-color: grey !important;
+}
+.Loginchangebtn2{
+ 
+    color: orangered !important;
+}

@@ -1,10 +1,25 @@
 import React from 'react'
 import Signup1 from "../assets/signup1.jpg"
 import { Link } from 'react-router-dom'
+import '../style/SignUp.css'
 
 const Signup = () => {
   return (
     <>
+     <div className="container" id='Signupchangediv'>
+     {/* <!-- Pills navs --> */}
+<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <Link class="nav-link active Signupchangebtn1" id="tab-login" data-mdb-toggle="pill" to="/Signup" role="tab"
+      aria-controls="pills-login" aria-selected="true">Student Signup</Link>
+  </li>
+  <li class="nav-item Signupchangebtn2" role="presentation">
+    <Link class="nav-link" id="tab-register" data-mdb-toggle="pill" to="/signupstartup" role="tab"
+      aria-controls="pills-register" aria-selected="false">Startup Signup</Link>
+  </li>
+</ul>
+{/* <!-- Pills navs --> */}
+     </div>
 <section className="vh-90" id='sign1main' >
   <div className="container h-100">
     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -55,6 +70,7 @@ const Signup = () => {
                       <label className="form-label" HtmlFor="form3Example4cd">Repeat your password</label>
                     </div>
                   </div>
+                  
 
                   <div className="d-flex flex-row align-items-center mb-4">
                   <i id='signupicons' className="zmdi zmdi-email"></i>
@@ -94,10 +110,10 @@ const Signup = () => {
                 </form>
 
               </div>
-              <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+              <div className=" float-area col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                  className="img-fluid" alt="Sample image"/>
+                  className="floating-img img-fluid" alt="Sample image"/>
 
               </div>
             </div>
