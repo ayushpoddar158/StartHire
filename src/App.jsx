@@ -24,7 +24,8 @@ import StartUpprofileForm from "./Components/StartUpProfileForm";
 import Notification from './DashboardArea/Notification'
 import StartUpProfile from './Components/StartUpProfile'
 
-
+// Authorizer 
+import { AuthProvider } from "./Authorizer";
 
 const App = () => {
 
@@ -49,7 +50,7 @@ const [uniqueId,setUniqueId]=useState("")
 
   return (
     <>
-     
+    <AuthProvider>
         <Navbar />
         {/* <Home/> */}
         <Routes>
@@ -76,14 +77,10 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="StartUpProfile" element={<StartUpProfile />}/>
         
 
-
-          
-
-          
           
         </Routes>
         <Footer/>
-
+      </AuthProvider>
     </>
   );
 };
