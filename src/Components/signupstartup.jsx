@@ -19,6 +19,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import '../style/SignUp.css'
 
 const Signup = () => {
+  console.log("check git");
   const navigate = useNavigate();
   const [inpVal, setInpVal] = useState({
     sName: "",
