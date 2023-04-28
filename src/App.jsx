@@ -23,6 +23,7 @@ import SearchInterns from "./DashboardArea/SearchInterns";
 import StartUpprofileForm from "./Components/StartUpProfileForm";
 import Notification from './DashboardArea/Notification'
 import StartUpProfile from './Components/StartUpProfile'
+import VerifyEmail  from './Components/VerifyEmail'
 
 
 
@@ -74,6 +75,7 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="StartUpprofileForm" element={<StartUpprofileForm />}/>
           <Route path="Notification" element={<Notification />}/>
           <Route path="StartUpProfile" element={<StartUpProfile />}/>
+          <Route path="VerifyEmail" element={<VerifyEmail/>}/>
         
 
 

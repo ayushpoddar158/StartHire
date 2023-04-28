@@ -54,7 +54,7 @@ const LoginStartUp = () => {
      <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
   <li class="nav-item" role="presentation">
     <Link class="nav-link active Loginchangebtn1" id="tab-login" data-mdb-toggle="pill" to="/Login" role="tab"
-      aria-controls="pills-login" aria-selected="true">Student Login</Link>
+      aria-controls="pills-login" aria-selected="true">StartUp Login</Link>
   </li>
   <li class="nav-item" role="presentation">
     <Link class="nav-link Loginchangebtn2" id="tab-register" data-mdb-toggle="pill" to="/LoginStartUp" role="tab"

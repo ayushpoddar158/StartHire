@@ -3,6 +3,7 @@ import "../style/studentprofile.css";
 import { useNavigate } from "react-router-dom";
 import Aside from "../DashboardArea/Aside";
 const Studentprofile = () => {
+  console.log("startup profile")
   const navigate = useNavigate();
   const navigateEdit = () => {
     navigate("/Studentprofileform");

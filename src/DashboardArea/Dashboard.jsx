@@ -4,7 +4,7 @@ import {useEffect,useState} from 'react';
  
  
 const Dashboard = () => {
-   
+ console.log('hello')
    const[record,setRecord] = useState([])
  
    const getData = () =>
@@ -15,7 +15,7 @@ const Dashboard = () => {
    }
  
    useEffect(() => {
-      getData();
+    //   getData();
    },)
     
  

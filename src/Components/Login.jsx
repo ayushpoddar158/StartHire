@@ -7,7 +7,7 @@ import '../style/Login.css'
 
 
 const Login = ({setLoginIsTrue,setUserName,userName}) => {
-
+  console.log("hello login")
 // navigate home on login
 let navigate=useNavigate()
 const navigateHome=()=>{
