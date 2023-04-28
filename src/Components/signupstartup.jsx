@@ -17,7 +17,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Signup1 from "../assets/signup1.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/SignUp.css'
-
+// hello hanges 
 const Signup = () => {
   console.log("check git");
   const navigate = useNavigate();
