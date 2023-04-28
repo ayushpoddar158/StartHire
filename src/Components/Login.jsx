@@ -9,19 +9,21 @@ import { Auth } from "../Firebase";
 import { AuthContext } from '../Authorizer';
 
 
+// Data setup 
+import { db } from "../Firebase";
+import {
+  query,
+  getDocs,
+  collection,
+  addDoc,
+  where
+} from "firebase/firestore";
+
 
 const Login = ({ setLoginIsTrue, setUserName, userName }) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   console.log("inside login page");
-  // console.log(currentUser);
-  // navigate home on login
-  
-
-  // login
-
-
-
   const [inpval, setInpVal] = useState({
 
     email: "",
@@ -47,11 +49,16 @@ const Login = ({ setLoginIsTrue, setUserName, userName }) => {
         e.preventDefault();
         console.log(inpval.email, inpval.password);
         await signInWithEmailAndPassword(Auth,inpval.email, inpval.password)
-        .then((userCredential) => {
+        .then( async (userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/Dashboard");
+          const q = query(collection(db, "users"), where("uid", "==", user.uid));
+          const docs = await getDocs(q);
+          const user_data = docs.docs[0].data()
+          if (!user_data.updatedProfile){
+            navigate("/studentprofileform");
+          }
+          else{navigate("/Dashboard");}
           // ...
         })
         .catch((error) => {
@@ -67,7 +74,6 @@ const Login = ({ setLoginIsTrue, setUserName, userName }) => {
 
   return (
     <>
-
       <div className="container" id='Loginchangediv'>
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
           <li class="nav-item" role="presentation">

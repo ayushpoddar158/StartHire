@@ -1,7 +1,17 @@
+
+// Authentication @Firebase 
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { Auth } from "../Firebase";
 
-import { Auth } from "../firebase";
-
+// Data import @Firebase
+import { db } from "../Firebase";
+import {
+  query,
+  getDocs,
+  collection,
+  addDoc,
+  where
+} from "firebase/firestore";
 
 import React, { useEffect, useState } from 'react'
 import Signup1 from "../assets/signup1.jpg"
@@ -61,6 +71,23 @@ const Signup = () => {
       await createUserWithEmailAndPassword(Auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          try {
+            const addVal = async () => {
+              await addDoc(collection(db, "users"), {
+                uid: user.uid,
+                name: name,
+                authProvider: "email",
+                email: user.email,
+                desgn: "student",
+                updatedProfile: false
+              })
+            }
+            console.log("adding data")
+            addVal();
+          }
+          catch (err) {
+            console.log(err)
+          }
           alert("Verify Your Email");
         })
         .catch((error) => {

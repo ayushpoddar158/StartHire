@@ -5,11 +5,23 @@ import Aside from '../DashboardArea/Aside'
 // Authentication Setup
 import { AuthContext } from '../Authorizer';
 
+
+// Data setup 
+import { db } from "../Firebase";
+import {
+  query,
+  getDocs,
+  collection,
+  addDoc,
+  where
+} from "firebase/firestore";
+
 const Dashboard = () => {
 
     const { currentUser } = useContext(AuthContext);
     const [id, setId] = useState(null);
     const [isVerified, setIsVerified] = useState(null);
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
         const getUserData = async () => {
@@ -17,10 +29,13 @@ const Dashboard = () => {
             let isVerified = await currentUser.emailVerified;
             setId(id)
             setIsVerified(isVerified);
+            const q = query(collection(db, "users"), where("uid", "==", id));
+            const docs = await getDocs(q);
+            setUserData(docs.docs[0].data()); 
         }
         getUserData();
     }, [currentUser]);
-    console.log(id, isVerified);
+    // console.log(id, isVerified);
 
     // Employee Details
     const [record, setRecord] = useState([])
