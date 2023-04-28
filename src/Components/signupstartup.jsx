@@ -18,7 +18,8 @@ import Signup1 from "../assets/signup1.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/SignUp.css'
 
-const Signupstartup= () => {
+const  Signupstartup = () => {
+  console.log("check git");
   const navigate = useNavigate();
   const [inpVal, setInpVal] = useState({
     sName: "",
