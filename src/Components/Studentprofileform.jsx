@@ -24,6 +24,41 @@ const suggestions = Codinglanginfo.map((country) => {
 
 const Studentprofileform = () => {
 
+
+const [StudentData,setStudentData]=useState(
+  {
+    firstname:"",
+    lastname:"",
+    mobile:"",
+    location:"",
+    collname:"",
+    degree:"",
+    YOG:"",
+    skills:""
+
+  }
+)
+
+const getData = (e) => {
+  // console.log(e.target.value)
+
+  const { value, name } = e.target;
+  // console.log(value,name)
+
+  setStudentData(() => {
+    return {
+      ...StudentData,
+      [name]: value
+
+
+    }
+  });
+
+  // console.log(inpVal)
+
+
+}
+
     const [tags, setTags] = React.useState([
         { id: 'C', text: 'C' },
         
@@ -70,7 +105,7 @@ const Studentprofileform = () => {
 
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"/>
-        <h6>Upload a different photo...</h6>
+        <h6>Upload A Different Photo...</h6>
         <input type="file" class="text-center center-block file-upload"/>
       </div><hr/><br/>
 
@@ -82,15 +117,15 @@ const Studentprofileform = () => {
             <div class="form-group">
                           
                           <div class="col-xs-6">
-                            <label for="last_name"><h6>Github link</h6></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Github lInk" title="enter your last name if any."/>
+                            <label for="last_name"><h6>Github Link</h6></label>
+                              <input type="text" class="form-control" onChange={getData} name="last_name" id="last_name" placeholder="Github lInk" title="enter your last name if any."/>
                           </div>
                       </div>
             <div class="form-group">
                           
                           <div class="col-xs-6">
                             <label for="last_name"><h6>Linkedin</h6></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Linkedin Link" title="enter your last name if any."/>
+                              <input type="text" class="form-control" onChange={getData} name="last_name" id="last_name" placeholder="Linkedin Link" title="enter your last name if any."/>
                           </div>
                       </div>
                       </div>
@@ -116,68 +151,66 @@ const Studentprofileform = () => {
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any."/>
+                         
+
+                              <label for="first_name"><h4>First Name</h4></label>
+                              <input type="text" onChange={getData} class="form-control" required name="first_name" id="first_name" placeholder="first name" title="enter your first name if any."/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any."/>
+                            <label for="last_name"><h4>Last Name</h4></label>
+                              <input type="text" onChange={getData} class="form-control"  name="last_name" id="last_name" placeholder="last name" title="enter your last name if any." required/>
                           </div>
                       </div>
           
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any."/>
-                          </div>
-                      </div>
           
                       <div class="form-group">
                           <div class="col-xs-6">
                              <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any."/>
+                              <input type="number" onChange={getData} class="form-control" required name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any."/>
                           </div>
                       </div>
                    
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location"/>
+                              <label for="location"><h4>Location</h4></label>
+                              <input type="text" onChange={getData} name='location' class="form-control" required id="location" placeholder="somewhere" title="enter a location"/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="email"><h4>College/University name</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="college/University " title="enter a location"/>
+                              <label for="collname"><h4>College/University Name</h4></label>
+                              <input type="text" name='collname' onChange={getData} class="form-control" required id="" placeholder="college/University " title="enter a location"/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="degree"><h4>Degree</h4></label>
-                              <input type="email" class="form-control" id="dergree" placeholder="Name of Degree" title="enter degree"/>
+                              <input type="text" name='degree' onChange={getData} class="form-control" required id="dergree" placeholder="Name of Degree" title="enter degree"/>
                           </div>
                       </div>
+                  
+                      
                       <div class="form-group">
                           
-                          <div class="col-xs-6">
-                              <label for="yograduation"><h4>year of graduation</h4></label>
-                              <input type="number" class="form-control" id="location" placeholder="Year of Graduation" title="enter year of passing"/>
+                          <div class="col-xs">
+                              <label for="YOG"><h4>Year Of Graduation</h4></label>
+                              <input type="number" name='YOG' onChange={getData} class="form-control" required id="YOG" placeholder="Year of Graduation" title="enter year of passing"/>
                           </div>
                       </div>
+                   
+                      
                       <div class="form-group">
+                     
+                           
+                          <label for="Skills"><h4>Add Skills</h4></label>
                           
-                          {/* <div class="col-xs-6">
-                              <label for="email"><h4>Skills</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location"/>
-                          </div> */}
-                          <label for="Skills"><h4>ADD Skills</h4></label>
+
                           <div>
         <ReactTags
           tags={tags}
@@ -197,7 +230,7 @@ const Studentprofileform = () => {
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br/>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                              	<button class="btn btn-lg btn-success" type="submit"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
                                	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                             </div>
                       </div>
