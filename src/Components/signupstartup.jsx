@@ -65,28 +65,18 @@ const Signupstartup = () => {
     else {
       console.log("within await");
       await createUserWithEmailAndPassword(Auth, sEmail, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           console.log("authenticating");
           const user = userCredential.user;
-          try {
-            const addVal = async () => {
-              await addDoc(collection(db, "startups"), {
-                uid: user.uid,
-                name: sName,
-                founder: sFounder,
-                authProvider: "email",
-                email: sEmail,
-                desgn: "startup",
-                updatedProfile: false
-              })
-            }
-            console.log("adding data")
-            addVal();
-          }
-          catch (err) {
-            console.log("throwing error")
-            console.log(err)
-          }
+          await addDoc(collection(db, "startups"), {
+            uid: user.uid,
+            name: sName,
+            founder: sFounder,
+            authProvider: "email",
+            email: sEmail,
+            desgn: "startup",
+            updatedProfile: false
+          })
           alert("Verify Your Email");
         })
         .catch((error) => {
