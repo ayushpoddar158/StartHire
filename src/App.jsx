@@ -14,7 +14,7 @@ import Studentprofileform from "./Components/Studentprofileform";
 import Studentprofile from "./Components/Studentprofile"
 import Filteredstudentlist from "./Components/Filteredstudentlist";
 import Forgetpassword from "./Components/Forgetpassword";
-import VerifyemailOtp from "./Components/VerifyemailOtp";
+
 import ChangePassword from "./Components/ChangePassword";
 import  Dashboard  from './DashboardArea/Dashboard';
 import Aside from './DashboardArea/Aside'
@@ -23,6 +23,7 @@ import SearchInterns from "./DashboardArea/SearchInterns";
 import StartUpprofileForm from "./Components/StartUpProfileForm";
 import Notification from './DashboardArea/Notification'
 import StartUpProfile from './Components/StartUpProfile'
+import VerifyEmail  from './Components/VerifyEmail'
 
 // Authorizer 
 import { AuthProvider } from "./Authorizer";
@@ -66,7 +67,7 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="Studentprofile" element={<Studentprofile/>}/>
           <Route path="Filteredstudentlist" element={<Filteredstudentlist/>}/>
           <Route path="Forgetpassword" element={<Forgetpassword  uniqueId={uniqueId} setUniqueId ={setUniqueId}  generateotp={generateotp} setGenerateotp={setGenerateotp}/>}/>
-          <Route path="VerifyemailOtp" element={<VerifyemailOtp uniqueId={uniqueId} setUniqueId={setUniqueId} generateotp={generateotp} setGenerateotp={setGenerateotp}/>}/>
+      
           <Route path="ChangePassword" element={<ChangePassword  uniqueId={uniqueId} setUniqueId ={setUniqueId} />}/>
           <Route path="Dashboard" element={<Dashboard />}/>
           <Route path="Aside" element={<Aside />}/>
@@ -75,6 +76,7 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="StartUpprofileForm" element={<StartUpprofileForm />}/>
           <Route path="Notification" element={<Notification />}/>
           <Route path="StartUpProfile" element={<StartUpProfile />}/>
+          <Route path="VerifyEmail" element={<VerifyEmail/>}/>
         
 
           
