@@ -18,8 +18,7 @@ import Signup1 from "../assets/signup1.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/SignUp.css'
 
-const Signup = () => {
-  console.log("check git");
+const Signupstartup= () => {
   const navigate = useNavigate();
   const [inpVal, setInpVal] = useState({
     sName: "",
@@ -64,7 +63,7 @@ const Signup = () => {
       alert("password and repeatpaswod should be same")
     }
     else {
-      await createUserWithEmailAndPassword(Auth, email, password)
+      await createUserWithEmailAndPassword(Auth,sEmail, password)
         .then((userCredential) => {
           const user = userCredential.user;
           try {
@@ -72,9 +71,10 @@ const Signup = () => {
               await addDoc(collection(db, "startups"), {
                 uid: user.uid,
                 name: sName,
+                founder: sFounder,
                 authProvider: "email",
                 email: sEmail,
-                desgn: "student",
+                desgn: "startup",
                 updatedProfile: false
               })
             }
@@ -202,4 +202,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Signupstartup

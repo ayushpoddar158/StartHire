@@ -62,7 +62,7 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="LoginStartUp" element={<LoginStartUp/>}/>
           <Route path="Signup"  element={<Signup/>}/>
           <Route path="Signupstartup" element={<Signupstartup/>}/>
-          <Route path="Studentprofileform" element={<Studentprofileform/>}/>
+          <Route path="studentprofileform" element={<Studentprofileform/>}/>
           <Route path="Studentprofile" element={<Studentprofile/>}/>
           <Route path="Filteredstudentlist" element={<Filteredstudentlist/>}/>
           <Route path="Forgetpassword" element={<Forgetpassword  uniqueId={uniqueId} setUniqueId ={setUniqueId}  generateotp={generateotp} setGenerateotp={setGenerateotp}/>}/>
