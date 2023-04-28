@@ -73,7 +73,8 @@ const Signup = () => {
           const user = userCredential.user;
           try {
             const addVal = async () => {
-              await addDoc(collection(db, "users"), {
+              console.log("with in addVal");
+              const some = addDoc(collection(db, "users"), {
                 uid: user.uid,
                 name: name,
                 authProvider: "email",
@@ -81,6 +82,14 @@ const Signup = () => {
                 desgn: "student",
                 updatedProfile: false
               })
+              .then(() => {
+                console.log(some);
+              })
+              .catch((err) => {
+                console.log('inside error function');
+                console.log(err);
+              });
+              console.log("exitting addDoc");
             }
             console.log("adding data")
             addVal();

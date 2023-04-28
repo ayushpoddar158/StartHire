@@ -11,16 +11,14 @@ import {
   addDoc,
   where
 } from "firebase/firestore";
-// commit new
-// new commit
+
 
 import React, { useState, useEffect, useContext } from 'react'
 import Signup1 from "../assets/signup1.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/SignUp.css'
 
-const  Signupstartup = () => {
-  console.log("check git");
+const Signupstartup = () => {
   const navigate = useNavigate();
   const [inpVal, setInpVal] = useState({
     sName: "",
@@ -44,15 +42,15 @@ const  Signupstartup = () => {
       }
     });
   }
-  const formSubmitHandler = async () => {
-    console.log("submission ");
+  const formSubmitHandler = async (e) => {
+    console.log("submit working")
     e.preventDefault();
     // console.log(inpVal)
-    const { sName , sEmail, sFounder, password, repeatpassword } = inpVal;
+    const { sName, sEmail, sFounder, password, repeatpassword } = inpVal;
 
     if (sName === "") {
       alert("name field is required")
-    } else if (sEmail=== "") {
+    } else if (sEmail === "") {
       alert("email field is required")
     } else if (!sEmail.includes("@")) {
       alert("please eneter valid email")
@@ -65,8 +63,10 @@ const  Signupstartup = () => {
       alert("password and repeatpaswod should be same")
     }
     else {
-      await createUserWithEmailAndPassword(Auth,sEmail, password)
+      console.log("within await");
+      await createUserWithEmailAndPassword(Auth, sEmail, password)
         .then((userCredential) => {
+          console.log("authenticating");
           const user = userCredential.user;
           try {
             const addVal = async () => {
@@ -84,6 +84,7 @@ const  Signupstartup = () => {
             addVal();
           }
           catch (err) {
+            console.log("throwing error")
             console.log(err)
           }
           alert("Verify Your Email");
@@ -98,7 +99,7 @@ const  Signupstartup = () => {
         .then(() => {
           console.log("Verification Email Sent");
           Auth.signOut();
-          navigate("/Login");
+          navigate("/LoginStartUp");
           // ...
         }).catch((error) => {
           console.log("There is an error !!")
@@ -134,7 +135,7 @@ const  Signupstartup = () => {
 
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up as StartUp</p>
 
-                      <form className="mx-1 mx-md-4" onSubmit={formSubmitHandler}>
+                      <form className="mx-1 mx-md-4" >
 
 
                         <div className="d-flex flex-row align-items-center mb-4">
@@ -180,7 +181,7 @@ const  Signupstartup = () => {
                   </div> */}
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="submit" className="btn btn-primary btn-lg">Register</button>
+                          <button type="button" className="btn btn-primary btn-lg" onClick={formSubmitHandler}>Register</button>
                         </div>
 
                       </form>
