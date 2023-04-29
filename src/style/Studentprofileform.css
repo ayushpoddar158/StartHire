@@ -21,13 +21,23 @@ Example Styles for React Tags
   background-color: rgb(170, 167, 167);
   padding: 20px;
   border-radius: 20px;
-}
 
+}
+.maindivstudent{
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input::placeholder{
+  font-size: 1.3rem;
+}
 .YearOf{
   padding: 15px;
 }
 .skills{
-  padding-left: 15px;
+  /* padding-left: 15px; */
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -43,7 +53,7 @@ Example Styles for React Tags
     border-radius: 3px;
      }
 .tab-content input{
-  width: 30vw;
+  width: 35vw;
 }
 
 
@@ -70,11 +80,18 @@ input[type="file"] {
   
   /* Styles for the input */
   .ReactTags__tagInput {
-    width: 40vw;
+    width: 30vw;
     border-radius: 2px;
     display: inline-block;
     margin-left: 15px;
    
+  }
+  .skillsdiv{
+    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .ReactTags__tagInput input.ReactTags__tagInputField,
   .ReactTags__tagInput input.ReactTags__tagInputField:focus {
