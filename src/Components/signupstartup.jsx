@@ -79,7 +79,7 @@ const Signupstartup = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorMessage, errorCode)
+          alert(errorMessage, errorCode);
         });
       // console.log(Auth.currentUser);
       await sendEmailVerification(Auth.currentUser)
