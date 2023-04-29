@@ -2,6 +2,8 @@
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { Auth } from "../Firebase";
 import { AuthContext } from "../Authorizer";
+import { useEffect } from "react";
+import { Box } from "@mui/material";
 
 // Data import @Firebase
 import { db } from "../Firebase";
@@ -13,7 +15,7 @@ import {
   updateDoc,
   where
 } from "firebase/firestore";
-
+// ayush changes
 
 import React from 'react'
 import { useState } from 'react';
@@ -21,6 +23,7 @@ import { render } from 'react-dom';
 import { Codinglanginfo } from './Codinglanginfo';
 import { WithContext as ReactTags } from 'react-tag-input';
 import "../style/Studentprofileform.css"
+import StudentLists from "../DashboardArea/StudentLists";
 
 
 
@@ -58,6 +61,18 @@ const Studentprofileform = () => {
     }
   )
 
+const [StudentImg,SetStudentImg]=useState(null)
+const [imageUrl, setImageUrl] = useState(null);
+useEffect(() => {
+  if (StudentImg) {
+    setImageUrl(URL.createObjectURL(StudentImg));
+  }
+}, [StudentImg]);
+const getImg=(e)=>{
+  SetStudentImg(e.target.files[0])
+  console.log(StudentImg)
+}
+
   const getData = (e) => {
     // console.log(e.target.value)
 
@@ -67,13 +82,14 @@ const Studentprofileform = () => {
     setStudentData(() => {
       return {
         ...StudentData,
-        [name]: value
+        [name]: value,
+        // ['skills']:tags
 
 
       }
     });
 
-    // console.log(inpVal)
+    console.log(StudentData)
 
 
   }
@@ -89,6 +105,15 @@ const Studentprofileform = () => {
 
   const handleAddition = (tag) => {
     setTags([...tags, tag]);
+    setStudentData(() => {
+      return {
+        ...StudentData,
+        ['skills']:tags
+
+
+      }
+    });
+    console.log(StudentData)
   };
 
   const handleDrag = (tag, currPos, newPos) => {
@@ -145,9 +170,20 @@ const Studentprofileform = () => {
 
 
             <div class="text-center">
-              <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" />
-              <h6>Upload A Different Photo...</h6>
-              <input type="file" class="text-center center-block file-upload" />
+           
+              {imageUrl && StudentImg && (
+  <Box mt={2} textAlign="center">
+    
+              {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
+   <div id="StudentImage">
+   <img src={imageUrl} alt={StudentImg.name} height="100px" />
+   </div>
+  </Box>
+)}
+              <h6></h6>
+              <label id='fileupload'> Upload Your Photo
+    <input accept="image/" type="file" onChange={getImg} size="60" />
+    </label> 
             </div><hr /><br />
 
             <br />
