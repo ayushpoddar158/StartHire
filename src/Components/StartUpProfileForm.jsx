@@ -6,7 +6,7 @@ import { StartUpDomain } from '../assets/StartUpDomain';
 import { WithContext as ReactTags } from 'react-tag-input';
 import "../style/Studentprofileform.css"
 
-const suggestions = Codinglanginfo.map((country) => {
+const suggestions = StartUpDomain.map((country) => {
     return {
       id: country,
       text: country,
