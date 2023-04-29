@@ -15,7 +15,7 @@ import {
   updateDoc,
   where
 } from "firebase/firestore";
-// ayush changes
+
 
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -62,17 +62,17 @@ const Studentprofileform = () => {
     }
   )
 
-const [StudentImg,SetStudentImg]=useState(null)
-const [imageUrl, setImageUrl] = useState(null);
-useEffect(() => {
-  if (StudentImg) {
-    setImageUrl(URL.createObjectURL(StudentImg));
+  const [StudentImg, SetStudentImg] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null);
+  useEffect(() => {
+    if (StudentImg) {
+      setImageUrl(URL.createObjectURL(StudentImg));
+    }
+  }, [StudentImg]);
+  const getImg = (e) => {
+    SetStudentImg(e.target.files[0])
+    console.log(StudentImg)
   }
-}, [StudentImg]);
-const getImg=(e)=>{
-  SetStudentImg(e.target.files[0])
-  console.log(StudentImg)
-}
 
   const getData = (e) => {
     // console.log(e.target.value)
@@ -109,7 +109,7 @@ const getImg=(e)=>{
     setStudentData(() => {
       return {
         ...StudentData,
-        ['skills']:tags
+        ['skills']: tags
 
 
       }
@@ -148,8 +148,8 @@ const getImg=(e)=>{
           location: StudentData.location,
           collname: StudentData.collname,
           degree: StudentData.degree,
-          YOG: StudentData.YOG
-          // skills: tags
+          YOG: StudentData.YOG,
+          skills: tags
         }
       })
         .then(() => {
@@ -172,20 +172,19 @@ const getImg=(e)=>{
 
 
             <div class="text-center">
-           
+
               {imageUrl && StudentImg && (
-  <Box mt={2} textAlign="center">
-    
-              {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
-   <div id="StudentImage">
-   <img src={imageUrl} alt={StudentImg.name} height="100px" />
-   </div>
-  </Box>
-)}
+                <Box mt={2} textAlign="center">
+                  {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
+                  <div id="StudentImage">
+                    <img src={imageUrl} alt={StudentImg.name} height="100px" />
+                  </div>
+                </Box>
+              )}
               <h6></h6>
               <label id='fileupload'> Upload Your Photo
-    <input accept="image/" type="file" onChange={getImg} size="60" />
-    </label> 
+                <input accept="image/" type="file" onChange={getImg} size="60" />
+              </label>
             </div><hr /><br />
 
             <br />
