@@ -18,6 +18,7 @@ import {
 // ayush changes
 
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { render } from 'react-dom';
 import { Codinglanginfo } from './Codinglanginfo';
@@ -46,7 +47,7 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 const Studentprofileform = () => {
 
   const { currentUser } = React.useContext(AuthContext);
-
+  const navigate = useNavigate();
   const [StudentData, setStudentData] = useState(
     {
       firstname: "",
@@ -139,6 +140,7 @@ const getImg=(e)=>{
     console.log(doc);
     if (doc) {
       await updateDoc(doc.ref, {
+        updatedProfile: true,
         details: {
           firstname: StudentData.firstname,
           lastname: StudentData.lastname,
@@ -149,7 +151,10 @@ const getImg=(e)=>{
           YOG: StudentData.YOG
           // skills: tags
         }
-      });
+      })
+        .then(() => {
+          navigate("/Studentprofile");
+        })
     }
 
   }
@@ -160,10 +165,7 @@ const getImg=(e)=>{
   return (
     <>
       <div class="container bootstrap snippet" id='studentformmain'>
-        {/* <div class="row">
-  		<div class="col-sm-10"><h1>Create Profile</h1></div>
-    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"/></a></div>
-    </div> */}
+
         <div class="row mt-2">
           <div class="col-sm-3">
             {/* <!--left col--> */}

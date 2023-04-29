@@ -9,11 +9,11 @@ import { AuthContext } from '../Authorizer';
 // Data setup 
 import { db } from "../Firebase";
 import {
-  query,
-  getDocs,
-  collection,
-  addDoc,
-  where
+    query,
+    getDocs,
+    collection,
+    addDoc,
+    where
 } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 
@@ -24,26 +24,24 @@ const Dashboard = () => {
     const [isVerified, setIsVerified] = useState(null);
     const [userData, setUserData] = useState(null);
 
-    useEffect(() => {
-        const getUserData = async () => {
-            let id = await currentUser.uid;
-            let isVerified = await currentUser.emailVerified;
-            setId(id)
-            setIsVerified(isVerified);
-            const q = query(collection(db, "users"), where("uid", "==", id));
-            const docs = await getDocs(q);
-            setUserData(docs.docs[0].data()); 
-        }
-        getUserData();
-    }, [currentUser]);
+    const getUserData = async () => {
+        let id = await currentUser.uid;
+        let isVerified = await currentUser.emailVerified;
+        setId(id)
+        setIsVerified(isVerified);
+        const q = query(collection(db, "users"), where("uid", "==", id));
+        const docs = await getDocs(q);
+        setUserData(docs.docs[0].data());
+    }
+    getUserData();
     // console.log(id, isVerified);
 
     // Employee Details
     const [record, setRecord] = useState([])
 
     if (isVerified == false) {
-           navigate('/VerifyEmail');
-           return null; 
+        navigate('/VerifyEmail');
+        return null;
     }
     return (
         <>
