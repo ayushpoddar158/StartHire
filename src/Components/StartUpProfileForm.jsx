@@ -2,11 +2,11 @@ import React from 'react'
 
 import { useState } from 'react';
 import { render } from 'react-dom';
-// import { DomainStartUp } from './DomainStartUp';
+import { StartUpDomain } from '../assets/StartUpDomain';
 import { WithContext as ReactTags } from 'react-tag-input';
 import "../style/Studentprofileform.css"
 
-const suggestions = DomainStartUp.map((Sdomian) => {
+const suggestions = StartUpDomain.map((Sdomian) => {
     return {
       id: Sdomian,
       text: Sdomian,
@@ -156,7 +156,7 @@ const StartUpprofileForm = () => {
                           
                           <div class="col-xs-6">
                               <label for="StartUpDesccription"><h4>StarUp Description</h4></label>
-                              {/* <textarea  class="form-control" id="StartUpDesccription" placeholder="StartUp Desccription" title="enter StartUp Desccription"/> */}
+                              <textarea  class="form-control" id="StartUpDesccription" placeholder="StartUp Desccription" title="enter StartUp Desccription"/>
                           </div>
                       </div>
                       <div class="form-group">
@@ -165,7 +165,7 @@ const StartUpprofileForm = () => {
                               <label for="email"><h4>Skills</h4></label>
                               <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location"/>
                           </div> */}
-                          <label for="Skills"><h4>ADD Skills</h4></label>
+                          <label for="Skills"><h4>ADD Domain</h4></label>
                           <div>
         <ReactTags
           tags={tags}

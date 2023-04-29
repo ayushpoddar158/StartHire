@@ -1,38 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React from 'react'
 
 import { useState } from 'react';
@@ -41,10 +8,10 @@ import { Codinglanginfo } from './Codinglanginfo';
 import { WithContext as ReactTags } from 'react-tag-input';
 import "../style/Studentprofileform.css"
 
-const suggestions = Codinglanginfo.map((country) => {
+const suggestions = Codinglanginfo.map((skillshint) => {
     return {
-      id: country,
-      text: country,
+      id: skillshint,
+      text: skillshint,
     };
   });
 
@@ -69,7 +36,7 @@ const [StudentData,setStudentData]=useState(
     collname:"",
     degree:"",
     YOG:"",
-    skills:""
+    skills:"zeta"
 
   }
 )
@@ -78,17 +45,18 @@ const getData = (e) => {
   // console.log(e.target.value)
 
   const { value, name } = e.target;
-  // console.log(value,name)
+
 
   setStudentData(() => {
     return {
       ...StudentData,
-      [name]: value
+      [name]: value,
+      ["skills"]:tags
 
 
     }
   });
-
+  console.log(StudentData);
   // console.log(inpVal)
 
 
@@ -107,6 +75,10 @@ const getData = (e) => {
     
       const handleAddition = (tag) => {
         setTags([...tags, tag]);
+       console.log(tags)
+       
+        
+        
       };
     
       const handleDrag = (tag, currPos, newPos) => {

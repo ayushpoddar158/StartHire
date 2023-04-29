@@ -1,5 +1,5 @@
-export const  DomainStartUp=[
-"C",
+export const  Codinglanginfo=[
+
 "JAVA",
 "PYTHON",
 "WEB DEVELOPMENT",
