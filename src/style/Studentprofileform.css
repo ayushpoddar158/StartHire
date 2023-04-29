@@ -6,16 +6,34 @@ Example Styles for React Tags
   
   #studentformmain{
     width: 70%;
-    padding: 30px;
+    padding: 40px;
     background-color: rgb(250, 246, 241);
+    border-radius: 20px 20px ;
    margin-top: 30px;
    margin-bottom: 30px;
    /* border-radius: 20px; */
-   box-shadow: 0px 0px 15px 1px grey;
+   box-shadow: 0px 0px 15px 1px rgb(199, 197, 197);
+   
   }
   /* Example Styles for React Tags*/
   
+#registrationForm{
+  background-color: rgb(170, 167, 167);
+  padding: 20px;
+  border-radius: 20px;
+}
 
+.YearOf{
+  padding: 15px;
+}
+.skills{
+  padding-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.skilllabel{
+  margin-bottom: 15px;
+}
   #fileupload{
     padding: 6px 20px;
     background: red; 
@@ -24,6 +42,10 @@ Example Styles for React Tags
     margin: auto;
     border-radius: 3px;
      }
+.tab-content input{
+  width: 30vw;
+}
+
 
 #addskills{
   margin-top: 40px !important;
@@ -31,8 +53,8 @@ Example Styles for React Tags
 
 
 .firstnamecls{
-margin-top: 12px;
-z-index: 100000 !important;
+margin-top: 13px;
+/* z-index: 100000 !important; */
 }
 
 .studentformsavebtn{

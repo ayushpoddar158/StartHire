@@ -195,14 +195,14 @@ const getImg=(e)=>{
               <div class="panel-body">
                 <div class="form-group">
 
-                  <div class="col-xs-6">
+                  <div class="col-xs-12">
                     <label for="last_name"><h6>Github Link</h6></label>
                     <input type="text" class="form-control" onChange={getData} name="last_name" id="last_name" placeholder="Github lInk" title="enter your last name if any." />
                   </div>
                 </div>
                 <div class="form-group">
 
-                  <div class="col-xs-6">
+                  <div class="col-xs-12">
                     <label for="last_name"><h6>Linkedin</h6></label>
                     <input type="text" class="form-control" onChange={getData} name="last_name" id="last_name" placeholder="Linkedin Link" title="enter your last name if any." />
                   </div>
@@ -227,49 +227,49 @@ const getImg=(e)=>{
               <div class="tab-pane active" id="home">
                 <hr />
                 <form class="form" onSubmit={submitHandler} id="registrationForm">
-                  <div class="form-group">
+                  <div class="form-group ">
 
-                    <div class="col-xs-6">
+                    <div class="col-xs-12">
 
 
-                      <label for="first_name"><h4>First Name</h4></label>
-                      <input type="text" onChange={getData} class="form-control" required name="firstname" id="first_name" placeholder="first name" title="enter your first name if any." />
+                      <label className="firstnamecls" for="first_name"><h3>First Name</h3></label>
+                      <input type="text" onChange={getData} class="form-control " required name="firstname" id="first_name" placeholder="first name" title="enter your first name if any." />
                     </div>
                   </div>
                   <div class="form-group">
 
-                    <div class="col-xs-6">
-                      <label for="last_name"><h4>Last Name</h4></label>
+                    <div class="col-xs-12">
+                      <label for="last_name"><h3>Last Name</h3></label>
                       <input type="text" onChange={getData} class="form-control" name="lastname" id="last_name" placeholder="last name" title="enter your last name if any." required />
                     </div>
                   </div>
 
 
                   <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="mobile"><h4>Mobile</h4></label>
+                    <div class="col-xs-12">
+                      <label for="mobile"><h3>Mobile</h3></label>
                       <input type="number" onChange={getData} class="form-control" required name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." />
                     </div>
                   </div>
 
                   <div class="form-group">
 
-                    <div class="col-xs-6">
-                      <label for="location"><h4>Location</h4></label>
+                    <div class="col-xs-12">
+                      <label for="location"><h3>Location</h3></label>
                       <input type="text" onChange={getData} name='location' class="form-control" required id="location" placeholder="somewhere" title="enter a location" />
                     </div>
                   </div>
                   <div class="form-group">
 
-                    <div class="col-xs-6">
-                      <label for="collname"><h4>College/University Name</h4></label>
+                    <div class="col-xs-12">
+                      <label for="collname"><h3>College/University Name</h3></label>
                       <input type="text" name='collname' onChange={getData} class="form-control" required id="" placeholder="college/University " title="enter a location" />
                     </div>
                   </div>
                   <div class="form-group">
 
-                    <div class="col-xs-6">
-                      <label for="degree"><h4>Degree</h4></label>
+                    <div class="col-xs-12">
+                      <label for="degree"><h3>Degree</h3></label>
                       <input type="text" name='degree' onChange={getData} class="form-control" required id="dergree" placeholder="Name of Degree" title="enter degree" />
                     </div>
                   </div>
@@ -277,17 +277,20 @@ const getImg=(e)=>{
 
                   <div class="form-group">
 
-                    <div class="col-xs">
-                      <label for="YOG"><h4>Year Of Graduation</h4></label>
-                      <input type="number" name='YOG' onChange={getData} class="form-control" required id="YOG" placeholder="Year of Graduation" title="enter year of passing" />
+                    <div class="col-xs-12 YearOf" >
+                      <label for="YOG"><h3>Year of Graduation</h3></label>
+                      <input  type="number" name='YOG' onChange={getData} class="form-control" required id="YOG" placeholder="Year of Graduation" title="enter year of passing" />
                     </div>
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group skills">
 
 
-                    <label for="Skills"><h4>Add Skills</h4></label>
+                    <label className="skilllabel" for="Skills"><h3>Add Skills</h3>
+                    
+                    </label>
+                    
 
 
                     <div>
