@@ -28,6 +28,7 @@ import StudentLists from "../DashboardArea/StudentLists";
 
 
 
+
 const suggestions = Codinglanginfo.map((country) => {
   return {
     id: country,
@@ -57,7 +58,7 @@ const Studentprofileform = () => {
       collname: "",
       degree: "",
       YOG: "",
-      skills: ""
+      skills: []
 
     }
   )
@@ -95,25 +96,33 @@ const Studentprofileform = () => {
 
   }
 
-  const [tags, setTags] = React.useState([
-    { id: 'C', text: 'C' },
+  const [tags, setTags] = React.useState([]);
 
-  ]);
+  useEffect(() => {
+ 
 
+    setStudentData(() => {
+      return {
+        ...StudentData,
+        ['skills']: tags
+        
+  
+  
+      }
+    });
+  }, [tags])
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
   const handleAddition = (tag) => {
-    setTags([...tags, tag]);
-    setStudentData(() => {
-      return {
-        ...StudentData,
-        ['skills']: tags
+    console.log(tag)
+    setTags([...tags,{
+      "id" : tag.id,
+      "text": tag.text 
+    }]);
+    console.log(tags);
 
-
-      }
-    });
     console.log(StudentData)
   };
 
@@ -226,6 +235,7 @@ const Studentprofileform = () => {
               <div class="tab-pane active" id="home">
                 <hr />
                 <form class="form" onSubmit={submitHandler} id="registrationForm">
+                <div className="container maindivstudent">
                   <div class="form-group ">
 
                     <div class="col-xs-12">
@@ -292,7 +302,7 @@ const Studentprofileform = () => {
                     
 
 
-                    <div>
+                    <div className="skillsdiv">
                       <ReactTags
                         tags={tags}
                         suggestions={suggestions}
@@ -314,6 +324,7 @@ const Studentprofileform = () => {
                       <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
                       <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                     </div>
+                  </div>
                   </div>
                 </form>
 
