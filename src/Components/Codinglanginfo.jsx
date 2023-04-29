@@ -1,5 +1,5 @@
 export const  Codinglanginfo=[
-"C",
+
 "JAVA",
 "PYTHON",
 "WEB DEVELOPMENT",

@@ -1,20 +1,3 @@
-// Authentication setup
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { Auth } from "../Firebase";
-import { AuthContext } from '../Authorizer';
-
-
-// Data setup 
-import { db } from "../Firebase";
-import {
-  query,
-  getDocs,
-  collection,
-  addDoc,
-  updateDoc,
-  where
-} from "firebase/firestore";
-
 import React from 'react'
 import { useState } from 'react';
 import { render } from 'react-dom';
@@ -23,11 +6,11 @@ import { WithContext as ReactTags } from 'react-tag-input';
 import "../style/Studentprofileform.css"
 
 const suggestions = Codinglanginfo.map((country) => {
-  return {
-    id: country,
-    text: country,
-  };
-});
+    return {
+      id: country,
+      text: country,
+    };
+  });
 
 
 const KeyCodes = {
@@ -40,17 +23,17 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const Studentprofileform = () => {
 
-  const { currentUser } = React.useContext(AuthContext);
-  const [StudentData, setStudentData] = useState(
-    {
-      firstname: "",
-      lastname: "",
-      mobile: "",
-      location: "",
-      collname: "",
-      degree: "",
-      YOG: "",
-      skills: ""
+
+const [StudentData,setStudentData]=useState(
+  {
+    firstname:"",
+    lastname:"",
+    mobile:"",
+    location:"",
+    collname:"",
+    degree:"",
+    YOG:"",
+    skills:""
 
     }
   )
@@ -58,46 +41,45 @@ const Studentprofileform = () => {
   const getData = (e) => {
     // console.log(e.target.value)
 
-    const { value, name } = e.target;
-    // console.log(value,name)
+  const { value, name } = e.target;
+  // console.log(value,name)
 
-    setStudentData(() => {
-      return {
-        ...StudentData,
-        [name]: value
-
-
-      }
-    });
-
-  }
+  setStudentData(() => {
+    return {
+      ...StudentData,
+      [name]: value
 
 
-  // tag funcitons
+    }
+  });
 
+  // console.log(inpVal)
+
+
+}
 
   const [tags, setTags] = React.useState([
     { id: 'C', text: 'C' },
 
   ]);
 
-  const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
-  };
-
-  const handleAddition = (tag) => {
-    setTags([...tags, tag]);
-  };
-
-  const handleDrag = (tag, currPos, newPos) => {
-    const newTags = tags.slice();
-
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
-
-    // re-render
-    setTags(newTags);
-  };
+      const handleDelete = (i) => {
+        setTags(tags.filter((tag, index) => index !== i));
+      };
+    
+      const handleAddition = (tag) => {
+        setTags([...tags, tag]);
+      };
+    
+      const handleDrag = (tag, currPos, newPos) => {
+        const newTags = tags.slice();
+    
+        newTags.splice(currPos, 1);
+        newTags.splice(newPos, 0, tag);
+    
+        // re-render
+        setTags(newTags);
+      };
 
   const handleTagClick = (index) => {
     console.log('The tag at index ' + index + ' was clicked');
@@ -142,11 +124,11 @@ const Studentprofileform = () => {
             {/* <!--left col--> */}
 
 
-            <div class="text-center">
-              <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" />
-              <h6>Upload A Different Photo...</h6>
-              <input type="file" class="text-center center-block file-upload" />
-            </div><hr /><br />
+      <div class="text-center">
+        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"/>
+        <h6>Upload A Different Photo...</h6>
+        <input type="file" class="text-center center-block file-upload"/>
+      </div><hr/><br/>
 
             <br />
             <div class="panel panel-default">
@@ -295,3 +277,15 @@ const Studentprofileform = () => {
 }
 
 export default Studentprofileform;
+
+
+
+
+
+
+
+
+
+
+
+
