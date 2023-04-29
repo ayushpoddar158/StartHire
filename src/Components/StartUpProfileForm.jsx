@@ -2,14 +2,14 @@ import React from 'react'
 
 import { useState } from 'react';
 import { render } from 'react-dom';
-import { Codinglanginfo } from './Codinglanginfo';
+// import { DomainStartUp } from './DomainStartUp';
 import { WithContext as ReactTags } from 'react-tag-input';
 import "../style/Studentprofileform.css"
 
-const suggestions = Codinglanginfo.map((country) => {
+const suggestions = DomainStartUp.map((Sdomian) => {
     return {
-      id: country,
-      text: country,
+      id: Sdomian,
+      text: Sdomian,
     };
   });
 
@@ -70,7 +70,7 @@ const StartUpprofileForm = () => {
 
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"/>
-        <h6>Upload a different photo...</h6>
+        <h6>Upload StartUp Logo...</h6>
         <input type="file" class="text-center center-block file-upload"/>
       </div><hr/><br/>
 
@@ -82,15 +82,15 @@ const StartUpprofileForm = () => {
             <div class="form-group">
                           
                           <div class="col-xs-6">
-                            <label for="last_name"><h6>Github link</h6></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Github lInk" title="enter your last name if any."/>
+                            <label for="StartUp_Email"><h6>Github link</h6></label>
+                              <input type="text" class="form-control" name="StartUp_Email" id="StartUp_Email" placeholder="Github lInk" title="enter your last name if any."/>
                           </div>
                       </div>
             <div class="form-group">
                           
                           <div class="col-xs-6">
-                            <label for="last_name"><h6>Linkedin</h6></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Linkedin Link" title="enter your last name if any."/>
+                            <label for="StartUp_Email"><h6>Linkedin</h6></label>
+                              <input type="text" class="form-control" name="StartUp_Email" id="StartUp_Email" placeholder="Linkedin Link" title="enter your last name if any."/>
                           </div>
                       </div>
                       </div>
@@ -116,30 +116,30 @@ const StartUpprofileForm = () => {
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any."/>
+                              <label for="StartUp_name"><h4>Start Up Name</h4></label>
+                              <input type="text" class="form-control" name="StartUp_name" required id="StartUp_name" placeholder="StartUp Name" title="enter yourStartUp  name if any."/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any."/>
+                            <label for="StartUp_Email"><h4>Start Up Email</h4></label>
+                              <input type="email" class="form-control" name="StartUp_Email" required id="StartUp_Email" placeholder="StartUp Email" title="enter your StarUp  email if any."/>
                           </div>
                       </div>
           
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any."/>
+                              <label for="FounderName"><h4>Founder Name</h4></label>
+                              <input type="text" class="form-control" name="FounderName" id="FounderName" placeholder="Enter Founder Name" title="enter your FounderName number if any."/>
                           </div>
                       </div>
           
                       <div class="form-group">
                           <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any."/>
+                             <label for="FounderEmail"><h4>Founder Email</h4></label>
+                              <input type="text" class="form-control" name="FounderEmail" id="FounderEmail" placeholder="Enter Founder Email " title="enter your FounderEmail number if any."/>
                           </div>
                       </div>
                    
@@ -150,25 +150,13 @@ const StartUpprofileForm = () => {
                               <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location"/>
                           </div>
                       </div>
+                    
+                    
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="email"><h4>College/University name</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="college/University " title="enter a location"/>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="degree"><h4>Degree</h4></label>
-                              <input type="email" class="form-control" id="dergree" placeholder="Name of Degree" title="enter degree"/>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="yograduation"><h4>year of graduation</h4></label>
-                              <input type="number" class="form-control" id="location" placeholder="Year of Graduation" title="enter year of passing"/>
+                              <label for="StartUpDesccription"><h4>StarUp Description</h4></label>
+                              {/* <textarea  class="form-control" id="StartUpDesccription" placeholder="StartUp Desccription" title="enter StartUp Desccription"/> */}
                           </div>
                       </div>
                       <div class="form-group">

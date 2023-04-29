@@ -1,4 +1,4 @@
-export const  Codinglanginfo=[
+export const  DomainStartUp=[
 "C",
 "JAVA",
 "PYTHON",

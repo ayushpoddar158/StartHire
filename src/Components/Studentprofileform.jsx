@@ -1,3 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React from 'react'
 
 import { useState } from 'react';
@@ -106,7 +141,10 @@ const getData = (e) => {
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"/>
         <h6>Upload A Different Photo...</h6>
-        <input type="file" class="text-center center-block file-upload"/>
+        {/* <input type="file" class="text-center center-block file-upload"/> */}
+              <label id='fileupload'> Upload Your File
+               <input type="file" size="60" />
+              </label>
       </div><hr/><br/>
 
                <br />
@@ -256,3 +294,15 @@ const getData = (e) => {
 }
 
 export default Studentprofileform;
+
+
+
+
+
+
+
+
+
+
+
+

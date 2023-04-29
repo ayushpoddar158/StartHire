@@ -5,6 +5,7 @@ const VerifyEmail = () => {
    <>
     <div className="row VerifyBox">
     <div className="col-md-12">
+  
         
         <h1 className='Verifyh2'>You will recieve a verification link on your mail after you registered.
         <br /> Click that link to verify.</h1>
