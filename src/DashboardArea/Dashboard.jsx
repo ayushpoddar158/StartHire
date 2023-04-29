@@ -100,7 +100,7 @@ const Dashboard = () => {
                                     <div class="card text-white bg-info h-100">
                                         <div class="card-body bg-info">
                                             <div class="rotate">
-                                                <i class="fab fa-twitter fa-4x"></i>
+                                                <i class="fa fa-twitter fa-4x"></i>
                                             </div>
                                             <h6 class="text-uppercase">Tweets</h6>
                                             <h1 class="display-4">125</h1>

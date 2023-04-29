@@ -2,6 +2,7 @@
 // Authentication @Firebase 
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { Auth } from "../Firebase";
+import { AuthContext } from "../Authorizer";
 
 // Data import @Firebase
 import { db } from "../Firebase";
@@ -19,8 +20,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from "uuid";
 import Login from './Login';
 import '../style/SignUp.css'
+import { useContext } from "react";
 
 const Signup = () => {
+  // const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [inpVal, setInpVal] = useState({
     name: "",
@@ -69,25 +72,25 @@ const Signup = () => {
     }
     else {
       await createUserWithEmailAndPassword(Auth, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           const user = userCredential.user;
-          try {
-            const addVal = async () => {
-              await addDoc(collection(db, "users"), {
-                uid: user.uid,
-                name: name,
-                authProvider: "email",
-                email: user.email,
-                desgn: "student",
-                updatedProfile: false
+            const some = await addDoc(collection(db, "users"), {
+              uid: user.uid,
+              name: name,
+              authProvider: "email",
+              email: user.email,
+              desgn: "student",
+              updatedProfile: false
+            })
+              .then(() => {
+                console.log("inside error");
+                console.log(some);
               })
-            }
-            console.log("adding data")
-            addVal();
-          }
-          catch (err) {
-            console.log(err)
-          }
+              .catch((err) => {
+                console.log('inside error function');
+                console.log(err);
+              });
+            console.log("exitting addDoc");
           alert("Verify Your Email");
         })
         .catch((error) => {
@@ -100,7 +103,7 @@ const Signup = () => {
         .then(() => {
           console.log("Verification Email Sent");
           Auth.signOut();
-          navigate("/Login");
+          // navigate("/Login");
           // ...
         }).catch((error) => {
           console.log("There is an error !!")
@@ -109,7 +112,9 @@ const Signup = () => {
         });
 
     }
+
   }
+  
 
   return (
     <>
@@ -183,7 +188,6 @@ const Signup = () => {
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button type="button" onClick={addData} className="btn btn-primary btn-lg">Register</button>
                         </div>
-
                       </form>
 
                     </div>
