@@ -15,9 +15,10 @@ import {
   addDoc,
   where
 } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-
+    const navigate = useNavigate();
     const { currentUser } = useContext(AuthContext);
     const [id, setId] = useState(null);
     const [isVerified, setIsVerified] = useState(null);
@@ -41,11 +42,8 @@ const Dashboard = () => {
     const [record, setRecord] = useState([])
 
     if (isVerified == false) {
-        return (
-            <>
-                <h1>Please Verify Your Email Address
-                </h1>
-            </>);
+           navigate('/VerifyEmail');
+           return null; 
     }
     return (
         <>

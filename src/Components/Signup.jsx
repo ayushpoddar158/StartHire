@@ -74,17 +74,17 @@ const Signup = () => {
       await createUserWithEmailAndPassword(Auth, email, password)
         .then(async (userCredential) => {
           const user = userCredential.user;
-            const some = await addDoc(collection(db, "users"), {
+            await addDoc(collection(db, "users"), {
               uid: user.uid,
               name: name,
               authProvider: "email",
               email: user.email,
               desgn: "student",
-              updatedProfile: false
+              updatedProfile: false,
+              details: null
             })
               .then(() => {
                 console.log("inside error");
-                console.log(some);
               })
               .catch((err) => {
                 console.log('inside error function');
@@ -103,7 +103,7 @@ const Signup = () => {
         .then(() => {
           console.log("Verification Email Sent");
           Auth.signOut();
-          // navigate("/Login");
+          navigate("/Login");
           // ...
         }).catch((error) => {
           console.log("There is an error !!")

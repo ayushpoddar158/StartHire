@@ -23,7 +23,6 @@ const Signupstartup = () => {
   const [inpVal, setInpVal] = useState({
     sName: "",
     sEmail: "",
-    sFounder: "",
     password: "",
     repeatpassword: ""
   })
@@ -46,7 +45,7 @@ const Signupstartup = () => {
     console.log("submit working")
     e.preventDefault();
     // console.log(inpVal)
-    const { sName, sEmail, sFounder, password, repeatpassword } = inpVal;
+    const { sName, sEmail, password, repeatpassword } = inpVal;
 
     if (sName === "") {
       alert("name field is required")
@@ -63,19 +62,17 @@ const Signupstartup = () => {
       alert("password and repeatpaswod should be same")
     }
     else {
-      console.log("within await");
       await createUserWithEmailAndPassword(Auth, sEmail, password)
         .then(async (userCredential) => {
-          console.log("authenticating");
           const user = userCredential.user;
           await addDoc(collection(db, "startups"), {
             uid: user.uid,
             name: sName,
-            founder: sFounder,
             authProvider: "email",
             email: sEmail,
             desgn: "startup",
-            updatedProfile: false
+            updatedProfile: false,
+            details: null
           })
           alert("Verify Your Email");
         })
@@ -135,18 +132,12 @@ const Signupstartup = () => {
                             <label className="form-label" HtmlFor="form3Example1c">StartUp Name</label>
                           </div>
                         </div>
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <i id='signupicons' className="zmdi zmdi-account"></i>
-                          <div className="form-outline flex-fill mb-0">
-                            <input type="text" id="form3Example1c" name="sFounder" onChange={getdata} className="form-control" />
-                            <label className="form-label" HtmlFor="form3Example1c">Founder Name</label>
-                          </div>
-                        </div>
+                        
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i id='signupicons' className="zmdi zmdi-email"></i>
                           <div className="form-outline flex-fill mb-0">
                             <input type="email" id="form3Example3c" name="sEmail" onChange={getdata} className="form-control" />
-                            <label className="form-label" HtmlFor="form3Example3c">Company Official Email</label>
+                            <label className="form-label" HtmlFor="form3Example3c">StartUp Official Email</label>
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">

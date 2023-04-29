@@ -56,7 +56,7 @@ const LoginStartUp = () => {
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const q = query(collection(db, "startups"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         const user_data = docs.docs[0].data()
         if (!user_data.updatedProfile) {
