@@ -13,7 +13,5 @@ export const  StartUpDomain=[
     'photography',
     'Ai',
     'IOT'
-    
-    
-    
+
     ]
