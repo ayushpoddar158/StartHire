@@ -51,6 +51,7 @@ input::placeholder{
     color: #fff;
     margin: auto;
     border-radius: 3px;
+    cursor: pointer;
      }
 .tab-content input{
   width: 35vw;
@@ -84,6 +85,7 @@ input[type="file"] {
     border-radius: 2px;
     display: inline-block;
     margin-left: 15px;
+    word-wrap: break-word;
    
   }
   .skillsdiv{
@@ -97,9 +99,14 @@ input[type="file"] {
   .ReactTags__tagInput input.ReactTags__tagInputField:focus {
     height: 31px;
     margin: 0;
-    font-size: 12px;
+    font-size: 1.3rem;
     width: 100%;
     border: 1px solid #eee;
+
+  }
+  .ReactTags__tagInput input.ReactTags__tagInputField,
+  .ReactTags__tagInput input.ReactTags__tagInputField::placeholder{
+font-size: 1.3rem;
   }
   
   /* Styles for selected tags */

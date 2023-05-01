@@ -298,7 +298,10 @@ const Studentprofileform = () => {
 
                     <label className="skilllabel" for="Skills"><h3>Add Skills</h3>
                     
+                    
                     </label>
+                  
+                    
                     
 
 
@@ -313,6 +316,7 @@ const Studentprofileform = () => {
                         handleTagClick={handleTagClick}
                         inputFieldPosition="bottom"
                         autocomplete
+                        
                         editable
                       />
                     </div>

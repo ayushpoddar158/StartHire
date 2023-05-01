@@ -1,7 +1,23 @@
-// Authentication @Firebase 
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+// Authentication @Firebase
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { Auth } from "../Firebase";
 import { AuthContext } from "../Authorizer";
+import { useEffect } from "react";
+import { Box } from "@mui/material";
+import Select from "react-select";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { render } from "react-dom";
+import { WithContext as ReactTags } from "react-tag-input";
+import "../style/StartUpProfileForm.css";
+// import StartUpLists from "../DashboardArea/StartUpLists";
+
+// import { StartUpDomain } from '../data';
+import { StartUpDomain } from "../assets/StartUpDomain";
 
 // Data import @Firebase
 import { db } from "../Firebase";
@@ -11,55 +27,42 @@ import {
   collection,
   addDoc,
   updateDoc,
-  where
+  where,
 } from "firebase/firestore";
-
-// testing debasish
-
-
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { render } from 'react-dom';
-import { Codinglanginfo } from './Codinglanginfo';
-import { WithContext as ReactTags } from 'react-tag-input';
-import "../style/Studentprofileform.css"
-
-
-
-const suggestions = Codinglanginfo.map((country) => {
-  return {
-    id: country,
-    text: country,
-  };
-});
-
 
 const KeyCodes = {
   comma: 188,
   enter: 13,
 };
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
-
-
-const Studentprofileform = () => {
-
+const StartUpProfileForm = () => {
   const { currentUser } = React.useContext(AuthContext);
   const navigate = useNavigate();
-  const [StartUpData, setStartUpData] = useState(
-    {
-      firstname: "",
-      lastname: "",
-      mobile: "",
-      location: "",
-      collname: "",
-      degree: "",
-      YOG: "",
-      skills: ""
+  const [StartUpData, setStartUpData] = useState({
+    StartUpname: "",
+    lastname: "",
+    Founder_Name: "",
+    Founder_Email: "",
+    collname: "",
+    degree: "",
+    YOG: "",
+    skills: [],
+  });
 
+  const [StartUpImg, SetStartUpImg] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [tags, setTags] = React.useState([]);
+
+
+  useEffect(() => {
+    if (StartUpImg) {
+      setImageUrl(URL.createObjectURL(StartUpImg));
     }
-  )
+  }, [StartUpImg]);
+  const getImg = (e) => {
+    SetStartUpImg(e.target.files[0]);
+    console.log(StartUpImg);
+  };
 
   const getData = (e) => {
     // console.log(e.target.value)
@@ -70,29 +73,40 @@ const Studentprofileform = () => {
     setStartUpData(() => {
       return {
         ...StartUpData,
-        [name]: value
-
-
-      }
+        [name]: value,
+        // ['skills']:tags
+      };
     });
 
-    // console.log(inpVal)
+    console.log(StartUpData);
+  };
 
 
-  }
-
-  const [tags, setTags] = React.useState([
-    { id: 'C', text: 'C' },
-
-  ]);
+  useEffect(() => {
+    setStartUpData(() => {
+      return {
+        ...StartUpData,
+        ["skills"]: tags,
+      };
+    });
+  }, [tags]);
 
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
   const handleAddition = (tag) => {
-    setTags([...tags, tag]);
+    console.log(tag)
+    setStartUpData(() => {
+      return {
+        ...StartUpData,
+        ["skills"]: tag,
+      };
+    });
+    console.log(StartUpData)
+
   };
+
 
   const handleDrag = (tag, currPos, newPos) => {
     const newTags = tags.slice();
@@ -105,13 +119,16 @@ const Studentprofileform = () => {
   };
 
   const handleTagClick = (index) => {
-    console.log('The tag at index ' + index + ' was clicked');
+    console.log("The tag at index " + index + " was clicked");
   };
 
   const submitHandler = async () => {
     console.log("inside submit handler");
     console.log(currentUser);
-    const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
+    const q = query(
+      collection(db, "users"),
+      where("uid", "==", currentUser.uid)
+    );
     const docs = await getDocs(q);
     const doc = docs.docs[0];
     console.log(doc);
@@ -119,50 +136,93 @@ const Studentprofileform = () => {
       await updateDoc(doc.ref, {
         updatedProfile: true,
         details: {
-          firstname: StartUpData.firstname,
+          StartUpname: StartUpData.StartUpname,
           lastname: StartUpData.lastname,
-          mobile: StartUpData.mobile,
-          location: StartUpData.location,
+          Founder_Name: StartUpData.Founder_Name,
+          Founder_Email: StartUpData.Founder_Email,
           collname: StartUpData.collname,
           degree: StartUpData.degree,
-          YOG: StartUpData.YOG
-          // skills: tags
-        }
-      })
-        .then(() => {
-          navigate("/Studentprofile");
-        })
+          YOG: StartUpData.YOG,
+          skills: tags,
+        },
+      }).then(() => {
+        navigate("/StartUpprofile");
+      });
     }
-
-  }
-
-
-
+  };
 
   return (
     <>
-      <div class="container bootstrap snippet" id='studentformmain'>
-
+      <div class="container bootstrap snippet" id="StartUpformmain">
         <div class="row mt-2">
           <div class="col-sm-3">
             {/* <!--left col--> */}
 
-
             <div class="text-center">
-              <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" />
-              <h6>Upload Your Logo Here</h6>
-              <input type="file" class="text-center center-block file-upload" />
-            </div><hr /><br />
+              {imageUrl && StartUpImg && (
+                <Box mt={2} textAlign="center">
+                  {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
+                  <div id="StartUpImage">
+                    <img src={imageUrl} alt={StartUpImg.name} height="100px" />
+                  </div>
+                </Box>
+              )}
+              <h6></h6>
+              <label id="fileupload">
+                {" "}
+                Upload Your Logo
+                <input
+                  accept="image/"
+                  type="file"
+                  onChange={getImg}
+                  size="60"
+                />
+              </label>
+            </div>
+            <hr />
+            <br />
 
             <br />
             <div class="panel panel-default">
-              <div class="panel-heading">Links<i class="fa fa-link fa-1x"></i></div>
+              <div class="panel-heading">
+                Links<i class="fa fa-link fa-1x"></i>
+              </div>
               <hr />
-                          </div>
-
-
-
-
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="col-xs-12">
+                    <label for="last_name">
+                      <h6>Github Link</h6>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      onChange={getData}
+                      name="last_name"
+                      id="last_name"
+                      placeholder="Github lInk"
+                      title="enter your last name if any."
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-xs-12">
+                    <label for="last_name">
+                      <h6>Linkedin</h6>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      onChange={getData}
+                      name="last_name"
+                      id="last_name"
+                      placeholder="Linkedin Link"
+                      title="enter your last name if any."
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           {/* <!--/col-3--> */}
           <div class="col-sm-9">
@@ -172,128 +232,138 @@ const Studentprofileform = () => {
                 <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
               </ul> */}
 
-
             <div class="tab-content">
               <div class="tab-pane active" id="home">
                 <hr />
-                <form class="form" onSubmit={submitHandler} id="registrationForm">
-                  <div class="form-group">
-
-                    <div class="col-xs-6">
-
-
-                      <label for="first_name"><h4>First Name</h4></label>
-                      <input type="text" onChange={getData} class="form-control" required name="firstname" id="first_name" placeholder="first name" title="enter your first name if any." />
+                <form
+                  class="form"
+                  onSubmit={submitHandler}
+                  id="registrationForm"
+                >
+                  <div className="container maindivStartUp">
+                    <div class="form-group ">
+                      <div class="col-xs-12">
+                        <label className="StartUpnamecls" for="StartUp_name">
+                          <h3>StartUp Name</h3>
+                        </label>
+                        <input
+                          type="text"
+                          onChange={getData}
+                          class="form-control "
+                          required
+                          name="StartUpname"
+                          id="StartUp_name"
+                          placeholder="StartUp name"
+                          title="enter your StartUp name if any."
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-
-                    <div class="col-xs-6">
-                      <label for="last_name"><h4>Last Name</h4></label>
-                      <input type="text" onChange={getData} class="form-control" name="lastname" id="last_name" placeholder="last name" title="enter your last name if any." required />
+                    <div class="form-group">
+                      <div class="col-xs-12">
+                        <label for="StartUp_Email">
+                          <h3>StartUp Email</h3>
+                        </label>
+                        <input
+                          type="email"
+                          onChange={getData}
+                          class="form-control"
+                          name="StartUpEmail"
+                          id="StartUp_Email"
+                          placeholder="StartUp Email"
+                          title="enter your StartUp Email if any."
+                          required
+                        />
+                      </div>
                     </div>
-                  </div>
 
-
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="mobile"><h4>Mobile</h4></label>
-                      <input type="number" onChange={getData} class="form-control" required name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." />
+                    <div class="form-group">
+                      <div class="col-xs-12">
+                        <label for="FounderName">
+                          <h3>Founder Name</h3>
+                        </label>
+                        <input
+                          type="text"
+                          onChange={getData}
+                          class="form-control"
+                          required
+                          name="FounderName"
+                          id="Founder_Name"
+                          placeholder="enter Founder Name "
+                          title="enter your Founder Name number if any."
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="form-group">
-
-                    <div class="col-xs-6">
-                      <label for="location"><h4>Location</h4></label>
-                      <input type="text" onChange={getData} name='location' class="form-control" required id="location" placeholder="somewhere" title="enter a location" />
+                    <div class="form-group">
+                      <div class="col-xs-12">
+                        <label for="FounderEmail">
+                          <h3>Founder Email</h3>
+                        </label>
+                        <input
+                          type="email"
+                          onChange={getData}
+                          name="FounderEmail"
+                          class="form-control"
+                          required
+                          id="Founder_Email"
+                          placeholder="Founder Email"
+                          title="enter  Founder Email"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
+                  
+                  
 
-                    <div class="col-xs-6">
-                      <label for="collname"><h4>College/University Name</h4></label>
-                      <input type="text" name='collname' onChange={getData} class="form-control" required id="" placeholder="college/University " title="enter a location" />
+                  
+                    <div class="form-group selectDiv" >
+                      <div class="col-xs-12 YearOf">
+                        <label for="YOG">
+                          <h3>Add Domain</h3>
+                        </label>
+                        <Select onChange={handleAddition}
+                         
+                          isMulti
+                          name="colors"
+                          options={StartUpDomain}
+                          className="basic-multi-select"
+                          classNamePrefix="select"
+                          placeholder="Enter Your Domain"
+                          handleDelete={handleDelete}
+                          
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
 
-                    <div class="col-xs-6">
-                      <label for="degree"><h4>Degree</h4></label>
-                      <input type="text" name='degree' onChange={getData} class="form-control" required id="dergree" placeholder="Name of Degree" title="enter degree" />
-                    </div>
-                  </div>
-
-
-                  <div class="form-group">
-
-                    <div class="col-xs">
-                      <label for="YOG"><h4>Year Of Graduation</h4></label>
-                      <input type="number" name='YOG' onChange={getData} class="form-control" required id="YOG" placeholder="Year of Graduation" title="enter year of passing" />
-                    </div>
-                  </div>
-
-
-                  <div class="form-group">
-
-
-                    <label for="Skills"><h4>Add Skills</h4></label>
-
-
-                    <div>
-                      <ReactTags
-                        tags={tags}
-                        suggestions={suggestions}
-                        delimiters={delimiters}
-                        handleDelete={handleDelete}
-                        handleAddition={handleAddition}
-                        handleDrag={handleDrag}
-                        handleTagClick={handleTagClick}
-                        inputFieldPosition="bottom"
-                        autocomplete
-                        editable
-                      />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-xs-12">
-                      <br />
-                      <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
-                      <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                    <div class="form-group">
+                      <div class="col-xs-12">
+                        <br />
+                        <button
+                          class="btn btn-lg btn-success"
+                          onClick={submitHandler}
+                          type="button"
+                        >
+                          <i className="fa-regular fa-folder-arrow-up"></i> Save
+                        </button>
+                        <button class="btn btn-lg" type="reset">
+                          <i class="glyphicon glyphicon-repeat"></i> Reset
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>
 
                 <hr />
-
               </div>
-
-
             </div>
             {/* <!--/tab-pane--> */}
           </div>
           {/* <!--/tab-content--> */}
-
         </div>
         {/* <!--/col-9--> */}
       </div>
       {/* <!--/row--> */}
-
     </>
-  )
-}
+  );
+};
 
-export default Studentprofileform;
-
-
-
-
-
-
-
-
-
-
-
-
+export default StartUpProfileForm;

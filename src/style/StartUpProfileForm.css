@@ -1,0 +1,97 @@
+Example Styles for React Tags
+.app {
+    padding: 40px;
+    text-align: center;
+  }
+  
+  #StartUpformmain{
+    width: 70%;
+    padding: 40px;
+    background-color: rgb(250, 246, 241);
+    border-radius: 20px 20px ;
+   margin-top: 30px;
+   margin-bottom: 30px;
+   /* border-radius: 20px; */
+   box-shadow: 0px 0px 15px 1px rgb(199, 197, 197);
+   
+  }
+  /* Example Styles for React Tags*/
+  
+#registrationForm{
+  background-color: rgb(170, 167, 167);
+  padding: 20px;
+  border-radius: 20px;
+
+}
+.maindivStartUp{
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input::placeholder{
+  font-size: 1.3rem;
+}
+.YearOf{
+  padding: 15px;
+}
+.skills{
+  /* padding-left: 15px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.skilllabel{
+  margin-bottom: 15px;
+}
+  #fileupload{
+    padding: 6px 20px;
+    background: red; 
+    display: table;
+    color: #fff;
+    margin: auto;
+    border-radius: 3px;
+    cursor: pointer;
+     }
+.tab-content input{
+  width: 35vw;
+}
+
+
+#addskills{
+  margin-top: 40px !important;
+}
+
+
+.firstnamecls{
+margin-top: 13px;
+/* z-index: 100000 !important; */
+}
+
+.StartUpformsavebtn{
+  margin-left: 15px;
+}
+input[type="file"] {
+    display: none;
+}
+
+  .ReactTags__tags {
+    position: relative;
+  }
+  
+  /* Styles for the input */
+  .ReactTags__tagInput {
+    width: 30vw;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 15px;
+    word-wrap: break-word;
+   
+  }
+.selectDiv{
+    width: 40vw;
+}
+
+  
+ 
+  
