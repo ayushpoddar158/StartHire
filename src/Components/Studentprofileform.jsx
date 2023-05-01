@@ -58,6 +58,7 @@ const Studentprofileform = () => {
       collname: "",
       degree: "",
       YOG: "",
+      PimageUrl: "",
       skills: []
 
     }
@@ -158,11 +159,11 @@ const Studentprofileform = () => {
           collname: StudentData.collname,
           degree: StudentData.degree,
           YOG: StudentData.YOG,
-          skills: tags
+          skills: StudentData.skills
         }
       })
         .then(() => {
-          navigate("/Studentprofile");
+          // navigate("/Studentprofile");
         })
     }
 
