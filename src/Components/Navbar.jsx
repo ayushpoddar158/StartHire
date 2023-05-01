@@ -50,7 +50,6 @@ function Navbar() {
 
 
 
-  console.log(loginCont);
 
   const LogOut = () => {
     Auth.signOut();

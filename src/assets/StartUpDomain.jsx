@@ -1,4 +1,5 @@
 export const  StartUpDomain=[
+
     { value: 'c', label: 'c', color: '#00B8D9', isFixed: true },
     { value: 'Java', label: 'Java', color: '#0052CC' ,isFixed: true },
     { value: 'python', label: 'Python', color: '#5243AA' },
@@ -10,3 +11,4 @@ export const  StartUpDomain=[
     { value: 'FrontEnd Development', label: 'FrontEnd Development', color: '#253858' },
     
   ];
+
