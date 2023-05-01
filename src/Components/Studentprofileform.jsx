@@ -51,14 +51,14 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 const Studentprofileform = () => {
-
   const { currentUser } = React.useContext(AuthContext);
+  const [data, setData] = useState();
+  const [docRef, setDocRef] = useState();
+  const [isUser, setIsUser] = useState(false);
   const [StudentImg, SetStudentImg] = useState(null)
   const [imageUrl, setImageUrl] = useState(null);
   const [tags, setTags] = React.useState([]);
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const [docRef, setDocRef] = useState([]);
   const [StudentData, setStudentData] = useState(
     {
       firstname: "",
@@ -76,68 +76,28 @@ const Studentprofileform = () => {
     }
   )
 
-
-
-
-  const getData = (e) => {
-    // console.log(e.target.value)
-
-    const { value, name } = e.target;
-    // console.log(value,name)
-
-    setStudentData(() => {
-      return {
-        ...StudentData,
-        [name]: value,
-        // ['skills']:tags
-
-
-      }
-    });
-
-    console.log(StudentData)
-
-
+  const fetchData = async () => {
+    const q = query(collection(db, "users"), where("uid", "==", Auth.currentUser.uid));
+    const docs = await getDocs(q);
+    const doc = docs.docs[0];
+    setDocRef(doc);
+    setData(doc.data());
   }
-
-
-  const handleImageUpload = async (e) => {
-    SetStudentImg(e.target.files[0]);
-    const fileRef = ref(storage, `images/${currentUser.uid}` + StudentImg.name);
-    const snapshot = await uploadBytes(fileRef, StudentImg)
-      .then(() => {
-        console.log("Uploaded")
-        console.log(snapshot);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
+  fetchData();
 
   useEffect(() => {
-    if (StudentImg) {
-      setImageUrl(URL.createObjectURL(StudentImg));
-    }
-  }, [StudentImg]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      console.log("inside submit handler");
-      const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
-      const docs = await getDocs(q);
-      const doc = docs.docs[0];
-      setDocRef(doc);
-      setData(doc.data());
-      if (doc.data().updatedProfile) {
+    // console.log(data);
+    if (data) {
+      if (data.updatedProfile) {
+        // console.log(data.details.firstname);
         setStudentData(
           {
-            firstname: data.details.firstname, 
+            firstname: data.details.firstname,
             lastname: data.details.lastname,
             mobile: data.details.mobile,
             location: data.details.location,
             collname: data.details.collname,
-            degree: data.details.degree, 
+            degree: data.details.degree,
             YOG: data.details.YOG,
             githubLink: data.details.githubLink,
             linkedInLink: data.details.linkedInLink,
@@ -148,18 +108,68 @@ const Studentprofileform = () => {
         setImageUrl(data.details.PImageUrl);
       }
     }
-    fetchData();
-  },[])
+  }, [data])
 
 
-  useEffect(() => {
+  const getData = (e) => {
+    // console.log(e.target.value)
+    const { value, name } = e.target;
+    // console.log(value,name)
     setStudentData(() => {
       return {
         ...StudentData,
-        ['skills']: tags
+        [name]: value,
       }
     });
-  }, [])
+
+  }
+
+
+  const handleImageUpload = async (e) => {
+    SetStudentImg(e.target.files[0]);
+    // const fileRef = ref(storage, `images/${currentUser.uid}` + StudentImg.name);
+    // const snapshot = await uploadBytes(fileRef, StudentImg)
+    //   .then(() => {
+    //     console.log("Uploaded")
+    //     console.log(snapshot);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+  }
+
+  useEffect(() => {
+    if (StudentImg) {
+      setImageUrl(URL.createObjectURL(StudentImg));
+    }
+  }, [StudentImg]);
+
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     const fetchData = async () => {
+
+  //       const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
+  //       const docs = await getDocs(q);
+  //       const doc = docs.docs[0];
+  //       setDocRef(doc);
+  //       setData(doc.data(), () => {
+  //         console.log(data);
+  //       });
+
+  //     }
+  //     fetchData();
+  //   }
+  // }, [currentUser])
+
+  // useEffect(() => {
+  //   setStudentData(() => {
+  //     return {
+  //       ...StudentData,
+  //       ['skills']: tags
+  //     }
+  //   });
+  // }, [])
 
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
@@ -190,240 +200,222 @@ const Studentprofileform = () => {
     console.log('The tag at index ' + index + ' was clicked');
   };
 
-  const submitHandler = async () => {
-    console.log("inside submit handler");
-    const doc = docRef;
-    console.log();
-    if (doc) {
-      if (StudentData.PImageUrl == null) {
-        const uploadTask = ref(storage, `images/userImages/}` + StudentImg.name).put();
+  // const submitHandler = async () => {
+  //   console.log("inside submit handler");
+  //   const doc = docRef;
+  //   console.log();
+  //   if (doc) {
+  //     if (StudentData.PImageUrl == null) {
+  //       const fileRef = ref(storage, `images/userImages/}` + StudentImg.name);
+  //       try {
+  //         const snap = await uploadBytes(fileRef, StudentImg);
+  //         console.log("Uploaded", snap);
+  //         const downloadURL = await getDownloadURL(fileRef);
+  //         console.log("Download URL:", downloadURL);
+  //         setImageUrl(downloadURL);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     }
+  //     await updateDoc(doc.ref, {
+  //       updatedProfile: true,
+  //       details: {
+  //         firstname: StudentData.firstname,
+  //         lastname: StudentData.lastname,
+  //         mobile: StudentData.mobile,
+  //         location: StudentData.location,
+  //         collname: StudentData.collname,
+  //         degree: StudentData.degree,
+  //         YOG: StudentData.YOG,
+  //         skills: StudentData.skills,
+  //         githubLink: StudentData.githubLink,
+  //         linkedInLink: StudentData.linkedInLink
+  //       }
+  //     })
+  //       .then(() => {
+  //         // navigate("/Studentprofile");
+  //       })
+  //   }
 
-        uploadTask.on("state_changed",
-          (snapshot) => {},
-          (err) =>{
-            console.log(err);
-          },
-          () =>{
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              console.log("File available at", downloadURL);
-            })
-          })
-
-      //   const snapshot = await uploadBytes(fileRef, StudentImg)
-      //     .then(() => {
-      //       console.log("Uploaded");
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      //     const downImageUrl = await snapshot.ref.getDownloadURL()
-      //     .then(() =>{
-      //       console.log(downImageUrl)
-      //     })
-      //     .catch((err) =>{
-      //       console.log(err)
-      //     })
-          
-      }
-      await updateDoc(doc.ref, {
-        updatedProfile: true,
-        details: {
-          firstname: StudentData.firstname,
-          lastname: StudentData.lastname,
-          mobile: StudentData.mobile,
-          location: StudentData.location,
-          collname: StudentData.collname,
-          degree: StudentData.degree,
-          YOG: StudentData.YOG,
-          skills: StudentData.skills,
-          githubLink: StudentData.githubLink,
-          linkedInLink: StudentData.linkedInLink
-        }
-      })
-        .then(() => {
-          // navigate("/Studentprofile");
-        })
-    }
-
-  }
+  // }
 
 
 
 
-  return (
-    <>
-      <div class="container bootstrap snippet" id='studentformmain'>
+  // return (
+  //   <>
+  //     <div class="container bootstrap snippet" id='studentformmain'>
 
-        <div class="row mt-2">
-          <div class="col-sm-3">
-            {/* <!--left col--> */}
-
-
-            <div class="text-center">
-
-              {imageUrl && StudentImg && (
-                <Box mt={2} textAlign="center">
-                  {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
-                  <div id="StudentImage">
-                    <img src={imageUrl} alt={StudentImg.name} height="100px" />
-                  </div>
-                </Box>
-              )}
-              <h6></h6>
-              <label id='fileupload'> Upload Your Photo
-                <input accept="image/" type="file" onChange={handleImageUpload} size="60" />
-              </label>
-            </div><hr /><br />
-
-            <br />
-            <div class="panel panel-default">
-              <div class="panel-heading">Links<i class="fa fa-link fa-1x"></i></div>
-              <hr />
-              <div class="panel-body">
-                <div class="form-group">
-
-                  <div class="col-xs-12">
-                    <label for="last_name"><h6>Github Link</h6></label>
-                    <input type="text" class="form-control" onChange={getData} name="githubLink" id="githubLink" placeholder="Github lInk" title="enter your last name if any." />
-                  </div>
-                </div>
-                <div class="form-group">
-
-                  <div class="col-xs-12">
-                    <label for="last_name"><h6>Linkedin</h6></label>
-                    <input type="text" class="form-control" onChange={getData} name="linkedInLink" id="linkedInLink" placeholder="Linkedin Link" title="enter your last name if any." />
-                  </div>
-                </div>
-              </div>
-            </div>
+  //       <div class="row mt-2">
+  //         <div class="col-sm-3">
+  //           {/* <!--left col--> */}
 
 
+  //           <div class="text-center">
 
+  //             {imageUrl && StudentImg && (
+  //               <Box mt={2} textAlign="center">
+  //                 {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
+  //                 <div id="StudentImage">
+  //                   <img src={imageUrl} alt={StudentImg.name} height="100px" />
+  //                 </div>
+  //               </Box>
+  //             )}
+  //             <h6></h6>
+  //             <label id='fileupload'> Upload Your Photo
+  //               <input accept="image/" type="file" onChange={handleImageUpload} size="60" />
+  //             </label>
+  //           </div><hr /><br />
 
-          </div>
-          {/* <!--/col-3--> */}
-          <div class="col-sm-9">
-            {/* <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul> */}
+  //           <br />
+  //           <div class="panel panel-default">
+  //             <div class="panel-heading">Links<i class="fa fa-link fa-1x"></i></div>
+  //             <hr />
+  //             <div class="panel-body">
+  //               <div class="form-group">
 
+  //                 <div class="col-xs-12">
+  //                   <label for="last_name"><h6>Github Link</h6></label>
+  //                   <input type="text" class="form-control" onChange={getData} name="githubLink" id="githubLink" placeholder="Github lInk" title="enter your last name if any." />
+  //                 </div>
+  //               </div>
+  //               <div class="form-group">
 
-            <div class="tab-content">
-              <div class="tab-pane active" id="home">
-                <hr />
-                <form class="form" onSubmit={submitHandler} id="registrationForm">
-                  <div className="container maindivstudent">
-                    <div class="form-group ">
-
-                      <div class="col-xs-12">
-
-
-                        <label className="firstnamecls" for="first_name"><h3>First Name</h3></label>
-                        <input type="text" onChange={getData} class="form-control " required name="firstname" id="first_name" placeholder="first name" title="enter your first name if any." />
-                      </div>
-                    </div>
-                    <div class="form-group">
-
-                      <div class="col-xs-12">
-                        <label for="last_name"><h3>Last Name</h3></label>
-                        <input type="text" onChange={getData} class="form-control" name="lastname" id="last_name" placeholder="last name" title="enter your last name if any." required />
-                      </div>
-                    </div>
-
-
-                    <div class="form-group">
-                      <div class="col-xs-12">
-                        <label for="mobile"><h3>Mobile</h3></label>
-                        <input type="number" onChange={getData} class="form-control" required name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." />
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-
-                      <div class="col-xs-12">
-                        <label for="location"><h3>Location</h3></label>
-                        <input type="text" onChange={getData} name='location' class="form-control" required id="location" placeholder="somewhere" title="enter a location" />
-                      </div>
-                    </div>
-                    <div class="form-group">
-
-                      <div class="col-xs-12">
-                        <label for="collname"><h3>College/University Name</h3></label>
-                        <input type="text" name='collname' onChange={getData} class="form-control" required id="" placeholder="college/University " title="enter a location" />
-                      </div>
-                    </div>
-                    <div class="form-group">
-
-                      <div class="col-xs-12">
-                        <label for="degree"><h3>Degree</h3></label>
-                        <input type="text" name='degree' onChange={getData} class="form-control" required id="dergree" placeholder="Name of Degree" title="enter degree" />
-                      </div>
-                    </div>
-
-
-                    <div class="form-group">
-
-                      <div class="col-xs-12 YearOf" >
-                        <label for="YOG"><h3>Year of Graduation</h3></label>
-                        <input type="number" name='YOG' onChange={getData} class="form-control" required id="YOG" placeholder="Year of Graduation" title="enter year of passing" />
-                      </div>
-                    </div>
-
-
-                    <div class="form-group skills">
-
-
-                      <label className="skilllabel" for="Skills"><h3>Add Skills</h3>
-
-                      </label>
+  //                 <div class="col-xs-12">
+  //                   <label for="last_name"><h6>Linkedin</h6></label>
+  //                   <input type="text" class="form-control" onChange={getData} name="linkedInLink" id="linkedInLink" placeholder="Linkedin Link" title="enter your last name if any." />
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
 
 
 
-                      <div className="skillsdiv">
-                        <ReactTags
-                          tags={tags}
-                          suggestions={suggestions}
-                          delimiters={delimiters}
-                          handleDelete={handleDelete}
-                          handleAddition={handleAddition}
-                          handleDrag={handleDrag}
-                          handleTagClick={handleTagClick}
-                          inputFieldPosition="bottom"
-                          autocomplete
-                          editable
-                        />
-                      </div>
-                    </div>
 
-                    <div class="form-group">
-                      <div class="col-xs-12">
-                        <br />
-                        <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
-                        <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-                <hr />
-
-              </div>
+  //         </div>
+  //         {/* <!--/col-3--> */}
+  //         <div class="col-sm-9">
+  //           {/* <ul class="nav nav-tabs">
+  //               <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+  //               <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
+  //               <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
+  //             </ul> */}
 
 
-            </div>
-            {/* <!--/tab-pane--> */}
-          </div>
-          {/* <!--/tab-content--> */}
+  //           <div class="tab-content">
+  //             <div class="tab-pane active" id="home">
+  //               <hr />
+  //               <form class="form" onSubmit={submitHandler} id="registrationForm">
+  //                 <div className="container maindivstudent">
+  //                   <div class="form-group ">
 
-        </div>
-        {/* <!--/col-9--> */}
-      </div>
-      {/* <!--/row--> */}
+  //                     <div class="col-xs-12">
 
-    </>
-  )
+
+  //                       <label className="firstnamecls" for="first_name"><h3>First Name</h3></label>
+  //                       <input type="text" onChange={getData} class="form-control " required name="firstname" id="first_name" placeholder="first name" title="enter your first name if any." />
+  //                     </div>
+  //                   </div>
+  //                   <div class="form-group">
+
+  //                     <div class="col-xs-12">
+  //                       <label for="last_name"><h3>Last Name</h3></label>
+  //                       <input type="text" onChange={getData} class="form-control" name="lastname" id="last_name" placeholder="last name" title="enter your last name if any." required />
+  //                     </div>
+  //                   </div>
+
+
+  //                   <div class="form-group">
+  //                     <div class="col-xs-12">
+  //                       <label for="mobile"><h3>Mobile</h3></label>
+  //                       <input type="number" onChange={getData} class="form-control" required name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." />
+  //                     </div>
+  //                   </div>
+
+  //                   <div class="form-group">
+
+  //                     <div class="col-xs-12">
+  //                       <label for="location"><h3>Location</h3></label>
+  //                       <input type="text" onChange={getData} name='location' class="form-control" required id="location" placeholder="somewhere" title="enter a location" />
+  //                     </div>
+  //                   </div>
+  //                   <div class="form-group">
+
+  //                     <div class="col-xs-12">
+  //                       <label for="collname"><h3>College/University Name</h3></label>
+  //                       <input type="text" name='collname' onChange={getData} class="form-control" required id="" placeholder="college/University " title="enter a location" />
+  //                     </div>
+  //                   </div>
+  //                   <div class="form-group">
+
+  //                     <div class="col-xs-12">
+  //                       <label for="degree"><h3>Degree</h3></label>
+  //                       <input type="text" name='degree' onChange={getData} class="form-control" required id="dergree" placeholder="Name of Degree" title="enter degree" />
+  //                     </div>
+  //                   </div>
+
+
+  //                   <div class="form-group">
+
+  //                     <div class="col-xs-12 YearOf" >
+  //                       <label for="YOG"><h3>Year of Graduation</h3></label>
+  //                       <input type="number" name='YOG' onChange={getData} class="form-control" required id="YOG" placeholder="Year of Graduation" title="enter year of passing" />
+  //                     </div>
+  //                   </div>
+
+
+  //                   <div class="form-group skills">
+
+
+  //                     <label className="skilllabel" for="Skills"><h3>Add Skills</h3>
+
+  //                     </label>
+
+
+
+  //                     <div className="skillsdiv">
+  //                       <ReactTags
+  //                         tags={tags}
+  //                         suggestions={suggestions}
+  //                         delimiters={delimiters}
+  //                         handleDelete={handleDelete}
+  //                         handleAddition={handleAddition}
+  //                         handleDrag={handleDrag}
+  //                         handleTagClick={handleTagClick}
+  //                         inputFieldPosition="bottom"
+  //                         autocomplete
+  //                         editable
+  //                       />
+  //                     </div>
+  //                   </div>
+
+  //                   <div class="form-group">
+  //                     <div class="col-xs-12">
+  //                       <br />
+  //                       <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
+  //                       <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //               </form>
+
+  //               <hr />
+
+  //             </div>
+
+
+  //           </div>
+  //           {/* <!--/tab-pane--> */}
+  //         </div>
+  //         {/* <!--/tab-content--> */}
+
+  //       </div>
+  //       {/* <!--/col-9--> */}
+  //     </div>
+  //     {/* <!--/row--> */}
+
+  //   </>
+  // )
 }
 
 export default Studentprofileform;
