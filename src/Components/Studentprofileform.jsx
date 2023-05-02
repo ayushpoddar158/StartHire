@@ -469,7 +469,7 @@ const Studentprofileform = () => {
                         <div class="col-xs-12">
                           <br />
                           <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
-                          <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                          {/* <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> */}
                         </div>
                       </div>
                     </div>
