@@ -146,21 +146,21 @@ const Studentprofileform = () => {
 
   useEffect(() => {
     setShowImageUrl(localImageUrl);
-  },[localImageUrl])
+  }, [localImageUrl])
 
   useEffect(() => {
-  if (linkImageUrl) {
-    console.log("link",linkImageUrl)
-    setShowImageUrl(linkImageUrl);
+    if (linkImageUrl) {
+      console.log("link", linkImageUrl)
+      setShowImageUrl(linkImageUrl);
     }
-  },[linkImageUrl])
+  }, [linkImageUrl])
 
   useEffect(() => {
-    console.log("show",showImageUrl)
-  },[showImageUrl])
+    console.log("show", showImageUrl)
+  }, [showImageUrl])
 
 
-// tag functions
+  // tag functions
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
@@ -189,10 +189,11 @@ const Studentprofileform = () => {
   const handleTagClick = (index) => {
     console.log('The tag at index ' + index + ' was clicked');
   };
-// tag functions end 
+  // tag functions end 
 
   const updateDocument = async (downloadURL) => {
     if (docRef) {
+      console.log("inside update if ");
       await updateDoc(docRef.ref, {
         updatedProfile: true,
         details: {
@@ -208,33 +209,41 @@ const Studentprofileform = () => {
           linkedInLink: StudentData.linkedInLink,
           PImageUrl: downloadURL
         }
+      }).then(() => {
+        alert("Information successfully updated!");
       })
-        .then(() => {
-          // navigate("/Studentprofile") ;
-        })
         .catch((error) => {
           console.log("Error updating document: ", error);
-        });
+        })
     }
   }
+
+
   const submitHandler = async () => {
     console.log("inside submit handler");
     const doc = docRef;
-    console.log("before if block");
     if (doc) {
-      console.log("inside if block")
-      // if (StudentData.PImageUrl == null) {
-      const fileRef = ref(storage, `images/userImages/${StudentImg.name}`);
-      try {
-        console.log("inside try block")
-        const snap = await uploadBytes(fileRef, StudentImg);
-        console.log("Uploaded", snap);
-        const downloadURL = await getDownloadURL(fileRef);
-        console.log("Download URL:", downloadURL);
-        setLinkImageUrl(downloadURL);
-        await updateDocument(downloadURL);
-      } catch (err) {
-        console.log(err);
+      if (StudentImg) {
+        const fileRef = ref(storage, `images/userImages/${StudentImg.name}`);
+        try {
+          const snap = await uploadBytes(fileRef, StudentImg);
+          console.log("Uploaded", snap);
+          const downloadURL = await getDownloadURL(fileRef);
+          console.log("Download URL:", downloadURL);
+          setLinkImageUrl(downloadURL);
+          await updateDocument(downloadURL);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      else {
+        try {
+          const downloadURL = StudentData.PImageUrl;
+          setLinkImageUrl(downloadURL);
+          await updateDocument(downloadURL);
+        } catch (err) {
+          console.log(err);
+        }
       }
       console.log("updating document")
     }
@@ -253,11 +262,11 @@ const Studentprofileform = () => {
 
 
               <div class="text-center">
-              {StudentImg ? <Box mt={2} textAlign="center">
-                    {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
-                    <div id="StudentImage">
-                      <img src={URL.createObjectURL(StudentImg)} alt="" height="100px" /> </div>
-                  </Box>: 
+                {StudentImg ? <Box mt={2} textAlign="center">
+                  {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
+                  <div id="StudentImage">
+                    <img src={URL.createObjectURL(StudentImg)} alt="" height="100px" /> </div>
+                </Box> :
                   <Box mt={2} textAlign="center">
                     {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
                     <div id="StudentImage">
