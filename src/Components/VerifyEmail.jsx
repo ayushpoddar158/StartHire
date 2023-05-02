@@ -13,7 +13,7 @@ import {
   where
 } from "firebase/firestore";
 
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import '../style/VerifyEmail.css'
 import { useNavigate } from "react-router-dom";
 
@@ -42,7 +42,10 @@ const VerifyEmail = () => {
       })
     // setUserData(docs.docs[0].data());
 
-    getUserData();
+    useEffect(() => {
+      getUserData();
+      console.log(currentUser);
+    }, [currentUser]);
 
     const handleVerify = async () => {
       await sendEmailVerification(Auth.currentUser)
@@ -60,28 +63,28 @@ const VerifyEmail = () => {
       else if (isVerified && isStartup) {
         navigate("/");
       }
-      else{
-      return (
-        <>
-          <div className="row VerifyBox">
-            <div className="col-md-12">
-              <h1 className='Verifyh2'>You will recieve a verification link on your mail after you registered.
-                <br /> Click that link to verify.</h1>
-              <div className="main-verification-input-wrap">
-                <ul>
-                  <li>If somehow, you did not recieve the verification email then</li>
-                </ul>
-                <div className="main-verification-input fl-wrap">
-                  <button className="main-verification-button" onClick={handleVerify}>Resend The Verification Email</button>
+      else {
+        return (
+          <>
+            <div className="row VerifyBox">
+              <div className="col-md-12">
+                <h1 className='Verifyh2'>You will recieve a verification link on your mail after you registered.
+                  <br /> Click that link to verify.</h1>
+                <div className="main-verification-input-wrap">
+                  <ul>
+                    <li>If somehow, you did not recieve the verification email then</li>
+                  </ul>
+                  <div className="main-verification-input fl-wrap">
+                    <button className="main-verification-button" onClick={handleVerify}>Resend The Verification Email</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
-      );
- 
+          </>
+        );
+
       }
-   }
+    }
   }
 }
 
