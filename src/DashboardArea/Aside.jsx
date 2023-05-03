@@ -20,18 +20,6 @@ const Sidebar = () => {
     const [isVerified, setIsVerified] = useState(null);
     const [userData, setUserData] = useState(null);
 
-
-    const getUserData = async () => {
-        let id = await currentUser.uid;
-        let isVerified = await currentUser.emailVerified;
-        setId(id)
-        setIsVerified(isVerified);
-        const q = query(collection(db, "users"), where("uid", "==", id));
-        const docs = await getDocs(q);
-        setUserData(docs.docs[0].data());
-    }
-    getUserData();
-
     // useEffect(() => {
     //     const getUserData = async () => {
     //         let id = await currentUser.uid;
@@ -40,11 +28,25 @@ const Sidebar = () => {
     //         setIsVerified(isVerified);
     //         const q = query(collection(db, "users"), where("uid", "==", id));
     //         const docs = await getDocs(q);
-    //         setUserData(docs.docs[0].data()); 
+    //         setUserData(docs.docs[0].data());
     //     }
     //     getUserData();
-    // }, [currentUser]);
-    // console.log(id, isVerified);
+    // }), [currentUser];
+
+    useEffect(() => {
+        const getUserData = async () => {
+            let id = await currentUser.uid;
+            let isVerified = await currentUser.emailVerified;
+            setId(id)
+            setIsVerified(isVerified);
+            const q = query(collection(db, "users"), where("uid", "==", id));
+            const docs = await getDocs(q);
+            setUserData(docs.docs[0].data());
+        }
+        getUserData();
+    }, [currentUser])
+
+
     while (userData) {
         if (isVerified == false) {
             return (
@@ -53,8 +55,6 @@ const Sidebar = () => {
                     </h1>
                 </>);
         }
-
-
         return (
             <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">

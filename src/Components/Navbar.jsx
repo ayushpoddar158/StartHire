@@ -51,6 +51,8 @@ function Navbar() {
   const [loginCont, setLoginCont] = React.useState("LogIn");
 
   useEffect(() => {
+
+    console.log(currentUser)
     if (currentUser) {
       const fetchData = async () => {
         try {
@@ -58,7 +60,8 @@ function Navbar() {
           const docs = await getDocs(q);
           const doc = docs.docs[0];
           setData(doc.data());
-          setIsUpdated(doc.data().updatedProfile); 
+          setIsUpdated(doc.data().updatedProfile);
+          console.log("inside fetchdata")
         } catch (error) {
           console.log(error);
         }
@@ -68,9 +71,9 @@ function Navbar() {
     }
   }, [currentUser]);
 
-  useEffect(() => {
-    console.log(data)
-  },[data])
+  // useEffect(() => {
+  //   console.log(data)
+  // }, [data])
 
   const LogOut = () => {
     Auth.signOut();
@@ -83,7 +86,7 @@ function Navbar() {
       LogOut();
       navigate("/Login")
     }
-    else{
+    else {
       navigate("/Login");
     }
   }
@@ -104,149 +107,149 @@ function Navbar() {
   };
 
 
-  
-    return (
-      <AppBar position="static" sx={{ background: '#070617', }} >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                // fontFamily: 'monospace',
 
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                // fontSize:"3rem",
-                textDecoration: 'none',
+  return (
+    <AppBar position="static" sx={{ background: '#070617', }} >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              // fontFamily: 'monospace',
+
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              // fontSize:"3rem",
+              textDecoration: 'none',
+            }}
+          >
+            StartHire
+          </Typography>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+
               }}
             >
-              StartHire
-            </Typography>
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/${page}`} >{page}</Link>
+                    {/* {page} */}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+
+            }}
+          >
+            StartHire
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', marginLeft: '50px' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <MenuIcon />
-              </IconButton>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to={`/${page}`} >{page}</Link>
+                {/* {page} */}
+              </Button>
+            ))}
+          </Box>
+
+          {currentUser && data ?
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src={isUpdated ? data.details.PImageUrl : "../assets/avtar1.png"} />
+                </IconButton>
+              </Tooltip>
               <Menu
+                sx={{ mt: '45px' }}
                 id="menu-appbar"
-                anchorEl={anchorElNav}
+                anchorEl={anchorElUser}
                 anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
+                  vertical: 'top',
+                  horizontal: 'right',
                 }}
                 keepMounted
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'left',
+                  horizontal: 'right',
                 }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-
-                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/${page}`} >{page}</Link>
-                      {/* {page} */}
-                    </Typography>
-                  </MenuItem>
+                {settings.map((setting) => (
+                  setting === 'Logout' ?
+                    <MenuItem onClick={logouthandler}>
+                      <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>logout</Link></Typography>
+                    </MenuItem>
+                    :
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
+                    </MenuItem>
                 ))}
               </Menu>
-            </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
+            </Box> :
+            <MenuItem onClick={logouthandler}>
+              <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></Typography>
+            </MenuItem>
+          }
 
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-
-              }}
-            >
-              StartHire
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', marginLeft: '50px' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  <Link style={{ textDecoration: 'none', color: 'white' }} to={`/${page}`} >{page}</Link>
-                  {/* {page} */}
-                </Button>
-              ))}
-            </Box>
-
-            {currentUser && data ?
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p : 0 }}>
-                    <Avatar alt="Remy Sharp" src={ isUpdated ? data.details.PImageUrl: "../assets/avtar1.png"} />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: '45px' }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    setting === 'Logout' ?
-                      <MenuItem onClick={logouthandler}>
-                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>logout</Link></Typography>
-                      </MenuItem>
-                      :
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
-                      </MenuItem>
-                  ))}
-                </Menu>
-              </Box> :
-              <MenuItem onClick={logouthandler}>
-                <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></Typography>
-              </MenuItem>
-            }
-
-          </Toolbar>
-        </Container>
-      </AppBar>
-    );
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
   // }
 }
 export default Navbar;

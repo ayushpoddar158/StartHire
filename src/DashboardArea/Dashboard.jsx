@@ -24,20 +24,22 @@ const Dashboard = () => {
     const [isVerified, setIsVerified] = useState(null);
     const [userData, setUserData] = useState(null);
 
-    const getUserData = async () => {
-        let id = await currentUser.uid;
-        let isVerified = await currentUser.emailVerified;
-        setId(id)
-        setIsVerified(isVerified);
-        const q = query(collection(db, "users"), where("uid", "==", id));
-        const docs = await getDocs(q);
-        setUserData(docs.docs[0].data());
-    }
-    getUserData();
-    // console.log(id, isVerified);
 
-    // Employee Details
+    useEffect(() => {
+        const getUserData = async () => {
+            let id = await currentUser.uid;
+            let isVerified = await currentUser.emailVerified;
+            setId(id)
+            setIsVerified(isVerified);
+            const q = query(collection(db, "users"), where("uid", "==", id));
+            const docs = await getDocs(q);
+            setUserData(docs.docs[0].data());
+        }
+        getUserData();
+    }, [currentUser])
+    
     const [record, setRecord] = useState([])
+
 
     if (isVerified == false) {
         navigate('/VerifyEmail');
