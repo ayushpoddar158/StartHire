@@ -24,8 +24,16 @@ import { Auth } from "../Firebase";
 import { AuthContext } from '../Authorizer';
 import { useEffect } from 'react';
 
-
-
+// Data import @Firebase
+import { db } from "../Firebase";
+import {
+  query,
+  getDocs,
+  collection,
+  addDoc,
+  updateDoc,
+  where
+} from "firebase/firestore";
 
 const pages = ['Home', 'About', 'Contact', 'Login', 'signup'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -38,18 +46,29 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [isUser, SetUser] = React.useState(false);
+  const [data, setData] = React.useState(null);
   const [loginCont, setLoginCont] = React.useState("LogIn");
 
   useEffect(() => {
     if (currentUser) {
-      // console.log("if ex");
+      const fetchData = async () => {
+        try {
+          const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
+          const docs = await getDocs(q);
+          const doc = docs.docs[0];
+          setData(doc.data());
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
       SetUser(true);
     }
-  }
-    , []);
+  }, [currentUser]);
 
-
-
+  useEffect(() => {
+    console.log(data)
+  },[data])
 
   const LogOut = () => {
     Auth.signOut();
@@ -58,7 +77,7 @@ function Navbar() {
   }
 
   const logouthandler = () => {
-    if (!isUser) {
+    if (isUser) {
       LogOut();
       navigate("/Login")
     }
@@ -66,6 +85,7 @@ function Navbar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -79,10 +99,7 @@ function Navbar() {
   };
 
 
-  if (isUser) {
-    // navigate('/Login');
-  }
-  else {
+  
     return (
       <AppBar position="static" sx={{ background: '#070617', }} >
         <Container maxWidth="xl">
@@ -181,11 +198,11 @@ function Navbar() {
               ))}
             </Box>
 
-            {currentUser ?
+            {currentUser && data ?
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p : 0 }}>
+                    <Avatar alt="Remy Sharp" src={ data.details.PImageUrl ? data.details.PImageUrl: "../assets/avtar1.png"} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -225,6 +242,6 @@ function Navbar() {
         </Container>
       </AppBar>
     );
-  }
+  // }
 }
 export default Navbar;
