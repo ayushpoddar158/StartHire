@@ -34,6 +34,7 @@ import StartUpProfile from './Components/StartUpProfile'
 import StudentAside  from './StudentDashboard/StudentAside'
 import StudentDashboard  from './StudentDashboard/StudentDashboard'
 
+
 // Authorizer 
 import { AuthProvider } from "./Authorizer";
 
@@ -88,6 +89,8 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="VerifyEmail" element={<VerifyEmail/>}/>
           <Route path="StudentAside" element={<StudentAside/>}/>
           <Route path="StudentDashboard" element={<StudentDashboard/>}/>
+      
+
 
           {/* //jobs routes */}
           <Route path="CreateJobs" element={<CreateJobs/>}/>

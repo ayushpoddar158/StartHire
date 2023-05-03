@@ -24,7 +24,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 
 
-const Sidebar = () => {
+const Aside = () => {
     const { currentUser } = useContext(AuthContext);
     const [id, setId] = useState(null);
     const [isVerified, setIsVerified] = useState(null);
@@ -90,4 +90,4 @@ const Sidebar = () => {
 
 }
 
-export default Sidebar
+export default Aside

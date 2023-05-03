@@ -2,14 +2,15 @@ import React from "react";
 import "../style/studentprofile.css";
 import { useNavigate } from "react-router-dom";
 import Aside from "../DashboardArea/Aside";
-const Studentprofile = () => {
+const StartUpProfile = () => {
   const navigate = useNavigate();
   const navigateEdit = () => {
-    navigate("/Studentprofileform");
+    navigate("/StartUpProfileform");
   };
   return (
     <>
       <div>
+      
         <div class="container-fluid" id="main">
           <div class="row row-offcanvas row-offcanvas-left">
             <Aside />
@@ -181,4 +182,4 @@ const Studentprofile = () => {
   );
 };
 
-export default Studentprofile;
+export default StartUpProfile;
