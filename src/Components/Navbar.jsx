@@ -47,6 +47,7 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [isUser, SetUser] = React.useState(false);
   const [data, setData] = React.useState(null);
+  const [isUpdated, setIsUpdated] = React.useState(false);
   const [loginCont, setLoginCont] = React.useState("LogIn");
 
   useEffect(() => {
@@ -57,6 +58,7 @@ function Navbar() {
           const docs = await getDocs(q);
           const doc = docs.docs[0];
           setData(doc.data());
+          setIsUpdated(doc.data().updatedProfile); 
         } catch (error) {
           console.log(error);
         }
@@ -205,7 +207,7 @@ function Navbar() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p : 0 }}>
-                    <Avatar alt="Remy Sharp" src={ data.details.PImageUrl ? data.details.PImageUrl: "../assets/avtar1.png"} />
+                    <Avatar alt="Remy Sharp" src={ isUpdated ? data.details.PImageUrl: "../assets/avtar1.png"} />
                   </IconButton>
                 </Tooltip>
                 <Menu
