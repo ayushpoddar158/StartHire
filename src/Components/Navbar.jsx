@@ -81,6 +81,9 @@ function Navbar() {
       LogOut();
       navigate("/Login")
     }
+    else{
+      navigate("/Login");
+    }
   }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
