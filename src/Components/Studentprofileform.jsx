@@ -3,6 +3,7 @@ import { Auth } from "../Firebase";
 import { AuthContext } from "../Authorizer";
 import { useEffect } from "react";
 import { Box } from "@mui/material";
+import Select from "react-select";
 
 
 // Data import @Firebase
@@ -59,7 +60,7 @@ const Studentprofileform = () => {
   const [localImageUrl, setLocalImageUrl] = useState(null);
   const [showImageUrl, setShowImageUrl] = useState(null);
   const [linkImageUrl, setLinkImageUrl] = useState(null);
-  const [tags, setTags] = React.useState([]);
+  // const [tags, setTags] = React.useState([]);
   const navigate = useNavigate();
   const [StudentData, setStudentData] = useState(
     {
@@ -160,35 +161,27 @@ const Studentprofileform = () => {
   }, [showImageUrl])
 
 
+
   // tag functions
-  const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
-  };
+
+
 
   const handleAddition = (tag) => {
     console.log(tag)
-    setTags([...tags, {
-      "id": tag.id,
-      "text": tag.text
-    }]);
-    console.log(tags);
-
+    console.log("changes")
+    setStudentData(() => {
+      return {
+        ...StudentData,
+        ["skills"]: tag,
+      };
+    });
     console.log(StudentData)
+
   };
 
-  const handleDrag = (tag, currPos, newPos) => {
-    const newTags = tags.slice();
 
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
 
-    // re-render
-    setTags(newTags);
-  };
-
-  const handleTagClick = (index) => {
-    console.log('The tag at index ' + index + ' was clicked');
-  };
+ 
   // tag functions end 
 
   const updateDocument = async (downloadURL) => {
@@ -441,31 +434,24 @@ const Studentprofileform = () => {
                       </div>
 
 
-                      <div class="form-group skills">
-
-
-                        <label className="skilllabel" for="Skills"><h3>Add Skills</h3>
-
+                      <div class="form-group selectDiv" >
+                      <div class="col-xs-12 YearOf">
+                        <label for="YOG">
+                          <h3>Add Skills</h3>
                         </label>
-
-
-
-                        <div className="skillsdiv">
-                          <ReactTags
-                            tags={tags}
-                            suggestions={suggestions}
-                            delimiters={delimiters}
-                            handleDelete={handleDelete}
-                            handleAddition={handleAddition}
-                            handleDrag={handleDrag}
-                            handleTagClick={handleTagClick}
-                            inputFieldPosition="bottom"
-                            autocomplete
-                            editable
-                          />
-                        </div>
+                        <Select onChange={handleAddition}
+                         
+                          isMulti
+                          name="colors"
+                          options={Codinglanginfo}
+                          className="basic-multi-select"
+                          classNamePrefix="select"
+                          placeholder="Enter Your Skills"
+                         
+                          
+                        />
                       </div>
-
+                    </div>
                       <div class="form-group">
                         <div class="col-xs-12">
                           <br />

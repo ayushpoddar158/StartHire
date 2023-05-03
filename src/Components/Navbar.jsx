@@ -207,7 +207,7 @@ function Navbar() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p : 0 }}>
-                    <Avatar alt="Remy Sharp" src={ isUpdated ? data.details.PImageUrl: "../assets/avtar1.png"} />
+                    <Avatar alt="Remy Sharp" src={ isUpdated ? data.details.PImageUrl: "avtar1.png"} />
                   </IconButton>
                 </Tooltip>
                 <Menu

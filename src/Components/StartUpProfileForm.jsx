@@ -51,7 +51,7 @@ const StartUpProfileForm = () => {
 
   const [StartUpImg, SetStartUpImg] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  const [tags, setTags] = React.useState([]);
+
 
 
   useEffect(() => {
@@ -82,18 +82,8 @@ const StartUpProfileForm = () => {
   };
 
 
-  useEffect(() => {
-    setStartUpData(() => {
-      return {
-        ...StartUpData,
-        ["skills"]: tags,
-      };
-    });
-  }, [tags]);
 
-  const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
-  };
+
 
   const handleAddition = (tag) => {
     console.log(tag)
@@ -328,7 +318,7 @@ const StartUpProfileForm = () => {
                           className="basic-multi-select"
                           classNamePrefix="select"
                           placeholder="Enter Your Domain"
-                          handleDelete={handleDelete}
+                        
                           
                         />
                       </div>
