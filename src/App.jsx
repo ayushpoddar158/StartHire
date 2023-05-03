@@ -1,4 +1,8 @@
 import React from "react";
+import { useState } from "react";
+
+
+//component
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import About from "./Components/About";
@@ -9,13 +13,17 @@ import {Route,Routes} from "react-router-dom"
 import Footer from "./Components/Footer";
 import Signupstartup from "./Components/signupstartup"
 import LoginStartUp from "./Components/LoginStartUp";
-import { useState } from "react";
 import Studentprofileform from "./Components/Studentprofileform";
 import Studentprofile from "./Components/Studentprofile"
 import Filteredstudentlist from "./Components/Filteredstudentlist";
 import Forgetpassword from "./Components/Forgetpassword";
-
 import ChangePassword from "./Components/ChangePassword";
+import VerifyEmail  from './Components/VerifyEmail'
+
+//jobs
+import CreateJobs from "./Components/jobs/CreateJobs";
+
+//dashboard
 import  Dashboard  from './DashboardArea/Dashboard';
 import Aside from './DashboardArea/Aside'
 import StudentLists from "./DashboardArea/StudentLists";
@@ -23,7 +31,6 @@ import SearchInterns from "./DashboardArea/SearchInterns";
 import StartUpprofileForm from "./Components/StartUpProfileForm";
 import Notification from './DashboardArea/Notification'
 import StartUpProfile from './Components/StartUpProfile'
-import VerifyEmail  from './Components/VerifyEmail'
 import StudentAside  from './StudentDashboard/StudentAside'
 import StudentDashboard  from './StudentDashboard/StudentDashboard'
 
@@ -82,7 +89,8 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="StudentAside" element={<StudentAside/>}/>
           <Route path="StudentDashboard" element={<StudentDashboard/>}/>
 
-        
+          {/* //jobs routes */}
+          <Route path="CreateJobs" element={<CreateJobs/>}/>
 
           
         </Routes>
