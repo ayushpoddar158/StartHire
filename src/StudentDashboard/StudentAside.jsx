@@ -59,7 +59,10 @@ const StudentAside = () => {
             <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
                     <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h5>{userData.name}</h5></a></li>
-                    <li class="nav-item mb-2 "><Link class="nav-link text-secondary" to="/StartUpProfile"><i class="fas fa-user font-weight-bold"></i> <span className="ml-3">Profile</span></Link></li>
+
+                    <li class="nav-item mb-2 "><Link class="nav-link text-secondary" to="/StudentDashboard"><i class="fas fa-user font-weight-bold"></i> <span className="ml-3"></span>Dashboard</Link></li>
+
+                    <li class="nav-item mb-2 "><Link class="nav-link text-secondary" to="/Studentprofile"><i class="fas fa-user font-weight-bold"></i> <span className="ml-3">Profile</span></Link></li>
                      <li class="nav-item mb-2"><Link class="nav-link text-secondary" to="/Notification">Notifications</Link></li>
         
                 </ul>

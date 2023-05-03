@@ -18,7 +18,7 @@ Example Styles for React Tags
   /* Example Styles for React Tags*/
   
 #registrationForm{
-  background-color: rgb(170, 167, 167);
+  background-color: rgb(157, 155, 155);
   padding: 20px;
   border-radius: 20px;
 
@@ -92,6 +92,4 @@ input[type="file"] {
     width: 40vw;
 }
 
-  
- 
-  
+
