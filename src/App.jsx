@@ -24,6 +24,8 @@ import StartUpprofileForm from "./Components/StartUpProfileForm";
 import Notification from './DashboardArea/Notification'
 import StartUpProfile from './Components/StartUpProfile'
 import VerifyEmail  from './Components/VerifyEmail'
+import StudentAside  from './StudentDashboard/StudentAside'
+import StudentDashboard  from './StudentDashboard/StudentDashboard'
 
 // Authorizer 
 import { AuthProvider } from "./Authorizer";
@@ -77,6 +79,9 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="Notification" element={<Notification />}/>
           <Route path="StartUpProfile" element={<StartUpProfile />}/>
           <Route path="VerifyEmail" element={<VerifyEmail/>}/>
+          <Route path="StudentAside" element={<StudentAside/>}/>
+          <Route path="StudentDashboard" element={<StudentDashboard/>}/>
+
         
 
           
