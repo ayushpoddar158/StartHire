@@ -29,7 +29,9 @@ body{margin-top:20px;}
    
 }
 
-
+.selectDiv{
+    width: 40vw;
+}
 
 .card {
     position: relative;

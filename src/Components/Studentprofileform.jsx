@@ -122,6 +122,7 @@ const Studentprofileform = () => {
     };
     loadData();
     console.log(data)
+    console.log(StudentData.skills)
   }, [data]);
 
 
@@ -447,6 +448,8 @@ const Studentprofileform = () => {
                           className="basic-multi-select"
                           classNamePrefix="select"
                           placeholder="Enter Your Skills"
+                         
+                          value={StudentData.skills}
                          
                           
                         />
