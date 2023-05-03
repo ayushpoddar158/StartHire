@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import '../style/Login.css'
@@ -68,12 +68,14 @@ const Login = ({ setLoginIsTrue, setUserName, userName }) => {
       });
   }
 
+  useEffect(() => {
+    if(currentUser){
+      navigate("/Dashboard");
+    }
+  },[currentUser])
 
 
-  if (currentUser) {
-    navigate("/Dashboard");
-  }
-  else {
+
     return (
       <>
         <div className="container" id='Loginchangediv'>
@@ -144,7 +146,6 @@ const Login = ({ setLoginIsTrue, setUserName, userName }) => {
         </section>
       </>
     );
-  }
 
 
 }

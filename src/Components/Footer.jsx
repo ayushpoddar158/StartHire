@@ -3,9 +3,9 @@ import React from 'react'
 const Footer = () => {
   return (
   <>
-<div className="dummy_page">
+{/* <div className="dummy_page">
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore repellat libero voluptas nihil molestiae, exercitationem, nemo esse maiores cupiditate nisi explicabo assumenda nesciunt dignissimos culpa tenetur tempora enim architecto ut debitis accusamus. Recusandae pariatur, et possimus eos quam ullam dolorum beatae cumque sequi vero consequatur alias repellat minus omnis excepturi quo commodi temporibus illum ea explicabo officiis vitae obcaecati odit. 
-</div>
+</div> */}
 {/* <!-- FOOTER START --> */}
 <div className="footer">
   <div className="contain">
