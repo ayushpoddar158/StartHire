@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 
 // components
 import Main from './Main';
@@ -40,8 +40,8 @@ const Dashboard = () => {
 
     useEffect(() => {
         const getUserData = async () => {
-            let id = await currentUser.uid;
-            let isVerified = await currentUser.emailVerified;
+            let id = await currentUser?.uid;
+            let isVerified = await currentUser?.emailVerified;
             setId(id)
             setIsVerified(isVerified);
             const q = query(collection(db, "startups"), where("uid", "==", id));
@@ -75,28 +75,29 @@ const Dashboard = () => {
                                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
                                     <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h5>{userData.name}</h5></a></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("main")}><Link class="nav-link text-secondary" ><i class="fas fa-file-export font-weight-bold"></i><span className="ml-3" style={{ color: activeMenu === "main" ? "blue" : "black" }}>Dashboard</span></Link></li>
+                                        onClick={() => menuNav("main")}><NavLink class="nav-link text-secondary" ><i class="fas fa-file-export font-weight-bold"></i><span className="ml-3" style={{ color: activeMenu === "main" ? "blue" : "black" }}>Dashboard</span></NavLink></li>
                                     <li class="nav-item mb-2 "
-                                        onClick={() => menuNav("profile")}><Link class="nav-link text-secondary" ><FontAwesomeIcon icon={faUser} /><span className="ml-3" style={{ color: activeMenu === "profile" ? "blue" : "black" }}>Profile</span></Link></li>
+                                        onClick={() => menuNav("profile")}><NavLink class="nav-link text-secondary"><FontAwesomeIcon icon={faUser} /><span className="ml-3" style={{ color: activeMenu === "profile" ? "blue" : "black" }}>Profile</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("jobs")}><Link class="nav-link text-secondary" ><i class="far fa-chart-bar font-weight-bold"></i> <span className="ml-3" style={{ color: activeMenu === "jobs" ? "blue" : "black" }}>Jobs</span></Link></li>
+                                        onClick={() => menuNav("jobs")}><NavLink class="nav-link text-secondary" ><i class="far fa-chart-bar font-weight-bold"></i> <span className="ml-3" style={{ color: activeMenu === "jobs" ? "blue" : "black" }}>Jobs</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("startupblog")}><Link class="nav-link text-secondary" ><i class="fas fa-file-export font-weight-bold"></i><span className="ml-3" style={{ color: activeMenu === "startupblog" ? "blue" : "black" }}>Blog</span></Link></li>
+                                        onClick={() => menuNav("startupblog")}><NavLink class="nav-link text-secondary" ><i class="fas fa-file-export font-weight-bold"></i><span className="ml-3" style={{ color: activeMenu === "startupblog" ? "blue" : "black" }}>Blog</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("notification")}><Link class="nav-link text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "notification" ? "blue" : "black" }}>Notifications</span></Link></li>
+                                        onClick={() => menuNav("notification")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "notification" ? "blue" : "black" }}>Notifications</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                         onClick={() => Logout()}><a class="nav-link text-secondary" href="#">LogOut</a></li>
                                 </ul>
                             </div>
                             {/* main content below */}
-                            <div className="content">
+                            <div class="col-md-9 col-lg-10 pt-5 mt-3" id="content">
                                 {activeMenu === "main" && <Main />}
                                 {activeMenu === "profile" && <StartUpProfile />}
-                                {activeMenu === "jobs" && <Jobs/>}
-                                {activeMenu === "startupblog" && <StartupBlog/>}
+                                {activeMenu === "jobs" && <Jobs />}
+                                {activeMenu === "startupblog" && <StartupBlog />}
                                 {activeMenu === "notification" && <Notification />}
                             </div>
                         </div>
+
                     </div>
                 </div>
 

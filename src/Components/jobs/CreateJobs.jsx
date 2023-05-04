@@ -75,7 +75,7 @@ const CreateJobs = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
+                const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
                 const docs = await getDocs(q);
                 const doc = docs.docs[0];
                 setDocRef(doc);
