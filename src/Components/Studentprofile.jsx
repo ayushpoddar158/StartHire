@@ -38,9 +38,9 @@ const StudentProfile = () => {
 
                             <div class="col-lg-6 px-xl-10">
                               <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                <h3 class="h2 text-white mb-0">Company Name</h3>
+                                <h3 class="h2 text-white mb-0">Student Name</h3>
 
-                                <span class="text-primary">Founder:xyx</span>
+                                <span class="text-primary">Skilled in:Web Dev</span>
                               </div>
                               <ul class="list-unstyled mb-1-9">
                                 <li class="mb-2 mb-xl-3 display-28">
@@ -122,31 +122,7 @@ const StudentProfile = () => {
                               JD
                             </span>
 
-                            <div class="progress-text">
-                              <div class="row">
-                                <div class="col-6">
-                                  <div class="card">
-                                    <div class="card-header">
-                                      Add Job Description
-                                    </div>
-                                    <div class="card-body">
-                                      {/* <blockquote class="blockquote mb-0"> */}
-                                      {/* <p>Job Profile</p> */}
-                                      <label htmlFor="">Job Profile</label>
-                                      <input type="text" />
-                                      <br />
-                                      <label htmlFor="">Job Description</label>
-                                      <input type="text" />
-                                      <br />
-                                      <button>Add</button>
-
-                                      {/* </blockquote> */}
-                                    </div>
-                                  </div>
-                                </div>
-                                {/* <div class="col-6 text-end">80%</div> */}
-                              </div>
-                            </div>
+                            
                            
                         
                        

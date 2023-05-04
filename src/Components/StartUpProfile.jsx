@@ -39,7 +39,7 @@ const StartUpProfile = () => {
 
                             <div class="col-lg-6 px-xl-10">
                               <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                <h3 class="h2 text-white mb-0">Company Name</h3>
+                                <h3 class="h2 text-white mb-0">Company Nameee</h3>
 
                                 <span class="text-primary">Founder:xyx</span>
                               </div>

@@ -4,7 +4,7 @@ import { AuthContext } from "../Authorizer";
 import { useEffect } from "react";
 import { Box } from "@mui/material";
 import Select from "react-select";
-
+import StudentAside from "../StudentDashboard/StudentAside";
 
 // Data import @Firebase
 import { db } from "../Firebase";
@@ -248,7 +248,17 @@ const Studentprofileform = () => {
   if (currentUser) {
     return (
       <>
+      <div className="maindivform">
+    
+
+     
+       <StudentAside/>
+       <div class="container-fluid" id="main">
         <div class="container bootstrap snippet" id='studentformmain'>
+        
+            
+        {/* profile form stART */}
+        <div class="row row-offcanvas row-offcanvas-left Studentprofileform">
           <div class="row mt-2">
             <div class="col-sm-3">
               {/* <!--left col--> */}
@@ -474,9 +484,12 @@ const Studentprofileform = () => {
             {/* <!--/tab-content--> */}
 
           </div>
-          {/* <!--/col-9--> */}
+          {/* PROFILE FORM END */}
+        
         </div>
-        {/* <!--/row--> */}
+        </div>
+        </div>
+        </div>
 
       </>
     )
