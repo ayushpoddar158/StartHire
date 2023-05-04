@@ -14,7 +14,7 @@ import Footer from "./Components/Footer";
 import Signupstartup from "./Components/signupstartup"
 import LoginStartUp from "./Components/LoginStartUp";
 import Studentprofileform from "./Components/Studentprofileform";
-import Studentprofile from "./Components/Studentprofile"
+import Studentprofile from "./StudentDashboard/Studentprofile"
 import Filteredstudentlist from "./Components/Filteredstudentlist";
 import Forgetpassword from "./Components/Forgetpassword";
 import ChangePassword from "./Components/ChangePassword";
