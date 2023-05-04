@@ -222,6 +222,7 @@ const StartUpProfileForm = () => {
           const downloadURL = StartUpData.PImageUrl;
           setLinkImageUrl(downloadURL);
           await updateDocument(downloadURL);
+          navigate("/dashboard");
         } catch (err) {
           console.log(err);
         }
