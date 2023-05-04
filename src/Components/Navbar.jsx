@@ -59,9 +59,20 @@ function Navbar() {
           const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
           const docs = await getDocs(q);
           const doc = docs.docs[0];
-          setData(doc.data());
-          setIsUpdated(doc.data().updatedProfile);
-          console.log("inside fetchdata")
+          if (doc) {
+            setData(doc.data());
+            setIsUpdated(doc.data().updatedProfile);
+            console.log("inside fetchdata")
+          }
+          else {
+            const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
+            const docs = await getDocs(q);
+            const doc = docs.docs[0];
+            setData(doc.data());
+            setIsUpdated(doc.data().updatedProfile);
+            console.log("inside fetchdata")
+          }
+
         } catch (error) {
           console.log(error);
         }
@@ -206,45 +217,45 @@ function Navbar() {
             ))}
           </Box>
 
-            {currentUser && data ?
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p : 0 }}>
-                    <Avatar alt="Remy Sharp" src={ isUpdated ? data.details.PImageUrl: "avtar1.png"} />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: '45px' }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    setting === 'Logout' ?
-                      <MenuItem onClick={logouthandler}>
-                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>logout</Link></Typography>
-                      </MenuItem>
-                      :
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
-                      </MenuItem>
-                  ))}
-                </Menu>
-              </Box> :
-              <MenuItem onClick={logouthandler}>
-                <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></Typography>
-              </MenuItem>
-            }
+          {currentUser && data ?
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src={isUpdated ? data.details.PImageUrl : "avtar1.png"} />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  setting === 'Logout' ?
+                    <MenuItem onClick={logouthandler}>
+                      <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>logout</Link></Typography>
+                    </MenuItem>
+                    :
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
+                    </MenuItem>
+                ))}
+              </Menu>
+            </Box> :
+            <MenuItem onClick={logouthandler}>
+              <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></Typography>
+            </MenuItem>
+          }
 
         </Toolbar>
       </Container>
