@@ -1,0 +1,15 @@
+.LogoutbtnAsilde{
+    width: 50%;
+    display: inline-block;
+    margin: auto;
+    background-color: red;
+    color: white !important;
+   
+    padding: 5px;
+    margin-left: 15px;
+    border: none;
+    border-radius: 3px;
+}
+.LogoutbtnAsilde:hover{
+    transform: scale(0.9);
+}

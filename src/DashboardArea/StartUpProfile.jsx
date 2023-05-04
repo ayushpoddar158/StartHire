@@ -2,10 +2,10 @@ import React from "react";
 import "../style/studentprofile.css";
 import { useNavigate } from "react-router-dom";
 import Aside from "./Aside";
-const StartUpProfile = () => {
+const StartUpProfile = (props) => {
   const navigate = useNavigate();
   const navigateEdit = () => {
-    navigate("/StartUpProfileform");
+    props.changemenuStartUp()
   };
   return (
     <>
