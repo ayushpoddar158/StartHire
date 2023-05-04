@@ -31,8 +31,8 @@ import { render } from 'react-dom';
 import { StartUpDomain } from '../assets/StartUpDomain';
 import { WithContext as ReactTags } from 'react-tag-input';
 import "../style/StartUpProfileForm.css"
-import StudentLists from "../DashboardArea/StudentLists";
-import Aside from "../DashboardArea/Aside";
+import StudentLists from "./StudentLists";
+import Aside from "./Aside";
 
 
 

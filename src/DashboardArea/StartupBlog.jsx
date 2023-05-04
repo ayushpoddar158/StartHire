@@ -7,7 +7,6 @@ const StartupBlog = () => {
     <div>
       <div class="container-fluid" id="main">
         <div class="row row-offcanvas row-offcanvas-left">
-          <Aside />
           {/* <Blog/> strat */}
           <h1>Blog</h1>
           {/* <Blog/> end */}

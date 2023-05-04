@@ -28,9 +28,9 @@ import  Dashboard  from './DashboardArea/Dashboard';
 import Aside from './DashboardArea/Aside'
 import StudentLists from "./DashboardArea/StudentLists";
 import SearchInterns from "./DashboardArea/SearchInterns";
-import StartUpprofileForm from "./Components/StartUpProfileForm";
+import StartUpprofileForm from "./DashboardArea/StartUpProfileForm";
 import Notification from './DashboardArea/Notification'
-import StartUpProfile from './Components/StartUpProfile'
+import StartUpProfile from './DashboardArea/StartUpProfile'
 import StudentAside  from './StudentDashboard/StudentAside'
 import StudentDashboard  from './StudentDashboard/StudentDashboard'
 
@@ -82,17 +82,11 @@ const [uniqueId,setUniqueId]=useState("")
       
           <Route path="ChangePassword" element={<ChangePassword  uniqueId={uniqueId} setUniqueId ={setUniqueId} />}/>
           <Route path="Dashboard" element={<Dashboard />}/>
-          <Route path="Aside" element={<Aside />}/>
-          <Route path="StudentLists" element={<StudentLists />}/>
-          <Route path="SearchInterns" element={<SearchInterns />}/>
           <Route path="StartUpprofileForm" element={<StartUpprofileForm />}/>
-          <Route path="Notification" element={<Notification />}/>
           <Route path="StartUpProfile" element={<StartUpProfile />}/>
           <Route path="VerifyEmail" element={<VerifyEmail/>}/>
           <Route path="StudentAside" element={<StudentAside/>}/>
           <Route path="StudentDashboard" element={<StudentDashboard/>}/>
-          <Route path="Jobs" element={<Jobs/>}/>
-          <Route path="StartupBlog" element={<StartupBlog/>}/>
       
 
 
