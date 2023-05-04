@@ -72,7 +72,8 @@ const Signupstartup = () => {
             email: sEmail,
             desgn: "startup",
             updatedProfile: false,
-            details: null
+            details: null,
+            jobs: null 
           })
           alert("Verify Your Email");
         })

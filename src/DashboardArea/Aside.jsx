@@ -54,6 +54,7 @@ const Aside = () => {
             setUserData(docs.docs[0].data());
         }
         getUserData();
+        console.log(userData)
     }, [currentUser])
 
 

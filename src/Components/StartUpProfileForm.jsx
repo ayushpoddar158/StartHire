@@ -4,7 +4,7 @@ import { AuthContext } from "../Authorizer";
 import { useEffect } from "react";
 import { Box } from "@mui/material";
 import Select from "react-select";
-import {TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
 
 // Data import @Firebase
@@ -58,26 +58,23 @@ const StartUpProfileForm = () => {
   const [data, setData] = useState();
   const [docRef, setDocRef] = useState();
   const [isUser, setIsUser] = useState(false);
-  const [StudentImg, SetStudentImg] = useState(null)
+  const [StartUpImg, setStartUpImg] = useState(null)
   const [localImageUrl, setLocalImageUrl] = useState(null);
   const [showImageUrl, setShowImageUrl] = useState(null);
   const [linkImageUrl, setLinkImageUrl] = useState(null);
   // const [tags, setTags] = React.useState([]);
   const navigate = useNavigate();
-  const [StudentData, setStudentData] = useState(
+  const [StartUpData, setStartUpData] = useState(
     {
-      firstname: "",
-      lastname: "",
-      mobile: "",
+      StartUpName: "",
+      StartUpEmail: "",
       location: "",
-      collname: "",
-      degree: "",
-      YOG: "",
-      githubLink: "",
+      FounderName: "",
+      ContactNumber: "",
+      websiteLink: "",
       linkedInLink: "",
       PImageUrl: null,
-      skills: []
-
+      domains: []
     }
   )
 
@@ -86,7 +83,7 @@ const StartUpProfileForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
+        const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
         const docs = await getDocs(q);
         const doc = docs.docs[0];
         setDocRef(doc);
@@ -104,18 +101,16 @@ const StartUpProfileForm = () => {
         if (data) {
           if (data.updatedProfile) {
             // console.log(data.details.PImageUrl);
-            setStudentData({
-              firstname: data.details.firstname,
-              lastname: data.details.lastname,
-              mobile: data.details.mobile,
+            setStartUpData({
+              StartUpName: data.details.StartUpName,
+              StartUpEmail: data.details.StartUpEmail,
               location: data.details.location,
-              collname: data.details.collname,
-              degree: data.details.degree,
-              YOG: data.details.YOG,
-              githubLink: data.details.githubLink,
+              FounderName: data.details.FounderName,
+              ContactNumber: data.details.ContactNumber,
+              websiteLink: data.details.websiteLink,
               linkedInLink: data.details.linkedInLink,
               PImageUrl: data.details.PImageUrl,
-              skills: data.details.skills,
+              domains: data.details.domains
             });
             setLinkImageUrl(data.details.PImageUrl);
           }
@@ -131,9 +126,9 @@ const StartUpProfileForm = () => {
     // console.log(e.target.value)
     const { value, name } = e.target;
     // console.log(value,name)
-    setStudentData(() => {
+    setStartUpData(() => {
       return {
-        ...StudentData,
+        ...StartUpData,
         [name]: value,
       }
     });
@@ -142,13 +137,9 @@ const StartUpProfileForm = () => {
 
 
   const handleImageUpload = async (e) => {
-    SetStudentImg(e.target.files[0]);
-    setLocalImageUrl(URL.createObjectURL(StudentImg));
+    setStartUpImg(e.target.files[0]);
+    setLocalImageUrl(URL.createObjectURL(StartUpImg));
   }
-
-  // useEffect(() => {
-  //   setShowImageUrl(localImageUrl);
-  // }, [localImageUrl])
 
   useEffect(() => {
     if (linkImageUrl) {
@@ -156,10 +147,6 @@ const StartUpProfileForm = () => {
       setShowImageUrl(linkImageUrl);
     }
   }, [linkImageUrl])
-
-  // useEffect(() => {
-  //   console.log("show", showImageUrl)
-  // }, [showImageUrl])
 
 
 
@@ -170,19 +157,20 @@ const StartUpProfileForm = () => {
   const handleAddition = (tag) => {
     console.log(tag)
     console.log("changes")
-    setStudentData(() => {
+    setStartUpData(() => {
       return {
-        ...StudentData,
-        ["skills"]: tag,
+        ...StartUpData,
+        ["domains"]: tag,
       };
     });
-    console.log(StudentData)
-
+    console.log(StartUpData)
   };
+ useEffect(() =>{
+  console.log(StartUpData)
+ },[StartUpData])
 
 
 
- 
   // tag functions end 
 
   const updateDocument = async (downloadURL) => {
@@ -191,17 +179,15 @@ const StartUpProfileForm = () => {
       await updateDoc(docRef.ref, {
         updatedProfile: true,
         details: {
-          firstname: StudentData.firstname,
-          lastname: StudentData.lastname,
-          mobile: StudentData.mobile,
-          location: StudentData.location,
-          collname: StudentData.collname,
-          degree: StudentData.degree,
-          YOG: StudentData.YOG,
-          skills: StudentData.skills,
-          githubLink: StudentData.githubLink,
-          linkedInLink: StudentData.linkedInLink,
-          PImageUrl: downloadURL
+          StartUpName: StartUpData.StartUpName,
+          StartUpEmail: StartUpData.StartUpEmail,
+          location: StartUpData.location,
+          FounderName: StartUpData.FounderName,
+          ContactNumber: StartUpData.ContactNumber,
+          websiteLink: StartUpData.websiteLink,
+          linkedInLink: StartUpData.linkedInLink,
+          PImageUrl: downloadURL,
+          domains: StartUpData.domains
         }
       }).then(() => {
         alert("Information successfully updated!");
@@ -218,10 +204,10 @@ const StartUpProfileForm = () => {
     console.log("inside submit handler");
     const doc = docRef;
     if (doc) {
-      if (StudentImg) {
-        const fileRef = ref(storage, `images/userImages/${StudentImg.name}`);
+      if (StartUpImg) {
+        const fileRef = ref(storage, `images/userImages/${StartUpImg.name}`);
         try {
-          const snap = await uploadBytes(fileRef, StudentImg);
+          const snap = await uploadBytes(fileRef, StartUpImg);
           console.log("Uploaded", snap);
           const downloadURL = await getDownloadURL(fileRef);
           console.log("Download URL:", downloadURL);
@@ -233,7 +219,7 @@ const StartUpProfileForm = () => {
       }
       else {
         try {
-          const downloadURL = StudentData.PImageUrl;
+          const downloadURL = StartUpData.PImageUrl;
           setLinkImageUrl(downloadURL);
           await updateDocument(downloadURL);
         } catch (err) {
@@ -256,10 +242,10 @@ const StartUpProfileForm = () => {
 
 
               <div class="text-center">
-                {StudentImg ? <Box mt={2} textAlign="center">
+                {StartUpImg ? <Box mt={2} textAlign="center">
                   {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
                   <div id="StudentImage">
-                    <img src={URL.createObjectURL(StudentImg)} alt="" height="100px" /> </div>
+                    <img src={URL.createObjectURL(StartUpImg)} alt="" height="100px" /> </div>
                 </Box> :
                   <Box mt={2} textAlign="center">
                     {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
@@ -284,9 +270,9 @@ const StartUpProfileForm = () => {
                       <label for="website_Link"><h6>Website Link</h6></label>
                       <TextField type="text" class="form-control"
                         onChange={getData}
-                        name="website_Link"
+                        name="websiteLink"
                         id="websiteLink"
-                        defaultValue={StudentData.githubLink}
+                        value={StartUpData.websiteLink}
                         placeholder="website Link"
                         title="enter your last name if any." />
                     </div>
@@ -297,9 +283,9 @@ const StartUpProfileForm = () => {
                       <label for="Linkedin_Link"><h6>Linkedin</h6></label>
                       <TextField type="text"
                         class="form-control" onChange={getData}
-                        name="Linkedin_Link"
-                        id="linkedInLink"
-                        defaultValue={StudentData.linkedInLink}
+                        name="linkedInLink"
+                        id="linkedIn_Link"
+                        value={StartUpData.linkedInLink}
                         placeholder="Linkedin Link"
                         title="enter your Linkedin Link  if any." />
                     </div>
@@ -331,15 +317,15 @@ const StartUpProfileForm = () => {
 
 
                           <label className="firstnamecls" for="StartUp_Name"><h3>StartUp Name</h3></label>
-                          <TextField  type="text"
+                          <TextField type="text"
                             onChange={getData}
                             class="form-control"
-                            required 
-                            name="StartUp_Name"
+                            required
+                            name="StartUpName"
                             id="StartUp_Name"
-                            defaultValue={StudentData.firstname}
+                            value={StartUpData.StartUpName}
                             placeholder="StartUp name"
-                          
+
                             title="enter your first name if any." />
                         </div>
                       </div>
@@ -350,9 +336,9 @@ const StartUpProfileForm = () => {
                           <TextField type="email"
                             onChange={getData}
                             class="form-control"
-                            name="StartUp_Email"
+                            name="StartUpEmail"
                             id="StartUp_Email"
-                            defaultValue={StudentData.lastname}
+                            value={StartUpData.StartUpEmail}
                             placeholder="StartUp Email"
                             title="enter your StartUp Email if any."
                             required />
@@ -363,13 +349,13 @@ const StartUpProfileForm = () => {
                       <div class="form-group">
                         <div class="col-xs-12">
                           <label for="Founder_Name"><h3>Founder Name</h3></label>
-                          <TextField type="number"
+                          <TextField type="text"
                             onChange={getData}
                             class="form-control"
                             required
-                             name="Founder_Name"
+                            name="FounderName"
                             id="Founder_Name"
-                            defaultValue={StudentData.mobile}
+                            value={StartUpData.FounderName}
                             placeholder="Enter Founder Name"
                             title="enter your Founder_Name." />
                         </div>
@@ -384,7 +370,7 @@ const StartUpProfileForm = () => {
                             name='location'
                             class="form-control"
                             required id="location"
-                            defaultValue={StudentData.location}
+                            value={StartUpData.location}
                             placeholder="somewhere"
                             title="enter a location" />
                         </div>
@@ -394,45 +380,44 @@ const StartUpProfileForm = () => {
                         <div class="col-xs-12">
                           <label for="Contact_Number"><h3>Contact Number</h3></label>
                           <TextField type="text"
-                            name='Contact_Number'
+                            name='ContactNumber'
                             onChange={getData}
                             class="form-control"
                             required
-                            id="Contact_Number"
-                            defaultValue={StudentData.collname}
+                            id="ContactNumber"
+                            value={StartUpData.ContactNumber}
                             placeholder="Enter Contact Number "
                             title="enter Contact Number" />
                         </div>
                       </div>
                       <div class="form-group">
 
-                      
+
                       </div>
 
 
-                    
+
 
 
                       <div class="form-group selectDiv" >
-                      <div class="col-xs-12 YearOf">
-                        <label for="YOG">
-                          <h3>Add Domain</h3>
-                        </label>
-                        <Select onChange={handleAddition}
-                         
-                          isMulti
-                          name="colors"
-                          options={StartUpDomain}
-                          className="basic-multi-select"
-                          classNamePrefix="select"
-                          placeholder="Enter Your Domain"
-                         
-                          value={StudentData.skills}
-                         
-                          
-                        />
+                        <div class="col-xs-12 YearOf">
+                          <label for="StartUpDomain">
+                            <h3>Add Domain</h3>
+                          </label>
+                          <Select onChange={handleAddition}
+
+                            isMulti
+                            name="colors"
+                            options={StartUpDomain}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            placeholder="Enter Your Domain"
+                            value={StartUpData.domains}
+
+
+                          />
+                        </div>
                       </div>
-                    </div>
                       <div class="form-group">
                         <div class="col-xs-12">
                           <br />
