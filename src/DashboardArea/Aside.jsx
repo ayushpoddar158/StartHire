@@ -49,7 +49,7 @@ const Aside = () => {
             let isVerified = await currentUser.emailVerified;
             setId(id)
             setIsVerified(isVerified);
-            const q = query(collection(db, "users"), where("uid", "==", id));
+            const q = query(collection(db, "startups"), where("uid", "==", id));
             const docs = await getDocs(q);
             setUserData(docs.docs[0].data());
         }
