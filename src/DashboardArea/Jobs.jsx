@@ -1,3 +1,4 @@
+import { deleteDoc, setDoc } from 'firebase/firestore';
 import React, { useState, useEffect, useContext } from 'react'
 import Aside from './Aside'
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,10 +12,13 @@ import {
   collection,
   addDoc,
   getDoc,
+  updateDoc,
   where,
   doc
 } from "firebase/firestore";
 
+// material ui components
+import { Button } from '@mui/material';
 
 const Jobs = () => {
   const navigate = useNavigate();
@@ -24,6 +28,7 @@ const Jobs = () => {
   const [userData, setUserData] = useState(null);
   const [isStartUp, setIsStartUp] = useState(false);
   const [jobs, setJobs] = useState([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     const getUserData = async () => {
@@ -49,16 +54,43 @@ const Jobs = () => {
         let jobRef = doc(db, "jobs", id);
         let job = await getDoc(jobRef);
         if (job) {
-          setJobs(jobs => [...jobs, job.data()]);
+          setJobs(jobs => [
+            ...jobs,
+            {
+              "id": id,
+              "data": job.data()
+            }]);
         }
       }
       );
     }
   }, [userData]);
 
+  const handleJobDelete = async (id) => {
+    let jobDelRef = doc(db, "jobs", id);
+    await deleteDoc(jobDelRef);
+    // updating user job array
+    const jobA = userData.jobs;
+    const updateA = jobA.filter(item => item != id);
+    const q = query(collection(db, "startups"), where("uid", "==", currentUser?.uid));
+    const docs = await getDocs(q);
+    await updateDoc(docs.docs[0].ref, {
+      jobs: updateA
+    })
+    console.log("updated user job array")
+    window.location.reload();
+  }
+
+  useEffect(() => {
+    console.log(data)
+  }, [data]);
+
+
+
   useEffect(() => {
     console.log(jobs)
   }, [jobs]);
+
   if (currentUser && userData) {
     return (
       <>
@@ -68,20 +100,26 @@ const Jobs = () => {
               {/* <Jobs/> strat */}
               <h1>jobs</h1>
               <div>
-                <Link to="/createjobs"><button className="btn btn-primary" type="button">Create Job</button></Link>
+                <Link to="/createjobs">
+                  <Button variant="contained" >Create Job</Button>
+                </Link>
               </div>
               {/* <Jobs/> end */}
               <div class="container">
                 <h3 class="m-b-50 heading-line">Jobs<i class="fa fa-bell text-muted"></i></h3>
                 {jobs.map(job => {
-                  return(<div class="notification-ui_dd-content">
+                  return (<div class="notification-ui_dd-content">
                     <div class="notification-list notification-list--unread">
                       <div class="notification-list_content">
                         <div class="notification-list_detail">
                           <div>
-                            <p><b></b>{job.details.jobTitle}</p>
-                            <p class="text-muted">{job.details.jobDescription}</p>
-                            <p class="text-muted"><small>10 mins ago</small></p>
+                            <p><b></b>{job.data.details.jobTitle}</p>
+                            <p class="text-muted">{job.data.details.jobDescription}</p>
+                            <p class="text-muted"><small>{job.data.details.jobLocation}</small></p>
+                            <Link to={`/UpdateJobs/${job.id}`}>
+                              <Button variant="contained">Update Job</Button>
+                            </Link>
+                            <Button variant="contained" color='error' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
                           </div>
                         </div>
                       </div>
