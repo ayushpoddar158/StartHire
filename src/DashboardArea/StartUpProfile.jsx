@@ -71,7 +71,6 @@ const StartUpProfile = (props) => {
               PImageUrl: data.details.PImageUrl,
               domains: data.details.domains,
             });
-            setLinkImageUrl(data.details.PImageUrl);
           }
         }
       }
@@ -79,9 +78,9 @@ const StartUpProfile = (props) => {
     loadData();
   }, [data]);
 
-  useEffect(() =>{
+  useEffect(() => {
     console.log(StartUpData);
-  },[StartUpData])
+  }, [StartUpData]);
 
   // getting data end
 
@@ -108,7 +107,8 @@ const StartUpProfile = (props) => {
                   <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                     <div class="row align-items-center">
                       <div class="col-lg-6 mb-4 mb-lg-0 startUpImgDiv">
-                        <img className="StartUpimg"
+                        <img
+                          className="StartUpimg"
                           src={StartUpData.PImageUrl}
                           alt="..."
                         />
@@ -116,59 +116,58 @@ const StartUpProfile = (props) => {
 
                       <div class="col-lg-6 px-xl-10 startUpDetails">
                         <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                          <h3 class="h2 text-white mb-0">StartUp Name  :   {StartUpData.StartUpName}</h3>
+                          <h3 class="h2 text-white mb-0">
+                            StartUp Name : {StartUpData.StartUpName}
+                          </h3>
 
-                          <span class="text-primary">Founder:{StartUpData.FounderName}</span>
+                          <span class="text-primary">
+                            Founder:{StartUpData.FounderName}
+                          </span>
                         </div>
                         <ul class="list-unstyled mb-1-9">
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               Contact no:
                             </span>
-                         {StartUpData.ContactNumber}
+                            {StartUpData.ContactNumber}
                           </li>
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               Email:
                             </span>{" "}
-                           {StartUpData.StartUpEmail}
+                            {StartUpData.StartUpEmail}
                           </li>
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               WebsiteLink:
                             </span>
-                          {StartUpData.websiteLink}
+                            {StartUpData.websiteLink}
                           </li>
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               Address:
                             </span>
-                          {StartUpData.location}
+                            {StartUpData.location}
                           </li>
-                        
-                      
-                        </ul>
-                        <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
-                          <li>
-                            <a href="#!">
-                              <i class="ti-twitter-alt"></i>
-                            </a>
+                          <li class="mb-2 mb-xl-3 display-28">
+                            <span class="display-26 text-secondary me-2 font-weight-600">
+                              Domain
+                            </span>
+                            <hr />
                           </li>
-                          <li>
-                            <a href="#!">
-                              <i class="ti-facebook"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#!">
-                              <i class="ti-pinterest"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#!">
-                              <i class="ti-instagram"></i>
-                            </a>
-                          </li>
+                          {StartUpData.domains.map((item) => {
+                            return (
+                              <>
+                                <li class="mb-2 mb-xl-3 display-28">
+                                  <span class="display-26 text-primary me-2 font-weight-600">
+                                    {item.value}
+                                  </span>
+                                  <hr />
+                                 
+                                </li>
+                              </>
+                            );
+                          })}
                         </ul>
                       </div>
                     </div>
