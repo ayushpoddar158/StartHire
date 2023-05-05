@@ -107,8 +107,8 @@ const StartUpProfile = (props) => {
                 <div class="card card-style1 border-0">
                   <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                     <div class="row align-items-center">
-                      <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img
+                      <div class="col-lg-6 mb-4 mb-lg-0 startUpImgDiv">
+                        <img className="StartUpimg"
                           src={StartUpData.PImageUrl}
                           alt="..."
                         />
@@ -116,7 +116,7 @@ const StartUpProfile = (props) => {
 
                       <div class="col-lg-6 px-xl-10">
                         <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                          <h3 class="h2 text-white mb-0">Company Nameee</h3>
+                          <h3 class="h2 text-white mb-0">Company Name:{StartUpData.StartUpName}</h3>
 
                           <span class="text-primary">Founder:{StartUpData.FounderName}</span>
                         </div>
@@ -145,24 +145,8 @@ const StartUpProfile = (props) => {
                             </span>
                           {StartUpData.location}
                           </li>
-                          <li class="mb-2 mb-xl-3 display-28">
-                            <span class="display-26 text-secondary me-2 font-weight-600">
-                              College:
-                            </span>
-                            Nalanda Institute of technology
-                          </li>
-                          <li class="mb-2 mb-xl-3 display-28">
-                            <span class="display-26 text-secondary me-2 font-weight-600">
-                              Degree:
-                            </span>
-                            B-Tech
-                          </li>
-                          <li class="display-28">
-                            <span class="display-26 text-secondary me-2 font-weight-600">
-                              Year of Passing:
-                            </span>
-                            2023
-                          </li>
+                        
+                      
                         </ul>
                         <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
                           <li>
