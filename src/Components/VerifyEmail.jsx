@@ -33,7 +33,7 @@ const VerifyEmail = () => {
     setIsVerified(isVerified);
     const qUser = query(collection(db, "users"), where("uid", "==", id));
     const docsUser = await getDocs(qUser)
-      .then(() => {
+      .then((docsUser) => {
         if (docsUser.docs.length > 0) {
           setIsUser(true);
         }
