@@ -167,6 +167,7 @@ const StartUpProfileForm = () => {
   };
  useEffect(() =>{
   console.log(StartUpData)
+  
  },[StartUpData])
 
 

@@ -1,11 +1,93 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../style/studentprofile.css";
 import { useNavigate } from "react-router-dom";
 import Aside from "./Aside";
+import { useState } from "react";
+import { AuthContext } from "../Authorizer";
+
+// Data import @Firebase
+import { db } from "../Firebase";
+import { storage } from "../Firebase";
+import {
+  query,
+  getDocs,
+  collection,
+  addDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+
 const StartUpProfile = (props) => {
+  const [data, setData] = useState();
+  const [docRef, setDocRef] = useState();
+  const { currentUser } = React.useContext(AuthContext);
+
+  // getting data start
+  const [StartUpData, setStartUpData] = useState({
+    StartUpName: "",
+    StartUpEmail: "",
+    location: "",
+    FounderName: "",
+    ContactNumber: "",
+    websiteLink: "",
+    linkedInLink: "",
+    PImageUrl: null,
+    domains: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const q = query(
+          collection(db, "startups"),
+          where("uid", "==", currentUser.uid)
+        );
+        const docs = await getDocs(q);
+        const doc = docs.docs[0];
+        setDocRef(doc);
+        setData(doc.data());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [currentUser]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      if (currentUser) {
+        if (data) {
+          if (data.updatedProfile) {
+            // console.log(data.details.PImageUrl);
+            setStartUpData({
+              StartUpName: data.details.StartUpName,
+              StartUpEmail: data.details.StartUpEmail,
+              location: data.details.location,
+              FounderName: data.details.FounderName,
+              ContactNumber: data.details.ContactNumber,
+              websiteLink: data.details.websiteLink,
+              linkedInLink: data.details.linkedInLink,
+              PImageUrl: data.details.PImageUrl,
+              domains: data.details.domains,
+            });
+            setLinkImageUrl(data.details.PImageUrl);
+          }
+        }
+      }
+    };
+    loadData();
+  }, [data]);
+
+  useEffect(() =>{
+    console.log(StartUpData);
+  },[StartUpData])
+
+  // getting data end
+
   const navigate = useNavigate();
   const navigateEdit = () => {
-    props.changemenuStartUp()
+    props.changemenuStartUp();
   };
   return (
     <>
@@ -27,7 +109,7 @@ const StartUpProfile = (props) => {
                     <div class="row align-items-center">
                       <div class="col-lg-6 mb-4 mb-lg-0">
                         <img
-                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                          src={StartUpData.PImageUrl}
                           alt="..."
                         />
                       </div>
@@ -36,32 +118,32 @@ const StartUpProfile = (props) => {
                         <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                           <h3 class="h2 text-white mb-0">Company Nameee</h3>
 
-                          <span class="text-primary">Founder:xyx</span>
+                          <span class="text-primary">Founder:{StartUpData.FounderName}</span>
                         </div>
                         <ul class="list-unstyled mb-1-9">
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               Contact no:
                             </span>
-                            123456789
+                         {StartUpData.ContactNumber}
                           </li>
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               Email:
                             </span>{" "}
-                            edith@mail.com
+                           {StartUpData.StartUpEmail}
                           </li>
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
-                              github:
+                              WebsiteLink:
                             </span>
-                            xyx@git
+                          {StartUpData.websiteLink}
                           </li>
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               Address:
                             </span>
-                            Bhabaneshwar
+                          {StartUpData.location}
                           </li>
                           <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
@@ -105,63 +187,6 @@ const StartUpProfile = (props) => {
                           </li>
                         </ul>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12">
-                <div class="row">
-                  <div class="col-lg-12 mb-4 mb-sm-5">
-                    <div class="mb-4 mb-sm-5">
-                      <span class="section-title text-primary mb-3 mb-sm-4">
-                        JD
-                      </span>
-
-                      <div class="progress-text">
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="card">
-                              <div class="card-header">
-                                Add Job Description
-                              </div>
-                              <div class="card-body">
-                                {/* <blockquote class="blockquote mb-0"> */}
-                                {/* <p>Job Profile</p> */}
-                                <label htmlFor="">Job Profile</label>
-                                <input type="text" />
-                                <br />
-                                <label htmlFor="">Job Description</label>
-                                <input type="text" />
-                                <br />
-                                <button>Add</button>
-
-                                {/* </blockquote> */}
-                              </div>
-                            </div>
-                          </div>
-                          {/* <div class="col-6 text-end">80%</div> */}
-                        </div>
-                      </div>
-
-
-
-                    </div>
-                    <div>
-                      <span class="section-title text-primary mb-3 mb-sm-4">
-                        WHAT WE DO
-                      </span>
-                      <p>
-                        Many desktop publishing packages and web page
-                        editors now use Lorem Ipsum as their default model
-                        text, and a search for 'lorem ipsum' will uncover
-                        many web sites still in their infancy.
-                      </p>
-                      <p class="mb-1-9">
-                        There are many variations of passages of Lorem
-                        Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour.
-                      </p>
                     </div>
                   </div>
                 </div>

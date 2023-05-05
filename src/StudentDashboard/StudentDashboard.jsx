@@ -32,6 +32,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@mui/material';
 import { faBlog } from '@fortawesome/free-solid-svg-icons';
+import { FaBriefcase } from 'react-icons/fa';
 import Studentprofileform from '../Components/Studentprofileform';
 // react icons 
 
