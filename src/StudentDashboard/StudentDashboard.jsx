@@ -24,7 +24,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 // font awesome setup
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
