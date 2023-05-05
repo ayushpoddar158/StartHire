@@ -177,7 +177,7 @@ const CreateJobs = () => {
 
 
 
-const updateDocument = async (downloadURL) => {
+const updateDocument = async () => {
     if (docRef) {
         console.log("inside update if ");
         try {
@@ -201,6 +201,7 @@ const submitHandler = async () => {
     console.log("inside submit handler");
     try {
         await updateDocument();
+        navigate("/dashboard")
     } catch (err) {
         console.log(err);
     }
