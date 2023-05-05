@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { NavLink, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
-
+import '../style/Dashboard/StartUpDashboard.css'
 // components
 import Main from './Main';
 import StartUpProfile from './StartUpProfile';
@@ -110,8 +110,8 @@ const Dashboard = () => {
                                     <li class="nav-item mb-2"
                                         onClick={() => menuNav("notification")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "notification" ? "blue" : "black" }}>Notifications</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => Logout()}><button class="nav-link text-secondary"onClick={logouthandler} >LogOut</button></li>
-                                        <button>Hide</button>
+                                        onClick={() => Logout()}><button class="nav-link text-secondary LogoutbtnAsilde"onClick={logouthandler} >LogOut</button></li>
+                                        {/* <button>Hide</button> */}
                                 </ul>
                             </div>
                             {/* main content below */}
