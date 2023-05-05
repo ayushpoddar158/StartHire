@@ -204,7 +204,7 @@ const Studentprofileform = () => {
         }
       }).then(() => {
         alert("Information successfully updated!");
-        navigate("/dashboard");
+        navigate("/studentdashboard");
       })
         .catch((error) => {
           console.log("Error updating document: ", error);

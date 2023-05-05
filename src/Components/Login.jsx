@@ -58,7 +58,7 @@ const Login = ({ setLoginIsTrue, setUserName, userName }) => {
         if (!user_data.updatedProfile) {
           navigate("/studentprofileform");
         }
-        else { navigate("/Dashboard"); }
+        else { navigate("/studentdashboard"); }
         // ...
       })
       .catch((error) => {
@@ -69,9 +69,10 @@ const Login = ({ setLoginIsTrue, setUserName, userName }) => {
   }
 
   useEffect(() => {
-    if(currentUser){
-      navigate("/Dashboard");
-    }
+    // if(currentUser){
+    //   navigate("/Dashboard");
+    // }
+    console.log(currentUser);
   },[currentUser])
 
 
