@@ -52,7 +52,7 @@ function Navbar() {
 
   useEffect(() => {
 
-    console.log(currentUser)
+    // console.log(currentUser)
     if (currentUser) {
       const fetchData = async () => {
         try {
@@ -62,7 +62,7 @@ function Navbar() {
           if (doc) {
             setData(doc.data());
             setIsUpdated(doc.data().updatedProfile);
-            console.log("inside fetchdata")
+            // console.log("inside fetchdata")
           }
           else {
             const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
@@ -70,7 +70,7 @@ function Navbar() {
             const doc = docs.docs[0];
             setData(doc.data());
             setIsUpdated(doc.data().updatedProfile);
-            console.log("inside fetchdata")
+            // console.log("inside fetchdata")
           }
 
         } catch (error) {

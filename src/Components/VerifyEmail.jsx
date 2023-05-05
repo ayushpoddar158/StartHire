@@ -18,9 +18,11 @@ import '../style/VerifyEmail.css'
 import { useNavigate } from "react-router-dom";
 
 const VerifyEmail = () => {
-  const currentUser = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const [id, setId] = React.useState(true);
   const [isVerified, setIsVerified] = React.useState(true);
+  const [isUser, setIsUser] = React.useState(false);
+  const [isStartUp, setIsStartup] = React.useState(false);
   const navigate = useNavigate();
 
 
@@ -36,7 +38,7 @@ const VerifyEmail = () => {
           setIsUser(true);
         }
         else {
-          setIsStartup(false);
+          setIsStartup(true);
         }
       })
   }
@@ -64,9 +66,12 @@ const VerifyEmail = () => {
               <h1 className='Verifyh2'>You have already verified your email.</h1>
             </div>
             <div className="main-verification-input fl-wrap">
-              <button className="main-verification-button" onClick={()=>{
-                navigate("/dashboard");
-              }}>Redirect To Dashboard</button>
+              {isUser ? <button className="main-verification-button" onClick={() => {
+                navigate("/studentdashboard");
+              }}>Redirect To Dashboard</button> :
+                <button className="main-verification-button" onClick={() => {
+                  navigate("/dashboard");
+                }}>Redirect To Dashboard</button> }
             </div>
           </div>
         </>

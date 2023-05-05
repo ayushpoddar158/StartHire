@@ -8,6 +8,7 @@ import Jobs from './Jobs';
 import StartupBlog from './StartupBlog';
 import Notification from './Notification';
 // Authentication Setup
+import { Auth } from "../Firebase";
 import { AuthContext } from '../Authorizer';
 
 
@@ -49,15 +50,8 @@ const Dashboard = () => {
         navigate("/Login");
       }
 
-    const logouthandler = () => {
-        if (isUser) {
-          LogOut();
-          navigate("/Login")
-        }
-        else {
-          navigate("/Login");
-        }
-      }
+    
+
     useEffect(() => {
         const getUserData = async () => {
             let id = await currentUser?.uid;
@@ -110,7 +104,7 @@ const Dashboard = () => {
                                     <li class="nav-item mb-2"
                                         onClick={() => menuNav("notification")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "notification" ? "blue" : "black" }}>Notifications</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => Logout()}><button class="nav-link text-secondary LogoutbtnAsilde"onClick={logouthandler} >LogOut</button></li>
+                                        ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
                                         {/* <button>Hide</button> */}
                                 </ul>
                             </div>
