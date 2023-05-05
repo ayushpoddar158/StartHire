@@ -252,7 +252,6 @@ const Studentprofileform = () => {
     
 
      
-       <StudentAside/>
        <div class="container-fluid" id="main">
         <div class="container bootstrap snippet" id='studentformmain'>
         
