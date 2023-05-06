@@ -46,8 +46,7 @@ const Dashboard = () => {
 
     const LogOut = () => {
         Auth.signOut();
-        SetUser(false);
-        navigate("/Login");
+        navigate("/LoginStartUp");
       }
 
     
