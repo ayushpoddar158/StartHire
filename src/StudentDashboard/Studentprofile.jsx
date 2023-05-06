@@ -1,21 +1,114 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../style/studentprofile.css";
 import { useNavigate } from "react-router-dom";
-import StudentAside from "./StudentAside";
-const StudentProfile = (props) => {
+// import Aside from "./Aside";
+import { useState } from "react";
+import { AuthContext } from "../Authorizer";
+
+// Data import @Firebase
+import { db } from "../Firebase";
+import { storage } from "../Firebase";
+import {
+  query,
+  getDocs,
+  collection,
+  addDoc,
+  updateDoc,
+  where
+} from "firebase/firestore";
+import {
+  getDownloadURL,
+  ref,
+  uploadBytes
+} from "firebase/storage";
+
+const Studentprofile = (props) => {
+  const { currentUser } = React.useContext(AuthContext);
+  const [data, setData] = useState();
+  const [docRef, setDocRef] = useState();
+  const [linkImageUrl, setLinkImageUrl] = useState(null);
+
+  // getting data start
+  const [StudentData, setStudentData] = useState(
+    {
+      firstname: "",
+      lastname: "",
+      mobile: "",
+      location: "",
+      collname: "",
+      degree: "",
+      YOG: "",
+      githubLink: "",
+      linkedInLink: "",
+      PImageUrl: null,
+      skills: []
+
+    }
+  )
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
+        const docs = await getDocs(q);
+        const doc = docs.docs[0];
+        setDocRef(doc);
+        setData(doc.data());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [currentUser])
+
+  useEffect(() => {
+    const loadData = async () => {
+      if (currentUser) {
+        if (data) {
+          if (data.updatedProfile) {
+            // console.log(data.details.PImageUrl);
+            setStudentData({
+              firstname: data.details.firstname,
+              lastname: data.details.lastname,
+              mobile: data.details.mobile,
+              location: data.details.location,
+              collname: data.details.collname,
+              degree: data.details.degree,
+              YOG: data.details.YOG,
+              githubLink: data.details.githubLink,
+              linkedInLink: data.details.linkedInLink,
+              PImageUrl: data.details.PImageUrl,
+              skills: data.details.skills,
+            });
+            setLinkImageUrl(data.details.PImageUrl);
+          }
+        }
+      }
+    };
+    loadData();
+  }, [data]);
+
+  useEffect(() => {
+  console.log(StudentData)
+  }, [StudentData])
+  
+  // getting data end
+
   const navigate = useNavigate();
   const navigateEdit = () => {
-props.changemenufun()
-    // navigate("/StudentProfileform");
+    props.changemenufun();
   };
   return (
     <>
       <div>
-        <div class="container-fluid" id="main">
+        <div class="container-fluid" id="mainStudent">
           <div class="row row-offcanvas row-offcanvas-left">
+            {/* <StudentAside /> */}
             {/* <Dashboard/> */}
-            <div class="col main pt-5 mt-3">
-              <section class="bg-light">
+            <div class="col main pt-5 mt-3 ">
+              <section class="bg-light studentmaindiv2">
                 <button
                   id="stuprofileedit"
                   onClick={navigateEdit}
@@ -23,149 +116,97 @@ props.changemenufun()
                 >
                   Edit
                 </button>
-                <div class="container">
+                <div class="container ">
                   <div class="row">
                     <div class="col-lg-12 mb-4 mb-sm-5">
                       <div class="card card-style1 border-0">
                         <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                           <div class="row align-items-center">
-                            <div class="col-lg-6 mb-4 mb-lg-0">
-                              <img
-                                src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                            <div class="col-lg-6 mb-4 mb-lg-0 ">
+                              <img className="" style={{width:"300px"}}
+                                src={StudentData.PImageUrl}
                                 alt="..."
                               />
                             </div>
 
-                            <div class="col-lg-6 px-xl-10">
+                            <div className="col-lg-6 px-xl-10 studentDetails">
                               <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                <h3 class="h2 text-white mb-0">Student Name</h3>
+                                <h3 class="h2 text-white mb-0">{StudentData.firstname} {StudentData.lastname}</h3>
 
-                                <span class="text-primary">Skilled in:Web Dev</span>
                               </div>
                               <ul class="list-unstyled mb-1-9">
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Contact no:
                                   </span>
-                                  123456789
+                                 {StudentData.mobile}
                                 </li>
-                                <li class="mb-2 mb-xl-3 display-28">
-                                  <span class="display-26 text-secondary me-2 font-weight-600">
-                                    Email:
-                                  </span>{" "}
-                                  edith@mail.com
-                                </li>
+                             
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     github:
                                   </span>
-                                  xyx@git
+                                 {StudentData.githubLink}
+                                </li>
+                                <li class="mb-2 mb-xl-3 display-28">
+                                  <span class="display-26 text-secondary me-2 font-weight-600">
+                                    linkedin:
+                                  </span>
+                                 {StudentData.linkedInLink}
                                 </li>
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Address:
                                   </span>
-                                  Bhabaneshwar
+                                  {StudentData.location}
                                 </li>
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     College:
                                   </span>
-                                  Nalanda Institute of technology
+                                 {StudentData.collname}
                                 </li>
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Degree:
                                   </span>
-                                  B-Tech
+                                  {StudentData.degree}
                                 </li>
                                 <li class="display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Year of Passing:
                                   </span>
-                                  2023
+                                  {StudentData.YOG}
+                                  <li class="mb-2 mb-xl-3 display-28">
+                            <span class="display-26 text-secondary me-2 font-weight-600">
+                              Skills
+                            </span>
+                            <hr />
+                          </li>
                                 </li>
+
+                                {StudentData.skills.map((item) => {
+                            return (
+                              <>
+                                <li class="mb-2 mb-xl-3 display-28">
+                                  <span class="display-26 text-primary me-2 font-weight-600">
+                                    {item.value}
+                                  </span>
+                                  <hr />
+                                 
+                                </li>
+                              </>
+                            );
+                          })}
                               </ul>
-                              <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
-                                <li>
-                                  <a href="#!">
-                                    <i class="ti-twitter-alt"></i>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#!">
-                                    <i class="ti-facebook"></i>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#!">
-                                    <i class="ti-pinterest"></i>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#!">
-                                    <i class="ti-instagram"></i>
-                                  </a>
-                                </li>
-                              </ul>
+                            
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div class="col-lg-12">
-                    <div class="row">
-                      <div class="col-lg-12 mb-4 mb-sm-5">
-                        <div class="mb-4 mb-sm-5">
-                          <span class="section-title text-primary mb-3 mb-sm-4">
-                            Skill
-                          </span>
-                          <div class="progress-text">
-                            <div class="row">
-                              <div class="col-6">C</div>
-                              {/* <div class="col-6 text-end">80%</div> */}
-                            </div>
-                          </div>
-                          <hr />
-                          {/* <div class="custom-progress progress progress-medium mb-3" style={{height: "4px"}}>
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style={{width:"80%"}} aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            </div> */}
-                          <div class="progress-text">
-                            <div class="row">
-                              <div class="col-6">JAVA</div>
-                              {/* <div class="col-6 text-end">90%</div> */}
-                            </div>
-                          </div>
-                          <hr />
-                          {/* <div class="custom-progress progress progress-medium mb-3" style={{height: "4px"}}>
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style={{width:"90%"}} aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div> */}
-                          <div class="progress-text">
-                            <div class="row">
-                              <div class="col-6">PYTHON</div>
-                              {/* <div class="col-6 text-end">50%</div> */}
-                            </div>
-                          </div>
-                          <hr />
-                          {/* <div class="custom-progress progress progress-medium mb-3"style={{height: "4px"}}>
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style={{width:"50%"}} aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div> */}
-                          <div class="progress-text">
-                            <div class="row">
-                              <div class="col-6">React</div>
-                              {/* <div class="col-6 text-end">60%</div> */}
-                            </div>
-                          </div>
-                          <hr />
-                          {/* <div class="custom-progress progress progress-medium" style={{height: "4px"}}>
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style={{width:"60%"}} aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div> */}
-                        </div>
-                   
-                      </div>
-                    </div>
-                  </div>
+                 
                   </div>
                 </div>
               </section>
@@ -177,4 +218,4 @@ props.changemenufun()
   );
 };
 
-export default StudentProfile;
+export default Studentprofile;

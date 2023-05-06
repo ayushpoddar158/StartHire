@@ -127,8 +127,8 @@ const StudentDashboard = () => {
                                         onClick={() => menuNav("StudentBlog")}><NavLink class="nav-NavLink text-secondary" >     <FontAwesomeIcon icon={faBlog} /><span className="ml-3" style={{ color: activeMenu === "StudentBlog" ? "blue" : "black" }}>Blog</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                         onClick={() => menuNav("StudentNotification")}><NavLink class="nav-NavLink text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "StudentNotification" ? "blue" : "black" }}>Notifications</span></NavLink></li>
-                                    <l1 class="nav-item mb-2 "
-                                        onClick={LogOut}><button class="nav-NavLink text-secondary LogoutbtnAsilde" href="#">Log Out</button></l1>
+                                    <li class="nav-item mb-2 "
+                                        onClick={LogOut}><button class="nav-NavLink text-secondary LogoutbtnAsilde" href="#">Log Out</button></li>
                                     {/* <button onClick={hideAside}>Hide</button> */}
                                 </ul>
 

@@ -192,3 +192,15 @@ section {
     position: relative;
     left: 40rem;
 }
+#mainStudent{
+    /* background-color: red; */
+    width: 80vw;
+    /* margin: auto; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+.studentmaindiv2{
+    /* background-color: brown; */
+    width: 80vw;
+}
