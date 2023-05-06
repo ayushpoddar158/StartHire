@@ -51,7 +51,7 @@ const AppRoutes = (props) => {
 
     return (
         <>
-            <Suspense fallback={<Loading/>}>
+            <Suspense >
                 <Routes>
                     <Route path="/" element={<Home userName={userName} loginIsTrue={loginIsTrue} />} />
                     <Route path="/Home" element={<Home userName={userName} loginIsTrue={loginIsTrue} />} />
@@ -81,6 +81,7 @@ const AppRoutes = (props) => {
                     <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
                     <Route path="JobDescp" element ={<JobDescp/>}/>
 
+                    <Route path="Loading" element={<Loading/> } />
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </Suspense>
