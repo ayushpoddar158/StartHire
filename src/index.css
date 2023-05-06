@@ -11,7 +11,7 @@
 body{
   font-size: 16px !important;
  
-  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+  /* background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%); */
 }
 button{
   font-size: 15px !important;
@@ -40,9 +40,6 @@ button{
     margin-bottom: 60px;
 }
 
-.homemaindiv{
-  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
-}
 
 .homemaindiv >h4{
   color: white;
@@ -62,12 +59,8 @@ button{
 
 
 /* login */
-#loginId{
-  /* padding-bottom: 100px; */
-  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
 
-  
-}
+
 
 
 
@@ -95,9 +88,7 @@ button{
 
 /* signup1 student */
 
-#sign1main{
-  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
-}
+
 
 #signup1card{
  border-radius: 25px;

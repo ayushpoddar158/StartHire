@@ -34,6 +34,8 @@ import StartUpProfile from './DashboardArea/StartUpProfile'
 import StudentAside  from './StudentDashboard/StudentAside'
 import StudentDashboard  from './StudentDashboard/StudentDashboard'
 import UpdateJobs from "./Components/jobs/UpdateJobs";
+import JobDescp from "./DashboardArea/JobDescp";
+
 
 // Authorizer 
 import { AuthProvider } from "./Authorizer";
@@ -87,12 +89,14 @@ const [uniqueId,setUniqueId]=useState("")
           <Route path="VerifyEmail" element={<VerifyEmail/>}/>
           <Route path="StudentAside" element={<StudentAside/>}/>
           <Route path="StudentDashboard" element={<StudentDashboard/>}/>
+          <Route path="JobDescp" element={<JobDescp/>}/>
       
 
 
           {/* //jobs routes */}
           <Route path="CreateJobs" element={<CreateJobs/>}/>
           <Route path="UpdateJobs/:id" element={<UpdateJobs/>}/>
+      
 
         </Routes>
         <Footer/>
