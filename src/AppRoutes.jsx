@@ -40,29 +40,31 @@ import StartupBlog from "./DashboardArea/StartupBlog";
 
 const AppRoutes = (props) => {
     let userData = props.userData;
-    const [loginIsTrue, setLoginIsTrue] = useState(false)
-    const [userName, setUserName] = useState("")
-    const [generateotp, setGenerateotp] = useState("")
-    const [uniqueId, setUniqueId] = useState("")
-
+    let isStudent = props.isStudent;
+    let isStartUp = props.isStartUp;
+    let isVerified = props.isVerified;
+    // print above variables in console
+    console.log(userData);
+    console.log(isStudent);
+    console.log(isStartUp);
+    console.log(isVerified); 
     return (
         <>
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
-                    <Route path="/" element={<Home userName={userName} loginIsTrue={loginIsTrue} />} />
-                    <Route path="/Home" element={<Home userName={userName} loginIsTrue={loginIsTrue} />} />
+                    <Route path="/" element={<Home  />} />
+                    <Route path="/Home" element={<Home  />} />
                     <Route path="About" element={<About />} />
                     <Route path="Contact" element={<Contact />} />
-                    <Route path="Login" element={<Login setUserName={setUserName} loginIsTrue={loginIsTrue} userName={userName} setLoginIsTrue={setLoginIsTrue} />} />
+                    <Route path="Login" element={<Login  />} />
                     <Route path="LoginStartUp" element={<LoginStartUp />} />
                     <Route path="Signup" element={<Signup />} />
                     <Route path="Signupstartup" element={<Signupstartup />} />
                     <Route path="studentprofileform" element={<Studentprofileform />} />
                     <Route path="Studentprofile" element={<Studentprofile />} />
                     <Route path="Filteredstudentlist" element={<Filteredstudentlist />} />
-                    <Route path="Forgetpassword" element={<Forgetpassword uniqueId={uniqueId} setUniqueId={setUniqueId} generateotp={generateotp} setGenerateotp={setGenerateotp} />} />
-
-                    <Route path="ChangePassword" element={<ChangePassword uniqueId={uniqueId} setUniqueId={setUniqueId} />} />
+                    <Route path="Forgetpassword" element={<Forgetpassword  />} />
+                    <Route path="ChangePassword" element={<ChangePassword /> } />
                     <Route path="Dashboard" element={<Dashboard />} />
                     <Route path="StartUpprofileForm" element={<StartUpprofileForm />} />
                     <Route path="StartUpProfile" element={<StartUpProfile />} />
