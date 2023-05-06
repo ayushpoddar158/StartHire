@@ -13,12 +13,14 @@
     
 }
 .title{
-    color: black;
+    
     /* background-color:bisque ; */
     
 }
-h2{
-    color: red;
+#heading1{
+   
+    color: rgb(1, 1, 53);
+    font-size: 3rem;
 }
 hr{
     /* height: 10px; */
@@ -27,6 +29,7 @@ hr{
 .Skillreq{
     margin: 5px !important;
     background-color: red !important;
+    color: white !important;
    
 }
 

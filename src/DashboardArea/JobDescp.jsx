@@ -2,14 +2,14 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import { TextField } from '@mui/material'
 import './css/JobDescp.css'
-import '../style/LoadingEffect/Loading.css'
+
 const JobDescp = () => {
     return(
         <>
         
             <div className="container main">
                 <div className="title onediv">
-                <h2>Web Dev</h2>
+                <h2 id='heading1'>Web Dev</h2>
                 <hr />
 
                 </div>
