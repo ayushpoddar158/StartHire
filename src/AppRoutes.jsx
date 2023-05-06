@@ -32,11 +32,15 @@ import StartUpProfile from './DashboardArea/StartUpProfile'
 import StudentAside from './StudentDashboard/StudentAside'
 import StudentDashboard from './StudentDashboard/StudentDashboard'
 import UpdateJobs from "./Components/jobs/UpdateJobs";
+import Loading from "./Components/Loading/Loading";
+import JobDescp from "./DashboardArea/JobDescp";
+import PageNotFound from "./Components/PagenotFound/PageNotFound";
 
 // Authorizer 
 import { AuthProvider } from "./Authorizer";
 import Jobs from "./DashboardArea/Jobs";
 import StartupBlog from "./DashboardArea/StartupBlog";
+
 
 const AppRoutes = (props) => {
     let userData = props.userData;
@@ -50,7 +54,7 @@ const AppRoutes = (props) => {
     console.log(isVerified); 
     return (
         <>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loading/>}>
                 <Routes>
                     <Route path="/" element={<Home  />} />
                     <Route path="/Home" element={<Home  />} />
@@ -77,7 +81,9 @@ const AppRoutes = (props) => {
                     {/* //jobs routes */}
                     <Route path="CreateJobs" element={<CreateJobs />} />
                     <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
+                    <Route path="JobDescp" element ={<JobDescp/>}/>
 
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </Suspense>
         </>

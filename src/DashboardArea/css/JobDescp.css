@@ -1,0 +1,42 @@
+.main{
+    background-color: rgb(180, 180, 180);
+    height: 50vh;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 70vw;
+    height: 90vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.title{
+    
+    /* background-color:bisque ; */
+    
+}
+#heading1{
+   
+    color: rgb(1, 1, 53);
+    font-size: 3rem;
+}
+hr{
+    /* height: 10px; */
+    /* width:20px; */
+}
+.Skillreq{
+    margin: 5px !important;
+    background-color: red !important;
+    color: white !important;
+   
+}
+
+.Skillreq:hover{
+    cursor: default;
+}
+.suggestStudent{
+    margin-top: 30px;
+    margin-left: 5px;
+}
