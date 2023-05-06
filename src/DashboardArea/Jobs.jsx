@@ -50,19 +50,22 @@ const Jobs = () => {
     if (userData) {
       const jobids = userData?.jobs;
       console.log(jobids);
-      jobids.forEach(async (id) => {
-        let jobRef = doc(db, "jobs", id);
-        let job = await getDoc(jobRef);
-        if (job) {
-          setJobs(jobs => [
-            ...jobs,
-            {
-              "id": id,
-              "data": job.data()
-            }]);
+      if (jobids) {
+        jobids.forEach(async (id) => {
+          let jobRef = doc(db, "jobs", id);
+          let job = await getDoc(jobRef);
+          if (job) {
+            setJobs(jobs => [
+              ...jobs,
+              {
+                "id": id,
+                "data": job.data()
+              }]);
+          }
         }
+        );
+
       }
-      );
     }
   }, [userData]);
 
