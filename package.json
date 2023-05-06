@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-render": "^4.0.0",
+    "react-router": "^6.11.1",
     "react-router-dom": "^6.11.1",
     "react-select": "^5.7.2",
     "react-tag-input": "^6.8.1",

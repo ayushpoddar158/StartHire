@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useState } from "react";
 
 
@@ -6,6 +6,8 @@ import { useState } from "react";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import AppRoutes from "./AppRoutes";
+import Loading from "./Components/Loading/Loading";
+
 
 
 // Authorizer 
@@ -22,7 +24,6 @@ import {
   addDoc,
   where
 } from "firebase/firestore";
-import { TryRounded } from "@mui/icons-material";
 
 
 const App = () => {
@@ -64,9 +65,11 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
-      <AppRoutes userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
-      <Footer />
+      <Suspense fallback={<Loading />}>
+        <Navbar userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
+        <AppRoutes userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
+        <Footer />
+      </Suspense>
     </>
   );
 };
