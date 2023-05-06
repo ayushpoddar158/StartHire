@@ -37,6 +37,7 @@ const AppRoutes = (props) => {
     let isStudent = props.isStudent;
     let isStartUp = props.isStartUp;
     let isVerified = props.isVerified;
+
     const Basic = <>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />

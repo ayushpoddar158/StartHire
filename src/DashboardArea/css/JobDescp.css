@@ -1,11 +1,11 @@
 .main{
     background-color: rgb(180, 180, 180);
-    height: 50vh;
+    /* height: 1000px; */
     margin-left: auto;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 70vw;
-    height: 90vh;
+    /* height: 90vh; */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -40,3 +40,33 @@ hr{
     margin-top: 30px;
     margin-left: 5px;
 }
+.studentList{
+    /* background-color: red; */
+    height: 100%;
+    margin: 10px;
+}
+
+.studentList{
+    display: flex;
+    flex-direction: row;
+    background-color: aliceblue;
+
+}
+.skillspan{
+    margin: 5px;
+}
+.stdlistmian2_1{
+    /* background-color: green; */
+
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+@media only screen and (max-width: 600px) {
+  .studentList{
+    display: flex;
+    flex-direction: column;
+  }
+  }

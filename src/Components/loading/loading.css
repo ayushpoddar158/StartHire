@@ -1,3 +1,11 @@
+.spinclass{
+  height: 80vh;
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .lds-spinner {
     color: official;
     display: inline-block;
@@ -18,7 +26,7 @@
     width: 6px;
     height: 18px;
     border-radius: 20%;
-    background: #fff;
+    background: rgb(3, 3, 74);
   }
   .lds-spinner div:nth-child(1) {
     transform: rotate(0deg);
