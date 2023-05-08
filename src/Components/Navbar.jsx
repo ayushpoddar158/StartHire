@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import '../style/Navbar.css'
 
 // Authentication setup
 import { Auth } from "../Firebase";
@@ -76,7 +77,7 @@ function Navbar(props) {
 
 
   return (
-    <AppBar position="static" sx={{ background: '#070617', }} >
+    <AppBar position="sticky" sx={{ background: '#070617', }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

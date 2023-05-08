@@ -111,7 +111,7 @@ const App = (props) => {
         <Navbar userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
         { sidebarComponent }
         <AppRoutes userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
-        <Footer />
+        {/* <Footer /> */}
       </Suspense>
     </>
   );
