@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { useState } from "react";
-
+import { useLocation } from "react-router";
 
 //component
 import Navbar from "./Components/Navbar";
@@ -26,13 +26,39 @@ import {
 } from "firebase/firestore";
 
 
-const App = () => {
+const App = (props) => {
+  const location = useLocation();
   const { currentUser } = useContext(AuthContext)
   const [id, setId] = useState(null);
   const [isVerified, setIsVerified] = useState(null);
   const [userData, setUserData] = useState(null);
   const [isStartUp, setIsStartUp] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
+
+  // conditional routing for navbar and sidebar
+  // const [isFullPageLayout, setIsFullPageLayout] = useState(false);
+
+  // useEffect(() => {
+  //   onRouteChanged();
+  // }, []);
+
+  // useEffect(() => {
+  //   onRouteChanged();
+  // }, [props.location]);
+
+  // function onRouteChanged() {
+  //   console.log("ROUTE CHANGED");
+  //   window.scrollTo(0, 0);
+  //   const fullPageLayoutRoutes = ['/user-pages/login-1', '/user-pages/login-2', '/user-pages/register-1', '/user-pages/register-2', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
+  //   for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
+  //     if (location.pathname === fullPageLayoutRoutes[i]) {
+  //       setIsFullPageLayout(true);
+  //       break;
+  //     } else {
+  //       setIsFullPageLayout(false);
+  //     }
+  //   }
+  // }
 
   useEffect(() => {
     const getUserData = async (currentUser) => {
@@ -42,26 +68,37 @@ const App = () => {
       setId(id)
       setIsVerified(isVerified);
       try {
+        console.log("inside try")
         const q = query(collection(db, "startups"), where("uid", "==", id));
         const docs = await getDocs(q);
         if (docs.docs.length > 0) {
           setIsStartUp(true);
           setUserData(docs.docs[0].data());
         }
+        else {
+          console.log("inside catch")
+          const q = query(collection(db, "users"), where("uid", "==", id));
+          const docs = await getDocs(q);
+          if (docs.docs.length > 0) {
+            setIsStudent(true);
+            setUserData(docs.docs[0].data());
+          }
+
+        }
       }
       catch (err) {
-        const q = query(collection(db, "users"), where("uid", "==", id));
-        const docs = await getDocs(q);
-        if (docs.docs.length > 0) {
-          setIsStudent(true);
-          setUserData(docs.docs[0].data());
-        }
+        console.log(err);
       }
     }
     if (currentUser) {
       getUserData(currentUser);
     }
   }, [currentUser])
+
+  useEffect(() => {
+    console.log(userData)
+  }, [currentUser])
+
 
   return (
     <>

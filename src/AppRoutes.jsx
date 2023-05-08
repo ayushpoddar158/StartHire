@@ -72,6 +72,9 @@ const AppRoutes = (props) => {
         <Route path="JobDescp" element={<JobDescp />} />
     </>
 
+
+
+    console.log(isStudent, isStartUp, isVerified)
     if (!isStartUp && !isStudent) {
         return (
             <>
@@ -110,7 +113,6 @@ const AppRoutes = (props) => {
             </>
         );
     }
-
     else if (isStudent && isVerified) {
         return (
             <>
