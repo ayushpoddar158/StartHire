@@ -36,29 +36,29 @@ const App = (props) => {
   const [isStudent, setIsStudent] = useState(false);
 
   // conditional routing for navbar and sidebar
-  // const [isFullPageLayout, setIsFullPageLayout] = useState(false);
+  const [isFullPageLayout, setIsFullPageLayout] = useState(false);
 
-  // useEffect(() => {
-  //   onRouteChanged();
-  // }, []);
+  useEffect(() => {
+    onRouteChanged();
+  }, []);
 
-  // useEffect(() => {
-  //   onRouteChanged();
-  // }, [props.location]);
+  useEffect(() => {
+    onRouteChanged();
+  }, [props.location]);
 
-  // function onRouteChanged() {
-  //   console.log("ROUTE CHANGED");
-  //   window.scrollTo(0, 0);
-  //   const fullPageLayoutRoutes = ['/user-pages/login-1', '/user-pages/login-2', '/user-pages/register-1', '/user-pages/register-2', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
-  //   for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
-  //     if (location.pathname === fullPageLayoutRoutes[i]) {
-  //       setIsFullPageLayout(true);
-  //       break;
-  //     } else {
-  //       setIsFullPageLayout(false);
-  //     }
-  //   }
-  // }
+  function onRouteChanged() {
+    console.log("ROUTE CHANGED");
+    window.scrollTo(0, 0);
+    const fullPageLayoutRoutes = ['/user-pages/login-1', '/user-pages/login-2', '/user-pages/register-1', '/user-pages/register-2', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
+    for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
+      if (location.pathname === fullPageLayoutRoutes[i]) {
+        setIsFullPageLayout(true);
+        break;
+      } else {
+        setIsFullPageLayout(false);
+      }
+    }
+  }
 
   useEffect(() => {
     const getUserData = async (currentUser) => {
@@ -99,6 +99,9 @@ const App = (props) => {
     console.log(userData)
   }, [currentUser])
 
+  let navbarComponent = isFullPageLayout ? <Navbar /> : '';
+  let sidebarComponent = isFullPageLayout ? <Sidebar /> : '';
+  // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (
     <>
