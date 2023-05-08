@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
+import { FaPhone } from 'react-icons/fa';
 const Footer = () => {
   return (
   <>
@@ -10,48 +11,36 @@ const Footer = () => {
 <div className="footer">
   <div className="contain">
   <div className="col">
-    <h1>Company</h1>
+    <h1>Page</h1>
     <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
+      <li><Link to={'/'}>Home</Link></li>
+      <li><Link to={'/About'}>About</Link></li>
+      <li><Link to={'/Contact'}>Contact Us</Link></li>
+    
+     
     </ul>
   </div>
   <div className="col">
-    <h1>Products</h1>
+    <h1>UseFull Links</h1>
     <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
+    <li><Link to={'https://www.aicnalanda.com/'} target='_blank'>Aic Nalanda</Link></li>
+    </ul>
+  </div>
+ 
+  <div className="col">
+    <h1>Get In Touch</h1>
+    <ul>
+      <li>
+      AIC-Nalanda Institute Of Technology Foundation,
+Buddhist Villa, Chandaka
+Bhubaneswar, Odisha-754005
+      </li>
+      <li><span>@</span> +91-8249585065</li>
+      <li><span>Eml:</span><Link mailto={"incmgr@aicnalanda.com"} >incmgr@aicnalanda.com</Link></li>
     </ul>
   </div>
   <div className="col">
-    <h1>Accounts</h1>
-    <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
-    </ul>
-  </div>
-  <div className="col">
-    <h1>Resources</h1>
-    <ul>
-      <li>Webmail</li>
-      <li>Redeem code</li>
-      <li>WHOIS lookup</li>
-      <li>Site map</li>
-      <li>Web templates</li>
-      <li>Email templates</li>
-    </ul>
-  </div>
-  <div className="col">
-    <h1>Support</h1>
+    <h1>Our Location</h1>
     <ul>
       <li>Contact us</li>
       <li>Web chat</li>
