@@ -20,20 +20,6 @@ import { makeStyles } from '@material-ui/core';
 
 // Authentication setup
 import { Auth } from "../Firebase";
-import { AuthContext } from '../Authorizer';
-import { useEffect } from 'react';
-
-// Data import @Firebase
-import { db } from "../Firebase";
-import {
-  query,
-  getDocs,
-  collection,
-  addDoc,
-  updateDoc,
-  where
-} from "firebase/firestore";
-
 const pages = ['Home', 'About', 'Contact', 'Login', 'signup'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -47,20 +33,29 @@ function Navbar(props) {
   let isStartUp = props.isStartUp;
   let isVerified = props.isVerified;
   // print above variables in console
-  console.log(userData);
-  console.log(isStudent);
-  console.log(isStartUp);
-  console.log(isVerified);
+  // console.log(userData);
+  // console.log(isStudent);
+  // console.log(isStartUp);
+  // console.log(isVerified);
 
   const logInHandler = () => {
     window.location.replace("/login")
   }
 
-  const logouthandler = async () => {
-    await Auth.signOut()
-      .then(() => {
-        window.location.replace("/loginstartup")
-      })
+  const logouthandler = async (isStudent) => {
+    if (isStudent) {
+      await Auth.signOut()
+        .then(() => {
+          window.location.replace("/login")
+        })
+    }
+    else{
+      await Auth.signOut()
+        .then(() => {
+          window.location.replace("/loginstartup")
+        })
+
+    }
   }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -204,13 +199,23 @@ function Navbar(props) {
                 >
                   {settings.map((setting) => (
                     setting === 'Logout' ?
-                      <MenuItem onClick={logouthandler}>
-                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>logout</Link></Typography>
+                      <MenuItem onClick={() => logouthandler(isStudent)}>
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>Log Out</Link></Typography>
                       </MenuItem>
                       :
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
-                      </MenuItem>
+                      setting === "Dashboard" ?
+                        isStudent ?
+                          <MenuItem >
+                            <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/studentdashboard"}>Dashboard</Link></Typography>
+                          </MenuItem>
+                          :
+                          <MenuItem >
+                            <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/dashboard"}>Dashboard</Link></Typography>
+                          </MenuItem>
+                        :
+                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                          <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
+                        </MenuItem>
                   ))}
                 </Menu>
               </Box>
@@ -224,9 +229,7 @@ function Navbar(props) {
             <MenuItem onClick={logInHandler}>
               <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></Typography>
             </MenuItem>
-
           }
-
         </Toolbar>
       </Container>
     </AppBar>
