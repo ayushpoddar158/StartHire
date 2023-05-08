@@ -7,8 +7,9 @@ const JobDescp = () => {
   return (
     <>
       <div className="container main">
-        <div className="title onediv">
+        <div className="title onediv firstDiv">
           <h2 id="heading1">Web Dev</h2>
+          <Button variant="contained">Update</Button>
           <hr />
         </div>
         <div className="description onediv">
@@ -40,21 +41,36 @@ const JobDescp = () => {
           <Button variant="contained">Suggest Interns</Button>
         </div>
         <div className="studentList">
-      <div className="stdlistmian2_1">
- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                      alt="avatar 1" style={{width:"45px" ,height: "auto"}}/>
-                    <span class="ms-2">Alexa Chung</span>
-      </div>
-      <div className="stdlistmian2_1">
-<span className="skillspan ms-2">C</span>
-<span className="skillspan ms-2">Java</span>
-<span className="skillspan ms-2">Python</span>
-      </div>
-      <div className="stdlistmian2_1">
-      <Button className="" variant="contained">
-            View Profile
-          </Button>
-      </div>
+          <div className="stdlistmian2_1 firstdivig">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+              alt="avatar 1"
+              style={{ width: "45px", height: "auto" }}
+            />
+            <div class="ms-2">Alexa Chung</div>
+            <div class="ms-2">Alex@gmail.com</div>
+          </div>
+          <div className=" skillmaindiv">
+            <div className="conatainer skilltextdiv">
+              <h3>Skills</h3>
+            </div>
+            <div className="skillbtn">
+              <Button  variant="contained" className=" skillbtns ms-2">
+                C
+              </Button>
+              <Button variant="contained" className=" skillbtns ms-2">
+                Java
+              </Button>
+              <Button variant="contained" className=" skillbtns ms-2">
+                Python
+              </Button>
+            </div>
+          </div>
+          <div className="stdlistmian2_1">
+            <Button className="viewbtn" variant="contained">
+              View Profile
+            </Button>
+          </div>
         </div>
       </div>
     </>

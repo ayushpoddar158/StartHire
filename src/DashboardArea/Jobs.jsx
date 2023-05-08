@@ -20,7 +20,7 @@ import {
 // material ui components
 import { Button } from '@mui/material';
 
-const Jobs = () => {
+const Jobs = (props) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const [id, setId] = useState(null);
@@ -123,6 +123,7 @@ const Jobs = () => {
                               <Button variant="contained">Update Job</Button>
                             </Link>
                             <Button variant="contained" color='error' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
+                            <Button variant='contained' onClick={()=>{props.ChangeMenuJobDesc()}}>Job Desc</Button>
                           </div>
                         </div>
                       </div>

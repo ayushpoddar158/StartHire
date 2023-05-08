@@ -6,6 +6,7 @@ import Main from './Main';
 import StartUpProfile from './StartUpProfile';
 import Jobs from './Jobs';
 import StartupBlog from './StartupBlog';
+import JobDescp from './JobDescp';
 import Notification from './Notification';
 // Authentication Setup
 import { Auth } from "../Firebase";
@@ -78,6 +79,10 @@ const Dashboard = () => {
         menuNav("StartUpProfileForm")
     }
 
+    const ChangeMenuJobDesc=()=>{
+        menuNav("JobDescp")
+    }
+
     if (isVerified == false) {
         navigate('/VerifyEmail');
         return null;
@@ -111,10 +116,11 @@ const Dashboard = () => {
                             <div class="col-md-9 col-lg-10 pt-5 mt-3" id="content">
                                 {activeMenu === "main" && <Main />}
                                 {activeMenu === "profile" && <StartUpProfile changemenuStartUp={changemenuStartup}/>}
-                                {activeMenu === "jobs" && <Jobs/>}
+                                {activeMenu === "jobs" && <Jobs ChangeMenuJobDesc={ChangeMenuJobDesc}/>}
                                 {activeMenu === "startupblog" && <StartupBlog/>}
                                 {activeMenu === "notification" && <Notification />}
                                 {activeMenu === "StartUpProfileForm" && <StartUpProfileForm />}
+                                {activeMenu === "JobDescp" && <JobDescp />}
                             </div>
                         </div>
 
