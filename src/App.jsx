@@ -7,7 +7,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import AppRoutes from "./AppRoutes";
 import Loading from "./Components/Loading/Loading";
-
+import AsideMain from "./DashboardArea/AsideMain";
 
 
 // Authorizer 
@@ -37,6 +37,7 @@ const App = (props) => {
 
   // conditional routing for navbar and sidebar
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
+  const [haveSideBar, setHaveSideBar] = useState(false);
 
   useEffect(() => {
     onRouteChanged();
@@ -44,12 +45,12 @@ const App = (props) => {
 
   useEffect(() => {
     onRouteChanged();
-  }, [props.location]);
+  }, [location]);
 
   function onRouteChanged() {
     console.log("ROUTE CHANGED");
     window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/user-pages/login-1', '/user-pages/login-2', '/user-pages/register-1', '/user-pages/register-2', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
+    const fullPageLayoutRoutes = ['/Home', '/About', '/Contact', '*', "LoginStartUp", "Login", "Signup", "Signupstartup" ];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (location.pathname === fullPageLayoutRoutes[i]) {
         setIsFullPageLayout(true);
@@ -100,13 +101,15 @@ const App = (props) => {
   }, [currentUser])
 
   let navbarComponent = isFullPageLayout ? <Navbar /> : '';
-  let sidebarComponent = isFullPageLayout ? <Sidebar /> : '';
+  let sidebarComponent = !isFullPageLayout ? <AsideMain/> : '';
+
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (
     <>
       <Suspense fallback={<Loading />}>
         <Navbar userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
+        { sidebarComponent }
         <AppRoutes userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
         <Footer />
       </Suspense>

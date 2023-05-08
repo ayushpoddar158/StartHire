@@ -70,19 +70,6 @@ const AsideMain = () => {
 
     const [record, setRecord] = useState([])
 
-    const menuNav = (menu) => {
-        setActiveMenu(menu);
-    }
-
-    const changemenuStartup=()=>{
-        // alert("hell")
-        menuNav("StartUpProfileForm")
-    }
-
-    const ChangeMenuJobDesc=()=>{
-        menuNav("JobDescp")
-    }
-
     if (isVerified == false) {
         navigate('/VerifyEmail');
         return null;
@@ -98,31 +85,21 @@ const AsideMain = () => {
                                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
                                     <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h2>{userData.name}</h2></a></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("main")}><NavLink class="nav-link text-secondary" > <FontAwesomeIcon icon={faFile} /><span className="ml-3" style={{ color: activeMenu === "main" ? "blue" : "black" }}>Dashboard</span></NavLink></li>
+                                        ><NavLink class="nav-link text-secondary" to="/Dashboard"> <FontAwesomeIcon icon={faFile} /><span className="ml-3" >Dashboard</span></NavLink></li>
                                     <li class="nav-item mb-2 "
-                                        onClick={() => menuNav("profile")}><NavLink class="nav-link text-secondary"><FontAwesomeIcon icon={faUser} /><span className="ml-3" style={{ color: activeMenu === "profile" ? "blue" : "black" }}>Profile</span></NavLink></li>
+                                        ><NavLink class="nav-link text-secondary" to="/StartUpProfile"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >Profile</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("jobs")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" style={{ color: activeMenu === "jobs" ? "blue" : "black" }}>Jobs</span></NavLink></li>
+                                        ><NavLink class="nav-link text-secondary" to="/Jobs" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("startupblog")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBlog} /><span className="ml-3" style={{ color: activeMenu === "startupblog" ? "blue" : "black" }}>Blog</span></NavLink></li>
+                                        ><NavLink class="nav-link text-secondary" to="/StartUpBlog" ><FontAwesomeIcon icon={faBlog} /><span className="ml-3" >Blog</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                        onClick={() => menuNav("notification")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "notification" ? "blue" : "black" }}>Notifications</span></NavLink></li>
+                                        ><NavLink class="nav-link text-secondary" to="/Notification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                         ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
                                         {/* <button>Hide</button> */}
                                 </ul>
                             </div>
-                            {/* main content below */}
-                            <div class="col-md-9 col-lg-10 pt-5 mt-3" id="content">
-                                {activeMenu === "main" && <Main />}
-                                {activeMenu === "profile" && <StartUpProfile changemenuStartUp={changemenuStartup}/>}
-                                {activeMenu === "jobs" && <Jobs ChangeMenuJobDesc={ChangeMenuJobDesc}/>}
-                                {activeMenu === "startupblog" && <StartupBlog/>}
-                                {activeMenu === "notification" && <Notification />}
-                                {activeMenu === "StartUpProfileForm" && <StartUpProfileForm />}
-                                {activeMenu === "JobDescp" && <JobDescp />}
-                            </div>
-                        </div>
+                       </div>
 
                     </div>
                 </div>
