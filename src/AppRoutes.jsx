@@ -32,6 +32,7 @@ import Loading from "./Components/Loading/Loading";
 import JobDescp from "./DashboardArea/JobDescp";
 import PageNotFound from "./Components/PagenotFound/PageNotFound";
 import StartupBlog from "./DashboardArea/StartupBlog";
+import StudentNotification from "./StudentDashboard/StudentNotification";
 
 
 const AppRoutes = (props) => {
@@ -60,6 +61,7 @@ const AppRoutes = (props) => {
         <Route path="Studentprofile" element={<Studentprofile />} />
         <Route path="StudentDashboard" element={<StudentDashboard />} />
         <Route path="VerifyEmail" element={<VerifyEmail />} />
+        <Route path="/StudentNotification" element={<StudentNotification/>} />
     </>
 
     const StartUpPages = <>

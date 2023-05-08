@@ -49,8 +49,8 @@ const App = (props) => {
 
   function onRouteChanged() {
     console.log("ROUTE CHANGED");
-    window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/Home', '/About', '/Contact', '*', "LoginStartUp", "Login", "Signup", "Signupstartup" ];
+    // window.scrollTo(0, 0);
+    const fullPageLayoutRoutes = ['/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup","VerifyEmail"];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (location.pathname === fullPageLayoutRoutes[i]) {
         setIsFullPageLayout(true);
@@ -101,8 +101,7 @@ const App = (props) => {
   }, [currentUser])
 
   let navbarComponent = isFullPageLayout ? <Navbar /> : '';
-  let sidebarComponent = !isFullPageLayout ? <AsideMain/> : '';
-
+  let sidebarComponent = !isFullPageLayout ? <AsideMain userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} /> : '';
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (

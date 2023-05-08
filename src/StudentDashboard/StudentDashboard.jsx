@@ -112,38 +112,7 @@ const StudentDashboard = () => {
         return (
             <>
                 <div>
-
-                    <div class="container-fluid" id="StudentMain">
-                        <div class="row row-offcanvas row-offcanvas-left">
-                            <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
-                                <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 " id='Aside'>
-                                    <li class="nav-item mb-2 mt-3"><a class="nav-NavLink text-secondary" href="#"><h2>{userData.name}</h2></a></li>
-                                    <li class="nav-item mb-2"
-                                        onClick={() => menuNav("StudentMain")}><NavLink class="nav-NavLink text-secondary" >     <FontAwesomeIcon icon={faFile} /><span className="ml-3" style={{ color: activeMenu === "StudentMain" ? "blue" : "black" }}>Dashboard</span></NavLink></li>
-                                    <li class="nav-item mb-2 "
-                                        onClick={() => menuNav("profile")}><NavLink class="nav-NavLink text-secondary" ><FontAwesomeIcon icon={faUser} /><span className="ml-3" style={{ color: activeMenu === "profile" ? "blue" : "black" }}>Profile</span></NavLink></li>
-
-                                    <li class="nav-item mb-2"
-                                        onClick={() => menuNav("StudentBlog")}><NavLink class="nav-NavLink text-secondary" >     <FontAwesomeIcon icon={faBlog} /><span className="ml-3" style={{ color: activeMenu === "StudentBlog" ? "blue" : "black" }}>Blog</span></NavLink></li>
-                                    <li class="nav-item mb-2"
-                                        onClick={() => menuNav("StudentNotification")}><NavLink class="nav-NavLink text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "StudentNotification" ? "blue" : "black" }}>Notifications</span></NavLink></li>
-                                    <li class="nav-item mb-2 "
-                                        onClick={LogOut}><button class="nav-NavLink text-secondary LogoutbtnAsilde" href="#">Log Out</button></li>
-                                    {/* <button onClick={hideAside}>Hide</button> */}
-                                </ul>
-
-                            </div>
-                            {/* StudentMain content below */}
-                            <div className="content">
-                                {activeMenu === "StudentMain" && <StudentMain />}
-                                {activeMenu === "profile" && <Studentprofile changemenufun={changemenufun} />}
-
-                                {activeMenu === "StudentBlog" && <StudentBlog />}
-                                {activeMenu === "StudentNotification" && <StudentNotification />}
-                                {activeMenu === "Studentprofileform" && <Studentprofileform />}
-                            </div>
-                        </div>
-                    </div>
+                    <h1>Student Dashboard</h1>
                 </div>
 
             </>
