@@ -91,40 +91,7 @@ const Dashboard = () => {
         return (
             <>
                 <div>
-
-                    <div class="container-fluid" id="main">
-                        <div class="row row-offcanvas row-offcanvas-left">
-                            <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
-                                <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
-                                    <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h2>{userData.name}</h2></a></li>
-                                    <li class="nav-item mb-2"
-                                        onClick={() => menuNav("main")}><NavLink class="nav-link text-secondary" > <FontAwesomeIcon icon={faFile} /><span className="ml-3" style={{ color: activeMenu === "main" ? "blue" : "black" }}>Dashboard</span></NavLink></li>
-                                    <li class="nav-item mb-2 "
-                                        onClick={() => menuNav("profile")}><NavLink class="nav-link text-secondary"><FontAwesomeIcon icon={faUser} /><span className="ml-3" style={{ color: activeMenu === "profile" ? "blue" : "black" }}>Profile</span></NavLink></li>
-                                    <li class="nav-item mb-2"
-                                        onClick={() => menuNav("jobs")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" style={{ color: activeMenu === "jobs" ? "blue" : "black" }}>Jobs</span></NavLink></li>
-                                    <li class="nav-item mb-2"
-                                        onClick={() => menuNav("startupblog")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBlog} /><span className="ml-3" style={{ color: activeMenu === "startupblog" ? "blue" : "black" }}>Blog</span></NavLink></li>
-                                    <li class="nav-item mb-2"
-                                        onClick={() => menuNav("notification")}><NavLink class="nav-link text-secondary" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" style={{ color: activeMenu === "notification" ? "blue" : "black" }}>Notifications</span></NavLink></li>
-                                    <li class="nav-item mb-2"
-                                        ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
-                                        {/* <button>Hide</button> */}
-                                </ul>
-                            </div>
-                            {/* main content below */}
-                            <div class="col-md-9 col-lg-10 pt-5 mt-3" id="content">
-                                {activeMenu === "main" && <Main />}
-                                {activeMenu === "profile" && <StartUpProfile changemenuStartUp={changemenuStartup}/>}
-                                {activeMenu === "jobs" && <Jobs ChangeMenuJobDesc={ChangeMenuJobDesc}/>}
-                                {activeMenu === "startupblog" && <StartupBlog/>}
-                                {activeMenu === "notification" && <Notification />}
-                                {activeMenu === "StartUpProfileForm" && <StartUpProfileForm />}
-                                {activeMenu === "JobDescp" && <JobDescp />}
-                            </div>
-                        </div>
-
-                    </div>
+                    This is Dashboard Page
                 </div>
 
             </>

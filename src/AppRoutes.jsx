@@ -15,6 +15,7 @@ import Studentprofileform from "./Components/Studentprofileform";
 import Studentprofile from "./StudentDashboard/Studentprofile"
 import Filteredstudentlist from "./Components/Filteredstudentlist";
 import VerifyEmail from './Components/VerifyEmail'
+import Jobs from './DashboardArea/Jobs';
 
 //jobs
 import CreateJobs from "./Components/jobs/CreateJobs";
@@ -30,6 +31,7 @@ import UpdateJobs from "./Components/jobs/UpdateJobs";
 import Loading from "./Components/Loading/Loading";
 import JobDescp from "./DashboardArea/JobDescp";
 import PageNotFound from "./Components/PagenotFound/PageNotFound";
+import StartupBlog from "./DashboardArea/StartupBlog";
 
 
 const AppRoutes = (props) => {
@@ -66,7 +68,10 @@ const AppRoutes = (props) => {
         <Route path="StartUpprofileForm" element={<StartUpprofileForm />} />
         <Route path="StartUpProfile" element={<StartUpProfile />} />
         <Route path="VerifyEmail" element={<VerifyEmail />} />
+        <Route path="StartUpBlog" element={<StartupBlog/>} />
+        <Route path="Notification" element={<Notification/>} />
         {/* //jobs routes */}
+        <Route path="Jobs" element={<Jobs/>} />
         <Route path="CreateJobs" element={<CreateJobs />} />
         <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
         <Route path="JobDescp" element={<JobDescp />} />
