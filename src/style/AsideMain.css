@@ -1,0 +1,19 @@
+.mainAside{
+    /* background-color: red; */
+    /* display: flex; */
+    /* flex-direction: row; */
+  /* width: 15%; */
+ 
+  position: fixed;
+  /* z-index: 10000; */
+  /* width: 27%; */
+  /* background-color: red; */
+  
+  height: 100vh;
+
+}
+#sidebar{
+    /* background-color: green !important; */
+   position: sticky;
+    height: 100vh;
+}

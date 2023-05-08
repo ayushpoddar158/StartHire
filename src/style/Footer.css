@@ -1,0 +1,14 @@
+.footer{
+/* background-color: rgb(239, 239, 57); */
+width: 82.2vw !important;
+margin-left: 16.7%;
+}
+.footermain{
+    display: flex;
+    justify-content: right;
+   
+    /* background-color: aqua; */
+    /* width: 55%; */
+    width: 100%;
+    justify-content: flex-end;
+}
