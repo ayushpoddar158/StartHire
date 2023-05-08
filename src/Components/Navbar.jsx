@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -38,68 +37,30 @@ import {
 const pages = ['Home', 'About', 'Contact', 'Login', 'signup'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function Navbar() {
-  const { currentUser } = useContext(AuthContext);
-
+function Navbar(props) {
   const navigate = useNavigate();
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [isUser, SetUser] = React.useState(false);
-  const [data, setData] = React.useState(null);
-  const [isUpdated, setIsUpdated] = React.useState(false);
-  const [loginCont, setLoginCont] = React.useState("LogIn");
 
-  useEffect(() => {
+  let userData = props.userData;
+  let isStudent = props.isStudent;
+  let isStartUp = props.isStartUp;
+  let isVerified = props.isVerified;
+  // print above variables in console
+  console.log(userData);
+  console.log(isStudent);
+  console.log(isStartUp);
+  console.log(isVerified);
 
-    // console.log(currentUser)
-    if (currentUser) {
-      const fetchData = async () => {
-        try {
-          const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
-          const docs = await getDocs(q);
-          const doc = docs.docs[0];
-          if (doc) {
-            setData(doc.data());
-            setIsUpdated(doc.data().updatedProfile);
-            // console.log("inside fetchdata")
-          }
-          else {
-            const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
-            const docs = await getDocs(q);
-            const doc = docs.docs[0];
-            setData(doc.data());
-            setIsUpdated(doc.data().updatedProfile);
-            // console.log("inside fetchdata")
-          }
-
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchData();
-      SetUser(true);
-    }
-  }, [currentUser]);
-
-  // useEffect(() => {
-  //   console.log(data)
-  // }, [data])
-
-  const LogOut = () => {
-    Auth.signOut();
-    SetUser(false);
-    navigate("/Login");
+  const logInHandler = () => {
+    window.location.replace("/login")
   }
 
-  const logouthandler = () => {
-    if (isUser) {
-      LogOut();
-      navigate("/Login")
-    }
-    else {
-      navigate("/Login");
-    }
+  const logouthandler = async () => {
+    await Auth.signOut()
+      .then(() => {
+        window.location.replace("/loginstartup")
+      })
   }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -217,44 +178,53 @@ function Navbar() {
             ))}
           </Box>
 
-          {currentUser && data ?
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src={isUpdated ? data.details.PImageUrl : "avtar1.png"} />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  setting === 'Logout' ?
-                    <MenuItem onClick={logouthandler}>
-                      <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>logout</Link></Typography>
-                    </MenuItem>
-                    :
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
-                    </MenuItem>
-                ))}
-              </Menu>
-            </Box> :
-            <MenuItem onClick={logouthandler}>
+          {userData ? <>
+            {isVerified ?
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={userData.details.PImageUrl ? userData.details.PImageUrl : "avtar1.png"} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    setting === 'Logout' ?
+                      <MenuItem onClick={logouthandler}>
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>logout</Link></Typography>
+                      </MenuItem>
+                      :
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
+                      </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+              :
+              <MenuItem onClick={() => navigate("/VerifyEmail")}>
+                <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'Red' }}>Verify Email</Link></Typography>
+              </MenuItem>
+            }
+          </>
+            :
+            <MenuItem onClick={logInHandler}>
               <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></Typography>
             </MenuItem>
+
           }
 
         </Toolbar>

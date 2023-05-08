@@ -20,10 +20,9 @@ import {
 } from "firebase/firestore";
 
 
-const Login = ({ setLoginIsTrue, setUserName, userName }) => {
+const Login = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  console.log("inside login page");
   const [inpval, setInpVal] = useState({
 
     email: "",
@@ -69,9 +68,6 @@ const Login = ({ setLoginIsTrue, setUserName, userName }) => {
   }
 
   useEffect(() => {
-    // if(currentUser){
-    //   navigate("/Dashboard");
-    // }
     console.log(currentUser);
   },[currentUser])
 
