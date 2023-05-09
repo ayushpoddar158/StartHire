@@ -1,0 +1,15 @@
+.mainStartblog{
+    /* background-color: red; */
+    position: relative;
+    width: 83.3%;
+    left: 16.691%;
+}
+@media only screen and (max-width: 600px) {
+    .mainStartblog{
+        /* background-color: red; */
+        position: relative;
+      width: 100%;
+      height: 100vh;
+       left: 0px;
+    }
+  }

@@ -9,6 +9,7 @@ import Jobs from './Jobs';
 import StartupBlog from './StartupBlog';
 import JobDescp from './JobDescp';
 import Notification from './Notification';
+
 // Authentication Setup
 import { Auth } from "../Firebase";
 import { AuthContext } from '../Authorizer';
@@ -57,7 +58,7 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/AdminDashboard"> <FontAwesomeIcon icon={faFile} /><span className="ml-3" >Dashboard</span></NavLink></li>
                                     <li class="nav-item mb-2 "
-                                    ><NavLink class="nav-link text-secondary" to="/SearchInterns"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >StudentList</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/AdminStudentLists"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >StudentList</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/AdminJobs" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
                                    {/* <button>Hide</button> */}

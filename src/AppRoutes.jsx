@@ -37,6 +37,8 @@ import JobDescp from "./DashboardArea/JobDescp";
 import PageNotFound from "./Components/PagenotFound/PageNotFound";
 import StartupBlog from "./DashboardArea/StartupBlog";
 import StudentNotification from "./StudentDashboard/StudentNotification";
+import StudentLists from "./DashboardArea/StudentLists";
+import AdminStudentLists from "./AdminDashboard/AdminStudentList";
 
 
 const AppRoutes = (props) => {
@@ -45,6 +47,7 @@ const AppRoutes = (props) => {
     let isStartUp = props.isStartUp;
     let isVerified = props.isVerified;
     let isAdmin = props.isAdmin;
+    let allData = props.allData;
 
     const Basic = <>
         <Route path="/" element={<Home />} />
@@ -85,9 +88,11 @@ const AppRoutes = (props) => {
     </>
 
     const AdminPages = <>
-        <Route path="AdminDashboard" element={<AdminDashboard />} />
+        <Route path="AdminDashboard" element={<AdminDashboard allData={allData} />} />
         <Route path="AdminJobs" element={<AdminJobs />} />
         <Route path="SearchInterns" element={<SearchInterns />} />
+        <Route path="AdminStudentLists" element={<AdminStudentLists />} />
+        
     </>
 
     if (isAdmin) {

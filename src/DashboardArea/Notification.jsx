@@ -5,9 +5,9 @@ const Notification = () => {
     return (
         <>
 
-            <div>
+            <div className='MainNotiStart'>
                 <div class="container-fluid" id="main">
-                    <div class="row row-offcanvas row-offcanvas-left">
+                    <div class="">
                         <div class="col main pt-5 mt-3">
                             <section class="section-50">
                                 <div class="container">

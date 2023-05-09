@@ -89,7 +89,6 @@ const App = (props) => {
           if (docs.docs.length > 0) {
             console.log(docs.docs[0].data())
             if (docs.docs[0].data().desgn == "admin") {
-
               setIsAdmin(true);
             }
             else {
@@ -118,9 +117,11 @@ const App = (props) => {
         const startup_docs = await getDocs(startupq);
         const jobq = query(collection(db, "jobs"));
         const job_docs = await getDocs(jobq);
-        // console.log(user_docs.docs)
-        // console.log(startup_docs.docs)
-        // console.log(job_docs.docs)
+        setAllData({
+          user:user_docs.docs,
+          startup:startup_docs.docs,
+          job:job_docs.docs
+        })
       }
     }
     getAllData();
@@ -141,7 +142,8 @@ const App = (props) => {
           isStartUp={isStartUp}
           isStudent={isStudent}
           isVerified={isVerified}
-          isAdmin={isAdmin} />
+          isAdmin={isAdmin}
+          allData={allData} />
         {/* <Footer /> */}
       </Suspense>
     </>

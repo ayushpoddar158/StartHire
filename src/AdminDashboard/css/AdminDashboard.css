@@ -1,0 +1,69 @@
+
+
+.AdminDashboardmainDiv{
+    /* background-color: rgb(255, 0, 162); */
+    position: relative;
+    width: 83.3%;
+    left: 16.69%;
+    display: flex;
+    justify-content: space-around;
+    height: 85vh !important;
+    align-items: center;
+   
+}
+
+@media only screen and (max-width:600px){
+    .AdminDashboardmainDiv{
+     
+        position: relative;
+      width: 100%;
+        left: 0px;
+        height: 100vh;
+    }
+}
+
+.NoOfStudents{
+    /* background-color: red; */
+    background-color: rgb(205, 202, 202);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 20%;
+}
+.NoOfStartUps{
+    /* background-color: blanchedalmond; */
+    background-color: rgb(205, 202, 202);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 20%;
+
+}
+.NoOfJobDesc{
+    /* background-color: aqua; */
+    background-color: rgb(205, 202, 202);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 20%;
+}
+.AdminDashboardmainDiv span{
+    font-weight: 900;
+    font-size: 3rem;
+    padding: 10px;
+    color: rgb(5, 5, 39);
+}
+@media  only screen and (max-width:600px){
+    .AdminDashboardmainDiv{
+        flex-direction: column;
+    }
+}

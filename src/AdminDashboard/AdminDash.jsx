@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { NavLink, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
-import '../style/Dashboard/StartUpDashboard.css'
+import './css/AdminDashboard.css'
 
 // Authentication Setup
 import { Auth } from "../Firebase";
@@ -29,58 +29,34 @@ import { faBlog } from '@fortawesome/free-solid-svg-icons';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 
-const AdminDashboard = () => {
+const AdminDashboard = (props) => {
     const navigate = useNavigate();
-    const { currentUser } = useContext(AuthContext);
-    const [id, setId] = useState(null);
-    const [isVerified, setIsVerified] = useState(null);
-    const [userData, setUserData] = useState(null);
-    const [isStartUp, setIsStartUp] = useState(false);
-    const [activeMenu, setActiveMenu] = useState("main");
+    let allData = props.allData;
+    console.log(allData)
 
     const LogOut = () => {
         Auth.signOut();
         navigate("/LoginStartUp");
     }
 
-
-
-    useEffect(() => {
-        const getUserData = async () => {
-            let id = await currentUser?.uid;
-            let isVerified = await currentUser?.emailVerified;
-            setId(id)
-            setIsVerified(isVerified);
-            const q = query(collection(db, "startups"), where("uid", "==", id));
-            const docs = await getDocs(q);
-            if (docs.docs.length > 0) {
-                setIsStartUp(true);
-                setUserData(docs.docs[0].data());
-            }
-        }
-        getUserData();
-    }, [currentUser])
-
-    const [record, setRecord] = useState([])
-
-    const menuNav = (menu) => {
-        setActiveMenu(menu);
-    }
-
-    const changemenuStartup = () => {
-        // alert("hell")
-        menuNav("StartUpProfileForm")
-    }
-
-    const ChangeMenuJobDesc = () => {
-        menuNav("JobDescp")
-    }
-
     return (
         <>
-            
-        </>
+            <div className='AdminDashboardmainDiv'>
+                <div className="NoOfStudents">
+                    <span >{allData.user?.length}</span>
+                    <h2>No of Students</h2>
+                </div>
+                <div className="NoOfStartUps">
+                    <span >{allData.startup?.length}</span>
+                    <h2>No of StartUp</h2>
+                </div>
+                <div className="NoOfJobDesc">
+                    <span >{allData.job?.length}</span>
+                    <h2>No of Jobs</h2>
+                </div>
+            </div>
 
+        </>
     )
 }
 

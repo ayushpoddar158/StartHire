@@ -1,10 +1,11 @@
 import React from 'react'
 import Aside from './Aside'
+import '../style/Dashboard/StartUpBlog.css'
 
 const StartupBlog = () => {
   return (
     <>
-    <div>
+    <div className='mainStartblog'>
       <div class="container-fluid" id="main">
         <div class="row row-offcanvas row-offcanvas-left">
           {/* <Blog/> strat */}
