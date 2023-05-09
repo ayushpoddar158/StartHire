@@ -54,8 +54,11 @@ const Login = () => {
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         const user_data = docs.docs[0].data()
-        if (!user_data.updatedProfile) {
+        if (!user_data.updatedProfile && !user_data.desgn == "admin") {
           window.location.replace("/studentprofileform");
+        }
+        else if(user_data.desgn == "admin"){
+          window.location.replace("/admindashboard")
         }
         else {
           window.location.replace("/studentdashboard")

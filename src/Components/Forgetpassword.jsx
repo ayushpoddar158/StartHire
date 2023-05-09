@@ -10,8 +10,7 @@ import { Auth } from "../Firebase";
 import { AuthContext } from '../Authorizer'
 
 
-const Forgetpassword = () => {
-    const { currentUser } = React.useContext(AuthContext);
+const ForgetPassword = () => {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
@@ -31,29 +30,26 @@ const Forgetpassword = () => {
             }
             );
     }
-    if (currentUser) {
-        navigate("/Dashboard");
-    }
-    else {
-        return (
-            <>
-                <div className="card text-center mx-auto my-5 fino " style={{ width: "450px", height: "300px" }}>
-                    <div className="card-header h5 text-white bg-danger fino">Password Reset</div>
-                    <div className="card-body px-5">
-                        <p className="card-text py-2">
-                            A E-mail with password reset link will be sent to your registered email-ID.
-                        </p>
-                        <div className="form-outline ">
-                            <input type="email" onChange={getData} id="typeEmail" className="form-control my-3 fino" placeholder='demo@123' />
-                            {/* <label class="form-label" for="typeEmail">Email input</label> */}
-                        </div>
-                        <button to="" className="btn btn-danger w-100 p-2" onClick={sendResetEmail}>Send Reset Email</button>
+
+    return (
+        <>
+            <div className="card text-center mx-auto my-5 fino " style={{ width: "450px", height: "300px" }}>
+                <div className="card-header h5 text-white bg-danger fino">Password Reset</div>
+                <div className="card-body px-5">
+                    <p className="card-text py-2">
+                        A E-mail with password reset link will be sent to your registered email-ID.
+                    </p>
+                    <div className="form-outline ">
+                        <input type="email" onChange={getData} id="typeEmail" className="form-control my-3 fino" placeholder='demo@123' />
+                        {/* <label class="form-label" for="typeEmail">Email input</label> */}
                     </div>
+                    <button to="" className="btn btn-danger w-100 p-2" onClick={sendResetEmail}>Send Reset Email</button>
                 </div>
-            </>
-        )
-    }
+            </div>
+        </>
+    )
+
 
 }
 
-export default Forgetpassword
+export default ForgetPassword

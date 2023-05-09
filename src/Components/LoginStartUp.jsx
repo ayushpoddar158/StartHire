@@ -34,7 +34,7 @@ const LoginStartUp = () => {
     password: ""
   })
 
-
+  
   const getData = (e) => {
     console.log(e.target.value)
 
@@ -60,9 +60,10 @@ const LoginStartUp = () => {
         const docs = await getDocs(q);
         const user_data = docs.docs[0].data()
         if (!user_data.updatedProfile) {
-          navigate("/StartUpprofileForm");
+          window.location.replace("/StartUpprofileForm");
         }
-        else { navigate("/Dashboard"); }
+          
+        else { window.location.replace("/Dashboard"); }
         // ...
       })
       .catch((error) => {
@@ -124,8 +125,8 @@ const LoginStartUp = () => {
                           <button class="btn btn-dark btn-lg btn-block" onClick={LoginEvent} type="button">Login</button>
                         </div>
 
-                        <a class="small text-muted" href="#!">Forgot password?</a>
-                        <p class="mb-5 pb-lg-2" style={{ color: "#393f81" }}>Don't have an account? <Link to="/Signupstartup" 
+                        <Link class="small text-muted" to="/Forgetpassword">Forgot password?</Link>
+                        <p class="mb-5 pb-lg-2" style={{ color: "#393f81" }}>Don't have an account? <Link to="/Signupstartup"
                           style={{ color: "#393f81" }}>Register here</Link></p>
 
                       </form>

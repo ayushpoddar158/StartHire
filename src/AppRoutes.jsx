@@ -39,7 +39,7 @@ import StartupBlog from "./DashboardArea/StartupBlog";
 import StudentNotification from "./StudentDashboard/StudentNotification";
 import StudentLists from "./DashboardArea/StudentLists";
 import AdminStudentLists from "./AdminDashboard/AdminStudentList";
-
+import ForgetPassword from "./Components/Forgetpassword";
 
 const AppRoutes = (props) => {
     let userData = props.userData;
@@ -62,6 +62,7 @@ const AppRoutes = (props) => {
         <Route path="LoginStartUp" element={<LoginStartUp />} />
         <Route path="Signup" element={<Signup />} />
         <Route path="Signupstartup" element={<Signupstartup />} />
+        <Route path="ForgetPassword" element={<ForgetPassword />} />
     </>
 
     const StudentPages = <>

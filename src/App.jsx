@@ -58,7 +58,7 @@ const App = (props) => {
     // window.scrollTo(0, 0);
     const fullPageLayoutRoutes = ['/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "VerifyEmail"];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
-      if (location.pathname === fullPageLayoutRoutes[i]) {
+      if (location.pathname.toLocaleLowerCase() === fullPageLayoutRoutes[i].toLocaleLowerCase()) {
         setIsFullPageLayout(true);
         break;
       } else {
