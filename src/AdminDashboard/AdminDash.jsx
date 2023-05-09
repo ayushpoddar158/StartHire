@@ -41,9 +41,9 @@ const AdminDashboard = () => {
     const LogOut = () => {
         Auth.signOut();
         navigate("/LoginStartUp");
-      }
+    }
 
-    
+
 
     useEffect(() => {
         const getUserData = async () => {
@@ -67,37 +67,21 @@ const AdminDashboard = () => {
         setActiveMenu(menu);
     }
 
-    const changemenuStartup=()=>{
+    const changemenuStartup = () => {
         // alert("hell")
         menuNav("StartUpProfileForm")
     }
 
-    const ChangeMenuJobDesc=()=>{
+    const ChangeMenuJobDesc = () => {
         menuNav("JobDescp")
     }
 
-    if (isVerified == false) {
-        navigate('/VerifyEmail');
-        return null;
-    }
-    if (isStartUp && currentUser) {
-        return (
-            <>
-                <div>
-                    This is Dashboard Page
-                </div>
+    return (
+        <>
+            
+        </>
 
-            </>
-
-        )
-    }
-    if (currentUser && !isStartUp) {
-        return (
-            <>
-                <h1>Unauthorized</h1>
-            </>
-        )
-    }
+    )
 }
 
 export default AdminDashboard 

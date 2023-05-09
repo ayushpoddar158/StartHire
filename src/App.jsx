@@ -38,7 +38,12 @@ const App = (props) => {
   // conditional routing for navbar and sidebar
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
   const [haveSideBar, setHaveSideBar] = useState(false);
-  const [isAdmin , setIsAdmin ] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [allData, setAllData] = useState({
+    user: null,
+    startup: null,
+    job: null
+  });
 
   useEffect(() => {
     onRouteChanged();
@@ -51,7 +56,7 @@ const App = (props) => {
   function onRouteChanged() {
     console.log("ROUTE CHANGED");
     // window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup","VerifyEmail"];
+    const fullPageLayoutRoutes = ['/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "VerifyEmail"];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (location.pathname === fullPageLayoutRoutes[i]) {
         setIsFullPageLayout(true);
@@ -82,8 +87,15 @@ const App = (props) => {
           const q = query(collection(db, "users"), where("uid", "==", id));
           const docs = await getDocs(q);
           if (docs.docs.length > 0) {
-            setIsStudent(true);
-            setUserData(docs.docs[0].data());
+            console.log(docs.docs[0].data())
+            if (docs.docs[0].data().desgn == "admin") {
+
+              setIsAdmin(true);
+            }
+            else {
+              setIsStudent(true);
+              setUserData(docs.docs[0].data());
+            }
           }
 
         }
@@ -98,24 +110,38 @@ const App = (props) => {
   }, [currentUser])
 
   useEffect(() => {
-    console.log(userData)
-  }, [currentUser])
+    const getAllData = async () => {
+      if (isAdmin) {
+        const userq = query(collection(db, "users"));
+        const user_docs = await getDocs(userq);
+        const startupq = query(collection(db, "startups"));
+        const startup_docs = await getDocs(startupq);
+        const jobq = query(collection(db, "jobs"));
+        const job_docs = await getDocs(jobq);
+        // console.log(user_docs.docs)
+        // console.log(startup_docs.docs)
+        // console.log(job_docs.docs)
+      }
+    }
+    getAllData();
+  }, [isAdmin])
+
 
   let navbarComponent = isFullPageLayout ? <Navbar /> : '';
-  let sidebarComponent = !isFullPageLayout ? <AsideMain userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} isAdmin={isAdmin}/> : '';
+  let sidebarComponent = !isFullPageLayout ? <AsideMain userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} isAdmin={isAdmin} /> : '';
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (
     <>
       <Suspense fallback={<Loading />}>
         <Navbar userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} isAdmin={isAdmin} />
-        { sidebarComponent }
-        <AppRoutes 
-        userData={userData}
-         isStartUp={isStartUp} 
-         isStudent={isStudent} 
-         isVerified={isVerified}
-         isAdmin={isAdmin} />
+        {sidebarComponent}
+        <AppRoutes
+          userData={userData}
+          isStartUp={isStartUp}
+          isStudent={isStudent}
+          isVerified={isVerified}
+          isAdmin={isAdmin} />
         {/* <Footer /> */}
       </Suspense>
     </>
