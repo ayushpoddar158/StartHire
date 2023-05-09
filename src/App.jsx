@@ -38,6 +38,7 @@ const App = (props) => {
   // conditional routing for navbar and sidebar
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
   const [haveSideBar, setHaveSideBar] = useState(false);
+  const [isAdmin , setIsAdmin ] = useState(true);
 
   useEffect(() => {
     onRouteChanged();
@@ -101,15 +102,20 @@ const App = (props) => {
   }, [currentUser])
 
   let navbarComponent = isFullPageLayout ? <Navbar /> : '';
-  let sidebarComponent = !isFullPageLayout ? <AsideMain userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} /> : '';
+  let sidebarComponent = !isFullPageLayout ? <AsideMain userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} isAdmin={isAdmin}/> : '';
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <Navbar userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
+        <Navbar userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} isAdmin={isAdmin} />
         { sidebarComponent }
-        <AppRoutes userData={userData} isStartUp={isStartUp} isStudent={isStudent} isVerified={isVerified} />
+        <AppRoutes 
+        userData={userData}
+         isStartUp={isStartUp} 
+         isStudent={isStudent} 
+         isVerified={isVerified}
+         isAdmin={isAdmin} />
         {/* <Footer /> */}
       </Suspense>
     </>

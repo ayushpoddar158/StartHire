@@ -1,13 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { NavLink, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import '../style/Dashboard/StartUpDashboard.css'
-// components
-import Main from './Main';
-import StartUpProfile from './StartUpProfile';
-import Jobs from './Jobs';
-import StartupBlog from './StartupBlog';
-import JobDescp from './JobDescp';
-import Notification from './Notification';
+
 // Authentication Setup
 import { Auth } from "../Firebase";
 import { AuthContext } from '../Authorizer';
@@ -33,10 +27,9 @@ import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@mui/material';
 import { faBlog } from '@fortawesome/free-solid-svg-icons';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
-import StartUpProfileForm from './StartUpProfileForm';
 
 
-const Dashboard = () => {
+const AdminDashboard = () => {
     const navigate = useNavigate();
     const { currentUser } = useContext(AuthContext);
     const [id, setId] = useState(null);
@@ -107,4 +100,4 @@ const Dashboard = () => {
     }
 }
 
-export default Dashboard
+export default AdminDashboard 

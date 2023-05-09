@@ -36,6 +36,7 @@ const AsideMain = (props) => {
     let isStudent = props.isStudent;
     let isStartUp = props.isStartUp;
     let isVerified = props.isVerified;
+    let isAdmin = props.isAdmin;
 
     const LogOut = async() =>{
       await Auth.signOut()
@@ -43,7 +44,35 @@ const AsideMain = (props) => {
           window.location.replace("/login")
         })
     }
-   
+   if (isAdmin) {
+        console.log(isAdmin)
+        return (
+            <>
+                <div >
+
+                    <div class="container-fluid mainAside" id="main" style={{backgroundColor:"white"}}>
+                        <div class="row row-offcanvas row-offcanvas-left">
+                            <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
+                                <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3   " >
+                                    <li class="nav-item mb-2 mt-3" ><a class="nav-link text-secondary" href="#"><h2 >some name</h2></a></li>
+                                    <li class="nav-item mb-2"
+                                    ><NavLink class="nav-link text-secondary" to="/AdminDashboard"> <FontAwesomeIcon icon={faFile} /><span className="ml-3" >Dashboard</span></NavLink></li>
+                                    <li class="nav-item mb-2 "
+                                    ><NavLink class="nav-link text-secondary" to="/SearchInterns"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >StudentList</span></NavLink></li>
+                                    <li class="nav-item mb-2"
+                                    ><NavLink class="nav-link text-secondary" to="/AdminJobs" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
+                                   {/* <button>Hide</button> */}
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </>
+        )
+    }
+
     if (isStartUp) {
         return (
             <>

@@ -17,6 +17,10 @@ import Filteredstudentlist from "./Components/Filteredstudentlist";
 import VerifyEmail from './Components/VerifyEmail'
 import Jobs from './DashboardArea/Jobs';
 
+//Admin setup
+import AdminDashboard from "./AdminDashboard/AdminDash";
+import AdminJobs from "./AdminDashboard/Jobs";
+import SearchInterns from "./AdminDashboard/SearchInterns";
 //jobs
 import CreateJobs from "./Components/jobs/CreateJobs";
 
@@ -40,6 +44,7 @@ const AppRoutes = (props) => {
     let isStudent = props.isStudent;
     let isStartUp = props.isStartUp;
     let isVerified = props.isVerified;
+    let isAdmin = props.isAdmin;
 
     const Basic = <>
         <Route path="/" element={<Home />} />
@@ -61,7 +66,7 @@ const AppRoutes = (props) => {
         <Route path="Studentprofile" element={<Studentprofile />} />
         <Route path="StudentDashboard" element={<StudentDashboard />} />
         <Route path="VerifyEmail" element={<VerifyEmail />} />
-        <Route path="/StudentNotification" element={<StudentNotification/>} />
+        <Route path="/StudentNotification" element={<StudentNotification />} />
     </>
 
     const StartUpPages = <>
@@ -70,18 +75,35 @@ const AppRoutes = (props) => {
         <Route path="StartUpprofileForm" element={<StartUpprofileForm />} />
         <Route path="StartUpProfile" element={<StartUpProfile />} />
         <Route path="VerifyEmail" element={<VerifyEmail />} />
-        <Route path="StartUpBlog" element={<StartupBlog/>} />
-        <Route path="Notification" element={<Notification/>} />
+        <Route path="StartUpBlog" element={<StartupBlog />} />
+        <Route path="Notification" element={<Notification />} />
         {/* //jobs routes */}
-        <Route path="Jobs" element={<Jobs/>} />
+        <Route path="Jobs" element={<Jobs />} />
         <Route path="CreateJobs" element={<CreateJobs />} />
         <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
         <Route path="JobDescp" element={<JobDescp />} />
     </>
 
+    const AdminPages = <>
+        <Route path="AdminDashboard" element={<AdminDashboard />} />
+        <Route path="AdminJobs" element={<AdminJobs />} />
+        <Route path="SearchInterns" element={<SearchInterns />} />
+    </>
 
+    if (isAdmin) {
+        return (
+            <>
+                <Suspense fallback={<Loading />}>
+                    <Routes>
+                        {Basic}
+                        {AuthPages}
+                        {AdminPages}
+                    </Routes>
+                </Suspense>
+            </>
+        )
+    }
 
-    console.log(isStudent, isStartUp, isVerified)
     if (!isStartUp && !isStudent) {
         return (
             <>

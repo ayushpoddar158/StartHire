@@ -21,7 +21,7 @@ import {
 // material ui components
 import { Button } from '@mui/material';
 
-const Jobs = (props) => {
+const AdminJobs = (props) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const [id, setId] = useState(null);
@@ -143,7 +143,7 @@ const Jobs = (props) => {
 
 }
 
-export default Jobs
+export default AdminJobs
 
 
 // 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
