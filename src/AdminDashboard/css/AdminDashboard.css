@@ -66,4 +66,14 @@
     .AdminDashboardmainDiv{
         flex-direction: column;
     }
+    .NoOfStudents{
+        width: 100%;
+      
+    }
+    .NoOfStartUps{
+        width: 100%;
+    }
+    .NoOfJobDesc{
+width: 100%;
+    }
 }
