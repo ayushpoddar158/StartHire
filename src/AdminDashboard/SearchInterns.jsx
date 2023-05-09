@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/Dashboard/SearchInterns.css";
 import Aside from '../DashboardArea/Aside'
-const SearchInterns = () => {
+const AdminInterns = () => {
   return (
     <>
       <div>
@@ -40,4 +40,4 @@ const SearchInterns = () => {
   );
 };
 
-export default SearchInterns;
+export default AdminInterns;
