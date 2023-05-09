@@ -90,7 +90,7 @@ const Dashboard = () => {
     if (isStartUp && currentUser) {
         return (
             <>
-                <div>
+                <div className='DashboardmainDiv'>
                     This is Dashboard Page
                 </div>
 

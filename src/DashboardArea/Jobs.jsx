@@ -110,7 +110,7 @@ const Jobs = (props) => {
               </div>
               {/* <Jobs/> end */}
               <div class="container">
-                <h3 class="m-b-50 heading-line">Jobs<i class="fa fa-bell text-muted"></i></h3>
+          
                 {jobs.map(job => {
                   return (<div class="notification-ui_dd-content">
                     <div class="notification-list notification-list--unread">
