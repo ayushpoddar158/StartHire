@@ -77,7 +77,7 @@ function Navbar(props) {
 
 
   return (
-    <AppBar position="sticky" sx={{ background: '#070617', }} >
+    <AppBar  position="sticky" id='Navbar' sx={{ background: '#070617', }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -228,7 +228,7 @@ function Navbar(props) {
           </>
             :
             <MenuItem onClick={logInHandler}>
-              <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></Typography>
+              <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Button variant='contained' style={{ textDecoration: 'none', color: 'white' }}>Log In</Button></Typography>
             </MenuItem>
           }
         </Toolbar>

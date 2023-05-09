@@ -1,0 +1,29 @@
+.Createmain1{
+    position: relative;
+    width: 800px;
+    /* background-color: red !important; */
+    margin-left: 20%;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    padding: 10px;
+}
+#main{
+    /* background-color: green !important; */
+    /* height: 100vh; */
+}
+
+
+@media only screen and (max-width: 600px) {
+    .Createmain1{
+        position: static;
+        width: 800px;
+        /* background-color: red !important; */
+        /* margin-left: 20%; */
+        margin-left: auto;
+        width: auto;
+        margin-top: 10px;
+        /* margin-bottom: 10px; */
+        padding: 20px;
+      height: 100%;
+    }
+  }

@@ -3,7 +3,7 @@ import React from 'react'
 const Contact = () => {
   return (
     <>
-    <div class="container contact-form">
+    <div class="container contact-form" style={{height:"100vh",padding:"0px",marginBottom:"0px"}}>
             <div class="contact-image">
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
             </div>
