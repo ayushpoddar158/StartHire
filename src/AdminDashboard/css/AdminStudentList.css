@@ -1,8 +1,13 @@
 .maindiv1{
-    /* background-color: red; */
+    background-color: red;
     position: relative;
     width: 83.3%;
     left: 16.69%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 @media only screen and (max-width:600px){
