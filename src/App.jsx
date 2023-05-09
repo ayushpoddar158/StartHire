@@ -38,7 +38,7 @@ const App = (props) => {
   // conditional routing for navbar and sidebar
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
   const [haveSideBar, setHaveSideBar] = useState(false);
-  const [isAdmin , setIsAdmin ] = useState(false);
+  const [isAdmin , setIsAdmin ] = useState(true);
 
   useEffect(() => {
     onRouteChanged();

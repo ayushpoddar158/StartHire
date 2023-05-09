@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import './css/AdminStudentList.css'
+import { Button } from '@mui/material';
 const AdminStudentLists = () => {
 
 
@@ -30,6 +31,42 @@ const AdminStudentLists = () => {
 </div>
 
 <div className="box3">
+<div className="studentList">
+          <div className="stdlistmian2_1 firstdivig">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+              alt="avatar 1"
+              style={{ width: "45px", height: "auto" }}
+            />
+            <div class="ms-2"><span>Alexa Chung</span></div>
+            <div class="ms-2"><span>Alex@gmail.com</span></div>
+            <div class="ms-2"><span>82495465666</span></div>
+          </div>
+          <div className=" skillmaindiv">
+            <div className="conatainer skilltextdiv">
+              <h3>Skills</h3>
+            </div>
+            <div className="skillbtn">
+              <Button  variant="contained" className=" skillbtns ms-2">
+                C
+              </Button>
+              <Button variant="contained" className=" skillbtns ms-2">
+                Java
+              </Button>
+              <Button variant="contained" className=" skillbtns ms-2">
+                Python
+              </Button>
+            </div>
+          </div>
+          <div className="stdlistmian2_1">
+            <Button className="viewbtn" variant="contained">
+              Verify
+            </Button>
+            <Button className="viewbtn" variant="contained">
+              reject
+            </Button>
+          </div>
+        </div>
   
 </div>
   

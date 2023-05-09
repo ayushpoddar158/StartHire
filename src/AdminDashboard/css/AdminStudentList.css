@@ -1,5 +1,5 @@
 .maindiv1{
-    background-color: red;
+    /* background-color: red; */
     position: relative;
     width: 83.3%;
     left: 16.69%;
@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 80vh;
 
 }
 

@@ -61,7 +61,7 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2 "
                                     ><NavLink class="nav-link text-secondary" to="/AdminStudentLists"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >StudentList</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                    ><NavLink class="nav-link text-secondary" to="/AdminJobs" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/StartUpLists" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
                                    {/* <button>Hide</button> */}
                                 </ul>
                             </div>

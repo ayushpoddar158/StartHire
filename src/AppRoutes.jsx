@@ -39,6 +39,7 @@ import StartupBlog from "./DashboardArea/StartupBlog";
 import StudentNotification from "./StudentDashboard/StudentNotification";
 import StudentLists from "./DashboardArea/StudentLists";
 import AdminStudentLists from "./AdminDashboard/AdminStudentList";
+import StartUpLists from "./AdminDashboard/StartUpLists";
 
 
 const AppRoutes = (props) => {
@@ -91,6 +92,7 @@ const AppRoutes = (props) => {
         <Route path="AdminJobs" element={<AdminJobs />} />
         <Route path="SearchInterns" element={<SearchInterns />} />
         <Route path="AdminStudentLists" element={<AdminStudentLists />} />
+        <Route path="StartUpLists" element={<StartUpLists />} />
         
     </>
 
