@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { NavLink, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
-import '../style/Dashboard/StartUpDashboard.css'
+import './css/AdminDashboard.css'
 
 // Authentication Setup
 import { Auth } from "../Firebase";
@@ -83,8 +83,19 @@ const AdminDashboard = () => {
     if (isStartUp && currentUser) {
         return (
             <>
-                <div>
-                    This is Dashboard Page
+                <div className='AdminDashboardmainDiv'>
+               <div className="NoOfStudents">
+               <span >20</span>
+                    <h2>No of Students</h2>
+               </div>
+               <div className="NoOfStartUps">
+               <span >20</span>
+<h2>No of StartUp</h2>
+               </div>
+<div className="NoOfJobDesc">
+<span >20</span>
+<h2>No of Jobs</h2>
+</div>
                 </div>
 
             </>

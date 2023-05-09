@@ -1,0 +1,16 @@
+.maindiv1{
+    /* background-color: red; */
+    position: relative;
+    width: 83.3%;
+    left: 16.69%;
+}
+
+@media only screen and (max-width:600px){
+    .maindiv1{
+        /* background-color: red; */
+        position: relative;
+      width: 100%;
+        left: 0px;
+        height: 100vh;
+    }
+}
