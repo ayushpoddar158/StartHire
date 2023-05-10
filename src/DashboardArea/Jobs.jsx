@@ -110,7 +110,7 @@ const Jobs = (props) => {
               </div>
               {/* <Jobs/> end */}
               <div class="container">
-          
+
                 {jobs.map(job => {
                   return (<div class="notification-ui_dd-content">
                     <div class="notification-list notification-list--unread">
@@ -124,7 +124,9 @@ const Jobs = (props) => {
                               <Button variant="contained">Update Job</Button>
                             </Link>
                             <Button variant="contained" color='error' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
-                            <Button variant='contained' onClick={()=>{navigate(`/JobDescp/${job.id}`)}}>Job Desc</Button>
+                            <Link to={`/JobDescp/${job.id}`}>
+                              <Button variant='contained' >Job Desc</Button>
+                            </Link>
                           </div>
                         </div>
                       </div>

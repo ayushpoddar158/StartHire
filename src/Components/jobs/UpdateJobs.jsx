@@ -168,7 +168,7 @@ const UpdateJobs = () => {
         console.log("inside submit handler");
         try {
             await updateDocument(id);
-            navigate("/dashboard")
+            navigate("/Jobs")
         } catch (err) {
             console.log(err);
         }

@@ -16,17 +16,19 @@ import { TextField } from "@mui/material";
 import "./css/JobDescp.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-const JobDescp = (id) => {
+const JobDescp = () => {
   let [jobData, setJobData] = useState();
-  console.log(id)
+  const id = useParams().id;
+  // console.log(id)
   useEffect(() => {
     const loadJob = async (id) => {
-      console.log(id)
       let jobRef = doc(db, "jobs", id);
       const jobVal = await getDoc(jobRef);
-      console.log(jobVal);
-      setJobData(jobVal);
+      // console.log(jobVal.data());
+      setJobData(jobVal.data());
     }
     loadJob(id);
   }, [])
@@ -40,22 +42,24 @@ const JobDescp = (id) => {
     <>
       <div className="container main">
         <div className="title onediv firstDiv">
-          <h2 id="heading1">{jobData?.data.details.jobTitle}</h2>
-          <Button variant="contained">Update</Button>
+          <h2 id="heading1">{jobData?.details.jobTitle}</h2>
+          <Link to={`/UpdateJobs/${id}`}>
+            <Button variant="contained">Update</Button>
+          </Link>
           <hr />
         </div>
         <div className="description onediv">
           <h2>Job Description</h2>
           <hr />
           <p>
-            {jobData?.data.details.jobDescription}
+            {jobData?.details.jobDescription}
           </p>
         </div>
         <div className="skills"></div>
         <h2>Skills Required</h2>
         <hr />
         <div className="tags">
-          {jobData?.data.skills.map((item) => {
+          {jobData?.details.skills.map((item) => {
             return <Button className="Skillreq" variant="contained">
               {item.value}
             </Button>
