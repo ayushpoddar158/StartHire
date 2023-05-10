@@ -22,24 +22,50 @@ import { Link } from "react-router-dom";
 const JobDescp = () => {
   let [jobData, setJobData] = useState();
   let [selStudent, setSelStudent] = useState([]);
+  let [jobSkillList, setJobSkillList] = useState([]);
+  let [assignedStudents, setAssignedStudents] = useState([]);
+  let [selectedStudents, setSelectedStudents] = useState([]);
 
   const id = useParams().id;
   // console.log(id)
   useEffect(() => {
     const loadJob = async (id) => {
-      let jobRef = doc(db, "jobs",id);
+      let jobRef = doc(db, "jobs", id);
       const jobVal = await getDoc(jobRef);
       // console.log(jobVal.data());
       setJobData(jobVal.data());
+      setAssignedStudents(jobVal.data().assign)
     }
     loadJob(id);
   }, [])
+
+  useEffect(() => {
+    jobData?.details.skills.map((item) => {
+      setJobSkillList(jobSkillList => [...jobSkillList,
+      item.label])
+    })
+  }, [jobData])
+
+  useEffect(() => {
+    console.log("jobskills", jobSkillList)
+  }, [jobSkillList])
 
   useEffect(() => {
     console.log(jobData);
   }, [jobData])
 
   const SuggestFunc = async () => {
+    const getPer = (studentSkills, JobSkills) => {
+      var count = 0;
+      studentSkills?.map((skill =>{
+        // console.log("indiv skills",skill.label) 
+        if(JobSkills.includes(skill.label)){
+          count = count+1;
+        }
+      }))
+      return (count/JobSkills.length)
+    }
+
     const getAllData = async () => {
       const userq = query(collection(db, "users"));
       const user_docs = await getDocs(userq);
@@ -47,9 +73,22 @@ const JobDescp = () => {
       return stdData;
     }
     var stdData = await getAllData();
-    console.log(stdData[0].docs)
+    console.log("studentdata", stdData)
     console.log(jobData.details.skills)
+    stdData.map((student) =>{
+      console.log(student.data().details?.skills)
+      var matchVal = getPer(student.data().details?.skills,jobSkillList)
+      if (matchVal>=0.5){
+        setSelectedStudents(students => [...students, student.data()])
+      } 
+    })
   }
+  
+  
+  useEffect(() =>{
+    console.log("selectedStud",selectedStudents);
+  },[selectedStudents])
+
   return (
     <>
       <div className="container main">
