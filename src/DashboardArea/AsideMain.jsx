@@ -32,7 +32,6 @@ import StartUpProfileForm from './StartUpProfileForm';
 
 const AsideMain = (props) => {
     const navigate = useNavigate();
-    const { currentUser } = useContext(AuthContext);
     let userData = props.userData;
     let isStudent = props.isStudent;
     let isStartUp = props.isStartUp;
@@ -46,7 +45,7 @@ const AsideMain = (props) => {
         })
     }
    if (isAdmin) {
-        console.log(isAdmin)
+        console.log("admin",isAdmin)
         return (
             <>
                 <div >

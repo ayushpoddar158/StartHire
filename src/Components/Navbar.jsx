@@ -40,20 +40,20 @@ function Navbar(props) {
   // console.log(isVerified);
 
   const logInHandler = () => {
-    window.location.replace("/login")
+    window.location.replace("/Login")
   }
 
   const logouthandler = async (isStudent) => {
     if (isStudent) {
       await Auth.signOut()
         .then(() => {
-          window.location.replace("/login")
+          window.location.replace("/Login")
         })
     }
     else{
       await Auth.signOut()
         .then(() => {
-          window.location.replace("/loginstartup")
+          window.location.replace("/Loginstartup")
         })
 
     }
@@ -179,7 +179,7 @@ function Navbar(props) {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src={userData.details.PImageUrl ? userData.details.PImageUrl : "avtar1.png"} />
+                    <Avatar alt="Remy Sharp" src={userData.details?.PImageUrl ? userData.details.PImageUrl : "avtar1.png"} />
                   </IconButton>
                 </Tooltip>
                 <Menu

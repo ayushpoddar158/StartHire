@@ -23,6 +23,7 @@ import AdminJobs from "./AdminDashboard/Jobs";
 import SearchInterns from "./AdminDashboard/SearchInterns";
 //jobs
 import CreateJobs from "./Components/jobs/CreateJobs";
+import JobDescp from "./DashboardArea/JobDescp";
 
 //components
 import Dashboard from './DashboardArea/Dashboard';
@@ -33,12 +34,12 @@ import StudentAside from './StudentDashboard/StudentAside'
 import StudentDashboard from './StudentDashboard/StudentDashboard'
 import UpdateJobs from "./Components/jobs/UpdateJobs";
 import Loading from "./Components/Loading/Loading";
-import JobDescp from "./DashboardArea/JobDescp";
 import PageNotFound from "./Components/PagenotFound/PageNotFound";
 import StartupBlog from "./DashboardArea/StartupBlog";
 import StudentNotification from "./StudentDashboard/StudentNotification";
 import StudentLists from "./DashboardArea/StudentLists";
 import AdminStudentLists from "./AdminDashboard/AdminStudentList";
+import ForgetPassword from "./Components/Forgetpassword";
 import StartUpLists from "./AdminDashboard/StartUpLists";
 
 
@@ -48,6 +49,7 @@ const AppRoutes = (props) => {
     let isStartUp = props.isStartUp;
     let isVerified = props.isVerified;
     let isAdmin = props.isAdmin;
+    let allData = props.allData;
 
     const Basic = <>
         <Route path="/" element={<Home />} />
@@ -62,6 +64,7 @@ const AppRoutes = (props) => {
         <Route path="LoginStartUp" element={<LoginStartUp />} />
         <Route path="Signup" element={<Signup />} />
         <Route path="Signupstartup" element={<Signupstartup />} />
+        <Route path="ForgetPassword" element={<ForgetPassword />} />
     </>
 
     const StudentPages = <>
@@ -84,11 +87,11 @@ const AppRoutes = (props) => {
         <Route path="Jobs" element={<Jobs />} />
         <Route path="CreateJobs" element={<CreateJobs />} />
         <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
-        <Route path="JobDescp" element={<JobDescp />} />
+        <Route path="JobDescp/:id" element={<JobDescp />} />
     </>
 
     const AdminPages = <>
-        <Route path="AdminDashboard" element={<AdminDashboard />} />
+        <Route path="AdminDashboard" element={<AdminDashboard allData={allData} />} />
         <Route path="AdminJobs" element={<AdminJobs />} />
         <Route path="SearchInterns" element={<SearchInterns />} />
         <Route path="AdminStudentLists" element={<AdminStudentLists />} />
