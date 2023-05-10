@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 
 const JobDescp = () => {
   let [jobData, setJobData] = useState();
+  let [jobDataRef, setJobDataRef ] = useState();
   let [selStudent, setSelStudent] = useState([]);
   let [jobSkillList, setJobSkillList] = useState([]);
   let [assignedStudents, setAssignedStudents] = useState([]);
@@ -31,6 +32,7 @@ const JobDescp = () => {
   useEffect(() => {
     const loadJob = async (id) => {
       let jobRef = doc(db, "jobs", id);
+      setJobDataRef(jobRef);
       const jobVal = await getDoc(jobRef);
       // console.log(jobVal.data());
       setJobData(jobVal.data());
@@ -57,13 +59,13 @@ const JobDescp = () => {
   const SuggestFunc = async () => {
     const getPer = (studentSkills, JobSkills) => {
       var count = 0;
-      studentSkills?.map((skill =>{
+      studentSkills?.map((skill => {
         // console.log("indiv skills",skill.label) 
-        if(JobSkills.includes(skill.label)){
-          count = count+1;
+        if (JobSkills.includes(skill.label)) {
+          count = count + 1;
         }
       }))
-      return (count/JobSkills.length)
+      return (count / JobSkills.length)
     }
 
     const getAllData = async () => {
@@ -75,19 +77,41 @@ const JobDescp = () => {
     var stdData = await getAllData();
     console.log("studentdata", stdData)
     console.log(jobData.details.skills)
-    stdData.map((student) =>{
+    stdData.map((student) => {
       console.log(student.data().details?.skills)
-      var matchVal = getPer(student.data().details?.skills,jobSkillList)
-      if (matchVal>=0.5){
+      var matchVal = getPer(student.data().details?.skills, jobSkillList)
+      if (matchVal >= 0.5) {
         setSelectedStudents(students => [...students, student.data()])
-      } 
+      }
     })
   }
+  const addStudent = async(student) => {
+    console.log(student);
+    setAssignedStudents(assignedStudents => [...assignedStudents, student])
+    selectedStudents.splice(selectedStudents.indexOf(student), 1);
+    await updateDoc(jobDataRef,{
+      assign: assignedStudents  
+    });
+  }
   
+  const removeStudent = async(student) => {
+    console.log(student);
+    setSelectedStudents(selectedStudents=> [...selectedStudents, student])
+    assignedStudents.splice(assignedStudents.indexOf(student), 1);
+    await updateDoc(jobDataRef,{
+      assign: assignedStudents  
+    });
+  }
+
   
-  useEffect(() =>{
-    console.log("selectedStud",selectedStudents);
-  },[selectedStudents])
+
+  useEffect(() => {
+    console.log("selectedStud", selectedStudents);
+  }, [selectedStudents])
+
+  useEffect(() => {
+    console.log("assignees", assignedStudents);
+  }, [assignedStudents])
 
   return (
     <>
@@ -116,43 +140,80 @@ const JobDescp = () => {
             </Button>
           })}
         </div>
-        {/* <hr /> */}
-        <div className="suggestStudent">
-          <Button variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
-        </div>
-        <div className="studentList">
-          <div className="stdlistmian2_1 firstdivig">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-              alt="avatar 1"
-              style={{ width: "45px", height: "auto" }}
-            />
-            <div class="ms-2">Alexa Chung</div>
-            <div class="ms-2">Alex@gmail.com</div>
-          </div>
-          <div className=" skillmaindiv">
-            <div className="conatainer skilltextdiv">
-              <h3>Skills</h3>
-            </div>
-            <div className="skillbtn">
-              <Button variant="contained" className=" skillbtns ms-2">
-                C
-              </Button>
-              <Button variant="contained" className=" skillbtns ms-2">
-                Java
-              </Button>
-              <Button variant="contained" className=" skillbtns ms-2">
-                Python
-              </Button>
-            </div>
-          </div>
-          <div className="stdlistmian2_1">
-            <Button className="viewbtn" variant="contained">
-              View Profile
-            </Button>
-          </div>
-        </div>
       </div>
+       <h2>Selected Students</h2>
+       {assignedStudents.map((item) => {
+        return (
+          <>
+            <div className="studentList">
+              <div className="stdlistmian2_1 firstdivig">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                  alt="avatar 1"
+                  style={{ width: "45px", height: "auto" }}
+                />
+                <div class="ms-2">{item.details.firstname + " " + item.details.lastname}</div>
+                <div class="ms-2">{item.details.email}</div>
+              </div>
+              <div className=" skillmaindiv">
+                <div className="conatainer skilltextdiv">
+                  <h3>Skills</h3>
+                </div>
+                <div className="skillbtn">
+                  {item.details.skills.map((skill) => {
+                    return <Button variant="contained" className=" skillbtns ms-2">
+                      {skill.value}
+                    </Button>
+                  })}
+                </div>
+              </div>
+              <div className="stdlistmian2_1">
+                <Button className="viewbtn" variant="contained" onClick={() => { removeStudent(item) }}>
+                 Reject 
+                </Button>
+              </div>
+            </div>
+          </>
+        )
+      })}
+      {/* <hr /> */}
+      <div className="suggestStudent">
+        <Button variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
+      </div>
+      {selectedStudents.map((item) => {
+        return (
+          <>
+            <div className="studentList">
+              <div className="stdlistmian2_1 firstdivig">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                  alt="avatar 1"
+                  style={{ width: "45px", height: "auto" }}
+                />
+                <div class="ms-2">{item.details.firstname + " " + item.details.lastname}</div>
+                <div class="ms-2">{item.details.email}</div>
+              </div>
+              <div className=" skillmaindiv">
+                <div className="conatainer skilltextdiv">
+                  <h3>Skills</h3>
+                </div>
+                <div className="skillbtn">
+                  {item.details.skills.map((skill) => {
+                    return <Button variant="contained" className=" skillbtns ms-2">
+                      {skill.value}
+                    </Button>
+                  })}
+                </div>
+              </div>
+              <div className="stdlistmian2_1">
+                <Button className="viewbtn" variant="contained" onClick={() => { addStudent(item) }}>
+                  Select
+                </Button>
+              </div>
+            </div>
+          </>
+        )
+      })}
     </>
   );
 };
