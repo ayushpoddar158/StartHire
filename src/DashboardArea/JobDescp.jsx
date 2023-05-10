@@ -21,11 +21,13 @@ import { Link } from "react-router-dom";
 
 const JobDescp = () => {
   let [jobData, setJobData] = useState();
+  let [selStudent, setSelStudent] = useState([]);
+
   const id = useParams().id;
   // console.log(id)
   useEffect(() => {
     const loadJob = async (id) => {
-      let jobRef = doc(db, "jobs", id);
+      let jobRef = doc(db, "jobs",id);
       const jobVal = await getDoc(jobRef);
       // console.log(jobVal.data());
       setJobData(jobVal.data());
@@ -37,7 +39,17 @@ const JobDescp = () => {
     console.log(jobData);
   }, [jobData])
 
-
+  const SuggestFunc = async () => {
+    const getAllData = async () => {
+      const userq = query(collection(db, "users"));
+      const user_docs = await getDocs(userq);
+      var stdData = user_docs.docs
+      return stdData;
+    }
+    var stdData = await getAllData();
+    console.log(stdData[0].docs)
+    console.log(jobData.details.skills)
+  }
   return (
     <>
       <div className="container main">
@@ -67,7 +79,7 @@ const JobDescp = () => {
         </div>
         {/* <hr /> */}
         <div className="suggestStudent">
-          <Button variant="contained">Suggest Interns</Button>
+          <Button variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
         </div>
         <div className="studentList">
           <div className="stdlistmian2_1 firstdivig">

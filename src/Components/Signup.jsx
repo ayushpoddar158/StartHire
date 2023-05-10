@@ -81,7 +81,15 @@ const Signup = () => {
               email: user.email,
               desgn: "student",
               updatedProfile: false,
-              details: null
+              details: null,
+              verification: {
+                isAvail: true,
+                isVerified: false,
+                isRejected: true,
+                ifConfirmed: false
+              },
+              startups: [],
+              notification: []
             })
               .then(() => {
                 console.log("inside error");
