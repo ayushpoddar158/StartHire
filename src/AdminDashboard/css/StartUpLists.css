@@ -1,75 +1,36 @@
-.mainLists{
-    background-color: #f4f4f3;
+.mainCardDiv{
+    /* background-color: red; */
+    background-color: white;
     position: relative;
-    width: 50%;
+    width: 83%;
+    z-index: 0;
+    /* width: 60%; */
     left: 17%;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    height: 80vh;
-  align-items: center;
-  padding: 30px;
-  margin-left: 15%;
-  border-radius: 10px;
+    padding: 10px;
+  
+}
+.mainCardDiv .search{
+    /* background-color: blue; */
+    padding: 10px;
+width: auto;
+display: flex;
 
-
+justify-content: center;
+}
+#outlined-read-only-input{
+    width: 50vw!important;
+    height: 10%;
+    /* background-color: red; */
+    font-size: 1.6rem !important;
     
 }
+#outlined-read-only-input label{
+    font-size: 7rem !important;
+}
 
-.box2{
-    display: flex;
-    background-color: rgb(190, 187, 187);
-    border-radius: 10px;
-    width: 60%;
-    justify-content: space-around;
-    height: 20%;
-    align-items: center;
-margin-bottom: 10px;
-padding: 10px;
-
-
-}
-.navLinkStartUp{
-    font-weight: 900;
-    font-size: 2.5rem;
-    color: rgb(7, 7, 16);
-    /* background-color: aqua; */
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-.noOfJobmaindiv{
-    /* background-color: red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-}
-.noOfJobs{
-    /* background-color: blue; */
-    width: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 2rem;
-    color: orangered;
-   
-}
-.box2 span{
-    font-weight: 800;
-    font-size: 2rem;
-    color: orangered;
-}
-@media only screen and (max-width:600px){
-    .mainLists{
-        /* background-color: red; */
-        position: relative;
-      width: 100%;
+@media only  screen and (max-width:600px){
+    .mainCardDiv{
         left: 0px;
-        height: 100vh;
+        width: 100% !important;
     }
 }

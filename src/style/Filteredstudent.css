@@ -1,7 +1,5 @@
-body{
-    background:#eee;
-}
 
+/* 
 .card{
     border:none;
 
@@ -41,7 +39,7 @@ body{
 
 .card:hover::after{
     transform:scaleY(1);
-}
+} */
 
 
 .fonts{
