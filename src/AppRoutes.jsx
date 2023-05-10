@@ -23,6 +23,7 @@ import AdminJobs from "./AdminDashboard/Jobs";
 import SearchInterns from "./AdminDashboard/SearchInterns";
 //jobs
 import CreateJobs from "./Components/jobs/CreateJobs";
+import JobDescp from "./DashboardArea/JobDescp";
 
 //components
 import Dashboard from './DashboardArea/Dashboard';
@@ -33,7 +34,6 @@ import StudentAside from './StudentDashboard/StudentAside'
 import StudentDashboard from './StudentDashboard/StudentDashboard'
 import UpdateJobs from "./Components/jobs/UpdateJobs";
 import Loading from "./Components/Loading/Loading";
-import JobDescp from "./DashboardArea/JobDescp";
 import PageNotFound from "./Components/PagenotFound/PageNotFound";
 import StartupBlog from "./DashboardArea/StartupBlog";
 import StudentNotification from "./StudentDashboard/StudentNotification";
@@ -85,7 +85,7 @@ const AppRoutes = (props) => {
         <Route path="Jobs" element={<Jobs />} />
         <Route path="CreateJobs" element={<CreateJobs />} />
         <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
-        <Route path="JobDescp" element={<JobDescp />} />
+        <Route path="JobDescp/:id" element={<JobDescp />} />
     </>
 
     const AdminPages = <>

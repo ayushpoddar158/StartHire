@@ -124,7 +124,7 @@ const Jobs = (props) => {
                               <Button variant="contained">Update Job</Button>
                             </Link>
                             <Button variant="contained" color='error' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
-                            <Button variant='contained' onClick={()=>{props.ChangeMenuJobDesc()}}>Job Desc</Button>
+                            <Button variant='contained' onClick={()=>{navigate(`/JobDescp/${job.id}`)}}>Job Desc</Button>
                           </div>
                         </div>
                       </div>
