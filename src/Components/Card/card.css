@@ -7,7 +7,7 @@
 .cardh3span1 {
     color: rgb(22, 248, 22);
     font-weight: 800;
-    font-size: 3rem;
+    font-size: rem;
 
 }
 .cardh3span2{
@@ -57,7 +57,7 @@
   border: 0;
   width: 100%;
   margin-inline: auto;
-  /* background-color: blue !important; */
+
   height: auto !important;
 
 }
@@ -69,9 +69,7 @@
   background-clip: padding-box;
   border-radius: 45px;
   padding: 40px;
-  /* img {
-      margin-bottom: 32px;
-    } */
+
 }
 
 .bg-green-box,

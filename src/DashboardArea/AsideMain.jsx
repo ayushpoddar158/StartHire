@@ -61,6 +61,8 @@ const AsideMain = (props) => {
                                     ><NavLink class="nav-link text-secondary" to="/AdminStudentLists"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >StudentList</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/StartUpLists" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
+                                    <li class="nav-item mb-2"
+                                    ><NavLink class="nav-link text-secondary" to="/AdminNotification" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Notification</span></NavLink></li>
                                    {/* <button>Hide</button> */}
                                 </ul>
                             </div>
@@ -122,7 +124,7 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2 "
                                     ><NavLink class="nav-link text-secondary" to="/StudentProfile"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >Profile</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                   ><NavLink class="nav-link text-secondary" to="/StudentNotification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications</span></NavLink></li>
+                                   ><NavLink class="nav-link text-secondary" to="/StudentNotification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications</span><span className='studentUpnotispan'>20</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
                                     {/* <button>Hide</button> */}
