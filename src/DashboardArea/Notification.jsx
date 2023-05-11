@@ -1,7 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Aside from '../DashboardArea/Aside'
 import '../style/Dashboard/Notification.css'
-const Notification = () => {
+
+// Data setup 
+import { db } from "../Firebase";
+import {
+    query,
+    getDocs,
+    collection,
+    addDoc,
+    getDoc,
+    updateDoc,
+    where,
+    doc
+} from "firebase/firestore";
+
+
+
+
+const Notification = (props) => {
+    var notifObj = props.notifObj;
+    console.log("notifObj",notifObj);
+
+    
+
+    useEffect(() => {
+        console.log(notifObj)
+    }, [notifObj])
+
     return (
         <>
 
@@ -25,59 +51,9 @@ const Notification = () => {
                                             </div>
 
                                         </div>
-                                        <div class="notification-list notification-list--unread">
-                                            <div class="notification-list_content">
-
-                                                <div class="notification-list_detail">
-                                                    <p><b>Richard Miles</b> liked your post</p>
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, dolorem.</p>
-                                                    <p class="text-muted"><small>10 mins ago</small></p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="notification-list">
-                                            <div class="notification-list_content">
-
-                                                <div class="notification-list_detail">
-                                                    <p><b>Brian Cumin</b> reacted to your post</p>
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, dolorem.</p>
-                                                    <p class="text-muted"><small>10 mins ago</small></p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="notification-list">
-                                            <div class="notification-list_content">
-
-                                                <div class="notification-list_detail">
-                                                    <p><b>Lance Bogrol</b> reacted to your post</p>
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, dolorem.</p>
-                                                    <p class="text-muted"><small>10 mins ago</small></p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="notification-list">
-                                            <div class="notification-list_content">
-
-                                                <div class="notification-list_detail">
-                                                    <p><b>Parsley Montana</b> reacted to your post</p>
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, dolorem.</p>
-                                                    <p class="text-muted"><small>10 mins ago</small></p>
-                                                </div>
-                                            </div>
-
-                                        </div>
                                     </div>
-
-                                    {/* <div class="text-center">
-            <a href="#!" class="dark-link">Load more activity</a>
-        </div> */}
-
                                 </div>
                             </section>
-
                         </div>
                     </div>
                 </div>

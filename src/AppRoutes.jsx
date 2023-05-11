@@ -1,6 +1,18 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import { Suspense } from "react";
 
+// Data setup 
+import { db } from "./Firebase";
+import {
+    query,
+    getDocs,
+    collection,
+    addDoc,
+    getDoc,
+    updateDoc,
+    where,
+    doc
+} from "firebase/firestore";
 
 //component
 import Home from "./Components/Home";
@@ -51,6 +63,8 @@ const AppRoutes = (props) => {
     let isVerified = props.isVerified;
     let isAdmin = props.isAdmin;
     let allData = props.allData;
+    let notifObj = props.notifObj;
+    
 
     const Basic = <>
         <Route path="/" element={<Home />} />
@@ -69,10 +83,10 @@ const AppRoutes = (props) => {
     </>
 
     const StudentPages = <>
-        <Route path="studentprofileform" element={<Studentprofileform />} />
-        <Route path="Studentprofile" element={<Studentprofile />} />
-        <Route path="StudentDashboard" element={<StudentDashboard />} />
-        <Route path="VerifyEmail" element={<VerifyEmail />} />
+        <Route path="/studentprofileform" element={<Studentprofileform />} />
+        <Route path="/Studentprofile" element={<Studentprofile />} />
+        <Route path="/StudentDashboard" element={<StudentDashboard />} />
+        <Route path="/VerifyEmail" element={<VerifyEmail />} />
         <Route path="/StudentNotification" element={<StudentNotification />} />
     </>
 
@@ -83,7 +97,8 @@ const AppRoutes = (props) => {
         <Route path="StartUpProfile" element={<StartUpProfile />} />
         <Route path="VerifyEmail" element={<VerifyEmail />} />
         <Route path="StartUpBlog" element={<StartupBlog />} />
-        <Route path="Notification" element={<Notification />} />
+        <Route path="Notification" element={<Notification 
+        notifObj ={notifObj } />} />
         {/* //jobs routes */}
         <Route path="Jobs" element={<Jobs />} />
         <Route path="CreateJobs" element={<CreateJobs />} />
@@ -98,7 +113,7 @@ const AppRoutes = (props) => {
         <Route path="AdminStudentLists" element={<AdminStudentLists />} />
         <Route path="StartUpLists" element={<StartUpLists />} />
         <Route path="AdminNotification" element={<AdminNotification />} />
-        
+
     </>
 
     if (isAdmin) {
@@ -147,6 +162,7 @@ const AppRoutes = (props) => {
                     <Routes>
                         {Basic}
                         {AuthPages}
+                        <Route path="StartUpprofileForm" element={<StartUpprofileForm />} />
                         <Route path="VerifyEmail" element={<VerifyEmail />} />
                     </Routes>
                 </Suspense>
@@ -174,6 +190,7 @@ const AppRoutes = (props) => {
                     <Routes>
                         {Basic}
                         {AuthPages}
+                        <Route path="/studentprofileform" element={<Studentprofileform />} />
                         <Route path="VerifyEmail" element={<VerifyEmail />} />
                     </Routes>
                 </Suspense>

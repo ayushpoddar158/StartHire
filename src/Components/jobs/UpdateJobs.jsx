@@ -98,7 +98,7 @@ const UpdateJobs = () => {
             }
         };
         loadData();
-    }, [data]);
+    }, []);
 
     // sample job id: QL5KnfEwv9SNw57bAAwb
 
