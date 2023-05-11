@@ -3,6 +3,8 @@ import { Button } from "@mui/material";
 import './card.css'
 
 const Card = (props) => {
+  var data = props.data;
+  console.log(data);
   return (
     <>
    
@@ -10,26 +12,11 @@ const Card = (props) => {
         <div className="gradient-cards">
           <div className="card">
             <div className="container-card bg-green-box">
-           <div className="cardh3" ><span className="cardh3span1" >20</span> <span className="cardh3span2">Jobs</span></div>
-              <p className="card-title">Inxt</p>
-            <Button variant="contained" >View</Button>
+           <div className="cardh3" ><span className="cardh3span1" >{data?.jobs.length}</span> <span className="cardh3span2">: Jobs</span></div>
+              <p className="card-title">{data?.details.StartUpName}</p>
+            <Button variant="contained">View</Button>
             </div>
           </div>
-          <div className="card">
-            <div className="container-card bg-green-box">
-           <div className="cardh3" ><span className="cardh3span1" >20</span> <span className="cardh3span2">Jobs</span></div>
-              <p className="card-title">Inxt</p>
-            <Button variant="contained" >View</Button>
-            </div>
-          </div>
-          <div className="card">
-            <div className="container-card bg-green-box">
-           <div className="cardh3" ><span className="cardh3span1" >20</span> <span className="cardh3span2">Jobs</span></div>
-              <p className="card-title">Inxt</p>
-            <Button variant="contained" >View</Button>
-            </div>
-          </div>
-       
         </div>
       </div>
 

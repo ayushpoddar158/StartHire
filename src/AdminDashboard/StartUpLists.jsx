@@ -3,38 +3,38 @@ import "./css/StartUpLists.css";
 import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
 import Card from '../Components/Card/Card'
-import {TextField} from "@mui/material";
+import { TextField } from "@mui/material";
 
 
 
-const StartUpLists = () => {
+const StartUpLists = (props) => {
 
-// usesates  
-const [inpdata,setInpdata]=useState("")
+  var startUpRefs = props.allData.startup;
+  // usesates  
+  const [inpdata, setInpdata] = useState("")
 
-const getdata=(e)=>{
-setInpdata(e.target.value)
-console.log(inpdata)
-}
+  const getdata = (e) => {
+    setInpdata(e.target.value)
+    console.log(inpdata)
+  }
 
 
   return (
     <>
-     <div className="mainCardDiv">
-    <div className="search">
-    <TextField
-          id="outlined-read-only-input"
-          label="Search"
-          defaultValue="Hello World"
-          onChange={getdata}
-          value={inpdata}
-         
-        />
-    </div>
-    <Card  />
-  
-
-     </div>
+      <div className="mainCardDiv">
+        <div className="search">
+          <TextField
+            id="outlined-read-only-input"
+            label="Search"
+            defaultValue="Hello World"
+            onChange={getdata}
+            value={inpdata}
+          />
+        </div>
+        {startUpRefs?.map((item) => {
+          return <Card data={item.data()}/>
+        })}
+      </div>
     </>
   );
 };
