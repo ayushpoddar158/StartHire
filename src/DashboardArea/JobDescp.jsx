@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 
 const JobDescp = () => {
   let [jobData, setJobData] = useState();
-  let [jobDataRef, setJobDataRef ] = useState();
+  let [jobDataRef, setJobDataRef] = useState();
   let [selStudent, setSelStudent] = useState([]);
   let [jobSkillList, setJobSkillList] = useState([]);
   let [assignedStudents, setAssignedStudents] = useState([]);
@@ -80,38 +80,54 @@ const JobDescp = () => {
     stdData.map((student) => {
       console.log(student.data().details?.skills)
       var matchVal = getPer(student.data().details?.skills, jobSkillList)
-      if (matchVal >= 0.5) {
+      var contains = false;
+      assignedStudents.map((item) => {
+        contains = item.uid === student.data().uid ? true : contains; 
+      })
+      if (matchVal >= 0.5 && !contains) {
         setSelectedStudents(students => [...students, student.data()])
       }
     })
   }
-  const addStudent = async(student) => {
+  const addStudent = async (student) => {
     console.log(student);
     setAssignedStudents(assignedStudents => [...assignedStudents, student])
-    selectedStudents.splice(selectedStudents.indexOf(student), 1);
-    await updateDoc(jobDataRef,{
-      assign: assignedStudents  
-    });
+    const newSelect = selectedStudents.filter((item) => {
+      return item !== student;
+    })
+    setSelectedStudents(newSelect);
+    // selectedStudents.splice(selectedStudents.indexOf(student), 1);
   }
-  
-  const removeStudent = async(student) => {
+
+  const removeStudent = async (student) => {
     console.log(student);
-    setSelectedStudents(selectedStudents=> [...selectedStudents, student])
-    assignedStudents.splice(assignedStudents.indexOf(student), 1);
-    await updateDoc(jobDataRef,{
-      assign: assignedStudents  
-    });
+    setSelectedStudents(selectedStudents => [...selectedStudents, student])
+    const newAssign = assignedStudents.filter((item) => {
+      return item !== student;
+    })
+    setAssignedStudents(newAssign);
   }
-
-  
-
-  useEffect(() => {
-    console.log("selectedStud", selectedStudents);
-  }, [selectedStudents])
 
   useEffect(() => {
     console.log("assignees", assignedStudents);
-  }, [assignedStudents])
+    console.log("selectedStud", selectedStudents);
+    console.log("inside use effect of assignedStudents")
+    const updateStd = async (jobUpdateRef) => {
+      await updateDoc(jobUpdateRef, {
+        assign: assignedStudents
+      }).then(() => {
+        console.log("modified assigned student list")
+      }).catch((err) => {
+        console.log(err)
+      });
+    }
+    updateStd(jobDataRef);
+  }, [assignedStudents]);
+
+  useEffect(() => {
+    console.log("selectedStud", selectedStudents);
+    console.log("assignees", assignedStudents);
+  }, [selectedStudents])
 
   return (
     <>
@@ -141,8 +157,8 @@ const JobDescp = () => {
           })}
         </div>
       </div>
-       <h2>Selected Students</h2>
-       {assignedStudents.map((item) => {
+      <h2>Selected Students</h2>
+      {assignedStudents.map((item) => {
         return (
           <>
             <div className="studentList">
@@ -169,7 +185,7 @@ const JobDescp = () => {
               </div>
               <div className="stdlistmian2_1">
                 <Button className="viewbtn" variant="contained" onClick={() => { removeStudent(item) }}>
-                 Reject 
+                  Reject
                 </Button>
               </div>
             </div>
