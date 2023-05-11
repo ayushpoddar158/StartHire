@@ -20,9 +20,7 @@ import {
 
 const Notification = (props) => {
     var notifObj = props.notifObj;
-    console.log("notifObj",notifObj);
-
-    
+    console.log("notifObj", notifObj);
 
     useEffect(() => {
         console.log(notifObj)
@@ -30,7 +28,6 @@ const Notification = (props) => {
 
     return (
         <>
-
             <div className='MainNotiStart'>
                 <div class="container-fluid" id="main">
                     <div class="">
@@ -38,21 +35,22 @@ const Notification = (props) => {
                             <section class="section-50">
                                 <div class="container">
                                     <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
-
-                                    <div class="notification-ui_dd-content">
-                                        <div class="notification-list notification-list--unread">
-                                            <div class="notification-list_content">
-
-                                                <div class="notification-list_detail">
-                                                    <p><b>John Doe</b> reacted to your post</p>
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, dolorem.</p>
-                                                    <p class="text-muted"><small>10 mins ago</small></p>
+                                </div>
+                                {notifObj.map((item) => {
+                                    return (
+                                        <div class="notification-ui_dd-content">
+                                            <div class="notification-list notification-list--unread">
+                                                <div class="notification-list_content">
+                                                    <div class="notification-list_detail">
+                                                        <p><b>{item.senderName}</b> </p>
+                                                        <p class="text-muted">{item.message}</p>
+                                                        <p class="text-muted"><small></small></p>
+                                                    </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                    </div>
-                                </div>
+                                    )
+                                })}
                             </section>
                         </div>
                     </div>

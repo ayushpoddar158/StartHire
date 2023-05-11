@@ -58,7 +58,7 @@ const App = (props) => {
   function onRouteChanged() {
     console.log("ROUTE CHANGED");
     // window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/','/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "VerifyEmail"];
+    const fullPageLayoutRoutes = ['/', '/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "VerifyEmail"];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (location.pathname.toLocaleLowerCase() === fullPageLayoutRoutes[i].toLocaleLowerCase()) {
         setIsFullPageLayout(true);
@@ -70,36 +70,34 @@ const App = (props) => {
   }
 
   // setting up notification
-    var [notifObj, setNotifObj] = useState([]);
-    var [unReadCount, setUnreadCount] = useState(0);
-    var notifIds = userData?.notification;
+  var [notifObj, setNotifObj] = useState([]);
+  var [unReadCount, setUnreadCount] = useState(0);
 
+  useEffect(() => {
     var fetchNotif = async (notifIds) => {
-        console.log("user: ", userData)
-        let UnReadCount = 0;
-        for (let i = 0; i < notifIds?.length; i++) {
-            let notifRef = doc(db, "notification", notifIds[i]);
-            let note = await getDoc(notifRef);
-            if (note.data().isRead === false) {
-                UnReadCount = UnReadCount + 1;
-            }
-            setNotifObj(notif => [
-                ...notif,
-                note.data()
-            ]);
+      console.log("user: ", userData)
+      let UnReadCount = 0;
+      for (let i = 0; i < notifIds?.length; i++) {
+        let notifRef = doc(db, "notification", notifIds[i]);
+        let note = await getDoc(notifRef);
+        if (note.data().isRead === false) {
+          UnReadCount = UnReadCount + 1;
         }
-        setUnreadCount(UnReadCount);
+        setNotifObj(notif => [
+          ...notif,
+          note.data()
+        ]);
+      }
+      setUnreadCount(UnReadCount);
     }
+    const fetchNote = async (notifIds) => {
+      console.log("fetchnote is called")
+      await fetchNotif(notifIds);
+    }
+    fetchNote(userData?.notification);
+  }, [userData]);
 
-    useEffect(() => {
-        const fetchNote = async (notifIds) => {
-            console.log("fetchnote is called")
-            await fetchNotif(notifIds);
-        }
-        fetchNote(notifIds);
-    }, []);
-
-    console.log(userData);
+  console.log(userData);
 
   useEffect(() => {
     const getUserData = async (currentUser) => {
@@ -152,9 +150,9 @@ const App = (props) => {
         const jobq = query(collection(db, "jobs"));
         const job_docs = await getDocs(jobq);
         setAllData({
-          user:user_docs.docs,
-          startup:startup_docs.docs,
-          job:job_docs.docs
+          user: user_docs.docs,
+          startup: startup_docs.docs,
+          job: job_docs.docs
         })
       }
     }
@@ -163,23 +161,23 @@ const App = (props) => {
 
 
   let navbarComponent = isFullPageLayout ? <Navbar /> : '';
-  let sidebarComponent = !isFullPageLayout ? <AsideMain 
-                             userData={userData} 
-                             isStartUp={isStartUp} 
-                             isStudent={isStudent} 
-                             isVerified={isVerified} 
-                             isAdmin={isAdmin}
-                             unReadCount={unReadCount} /> : '';
+  let sidebarComponent = !isFullPageLayout ? <AsideMain
+    userData={userData}
+    isStartUp={isStartUp}
+    isStudent={isStudent}
+    isVerified={isVerified}
+    isAdmin={isAdmin}
+    unReadCount={unReadCount} /> : '';
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (
     <>
       <Suspense fallback={<Loading />}>
         <Navbar userData={userData}
-         isStartUp={isStartUp} 
-         isStudent={isStudent} 
-         isVerified={isVerified} 
-         isAdmin={isAdmin} />
+          isStartUp={isStartUp}
+          isStudent={isStudent}
+          isVerified={isVerified}
+          isAdmin={isAdmin} />
         {sidebarComponent}
         <AppRoutes
           userData={userData}
