@@ -111,9 +111,12 @@ const StudentDashboard = () => {
     if (isUser && currentUser) {
         return (
             <>
-                <div>
-                    <h1>Student Dashboard</h1>
-                </div>
+            <div className="StudentMainDash">
+
+                    <div >
+                        <h1>Student Dashboard</h1>
+                    </div>
+            </div>
 
             </>
 

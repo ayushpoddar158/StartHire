@@ -107,7 +107,7 @@ const Studentprofile = (props) => {
           <div class="row row-offcanvas row-offcanvas-left">
             {/* <StudentAside /> */}
             {/* <Dashboard/> */}
-            <div class="col main pt-5 mt-3 ">
+            <div class="col main pt-5 mt-3  StudentDivSectionabv">
               <section class="bg-light studentmaindiv2">
                 <button
                   id="stuprofileedit"
