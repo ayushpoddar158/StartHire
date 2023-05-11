@@ -9,7 +9,8 @@ import {
   getDocs,
   collection,
   addDoc,
-  where
+  where,
+  serverTimestamp
 } from "firebase/firestore";
 
 
@@ -65,40 +66,62 @@ const Signupstartup = () => {
       await createUserWithEmailAndPassword(Auth, sEmail, password)
         .then(async (userCredential) => {
           const user = userCredential.user;
-          await addDoc(collection(db, "startups"), {
-            uid: user.uid,
-            name: sName,
-            authProvider: "email",
-            email: sEmail,
-            desgn: "startup",
-            updatedProfile: false,
-            details: null,
-            jobs: null, 
-            verification: {
-              isVerified: false,
-            }
-          })
-          alert("Verify Your Email");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          alert(errorMessage, errorCode);
-        });
-      // console.log(Auth.currentUser);
-      await sendEmailVerification(Auth.currentUser)
-        .then(() => {
-          console.log("Verification Email Sent");
-          Auth.signOut();
-          navigate("/LoginStartUp");
-          // ...
-        }).catch((error) => {
-          console.log("There is an error !!")
-          console.log(error)
-          // An error happened.
+          // console.log(Auth.currentUser);
+          await sendEmailVerification(Auth.currentUser)
+            .then(async () => {
+              console.log("Verification Email Sent");
+              var noteRef = await addDoc(collection(db, "notification"), {
+                senderId: "admin",
+                senderName: "admin",
+                recieiverId: Auth.currentUser.uid,
+                message: "Welcome to Start Hire",
+                sentTime: serverTimestamp(),
+                isRead: false
+              })
+              var addNotif = async () => {
+                await addDoc(collection(db, "startups"), {
+                  uid: user.uid,
+                  name: sName,
+                  authProvider: "email",
+                  email: sEmail,
+                  desgn: "startup",
+                  updatedProfile: false,
+                  details: null,
+                  jobs: null,
+                  notification: [noteRef.id],
+                  verification: {
+                    isVerified: false,
+                  }
+                })
+                  .then(() => {
+                    console.log("insdie the add notif setup")
+                  })
+                  .catch((err) => {
+                    console.log('inside error function');
+                    console.log(err);
+                  });
+                alert("Verify Your Email");
+              }
+              await addNotif()
+                .then(async () => {
+                  alert("Verify Your Email");
+                  await Auth.signOut()
+                    .then(() => {
+                      window.location.replace("/loginstartup");
+                    })
+                })
+            })
+
+            .catch((error) => {
+              console.log("There is an error !!")
+              console.log(error)
+              // An error happened.
+            });
         });
     }
   }
+
+
   return (
     <>
       <div className="container" id='Signupchangediv'>
@@ -136,7 +159,7 @@ const Signupstartup = () => {
                             <label className="form-label" HtmlFor="form3Example1c">StartUp Name</label>
                           </div>
                         </div>
-                        
+
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i id='signupicons' className="zmdi zmdi-email"></i>
                           <div className="form-outline flex-fill mb-0">

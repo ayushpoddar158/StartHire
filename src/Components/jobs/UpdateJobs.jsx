@@ -81,7 +81,7 @@ const UpdateJobs = () => {
             }
         };
         fetchData();
-    }, [currentUser])
+    },[])
 
     useEffect(() => {
         const loadData = async () => {
@@ -104,7 +104,7 @@ const UpdateJobs = () => {
 
     useEffect(() => {
         console.log(jobData)
-    },[jobData])
+    }, [jobData])
 
 
     const getData = (e) => {
@@ -134,16 +134,17 @@ const UpdateJobs = () => {
         });
         console.log(jobData)
 
+
     };
 
     useEffect(() => {
-        console.log(jobData)
+        console.log("jobdata", jobData)
     }, [jobData])
 
 
     // tag functions end 
 
-    
+
 
 
 
@@ -151,7 +152,7 @@ const UpdateJobs = () => {
         if (docRef) {
             console.log("inside update if ");
             try {
-                const jobRef = doc(db, "jobs", id); 
+                const jobRef = doc(db, "jobs", id);
                 const updateJob = await updateDoc(jobRef, {
                     details: jobData
                 });

@@ -30,6 +30,7 @@ import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import StartUpProfileForm from './StartUpProfileForm';
 
 
+
 const AsideMain = (props) => {
     const navigate = useNavigate();
     let userData = props.userData;
@@ -37,20 +38,21 @@ const AsideMain = (props) => {
     let isStartUp = props.isStartUp;
     let isVerified = props.isVerified;
     let isAdmin = props.isAdmin;
+    let unReadCount = props.unReadCount
 
-    const LogOut = async() =>{
-      await Auth.signOut()
-        .then(() => {
-          window.location.replace("/login")
-        })
+    const LogOut = async () => {
+        await Auth.signOut()
+            .then(() => {
+                window.location.replace("/login")
+            })
     }
-   if (isAdmin) {
-        console.log("admin",isAdmin)
+    if (isAdmin) {
+        console.log("admin", isAdmin)
         return (
             <>
                 <div >
 
-                    <div class="container-fluid mainAside" id="main" style={{backgroundColor:"white"}}>
+                    <div class="container-fluid mainAside" id="main" style={{ backgroundColor: "white" }}>
                         <div class="row row-offcanvas row-offcanvas-left">
                             <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
                                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3   " >
@@ -63,7 +65,7 @@ const AsideMain = (props) => {
                                     ><NavLink class="nav-link text-secondary" to="/StartUpLists" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/AdminNotification" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Notification</span></NavLink></li>
-                                   {/* <button>Hide</button> */}
+                                    {/* <button>Hide</button> */}
                                 </ul>
                             </div>
                         </div>
@@ -80,7 +82,7 @@ const AsideMain = (props) => {
             <>
                 <div >
 
-                    <div class="container-fluid mainAside" id="main" style={{backgroundColor:"white"}}>
+                    <div class="container-fluid mainAside" id="main" style={{ backgroundColor: "white" }}>
                         <div class="row row-offcanvas row-offcanvas-left">
                             <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
                                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3   " >
@@ -94,7 +96,7 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/StartUpBlog" ><FontAwesomeIcon icon={faBlog} /><span className="ml-3" >Blog</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                    ><NavLink class="nav-link text-secondary" to="/Notification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/Notification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications {unReadCount}</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
                                     {/* <button>Hide</button> */}
@@ -124,7 +126,7 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2 "
                                     ><NavLink class="nav-link text-secondary" to="/StudentProfile"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >Profile</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                   ><NavLink class="nav-link text-secondary" to="/StudentNotification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications</span><span className='studentUpnotispan'>20</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/StudentNotification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications  {unReadCount}</span><span className='studentUpnotispan'>20</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
                                     {/* <button>Hide</button> */}
