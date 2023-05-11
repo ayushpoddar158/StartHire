@@ -41,6 +41,7 @@ import StudentLists from "./DashboardArea/StudentLists";
 import AdminStudentLists from "./AdminDashboard/AdminStudentList";
 import ForgetPassword from "./Components/Forgetpassword";
 import StartUpLists from "./AdminDashboard/StartUpLists";
+import AdminNotification from "./AdminDashboard/AdminNotification";
 
 
 const AppRoutes = (props) => {
@@ -96,6 +97,7 @@ const AppRoutes = (props) => {
         <Route path="SearchInterns" element={<SearchInterns />} />
         <Route path="AdminStudentLists" element={<AdminStudentLists />} />
         <Route path="StartUpLists" element={<StartUpLists />} />
+        <Route path="AdminNotification" element={<AdminNotification />} />
         
     </>
 

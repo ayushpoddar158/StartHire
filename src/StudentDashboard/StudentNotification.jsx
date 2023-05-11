@@ -5,7 +5,7 @@ const StudentNotification = () => {
     <>
 
     <div>
-        <div class="container-fluid" id="main">
+        <div class="container-fluid StudentmainClass" id="main" >
             <div class="row row-offcanvas row-offcanvas-left">
                 <div class="col main pt-5 mt-3">
                     <section class="section-50 notimain2">

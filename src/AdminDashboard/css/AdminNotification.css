@@ -1,0 +1,77 @@
+.notimainDiv div{
+margin: 5px;
+}
+.notimainDiv{
+    position: relative;
+    left: 30%;
+    background-color: rgb(18, 3, 36) !important;
+    /* height: 100vh; */
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 10px;
+    
+    
+
+    
+}
+
+.notimainDiv .notiHeader{
+display: flex;
+align-items: center;
+background-color: rgb(3, 36, 36);
+justify-content: center;
+padding: 10px;
+color: white;
+width: 40%;
+margin: auto;
+border-radius: 10px;
+}
+.Notibox{
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+}
+.notidivinner1{
+    /* background-color: aqua; */
+}
+.notiFormControl{
+    background-color: white;
+    border-radius: 10px;
+    width: 50% !important;
+
+   
+}
+
+.notiinner2{
+    /* background-color: azure; */
+    display: flex;
+    justify-content: center;
+}
+.notibutton{
+    display: flex;
+    justify-content: center;
+}
+
+#notiTextArea{
+    border-radius: 10px !important;
+    padding: 10px;
+    width: 50%;
+}
+
+
+@media screen and (max-width: 600px) {
+.notimainDiv{
+    width: 90%;
+    left:5%;
+}
+.notiFormControl{
+    width: 100%;
+   
+}
+.notimainDiv .notiHeader{
+    width: 50%;
+}
+  }
