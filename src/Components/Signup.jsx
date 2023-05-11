@@ -11,7 +11,10 @@ import {
   getDocs,
   collection,
   addDoc,
-  where
+  where,
+  serverTimestamp,
+  updateDoc,
+  doc
 } from "firebase/firestore";
 
 import React, { useEffect, useState } from 'react'
@@ -31,6 +34,8 @@ const Signup = () => {
     password: "",
     repeatpassword: ""
   })
+  const [notifId, setNotifId] = useState(null);
+
   const getdata = (e) => {
     // console.log(e.target.value)
 
@@ -74,31 +79,56 @@ const Signup = () => {
       await createUserWithEmailAndPassword(Auth, email, password)
         .then(async (userCredential) => {
           const user = userCredential.user;
-            await addDoc(collection(db, "users"), {
-              uid: user.uid,
-              name: name,
-              authProvider: "email",
-              email: user.email,
-              desgn: "student",
-              updatedProfile: false,
-              details: null,
-              verification: {
-                isAvail: true,
-                isVerified: false,
-                isRejected: true,
-                ifConfirmed: false
-              },
-              startups: [],
-              notification: []
-            })
-              .then(() => {
-                console.log("inside error");
+          await sendEmailVerification(Auth.currentUser)
+            .then(async () => {
+              console.log("Verification Email Sent");
+              var noteRef = await addDoc(collection(db, "notification"), {
+                senderId: "admin",
+                senderName: "admin",
+                recieiverId: Auth.currentUser.uid,
+                message: "Welcome to Start Hire",
+                sentTime: serverTimestamp(),
+                isRead: false
               })
-              .catch((err) => {
-                console.log('inside error function');
-                console.log(err);
-              });
-            console.log("exitting addDoc");
+              var addNotif = async () => {
+                await addDoc(collection(db, "users"), {
+                  uid: user.uid,
+                  name: name,
+                  authProvider: "email",
+                  email: user.email,
+                  desgn: "student",
+                  updatedProfile: false,
+                  details: null,
+                  verification: {
+                    isAvail: true,
+                    isVerified: false,
+                    isRejected: true,
+                    isConfirmed: false
+                  },
+                  startups: [],
+                  notification: [noteRef.id]
+                })
+                  .then(() => {
+                    console.log("insdie the add notif setup")
+                  })
+                  .catch((err) => {
+                    console.log('inside error function');
+                    console.log(err);
+                  });
+              }
+              await addNotif()
+            })
+            .then(async () => {
+              await Auth.signOut()
+                .then(() => {
+                  window.location.replace("/login");
+                })
+            })
+            .catch((error) => {
+              console.log("There is an error !!")
+              console.log(error)
+              // An error happened.
+            });
           alert("Verify Your Email");
         })
         .catch((error) => {
@@ -107,22 +137,13 @@ const Signup = () => {
           console.log(errorMessage, errorCode)
         });
       // console.log(Auth.currentUser);
-      await sendEmailVerification(Auth.currentUser)
-        .then(() => {
-          console.log("Verification Email Sent");
-          Auth.signOut();
-          navigate("/Login");
-          // ...
-        }).catch((error) => {
-          console.log("There is an error !!")
-          console.log(error)
-          // An error happened.
-        });
-
     }
 
   }
-  
+
+  useEffect(() => {
+  }, [notifId])
+
 
   return (
     <>
