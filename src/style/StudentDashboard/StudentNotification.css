@@ -1,8 +1,18 @@
 .StudentmainClass{
+    /* background-color: red; */
+    position: absolute;
     
+    background-color: #29B6F6;
+    width: 60vw !important;
 }
 .section-50 {
     padding: 50px 0;
+    background-color: #040203;
+    width: 100vw;
+}
+.mainStudent{
+    background-color: #040203;
+    width: 90%;
 }
 
 .m-b-50 {
@@ -76,7 +86,8 @@
 }
 .notimain2{
     width: 75vw;
-    /* background-color: red; */
+    background-color: red;
+    
 }
 .studentUpnotispan{
     color: red;

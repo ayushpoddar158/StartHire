@@ -100,7 +100,7 @@ const StartUpProfile = (props) => {
           <div class="container">
             <div class="row">
               <div class="col-lg-12 mb-4 mb-sm-5">
-                <div class="card card-style1 border-0">
+                <div class="cardStartUpprofile card-style1 border-0">
                   <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                     <div class="row align-items-center">
                       <div class="col-lg-6 mb-4 mb-lg-0 startUpImgDiv">

@@ -25,43 +25,53 @@
 
 .NoOfStudents{
     /* background-color: red; */
-    background-color: rgb(205, 202, 202);
+    background-color: rgb(9, 9, 10);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     border-radius: 10px;
-    width: 20%;
+    width: 30%;
+    height: 40%;
+
 }
 .NoOfStartUps{
     /* background-color: blanchedalmond; */
-    background-color: rgb(205, 202, 202);
+    background-color: rgb(9, 9, 10);
+ 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     border-radius: 10px;
-    width: 20%;
+    width: 30%;
+    height: 40%;
 
 }
 .NoOfJobDesc{
     /* background-color: aqua; */
-    background-color: rgb(205, 202, 202);
+    background-color: rgb(9, 9, 10);
+    /* background-color: rgb(205, 202, 202); */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     border-radius: 10px;
-    width: 20%;
+    width: 30%;
+    height: 40%;
 }
 .AdminDashboardmainDiv span{
     font-weight: 900;
     font-size: 3rem;
     padding: 10px;
-    color: rgb(5, 5, 39);
+    /* color: rgb(5, 5, 39); */
+    color: rgb(34, 249, 5);
+}
+.AdminDashboardmainDiv h2{
+    color: white;
 }
 @media  only screen and (max-width:600px){
     .AdminDashboardmainDiv{
@@ -69,12 +79,15 @@
     }
     .NoOfStudents{
         width: 100%;
+        margin: 10px;
       
     }
     .NoOfStartUps{
         width: 100%;
+        margin: 10px;
     }
     .NoOfJobDesc{
 width: 100%;
+margin: 10px;
     }
 }
