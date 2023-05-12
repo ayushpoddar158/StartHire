@@ -1,25 +1,30 @@
 .mainJobDesc{
-    background-color: red !important;
-    height: 80vh !important;
+    background-color: rgb(5, 0, 9) !important;
+    /* height: 80vh !important; */
     position: relative;
     width: 60vw;
+
     left: 30%;
     top: 20%;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    
+    /* justify-content: center; */
+    /* align-items: center; */
     
     
 }
 .JobDescmain{
-    background-color: rgb(128, 13, 13);
+    background-color: rgb(244, 244, 249);
     /* position: relative; */
   /* left: 10.5%; */
     /* width: 50vw !important; */
     /* height: 90vh; */
-    padding: 20px;
+    padding: 20px !important;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +42,8 @@
 
 .Skillreq{
     margin: 5px !important;
-    background-color: red !important;
+    background-color: rgb(7, 110, 28) !important;
+    font-size: 10px !important;
     color: white !important;
    
 }
@@ -45,20 +51,27 @@
 .Skillreq:hover{
     cursor: default;
 }
-.suggestStudent{
+.suggestStudentbtndiv{
     margin-top: 30px;
+    margin-bottom: 10px;
     margin-left: 5px;
 }
-.studentList{
-    /* background-color: red; */
+.suggestStudentbtn{
+    background-color: rgba(100, 97, 96, 0.934) !important;
+    color: white !important;
+}
+/* .studentList{
+    background-color: blue;
+    position: absolute;
     height: 100%;
     margin: 10px;
-}
+} */
 
 .studentList{
     display: flex;
-  
-    background-color: aliceblue;
+
+    /* background-color: rgb(6, 81, 146); */
+    background-color: rgb(214, 209, 209);
     justify-content: space-around;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 2px #474646;
@@ -89,9 +102,9 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 5px;
-    background-color: blue;
+    /* background-color: blue; */
     align-items: center;
-    width: 100%;
+    width: 67%;
 
 }
 
@@ -100,7 +113,8 @@
     text-align: center;
     justify-content: center;
     font-size: 1.5rem !important;
-    background-color: aliceblue !important;
+    /* background-color: rgb(44, 234, 63) !important; */
+   color: rgb(1, 1, 7);
 }
 .skillbtn{
     /* background-color: red !important; */
@@ -115,14 +129,29 @@ width: 100%;
 }
 .skillbtns{
   margin: 5px !important;
-    font-size: 1.2rem !important;
+    font-size: 0.9rem !important;
+    background-color: rgb(4, 35, 35) !important;
+    color: white !important;
    
     } 
+.JObDescRejbtn{
+    background-color: red !important;
+    color: white !important;
+}    
 
+.JObDescSelbtn{
+    background-color: green !important;
+    color: white !important;
+}
+.jObDecUpdateBtn{
+    background-color: #080101 !important;
+    color: white !important;
+}
 .viewbtn{
     font-size: 1.2rem !important;
 }    
 .firstDiv h2{
+    /* background-color: red; */
 width: 90%;
 }
 .firstDiv{
@@ -130,11 +159,27 @@ width: 90%;
    
     justify-content: space-between!important;
   
-    background-color: red;
+    /* background-color: red; */
+}
+
+.JobDescSelStudenth2{
+    color: green;
+    margin: 10px;
 }
 @media only screen and (max-width: 600px) {
+    .mainJobDesc{
+        width: 95%;
+        left: 0%;
+        margin: 10px;
+    }
+    .skillmaindiv{
+        width: 100%;
+    }
   .studentList{
     display: flex;
+    flex-direction: column;
+  }
+  .skillbtn{
     flex-direction: column;
   }
   }

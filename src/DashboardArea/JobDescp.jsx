@@ -150,109 +150,109 @@ const JobDescp = () => {
 
   return (
     <>
-      <div className="mainJobDesc">
-
-        <div className="container JobDescmain">
-          <div className="title onediv firstDiv">
-            <h2 id="heading1">{jobData?.details.jobTitle}</h2>
-            <Link to={`/UpdateJobs/${id}`}>
-              <Button variant="contained">Update</Button>
-            </Link>
-            <hr />
-          </div>
-          <div className="description onediv">
-            <h2>Job Description</h2>
-            <hr />
-            <p>
-              {jobData?.details.jobDescription}
-            </p>
-          </div>
-          <div className="skills"></div>
-          <h2>Skills Required</h2>
+    <div className="mainJobDesc">
+    
+      <div className="JobDescmain">
+        <div className="title onediv firstDiv">
+          <h2 id="heading1">{jobData?.details.jobTitle}</h2>
+          <Link to={`/UpdateJobs/${id}`}>
+            <Button className="jObDecUpdateBtn" variant="contained ">Update</Button>
+          </Link>
           <hr />
-          <div className="tags">
-            {jobData?.details.skills.map((item) => {
-              return <Button className="Skillreq" variant="contained">
-                {item.value}
-              </Button>
-            })}
-          </div>
         </div>
-        <h2>Selected Students</h2>
-        {assignedStudents.map((item) => {
-          return (
-            <>
-              <div className="studentList">
-                <div className="stdlistmian2_1 firstdivig">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "auto" }}
-                  />
-                  <div class="ms-2">{item.data().details.firstname + " " + item.data().details.lastname}</div>
-                  <div class="ms-2">{item.data().details.email}</div>
-                </div>
-                <div className=" skillmaindiv">
-                  <div className="conatainer skilltextdiv">
-                    <h3>Skills</h3>
-                  </div>
-                  <div className="skillbtn">
-                    {item.data().details.skills.map((skill) => {
-                      return <Button variant="contained" className=" skillbtns ms-2">
-                        {skill.value}
-                      </Button>
-                    })}
-                  </div>
-                </div>
-                <div className="stdlistmian2_1">
-                  <Button className="viewbtn" variant="contained" onClick={() => { removeStudent(item) }}>
-                    Reject
-                  </Button>
-                </div>
-              </div>
-            </>
-          )
-        })}
-        {/* <hr /> */}
-        <div className="suggestStudent">
-          <Button variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
+        <div className="description onediv">
+          <h2>Job Description</h2>
+          <hr />
+          <p>
+            {jobData?.details.jobDescription}
+          </p>
         </div>
-        {selectedStudents.map((item) => {
-          return (
-            <>
-              <div className="studentList">
-                <div className="stdlistmian2_1 firstdivig">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "auto" }}
-                  />
-                  <div class="ms-2">{item.data().details.firstname + " " + item.data().details.lastname}</div>
-                  <div class="ms-2">{item.data().details.email}</div>
-                </div>
-                <div className=" skillmaindiv">
-                  <div className="conatainer skilltextdiv">
-                    <h3>Skills</h3>
-                  </div>
-                  <div className="skillbtn">
-                    {item.data().details.skills.map((skill) => {
-                      return <Button variant="contained" className=" skillbtns ms-2">
-                        {skill.value}
-                      </Button>
-                    })}
-                  </div>
-                </div>
-                <div className="stdlistmian2_1">
-                  <Button className="viewbtn" variant="contained" onClick={() => { addStudent(item) }}>
-                    Select
-                  </Button>
-                </div>
-              </div>
-            </>
-          )
-        })}
-
+        <div className="skills"></div>
+        <h2>Skills Required</h2>
+        <hr />
+        <div className="tags">
+          {jobData?.details.skills.map((item) => {
+            return <Button className="Skillreq" variant="contained">
+              {item.value}
+            </Button>
+          })}
+        </div>
       </div>
+      <h2 className="JobDescSelStudenth2">Selected Students</h2>
+      {assignedStudents.map((item) => {
+        return (
+          <>
+            <div className="studentList">
+              <div className="stdlistmian2_1 firstdivig">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                  alt="avatar 1"
+                  style={{ width: "45px", height: "auto" }}
+                />
+                <div class="ms-2">{item.data().details.firstname + " " + item.data().details.lastname}</div>
+                <div class="ms-2">{item.data().details.email}</div>
+              </div>
+              <div className=" skillmaindiv">
+                <div className="conatainer skilltextdiv">
+                  <h3>Skills</h3>
+                </div>
+                <div className="skillbtn">
+                  {item.data().details.skills.map((skill) => {
+                    return <Button variant="contained" className=" skillbtns ms-2">
+                      {skill.value}
+                    </Button>
+                  })}
+                </div>
+              </div>
+              <div className="stdlistmian2_1">
+                <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
+                  Reject
+                </Button>
+              </div>
+            </div>
+          </>
+        )
+      })}
+      {/* <hr /> */}
+      <div className="suggestStudentbtndiv">
+        <Button className="suggestStudentbtn" variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
+      </div>
+      {selectedStudents.map((item) => {
+        return (
+          <>
+            <div className="studentList">
+              <div className="stdlistmian2_1 firstdivig">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                  alt="avatar 1"
+                  style={{ width: "45px", height: "auto" }}
+                />
+                <div class="ms-2">{item.data().details.firstname + " " + item.data().details.lastname}</div>
+                <div class="ms-2">{item.data().details.email}</div>
+              </div>
+              <div className=" skillmaindiv">
+                <div className="conatainer skilltextdiv">
+                  <h3>Skills</h3>
+                </div>
+                <div className="skillbtn">
+                  {item.data().details.skills.map((skill) => {
+                    return <Button variant="contained" className=" skillbtns ms-2">
+                      {skill.value}
+                    </Button>
+                  })}
+                </div>
+              </div>
+              <div className="stdlistmian2_1">
+                <Button className="viewbtn JObDescSelbtn" variant="contained" onClick={() => { addStudent(item) }}>
+                  Select
+                </Button>
+              </div>
+            </div>
+          </>
+        )
+      })}
+        
+    </div>
     </>
   );
 };

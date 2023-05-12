@@ -77,7 +77,7 @@
 
 /* startUp start */
 .cardStartUpprofile {
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -87,6 +87,9 @@
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
     width: 100%;
+    background-color: rgb(5, 167, 167) !important;
+    /* position: absolute; */
+    /* height: 49vh; */
 }
 
 
@@ -111,8 +114,12 @@
 
 
 .StartUpmain{
-    /* background-color: red !important; */
-    width: 82.22vw !important;
+    background-color: red !important;
+    width: 70vw !important;
+    left: 17%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -128,15 +135,32 @@
     object-fit: cover;
 }
 
+.startup1main{
+    background-color: #ceaa4d !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.startup1{
+    background-color: #16bc3d !important;
+    display: flex;
+}
 /* startUp end */
 
 
 
-section {
-    padding: 120px 0;
-    /* overflow: hidden; */
+.StartUpSection {
+    /* padding: 120px 0; */
     position: relative;
-    background: #fff;
+    left: 20%;
+   margin: 20px;
+   padding: 20px;
+    /* overflow: hidden; */
+    /* position: relative; */
+    background: #b62727 !important;
+    width: 70vw;
+    /* height: 100vh; */
+    
 }
 
 .mb-2-3,
