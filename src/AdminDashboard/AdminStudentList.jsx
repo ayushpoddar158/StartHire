@@ -22,7 +22,6 @@ const AdminStudentLists = (props) => {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
-           
             >
               <FormControlLabel
                 className="Admindstudentlistradio"
@@ -82,7 +81,7 @@ const AdminStudentLists = (props) => {
           </FormControl>
         </div>
         {allStudents?.map((item) => {
-          if (item?.data().desgn === "student") {
+          if (item?.data().desgn === "student" && item?.data().updatedProfile) {
             console.log(item?.data().details.firstname);
             return (
               <div className="box3">
