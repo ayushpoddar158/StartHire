@@ -1,37 +1,27 @@
 // Authentication @Firebase 
-import { Auth } from "../../Firebase";
-import { AuthContext } from "../../Authorizer";
 import { useEffect } from "react";
-import { Box } from "@mui/material";
 import Select from "react-select";
 
 
 // Data import @Firebase
-import { db } from "../../Firebase";
-import { storage } from "../../Firebase";
+import { db } from "../Firebase";
 import {
     query,
     getDocs,
     collection,
+    getDoc,
     addDoc,
     updateDoc,
+    doc,
     where
 } from "firebase/firestore";
-import {
-    getDownloadURL,
-    ref,
-    uploadBytes
-} from "firebase/storage";
+
 
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { render } from 'react-dom';
-import { Codinglanginfo } from '../Codinglanginfo';
-import { WithContext as ReactTags } from 'react-tag-input';
-import "../../style/Studentprofileform.css"
-import StudentLists from "../../DashboardArea/StudentLists";
-import Aside from "../../DashboardArea/Aside";
+import { Codinglanginfo } from '../Components/Codinglanginfo';
+import "../style/Studentprofileform.css"
 import { TextField } from "@material-ui/core";
 
 
@@ -53,12 +43,11 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 
-const CreateJobs = () => {
-    const { currentUser } = React.useContext(AuthContext);
+const AdminUpdateJobs = () => {
+    const  JobId  = useParams().id;
+    console.log("id",JobId)
     const [data, setData] = useState();
     const [docRef, setDocRef] = useState();
-    const [linkImageUrl, setLinkImageUrl] = useState(null);
-    // const [tags, setTags] = React.useState([]);
     const navigate = useNavigate();
     const [jobData, setJobData] = useState(
         {
@@ -71,42 +60,37 @@ const CreateJobs = () => {
     )
 
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
-                const docs = await getDocs(q);
-                const doc = docs.docs[0];
-                setDocRef(doc);
-                setData(doc.data());
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [currentUser])
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
+    //             const docs = await getDocs(q);
+    //             const doc = docs.docs[0];
+    //             setDocRef(doc);
+    //             setData(doc.data());
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     fetchData();
+    // }, [])
 
     useEffect(() => {
         const loadData = async () => {
-            if (currentUser) {
-                if (data) {
-                    if (data.updatedProfile) {
-                        // console.log(data.details.PImageUrl);
-                        setJobData({
-                            creator: currentUser.uid,
-                            jobTitle: "",
-                            jobDescription: "",
-                            jobLocation: "",
-                            skills: []
-                        });
-                    }
+                let jobRef = doc(db, "jobs", JobId);
+                let job = await getDoc(jobRef);
+                if (job) {
+                    setJobData(job.data().details);
                 }
-            }
         };
         loadData();
-    }, [data]);
+    }, []);
 
+    // sample job id: QL5KnfEwv9SNw57bAAwb
+
+    // useEffect(() => {
+    //     console.log(jobData)
+    // }, [jobData])
 
 
     const getData = (e) => {
@@ -136,82 +120,51 @@ const CreateJobs = () => {
         });
         console.log(jobData)
 
+
     };
 
     useEffect(() => {
-        console.log(jobData)
+        console.log("jobdata", jobData)
     }, [jobData])
 
 
     // tag functions end 
 
-    const userDataUpdate = async (docRef, jobRef) => {
+
+
+
+
+    const updateDocument = async (id) => {
         if (docRef) {
-            if (docRef.data().jobs) {
-                console.log("inside if");
-                await updateDoc(docRef.ref, {
-                    "jobs": [
-                        ...docRef.data().jobs,
-                        jobRef.id
-                    ]
-                }).then(() => {
-                    console.log("updatedUserData")
-                }).catch((error) => {
-                    console.log("Error updating document: ", error);
-                })
+            console.log("inside update if ");
+            try {
+                const jobRef = doc(db, "jobs", id);
+                const updateJob = await updateDoc(jobRef, {
+                    details: jobData
+                });
+                alert("Information successfully updated!");
+            } catch (error) {
+                console.log("Error updating document: ", error);
             }
-            else {
-                await updateDoc(docRef.ref, {
-                    "jobs": [
-                        jobRef.id
-                    ]
-                }).then(() => {
-                    console.log("updatedUserData")
-                }).catch((error) => {
-                    console.log("Error updating document: ", error);
-                })
-            }
-
         }
-
     }
 
 
 
-const updateDocument = async () => {
-    if (docRef) {
-        console.log("inside update if ");
+    const submitHandler = async () => {
+        console.log("inside submit handler");
         try {
-            const jobRef = await addDoc(collection(db, "jobs"), {
-                creator: currentUser.uid,
-                details: jobData,
-                assign: []
-            });
-            console.log(jobRef.id); // log the document id
-            alert("Information successfully updated!");
-            await userDataUpdate(docRef, jobRef);
-        } catch (error) {
-            console.log("Error updating document: ", error);
+            await updateDocument(id);
+            navigate("/Jobs")
+        } catch (err) {
+            console.log(err);
         }
     }
-}
-
-
-
-const submitHandler = async () => {
-    console.log("inside submit handler");
-    try {
-        await updateDocument();
-        navigate("/dashboard")
-    } catch (err) {
-        console.log(err);
-    }
-}
 
 
 
 
-if (currentUser) {
+
     return (
         <>
             <div class="container bootstrap snippet" id='studentformmain'>
@@ -219,12 +172,6 @@ if (currentUser) {
 
                     {/* <!--/col-3--> */}
                     <div class="col-sm-9">
-                        {/* <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul> */}
-
 
                         <div class="tab-content">
                             <div class="tab-pane active" id="home">
@@ -244,6 +191,7 @@ if (currentUser) {
                                                     name="jobTitle"
                                                     id="first_name"
                                                     placeholder="Job Title"
+                                                    value={jobData.jobTitle}
                                                 />
                                             </div>
                                         </div>
@@ -256,6 +204,7 @@ if (currentUser) {
                                                     class="form-control"
                                                     name="jobDescription"
                                                     id="last_name"
+                                                    value={jobData.jobDescription}
                                                     placeholder="Job Description"
                                                     title="enter your last name if any."
                                                     required />
@@ -270,6 +219,7 @@ if (currentUser) {
                                                     name='jobLocation'
                                                     class="form-control"
                                                     required id="location"
+                                                    value={jobData.jobLocation}
                                                     placeholder="Job Location"
                                                     title="enter a location" />
                                             </div>
@@ -301,7 +251,7 @@ if (currentUser) {
                                         <div class="form-group">
                                             <div class="col-xs-12">
                                                 <br />
-                                                <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i>Create Job</button>
+                                                <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i>Update Job</button>
                                                 {/* <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> */}
                                             </div>
                                         </div>
@@ -327,9 +277,9 @@ if (currentUser) {
     )
 }
 
-}
 
-export default CreateJobs
+
+export default AdminUpdateJobs
 
 
 

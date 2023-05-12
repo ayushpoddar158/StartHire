@@ -54,6 +54,8 @@ import AdminStudentLists from "./AdminDashboard/AdminStudentList";
 import ForgetPassword from "./Components/Forgetpassword";
 import StartUpLists from "./AdminDashboard/StartUpLists";
 import AdminNotification from "./AdminDashboard/AdminNotification";
+import AdminStartupData from "./AdminDashboard/AdminStartupData";
+import AdminUpdateJobs from "./AdminDashboard/AdminUpdateJobs";
 
 
 const AppRoutes = (props) => {
@@ -107,12 +109,15 @@ const AppRoutes = (props) => {
     </>
 
     const AdminPages = <>
-        <Route path="AdminDashboard" element={<AdminDashboard allData={allData} />} />
-        <Route path="AdminJobs" element={<AdminJobs allData={allData}/>} />
-        <Route path="SearchInterns" element={<SearchInterns allData={allData}/>} />
-        <Route path="AdminStudentLists" element={<AdminStudentLists allData={allData}/>} />
-        <Route path="StartUpLists" element={<StartUpLists allData={allData}/>} />
-        <Route path="AdminNotification" element={<AdminNotification allData={allData}/>} />
+        <Route path="/AdminDashboard" element={<AdminDashboard allData={allData} />} />
+        <Route path="/AdminJobs" element={<AdminJobs allData={allData}/>} />
+        <Route path="/SearchInterns" element={<SearchInterns allData={allData}/>} />
+        <Route path="/AdminStudentLists" element={<AdminStudentLists allData={allData}/>} />
+        <Route path="/StartUpLists" element={<StartUpLists allData={allData}/>} />
+        <Route path="/AdminNotification" element={<AdminNotification allData={allData}/>} />
+        <Route path="/AdminStartupData/:id" element={<AdminStartupData />} />
+        <Route path="JobDescp/:id" element={<JobDescp />} />
+        <Route path="AdminUpdateJobs/:id" element={<AdminUpdateJobs/>} />
     </>
 
     if (isAdmin) {
