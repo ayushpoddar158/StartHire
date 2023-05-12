@@ -103,14 +103,14 @@ const Studentprofile = (props) => {
   return (
     <>
       <div>
-        <div class="container-fluid" id="mainStudent">
+        <div class="container-fluid" id="StudentUpmain">
           <div class="row row-offcanvas row-offcanvas-left">
             {/* <StudentAside /> */}
             {/* <Dashboard/> */}
             <div class="col main pt-5 mt-3  StudentDivSectionabv">
               <section class="bg-light studentmaindiv2">
                 <button
-                  id="stuprofileedit"
+                  id="studentrofileedit"
                   onClick={navigateEdit}
                   className="btn btn-primary"
                 >
@@ -119,11 +119,11 @@ const Studentprofile = (props) => {
                 <div class="container ">
                   <div class="row">
                     <div class="col-lg-12 mb-4 mb-sm-5">
-                      <div class="card card-style1 border-0">
+                      <div class="cardStudentprofile card-style1 border-0">
                         <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                           <div class="row align-items-center">
-                            <div class="col-lg-6 mb-4 mb-lg-0 ">
-                              <img className="" style={{width:"300px"}}
+                            <div class="col-lg-6 mb-4 mb-lg-0  studentImgDiv">
+                              <img className="studentImg" 
                                 src={StudentData.PImageUrl}
                                 alt="..."
                               />

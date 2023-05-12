@@ -29,11 +29,11 @@ const Notification = (props) => {
     return (
         <>
             <div className='MainNotiStart'>
-                <div class="container-fluid" id="main">
+                <div class="container-fluid" id="">
                     <div class="">
-                        <div class="col main pt-5 mt-3">
-                            <section class="section-50">
-                                <div class="container">
+                        <div class="col StartNotimain pt-5 mt-3">
+                            <section class="Startsection-50">
+                                <div class="container ">
                                     <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
                                 </div>
                                 {notifObj.map((item) => {

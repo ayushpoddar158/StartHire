@@ -5,9 +5,9 @@ const StudentNotification = () => {
     <>
 
     <div>
-        <div class="container-fluid StudentmainClass" id="main" >
-            <div class="row row-offcanvas row-offcanvas-left">
-                <div class="col main pt-5 mt-3">
+        <div class="container-fluid StudentmainClass" id="" >
+            <div class="">
+                <div class="col mainStudent pt-5 mt-3">
                     <section class="section-50 notimain2">
                         <div class="container">
                             <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
