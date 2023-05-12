@@ -88,7 +88,7 @@ const AdminStudentLists = (props) => {
                 <div className="studentList">
                   <div className="stdlistmian2_1 firstdivig">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                      src={item?.data().details.PImageUrl}
                       alt="avatar 1"
                       style={{ width: "45px", height: "auto" }}
                     />
