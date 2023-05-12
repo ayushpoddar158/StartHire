@@ -85,7 +85,7 @@ const App = (props) => {
         }
         setNotifObj(notif => [
           ...notif,
-          note.data()
+          note
         ]);
       }
       setUnreadCount(UnReadCount);

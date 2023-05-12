@@ -89,7 +89,7 @@ const AppRoutes = (props) => {
         <Route path="/Studentprofile" element={<Studentprofile />} />
         <Route path="/StudentDashboard" element={<StudentDashboard />} />
         <Route path="/VerifyEmail" element={<VerifyEmail />} />
-        <Route path="/StudentNotification" element={<StudentNotification />} />
+        <Route path="/StudentNotification" element={<StudentNotification notifObj ={notifObj } />} />
     </>
 
     const StartUpPages = <>

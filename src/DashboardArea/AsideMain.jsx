@@ -77,7 +77,7 @@ const AsideMain = (props) => {
         )
     }
 
-    if (isStartUp) {
+    if (isStartUp && isVerified) {
         return (
             <>
                 <div >
@@ -96,22 +96,19 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/StartUpBlog" ><FontAwesomeIcon icon={faBlog} /><span className="ml-3" >Blog</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                    ><NavLink class="nav-link text-secondary" to="/Notification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications {unReadCount}</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/Notification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications</span><span className='studentUpnotispan'>{unReadCount === 0 ? "" : unReadCount}</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
                                     {/* <button>Hide</button> */}
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </>
-
         )
     }
-    else if (isStudent) {
+    else if (isStudent && isVerified) {
         console.log("isStudent")
         return (
             <>
@@ -126,19 +123,16 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2 "
                                     ><NavLink class="nav-link text-secondary" to="/StudentProfile"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >Profile</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                    ><NavLink class="nav-link text-secondary" to="/StudentNotification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications  {unReadCount}</span><span className='studentUpnotispan'>20</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/StudentNotification" ><FontAwesomeIcon icon={faBell} /><span className="ml-3" >Notifications  </span><span className='studentUpnotispan'>{unReadCount === 0 ? "" : unReadCount}</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><button class="nav-link text-secondary LogoutbtnAsilde" onClick={LogOut}>LogOut</button></li>
                                     {/* <button>Hide</button> */}
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </>
-
         )
     }
 }

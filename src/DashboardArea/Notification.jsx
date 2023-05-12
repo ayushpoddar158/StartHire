@@ -22,6 +22,16 @@ const Notification = (props) => {
     var notifObj = props.notifObj;
     console.log("notifObj", notifObj);
 
+    var UpdateRead = async(notifId) => {
+        await updateDoc(notifId.ref, {
+            isRead: true
+        }).then(() => {
+            console.log("updated")
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
     useEffect(() => {
         console.log(notifObj)
     }, [notifObj])
@@ -37,14 +47,15 @@ const Notification = (props) => {
                                     <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
                                 </div>
                                 {notifObj.map((item) => {
+                                    UpdateRead(item)
                                     return (
                                         <div class="notification-ui_dd-content">
                                             <div class="notification-list notification-list--unread">
                                                 <div class="notification-list_content">
                                                     <div class="notification-list_detail">
-                                                        <p><b>{item.senderName}</b> </p>
-                                                        <p class="text-muted">{item.message}</p>
-                                                        <p class="text-muted"><small></small></p>
+                                                        <p><b>{item.data().senderName}</b> </p>
+                                                        <p class="text-muted">{item.data().message}</p>
+                                                        <p class="text-muted"><small>Sent At : {item.data().sentTime.toDate().toLocaleString()}</small></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,12 +67,6 @@ const Notification = (props) => {
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         </>
     )
 }
