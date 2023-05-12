@@ -41,15 +41,17 @@
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #c20b0b;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: 0.25rem;
+    width: 100%;
 }
 
 section {
     padding: 120px 0;
-    overflow: hidden;
+    /* overflow: hidden; */
+    position: relative;
     background: #fff;
 }
 
@@ -191,18 +193,7 @@ section {
     left: 40rem;
     
 }
-#mainStudent{
-    /* background-color: red; */
-    width: 80vw;
-    /* margin: auto; */
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-}
-.studentmaindiv2{
-    /* background-color: brown; */
-    width: 80vw;
-}
+
 .StartUpmain{
     /* background-color: red !important; */
     width: 82.22vw !important;
@@ -228,4 +219,32 @@ left: 0px;
 .startUpImgDiv{
     position: static;
 }
+}
+
+.studentDetails{
+    position: relative;
+    /* left: 40rem; */
+}
+#mainStudent{
+    background-color: red;
+    position: absolute;
+    width: 75vw;
+    /* margin: auto; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    top: 10%;
+    left: 20%;
+}
+.studentmaindiv2{
+    /* background-color: brown; */
+    width: 80vw;
+}
+
+
+
+
+.StudentDivSectionabv{
+    background-color: #15395A !important;
+    
 }

@@ -98,6 +98,7 @@ const StartUpProfile = (props) => {
             onClick={navigateEdit}
             className="btn btn-primary"
           >
+        
             Edit
           </button>
           <div class="container">
