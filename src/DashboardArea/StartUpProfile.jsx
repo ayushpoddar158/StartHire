@@ -87,8 +87,9 @@ const StartUpProfile = (props) => {
   return (
     <>
       {/* <Dashboard/> */}
-      <div class="col main pt-5 mt-3 StartUpmain">
-        <section class="bg-light">
+    
+        <section class="bg-dark StartUpSection">
+        
           <button
             id="stuprofileedit"
             onClick={navigateEdit}
@@ -101,8 +102,8 @@ const StartUpProfile = (props) => {
             <div class="row">
               <div class="col-lg-12 mb-4 mb-sm-5">
                 <div class="cardStartUpprofile card-style1 border-0">
-                  <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
-                    <div class="row align-items-center">
+                  <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7 startup1main">
+                    <div class="row align-items-center startup1 ">
                       <div class="col-lg-6 mb-4 mb-lg-0 startUpImgDiv">
                         <img
                           className="StartUpimg"
@@ -174,7 +175,7 @@ const StartUpProfile = (props) => {
             </div>
           </div>
         </section>
-      </div>
+      
     </>
   );
 };

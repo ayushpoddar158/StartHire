@@ -143,11 +143,11 @@ const JobDescp = () => {
     <>
     <div className="mainJobDesc">
     
-      <div className="container JobDescmain">
+      <div className="JobDescmain">
         <div className="title onediv firstDiv">
           <h2 id="heading1">{jobData?.details.jobTitle}</h2>
           <Link to={`/UpdateJobs/${id}`}>
-            <Button variant="contained">Update</Button>
+            <Button className="jObDecUpdateBtn" variant="contained ">Update</Button>
           </Link>
           <hr />
         </div>
@@ -169,7 +169,7 @@ const JobDescp = () => {
           })}
         </div>
       </div>
-      <h2>Selected Students</h2>
+      <h2 className="JobDescSelStudenth2">Selected Students</h2>
       {assignedStudents.map((item) => {
         return (
           <>
@@ -196,7 +196,7 @@ const JobDescp = () => {
                 </div>
               </div>
               <div className="stdlistmian2_1">
-                <Button className="viewbtn" variant="contained" onClick={() => { removeStudent(item) }}>
+                <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
                   Reject
                 </Button>
               </div>
@@ -205,8 +205,8 @@ const JobDescp = () => {
         )
       })}
       {/* <hr /> */}
-      <div className="suggestStudent">
-        <Button variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
+      <div className="suggestStudentbtndiv">
+        <Button className="suggestStudentbtn" variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
       </div>
       {selectedStudents.map((item) => {
         return (
@@ -234,7 +234,7 @@ const JobDescp = () => {
                 </div>
               </div>
               <div className="stdlistmian2_1">
-                <Button className="viewbtn" variant="contained" onClick={() => { addStudent(item) }}>
+                <Button className="viewbtn JObDescSelbtn" variant="contained" onClick={() => { addStudent(item) }}>
                   Select
                 </Button>
               </div>
