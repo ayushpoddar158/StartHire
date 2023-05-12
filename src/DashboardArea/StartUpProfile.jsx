@@ -66,16 +66,12 @@ const StartUpProfile = (props) => {
               location: data.details.location,
               FounderName: data.details.FounderName,
               ContactNumber: data.details.ContactNumber,
-              websiteLink: data.details.websiteLink,
-              linkedInLink: data.details.linkedInLink,
-              PImageUrl: data.details.PImageUrl,
-              domains: data.details.domains,
+              websiteLink: data.details.websiteLink, linkedInLink: data.details.linkedInLink, PImageUrl: data.details.PImageUrl, domains: data.details.domains,
             });
           }
         }
       }
-    };
-    loadData();
+    }; loadData();
   }, [data]);
 
   useEffect(() => {
@@ -86,7 +82,7 @@ const StartUpProfile = (props) => {
 
   const navigate = useNavigate();
   const navigateEdit = () => {
-    props.changemenuStartUp();
+    navigate("/StartUpProfileForm");
   };
   return (
     <>
@@ -98,7 +94,7 @@ const StartUpProfile = (props) => {
             onClick={navigateEdit}
             className="btn btn-primary"
           >
-        
+
             Edit
           </button>
           <div class="container">
@@ -164,7 +160,7 @@ const StartUpProfile = (props) => {
                                     {item.value}
                                   </span>
                                   <hr />
-                                 
+
                                 </li>
                               </>
                             );

@@ -25,6 +25,7 @@ const JobDescp = () => {
   let [selStudent, setSelStudent] = useState([]);
   let [jobSkillList, setJobSkillList] = useState([]);
   let [assignedStudents, setAssignedStudents] = useState([]);
+  let [assignIds, setAssignIds] = useState([]);
   let [selectedStudents, setSelectedStudents] = useState([]);
 
   const id = useParams().id;
@@ -34,12 +35,37 @@ const JobDescp = () => {
       let jobRef = doc(db, "jobs", id);
       setJobDataRef(jobRef);
       const jobVal = await getDoc(jobRef);
-      // console.log(jobVal.data());
       setJobData(jobVal.data());
-      setAssignedStudents(jobVal.data().assign)
+      setAssignIds(jobVal.data().assign)
     }
     loadJob(id);
   }, [])
+
+  useEffect(() => {
+    console.log("assign useEffect is called", assignIds);
+    const updateStd = async (jobUpdateRef) => {
+      await updateDoc(jobUpdateRef, {
+        assign: assignIds
+      }).then(() => {
+        console.log("modified assigned student list")
+      }).catch((err) => {
+        console.log(err)
+      });
+    }
+    updateStd(jobDataRef);
+    const loadAssignStudents = async (id) => {
+      console.log("id", id)
+      const assignRef = doc(db, "users", id);
+      const assignVal = await getDoc(assignRef);
+      if (!assignedStudents.includes(assignVal)) {
+        setAssignedStudents(values => [...values, assignVal])
+      }
+    }
+    setAssignedStudents([]);
+    assignIds.map((id) => {
+      loadAssignStudents(id)
+    })
+  }, [assignIds])
 
   useEffect(() => {
     jobData?.details.skills.map((item) => {
@@ -82,47 +108,31 @@ const JobDescp = () => {
       var matchVal = getPer(student.data().details?.skills, jobSkillList)
       var contains = false;
       assignedStudents.map((item) => {
-        contains = item.uid === student.data().uid ? true : contains; 
+        contains = item.data().uid === student.data().uid ? true : contains;
       })
       if (matchVal >= 0.5 && !contains) {
-        setSelectedStudents(students => [...students, student.data()])
+        setSelectedStudents(students => [...students, student])
       }
     })
   }
   const addStudent = async (student) => {
     console.log(student);
-    setAssignedStudents(assignedStudents => [...assignedStudents, student])
+    setAssignIds(assignedIds => [...assignedIds, student.id])
     const newSelect = selectedStudents.filter((item) => {
       return item !== student;
     })
     setSelectedStudents(newSelect);
-    // selectedStudents.splice(selectedStudents.indexOf(student), 1);
   }
 
   const removeStudent = async (student) => {
     console.log(student);
     setSelectedStudents(selectedStudents => [...selectedStudents, student])
-    const newAssign = assignedStudents.filter((item) => {
-      return item !== student;
+    const newAssign = assignIds.filter((item) => {
+      return item !== student.id;
     })
-    setAssignedStudents(newAssign);
+    console.log("newAssign", newAssign)
+    setAssignIds(newAssign);
   }
-
-  useEffect(() => {
-    console.log("assignees", assignedStudents);
-    console.log("selectedStud", selectedStudents);
-    console.log("inside use effect of assignedStudents")
-    const updateStd = async (jobUpdateRef) => {
-      await updateDoc(jobUpdateRef, {
-        assign: assignedStudents
-      }).then(() => {
-        console.log("modified assigned student list")
-      }).catch((err) => {
-        console.log(err)
-      });
-    }
-    updateStd(jobDataRef);
-  }, [assignedStudents]);
 
   useEffect(() => {
     console.log("selectedStud", selectedStudents);
@@ -168,15 +178,15 @@ const JobDescp = () => {
                   alt="avatar 1"
                   style={{ width: "45px", height: "auto" }}
                 />
-                <div class="ms-2">{item.details.firstname + " " + item.details.lastname}</div>
-                <div class="ms-2">{item.details.email}</div>
+                <div class="ms-2">{item.data().details.firstname + " " + item.data().details.lastname}</div>
+                <div class="ms-2">{item.data().details.email}</div>
               </div>
               <div className=" skillmaindiv">
                 <div className="conatainer skilltextdiv">
                   <h3>Skills</h3>
                 </div>
                 <div className="skillbtn">
-                  {item.details.skills.map((skill) => {
+                  {item.data().details.skills.map((skill) => {
                     return <Button variant="contained" className=" skillbtns ms-2">
                       {skill.value}
                     </Button>
@@ -206,15 +216,15 @@ const JobDescp = () => {
                   alt="avatar 1"
                   style={{ width: "45px", height: "auto" }}
                 />
-                <div class="ms-2">{item.details.firstname + " " + item.details.lastname}</div>
-                <div class="ms-2">{item.details.email}</div>
+                <div class="ms-2">{item.data().details.firstname + " " + item.data().details.lastname}</div>
+                <div class="ms-2">{item.data().details.email}</div>
               </div>
               <div className=" skillmaindiv">
                 <div className="conatainer skilltextdiv">
                   <h3>Skills</h3>
                 </div>
                 <div className="skillbtn">
-                  {item.details.skills.map((skill) => {
+                  {item.data().details.skills.map((skill) => {
                     return <Button variant="contained" className=" skillbtns ms-2">
                       {skill.value}
                     </Button>
