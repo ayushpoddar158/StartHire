@@ -131,7 +131,9 @@ const JobDescp = () => {
 
   return (
     <>
-      <div className="container main">
+    <div className="mainJobDesc">
+    
+      <div className="container JobDescmain">
         <div className="title onediv firstDiv">
           <h2 id="heading1">{jobData?.details.jobTitle}</h2>
           <Link to={`/UpdateJobs/${id}`}>
@@ -230,6 +232,8 @@ const JobDescp = () => {
           </>
         )
       })}
+        
+    </div>
     </>
   );
 };

@@ -1,15 +1,29 @@
-.main{
-    background-color: rgb(180, 180, 180);
-    /* height: 1000px; */
-    margin-left: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 70vw;
+.mainJobDesc{
+    background-color: red !important;
+    height: 80vh !important;
+    position: relative;
+    width: 60vw;
+    left: 30%;
+    top: 20%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.JobDescmain{
+    background-color: rgb(128, 13, 13);
+    /* position: relative; */
+  /* left: 10.5%; */
+    /* width: 50vw !important; */
     /* height: 90vh; */
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100% !important;
     
 }
 
@@ -75,7 +89,7 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 5px;
-    /* background-color: blue; */
+    background-color: blue;
     align-items: center;
     width: 100%;
 
@@ -86,7 +100,7 @@
     text-align: center;
     justify-content: center;
     font-size: 1.5rem !important;
-    /* background-color: aliceblue; */
+    background-color: aliceblue !important;
 }
 .skillbtn{
     /* background-color: red !important; */
@@ -116,7 +130,7 @@ width: 90%;
    
     justify-content: space-between!important;
   
-    /* background-color: red; */
+    background-color: red;
 }
 @media only screen and (max-width: 600px) {
   .studentList{
