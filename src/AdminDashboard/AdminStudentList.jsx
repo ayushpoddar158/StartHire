@@ -82,28 +82,28 @@ const AdminStudentLists = (props) => {
         </div>
         {allStudents?.map((item) => {
           if (item?.data().desgn === "student" && item?.data().updatedProfile) {
-            console.log(item?.data().details.firstname);
+            console.log(item.data())
             return (
               <div className="box3">
                 <div className="studentList">
                   <div className="stdlistmian2_1 firstdivig">
                     <img
-                      src={item?.data().details.PImageUrl}
+                      src={item?.data().PImageUrl}
                       alt="avatar 1"
                       style={{ width: "45px", height: "auto" }}
                     />
                     <div class="ms-2">
                       <span>
-                        {item?.data().details.firstname +
+                        {item?.data().firstName +
                           "  " +
-                          item?.data().details.lastname}
+                          item?.data().lastName}
                       </span>
                     </div>
                     <div class="ms-2">
                       <span>{item?.data().email}</span>
                     </div>
                     <div class="ms-2">
-                      <span>{item?.data().details.mobile}</span>
+                      <span>{item?.data().Mobile}</span>
                     </div>
                   </div>
                   <div className=" skillmaindiv">
@@ -111,7 +111,7 @@ const AdminStudentLists = (props) => {
                       <h3>Skills</h3>
                     </div>
                     <div className="skillbtn">
-                      {item?.data().details.skills.map((skill) => {
+                      {item?.data().skills.map((skill) => {
                         return (
                           <Button
                             variant="contained"

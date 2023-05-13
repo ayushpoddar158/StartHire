@@ -53,8 +53,6 @@ const UpdateJobs = () => {
     const { currentUser } = React.useContext(AuthContext);
     const [data, setData] = useState();
     const [docRef, setDocRef] = useState();
-    const [linkImageUrl, setLinkImageUrl] = useState(null);
-    // const [tags, setTags] = React.useState([]);
     const navigate = useNavigate();
     const [jobData, setJobData] = useState(
         {
@@ -81,7 +79,7 @@ const UpdateJobs = () => {
             }
         };
         fetchData();
-    },[])
+    }, [])
 
     useEffect(() => {
         const loadData = async () => {
@@ -166,12 +164,27 @@ const UpdateJobs = () => {
 
 
     const submitHandler = async () => {
-        console.log("inside submit handler");
-        try {
-            await updateDocument(id);
-            navigate("/Jobs")
-        } catch (err) {
-            console.log(err);
+        if (jobData.jobTitle === "") {
+            alert("Please enter job title")
+        }
+        else if (jobData.jobDescription === "") {
+            alert("Please enter job description")
+        }
+        else if (jobData.jobLocation === "") {
+            alert("Please enter job location")
+        }
+        else if (jobData.skills.length === 0) {
+            alert("Please enter atleast one skill")
+        }
+        else {
+            try {
+                await updateDocument(id)
+                    .then(() => {
+                        navigate("/Jobs")
+                    })
+            } catch (err) {
+                console.log(err);
+            }
         }
     }
 
