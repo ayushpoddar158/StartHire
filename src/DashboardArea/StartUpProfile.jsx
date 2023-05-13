@@ -89,8 +89,7 @@ const StartUpProfile = (props) => {
       {/* <Dashboard/> */}
     
         <section class="bg-dark StartUpSection">
-        
-          <button
+        <button
             id="stuprofileedit"
             onClick={navigateEdit}
             className="btn btn-primary"
@@ -98,6 +97,7 @@ const StartUpProfile = (props) => {
 
             Edit
           </button>
+        
           <div class="container">
             <div class="row">
               <div class="col-lg-12 mb-4 mb-sm-5">

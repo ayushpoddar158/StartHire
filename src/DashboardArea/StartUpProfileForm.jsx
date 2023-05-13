@@ -237,7 +237,7 @@ const StartUpProfileForm = () => {
   if (currentUser) {
     return (
       <>
-        <div class="container bootstrap snippet" id='studentformmain'>
+        <div class="container bootstrap snippet" id='StartUpformmain'>
           <div class="row mt-2">
             <div class="col-sm-3">
               {/* <!--left col--> */}
@@ -268,7 +268,7 @@ const StartUpProfileForm = () => {
                 <div class="panel-body">
                   <div class="form-group">
 
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 ">
                       <label for="website_Link"><h6>Website Link</h6></label>
                       <TextField type="text" class="form-control"
                         onChange={getData}
@@ -301,11 +301,7 @@ const StartUpProfileForm = () => {
             </div>
             {/* <!--/col-3--> */}
             <div class="col-sm-9">
-              {/* <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul> */}
+           
 
 
               <div class="tab-content">
@@ -313,9 +309,9 @@ const StartUpProfileForm = () => {
                   <hr />
                   <form class="form" onSubmit={submitHandler} id="registrationForm">
                     <div className="container maindivstudent">
-                      <div class="form-group ">
+                      <div class="form-group StartUpformdivs ">
 
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 ">
 
 
                           <label className="firstnamecls" for="StartUp_Name"><h3>StartUp Name</h3></label>
@@ -331,7 +327,7 @@ const StartUpProfileForm = () => {
                             title="enter your first name if any." />
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group StartUpformdivs">
 
                         <div class="col-xs-12 ">
                           <label for="StartUp_Email"><h3>StartUp Email</h3></label>
@@ -348,7 +344,7 @@ const StartUpProfileForm = () => {
                       </div>
 
 
-                      <div class="form-group">
+                      <div class="form-group StartUpformdivs">
                         <div class="col-xs-12">
                           <label for="Founder_Name"><h3>Founder Name</h3></label>
                           <TextField type="text"
@@ -363,7 +359,7 @@ const StartUpProfileForm = () => {
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group StartUpformdivs">
 
                         <div class="col-xs-12">
                           <label for="location"><h3>Location</h3></label>
@@ -377,7 +373,7 @@ const StartUpProfileForm = () => {
                             title="enter a location" />
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group StartUpformdivs">
 
                         <div class="col-xs-12">
                           <label for="Contact_Number"><h3>Contact Number</h3></label>
@@ -401,7 +397,7 @@ const StartUpProfileForm = () => {
 
 
 
-                      <div class="form-group selectDiv" >
+                      <div class="form-group selectDiv StartUpformdivs" >
                         <div class="col-xs-12 YearOf">
                           <label for="StartUpDomain">
                             <h3>Add Domain</h3>
