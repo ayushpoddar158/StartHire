@@ -22,7 +22,6 @@ const AdminStudentLists = (props) => {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
-           
             >
               <FormControlLabel
                 className="Admindstudentlistradio"
@@ -82,14 +81,14 @@ const AdminStudentLists = (props) => {
           </FormControl>
         </div>
         {allStudents?.map((item) => {
-          if (item?.data().desgn === "student") {
+          if (item?.data().desgn === "student" && item?.data().updatedProfile) {
             console.log(item?.data().details.firstname);
             return (
               <div className="box3">
                 <div className="studentList">
                   <div className="stdlistmian2_1 firstdivig">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                      src={item?.data().details.PImageUrl}
                       alt="avatar 1"
                       style={{ width: "45px", height: "auto" }}
                     />

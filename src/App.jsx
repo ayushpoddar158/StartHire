@@ -39,7 +39,6 @@ const App = (props) => {
 
   // conditional routing for navbar and sidebar
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
-  const [haveSideBar, setHaveSideBar] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [allData, setAllData] = useState({
     user: null,
@@ -58,7 +57,7 @@ const App = (props) => {
   function onRouteChanged() {
     console.log("ROUTE CHANGED");
     // window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/', '/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "VerifyEmail"];
+    const fullPageLayoutRoutes = ['/', '/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "/VerifyEmail"];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (location.pathname.toLocaleLowerCase() === fullPageLayoutRoutes[i].toLocaleLowerCase()) {
         setIsFullPageLayout(true);
@@ -83,6 +82,7 @@ const App = (props) => {
         if (note.data().isRead === false) {
           UnReadCount = UnReadCount + 1;
         }
+        console.log("note",note)
         setNotifObj(notif => [
           ...notif,
           note
@@ -94,7 +94,7 @@ const App = (props) => {
       console.log("fetchnote is called")
       await fetchNotif(notifIds);
     }
-    fetchNote(userData?.notification);
+    fetchNote(userData?.data().notification);
   }, [userData]);
 
   console.log(userData);
@@ -112,7 +112,7 @@ const App = (props) => {
         const docs = await getDocs(q);
         if (docs.docs.length > 0) {
           setIsStartUp(true);
-          setUserData(docs.docs[0].data());
+          setUserData(docs.docs[0]);
         }
         else {
           console.log("inside catch")
@@ -125,7 +125,7 @@ const App = (props) => {
             }
             else {
               setIsStudent(true);
-              setUserData(docs.docs[0].data());
+              setUserData(docs.docs[0]);
             }
           }
 
@@ -186,7 +186,7 @@ const App = (props) => {
           isVerified={isVerified}
           isAdmin={isAdmin}
           allData={allData}
-          notifObj={notifObj} />
+          notifObj={notifObj.reverse()} />
         {/* <Footer /> */}
       </Suspense>
     </>

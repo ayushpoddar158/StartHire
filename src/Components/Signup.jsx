@@ -98,13 +98,21 @@ const Signup = () => {
                   email: user.email,
                   desgn: "student",
                   updatedProfile: false,
-                  details: null,
-                  verification: {
-                    isAvail: true,
-                    isVerified: false,
-                    isRejected: true,
-                    isConfirmed: false
-                  },
+                  firstName: "",
+                  lastName: "",
+                  Mobile:"",
+                  location: "",
+                  College: "",
+                  Degree: "",
+                  YOG:"", 
+                  githubLink:"",
+                  linkedInLink: "",
+                  PImageUrl: null,
+                  skills: [],
+                  IsAvail: true,
+                  VerifIsVerified: false,
+                  VerifIsRejected: true,
+                  VerifIsConfirmed: false,
                   startups: [],
                   notification: [noteRef.id]
                 })

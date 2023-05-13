@@ -6,9 +6,12 @@ import {
   addDoc,
   getDoc,
   updateDoc,
+  arrayUnion,
+  arrayRemove,
   where,
   doc
 } from "firebase/firestore";
+
 
 import React from "react";
 import { Button } from "@material-ui/core";
@@ -58,6 +61,9 @@ const JobDescp = () => {
       const assignRef = doc(db, "users", id);
       const assignVal = await getDoc(assignRef);
       if (!assignedStudents.includes(assignVal)) {
+        updateDoc(assignVal.ref, {
+          startups: arrayUnion(jobData.creator)
+        })
         setAssignedStudents(values => [...values, assignVal])
       }
     }
@@ -129,6 +135,9 @@ const JobDescp = () => {
     setSelectedStudents(selectedStudents => [...selectedStudents, student])
     const newAssign = assignIds.filter((item) => {
       return item !== student.id;
+    })
+    updateDoc(student.ref, {
+      startups: arrayRemove(jobData.creator)
     })
     console.log("newAssign", newAssign)
     setAssignIds(newAssign);

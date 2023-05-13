@@ -15,7 +15,8 @@ import {
     collection,
     addDoc,
     updateDoc,
-    where
+    where,
+    arrayUnion
 } from "firebase/firestore";
 import {
     getDownloadURL,
@@ -33,6 +34,7 @@ import "../../style/Studentprofileform.css"
 import StudentLists from "../../DashboardArea/StudentLists";
 import Aside from "../../DashboardArea/Aside";
 import { TextField } from "@material-ui/core";
+import { useContext } from "react";
 
 
 
@@ -53,59 +55,23 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 
-const CreateJobs = () => {
-    const { currentUser } = React.useContext(AuthContext);
-    const [data, setData] = useState();
-    const [docRef, setDocRef] = useState();
-    const [linkImageUrl, setLinkImageUrl] = useState(null);
-    // const [tags, setTags] = React.useState([]);
-    const navigate = useNavigate();
-    const [jobData, setJobData] = useState(
-        {
-            jobTitle: "",
-            jobDescription: "",
-            jobLocation: "",
-            skills: []
+const CreateJobs = (props) => {
+    var userDataRef = props.userData;
+    const { currentUser } = useContext(AuthContext);
+    const [jobData, setJobData] = useState()
 
-        }
-    )
-
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
-                const docs = await getDocs(q);
-                const doc = docs.docs[0];
-                setDocRef(doc);
-                setData(doc.data());
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [currentUser])
 
     useEffect(() => {
         const loadData = async () => {
-            if (currentUser) {
-                if (data) {
-                    if (data.updatedProfile) {
-                        // console.log(data.details.PImageUrl);
-                        setJobData({
-                            creator: currentUser.uid,
-                            jobTitle: "",
-                            jobDescription: "",
-                            jobLocation: "",
-                            skills: []
-                        });
-                    }
-                }
-            }
+            setJobData({
+                jobTitle: "",
+                jobDescription: "",
+                jobLocation: "",
+                skills: []
+            });
         };
         loadData();
-    }, [data]);
+    }, [currentUser]);
 
 
 
@@ -123,8 +89,6 @@ const CreateJobs = () => {
 
     // tag functions
 
-
-
     const handleAddition = (tag) => {
         console.log(tag)
         console.log("changes")
@@ -137,94 +101,56 @@ const CreateJobs = () => {
         console.log(jobData)
 
     };
-
-    useEffect(() => {
-        console.log(jobData)
-    }, [jobData])
-
-
     // tag functions end 
 
     const userDataUpdate = async (docRef, jobRef) => {
-        if (docRef) {
-            if (docRef.data().jobs) {
-                console.log("inside if");
-                await updateDoc(docRef.ref, {
-                    "jobs": [
-                        ...docRef.data().jobs,
-                        jobRef.id
-                    ]
-                }).then(() => {
-                    console.log("updatedUserData")
-                }).catch((error) => {
-                    console.log("Error updating document: ", error);
-                })
-            }
-            else {
-                await updateDoc(docRef.ref, {
-                    "jobs": [
-                        jobRef.id
-                    ]
-                }).then(() => {
-                    console.log("updatedUserData")
-                }).catch((error) => {
-                    console.log("Error updating document: ", error);
-                })
-            }
-
-        }
-
+        console.log("inside if");
+        await updateDoc(docRef.ref, {
+            jobs: arrayUnion(jobRef.id)
+        }).then(() => {
+            console.log("updatedUserData")
+        }).catch((error) => {
+            console.log("Error updating document: ", error);
+        })
     }
 
-
-
-const updateDocument = async () => {
-    if (docRef) {
-        console.log("inside update if ");
+    const updateDocument = async () => {
         try {
             const jobRef = await addDoc(collection(db, "jobs"), {
-                creator: currentUser.uid,
+                creator: userDataRef.id,
                 details: jobData,
                 assign: []
             });
             console.log(jobRef.id); // log the document id
             alert("Information successfully updated!");
-            await userDataUpdate(docRef, jobRef);
+            await userDataUpdate(userDataRef, jobRef);
         } catch (error) {
             console.log("Error updating document: ", error);
         }
     }
-}
 
 
 
-const submitHandler = async () => {
-    console.log("inside submit handler");
-    try {
-        await updateDocument();
-        navigate("/dashboard")
-    } catch (err) {
-        console.log(err);
+    const submitHandler = async () => {
+        console.log("inside submit handler");
+        try {
+            await updateDocument().then(() => {
+                window.location.replace("/jobs")
+            })
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
-}
 
 
 
 
-if (currentUser) {
     return (
         <>
             <div class="container bootstrap snippet" id='studentformmain'>
                 <div class="row mt-2">
-
-                    {/* <!--/col-3--> */}
                     <div class="col-sm-9">
-                        {/* <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul> */}
-
 
                         <div class="tab-content">
                             <div class="tab-pane active" id="home">
@@ -232,10 +158,7 @@ if (currentUser) {
                                 <form class="form" onSubmit={submitHandler} id="registrationForm">
                                     <div className="container maindivstudent">
                                         <div class="form-group ">
-
                                             <div class="col-xs-12">
-
-
                                                 <label className="firstnamecls" for="first_name"><h3>Job Title</h3></label>
                                                 <TextField type="text"
                                                     onChange={getData}
@@ -292,7 +215,7 @@ if (currentUser) {
                                                     classNamePrefix="select"
                                                     placeholder="Enter Your Skills"
 
-                                                    value={jobData.skills}
+                                                    value={jobData?.skills}
 
 
                                                 />
@@ -327,7 +250,6 @@ if (currentUser) {
     )
 }
 
-}
 
 export default CreateJobs
 

@@ -1,4 +1,4 @@
-import { deleteDoc, setDoc } from 'firebase/firestore';
+import { arrayRemove, deleteDoc, setDoc } from 'firebase/firestore';
 import React, { useState, useEffect, useContext } from 'react'
 import Aside from './Aside'
 import { Link, useNavigate } from 'react-router-dom';
@@ -22,30 +22,14 @@ import {
 import { Button } from '@mui/material';
 
 const Jobs = (props) => {
-  const navigate = useNavigate();
+  var userDataRef = props.userData;
+  var userData = userDataRef.data();
   const { currentUser } = useContext(AuthContext);
   const [id, setId] = useState(null);
   const [isVerified, setIsVerified] = useState(null);
-  const [userData, setUserData] = useState(null);
   const [isStartUp, setIsStartUp] = useState(false);
   const [jobs, setJobs] = useState([]);
   const [data, setData] = useState();
-
-  useEffect(() => {
-    const getUserData = async () => {
-      let id = await currentUser?.uid;
-      let isVerified = await currentUser?.emailVerified;
-      setId(id)
-      setIsVerified(isVerified);
-      const q = query(collection(db, "startups"), where("uid", "==", id));
-      const docs = await getDocs(q);
-      if (docs.docs.length > 0) {
-        setIsStartUp(true);
-        setUserData(docs.docs[0].data());
-      }
-    }
-    getUserData();
-  }, [currentUser])
 
   useEffect(() => {
     if (userData) {
@@ -65,21 +49,15 @@ const Jobs = (props) => {
           }
         }
         );
-
       }
     }
-  }, [userData]);
+  }, []);
 
   const handleJobDelete = async (id) => {
     let jobDelRef = doc(db, "jobs", id);
     await deleteDoc(jobDelRef);
-    // updating user job array
-    const jobA = userData.jobs;
-    const updateA = jobA.filter(item => item != id);
-    const q = query(collection(db, "startups"), where("uid", "==", currentUser?.uid));
-    const docs = await getDocs(q);
-    await updateDoc(docs.docs[0].ref, {
-      jobs: updateA
+    await updateDoc(userDataRef.ref, {
+      jobs: arrayRemove(id) 
     })
     console.log("updated user job array")
     window.location.reload();
@@ -95,7 +73,6 @@ const Jobs = (props) => {
     console.log(jobs)
   }, [jobs]);
 
-  if (currentUser && userData) {
     return (
       <>
         <div className='Createmain1'>
@@ -141,7 +118,6 @@ const Jobs = (props) => {
 
       </>
     )
-  }
 
 }
 

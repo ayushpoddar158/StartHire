@@ -86,8 +86,16 @@ const Signupstartup = () => {
                   email: sEmail,
                   desgn: "startup",
                   updatedProfile: false,
-                  details: null,
-                  jobs: null,
+                  StartUpName: "",
+                  StartUpEmail: "",
+                  location: "",
+                  FounderName: "",
+                  ContactNumber: "",
+                  websiteLink: "",
+                  linkedInLink: "",
+                  PImageUrl: null,
+                  domains: [],
+                  jobs: [],
                   notification: [noteRef.id],
                   verification: {
                     isVerified: false,
@@ -100,7 +108,6 @@ const Signupstartup = () => {
                     console.log('inside error function');
                     console.log(err);
                   });
-                alert("Verify Your Email");
               }
               await addNotif()
                 .then(async () => {

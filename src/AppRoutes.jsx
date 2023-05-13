@@ -85,25 +85,25 @@ const AppRoutes = (props) => {
     </>
 
     const StudentPages = <>
-        <Route path="/studentprofileform" element={<Studentprofileform />} />
-        <Route path="/Studentprofile" element={<Studentprofile />} />
-        <Route path="/StudentDashboard" element={<StudentDashboard />} />
+        <Route path="/studentprofileform" element={<Studentprofileform userData={userData}/>} />
+        <Route path="/Studentprofile" element={<Studentprofile userData={userData}/>} />
+        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData}/>} />
         <Route path="/VerifyEmail" element={<VerifyEmail />} />
         <Route path="/StudentNotification" element={<StudentNotification notifObj ={notifObj } />} />
     </>
 
     const StartUpPages = <>
-        <Route path="Filteredstudentlist" element={<Filteredstudentlist />} />
-        <Route path="Dashboard" element={<Dashboard />} />
-        <Route path="StartUpprofileForm" element={<StartUpprofileForm />} />
-        <Route path="StartUpProfile" element={<StartUpProfile />} />
-        <Route path="VerifyEmail" element={<VerifyEmail />} />
-        <Route path="StartUpBlog" element={<StartupBlog />} />
+        <Route path="Filteredstudentlist" element={<Filteredstudentlist userData={userData}/>} />
+        <Route path="Dashboard" element={<Dashboard userData={userData}/>} />
+        <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData}/>} />
+        <Route path="StartUpProfile" element={<StartUpProfile userData={userData}/>} />
+        <Route path="VerifyEmail" element={<VerifyEmail/>} />
+        <Route path="StartUpBlog" element={<StartupBlog userData={userData}/>} />
         <Route path="Notification" element={<Notification 
         notifObj ={notifObj } />} />
         {/* //jobs routes */}
-        <Route path="Jobs" element={<Jobs />} />
-        <Route path="CreateJobs" element={<CreateJobs />} />
+        <Route path="Jobs" element={<Jobs userData={userData}/>} />
+        <Route path="CreateJobs" element={<CreateJobs userData={userData}/>} />
         <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
         <Route path="JobDescp/:id" element={<JobDescp />} />
     </>
@@ -166,7 +166,7 @@ const AppRoutes = (props) => {
                     <Routes>
                         {Basic}
                         {AuthPages}
-                        <Route path="StartUpprofileForm" element={<StartUpprofileForm />} />
+                        <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData}/>} />
                         <Route path="VerifyEmail" element={<VerifyEmail />} />
                     </Routes>
                 </Suspense>
@@ -194,7 +194,7 @@ const AppRoutes = (props) => {
                     <Routes>
                         {Basic}
                         {AuthPages}
-                        <Route path="/studentprofileform" element={<Studentprofileform />} />
+                        <Route path="/studentprofileform" element={<Studentprofileform userData={userData}/>} />
                         <Route path="VerifyEmail" element={<VerifyEmail />} />
                     </Routes>
                 </Suspense>
