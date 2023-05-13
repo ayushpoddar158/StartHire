@@ -5,14 +5,16 @@ Example Styles for React Tags
   }
   
   #StartUpformmain{
-    width: 70%;
-    padding: 40px;
-    background-color: rgb(241, 250, 241);
+    position: relative;
+    width: 75% !important;
+    padding: 40px !important;
+background-color: rgb(1, 1, 6);
     border-radius: 20px 20px ;
-   margin-top: 30px;
-   margin-bottom: 30px;
+   margin-top: 30px !important;
+   margin-bottom: 30px !important;
    /* border-radius: 20px; */
-   box-shadow: 0px 0px 15px 1px rgb(199, 197, 197);
+   /* box-shadow: 0px 0px 15px 1px rgb(199, 197, 197); */
+   left: 15%;
    
   }
   /* Example Styles for React Tags*/
@@ -92,4 +94,16 @@ input[type="file"] {
     width: 40vw;
 }
 
+@media only screen and  (max-width:600px){
+  #StartUpformmain{
+    width: 90% !important;
+    left: 0% !important;
+    margin-left: auto !important;
+  }
+
+  .StartUpformdivs{
+    /* background-color: red; */
+    width: 90% !important;
+  }
+}
 

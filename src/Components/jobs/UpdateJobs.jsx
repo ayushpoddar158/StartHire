@@ -25,7 +25,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Codinglanginfo } from '../Codinglanginfo';
 import { WithContext as ReactTags } from 'react-tag-input';
-import "../../style/Studentprofileform.css"
+// import "../../style/Studentprofileform.css"
+import './UpdateJobs.css'
 import Aside from "../../DashboardArea/Aside";
 import { TextField } from "@material-ui/core";
 
@@ -194,26 +195,22 @@ const UpdateJobs = () => {
     if (currentUser) {
         return (
             <>
-                <div class="container bootstrap snippet" id='studentformmain'>
+                <div class="container bootstrap snippet" id='UpdateJobsmain'>
                     <div class="row mt-2">
 
                         {/* <!--/col-3--> */}
-                        <div class="col-sm-9">
-                            {/* <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul> */}
+                        <div class="col-sm-9 UpdateJobsdiv2">
+           
 
 
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home">
                                     <hr />
-                                    <form class="form" onSubmit={submitHandler} id="registrationForm">
+                                    <form class="form" onSubmit={submitHandler} id="UpdateregistrationForm">
                                         <div className="container maindivstudent">
-                                            <div class="form-group ">
+                                            <div class="form-group UpdateForminsidediv">
 
-                                                <div class="col-xs-12">
+                                                <div class="col-xs-12 ">
 
 
                                                     <label className="firstnamecls" for="first_name"><h3>Job Title</h3></label>
@@ -228,7 +225,7 @@ const UpdateJobs = () => {
                                                     />
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group UpdateForminsidediv">
 
                                                 <div class="col-xs-12">
                                                     <label for="last_name"><h3>Job Description</h3></label>
@@ -244,7 +241,7 @@ const UpdateJobs = () => {
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group UpdateForminsidediv">
                                                 <div class="col-xs-12">
                                                     <label for="location"><h3>Location</h3></label>
                                                     <TextField type="text"
@@ -257,11 +254,11 @@ const UpdateJobs = () => {
                                                         title="enter a location" />
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group ">
                                             </div>
 
 
-                                            <div class="form-group selectDiv" >
+                                            <div class="form-group selectDiv UpdateForminsidediv" >
                                                 <div class="col-xs-12 YearOf">
                                                     <label for="YOG">
                                                         <h3>Required Skills</h3>
