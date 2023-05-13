@@ -43,7 +43,7 @@ const AdminDashboard = (props) => {
         <>
             <div className='AdminDashboardmainDiv'>
                 <div className="NoOfStudents">
-                    <span >{allData.user?.length}</span>
+                    <span >{allData.user?.length - 1}</span>
                     <h2>No of Students</h2>
                 </div>
                 <div className="NoOfStartUps">

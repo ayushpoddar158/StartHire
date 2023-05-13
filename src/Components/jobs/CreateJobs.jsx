@@ -104,7 +104,6 @@ const CreateJobs = (props) => {
     // tag functions end 
 
     const userDataUpdate = async (docRef, jobRef) => {
-        console.log("inside if");
         await updateDoc(docRef.ref, {
             jobs: arrayUnion(jobRef.id)
         }).then(() => {
@@ -115,17 +114,31 @@ const CreateJobs = (props) => {
     }
 
     const updateDocument = async () => {
-        try {
-            const jobRef = await addDoc(collection(db, "jobs"), {
-                creator: userDataRef.id,
-                details: jobData,
-                assign: []
-            });
-            console.log(jobRef.id); // log the document id
-            alert("Information successfully updated!");
-            await userDataUpdate(userDataRef, jobRef);
-        } catch (error) {
-            console.log("Error updating document: ", error);
+        if (jobData.jobTitle === "") {
+            alert("Please enter job title");
+        }
+        else if (jobData.jobDescription === "") {
+            alert("Please enter job Description");
+        }
+        else if (jobData.jobLocation === "") {
+            alert("Please enter job location");
+        }
+        else if (jobData.skills.length === 0) {
+            alert("Please enter atlease one skill required for the job");
+        }
+        else {
+            try {
+                const jobRef = await addDoc(collection(db, "jobs"), {
+                    creator: userDataRef.id,
+                    details: jobData,
+                    assign: []
+                });
+                console.log(jobRef.id); // log the document id
+                alert("Information successfully updated!");
+                await userDataUpdate(userDataRef, jobRef);
+            } catch (error) {
+                console.log("Error updating document: ", error);
+            }
         }
     }
 

@@ -58,13 +58,12 @@ const Login = () => {
         if (!user_data.updatedProfile && user_data.desgn !== "admin") {
           window.location.replace("/studentprofileform");
         }
-        // else if(user_data.desgn == "admin"){
-        //   window.location.replace("/admindashboard")
-        // }
-        // else {
-        //   window.location.replace("/studentdashboard")
-        // }
-        // ...
+        else if(user_data.desgn == "admin"){
+          window.location.replace("/admindashboard")
+        }
+        else {
+          window.location.replace("/studentdashboard")
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
