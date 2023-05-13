@@ -109,9 +109,8 @@ const Signup = () => {
                   linkedInLink: "",
                   PImageUrl: null,
                   skills: [],
-                  IsAvail: true,
                   VerifIsVerified: false,
-                  VerifIsRejected: true,
+                  VerifIsRejected: false,
                   VerifIsConfirmed: false,
                   startups: [],
                   notification: [noteRef.id]
