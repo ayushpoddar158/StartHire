@@ -5,23 +5,6 @@ import { Link} from "react-router-dom";
 import { useState } from "react";
 import { AuthContext } from "../Authorizer";
 
-// Data import @Firebase
-import { db } from "../Firebase";
-import { storage } from "../Firebase";
-import {
-  query,
-  getDocs,
-  collection,
-  addDoc,
-  updateDoc,
-  where
-} from "firebase/firestore";
-import {
-  getDownloadURL,
-  ref,
-  uploadBytes
-} from "firebase/storage";
-
 const Studentprofile = (props) => {
   var userDataRef = props.userData;
   var userData = userDataRef.data();

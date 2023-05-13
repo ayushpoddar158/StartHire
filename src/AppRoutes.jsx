@@ -102,8 +102,8 @@ const AppRoutes = (props) => {
         <Route path="Notification" element={<Notification 
         notifObj ={notifObj } />} />
         {/* //jobs routes */}
-        <Route path="Jobs" element={<Jobs />} />
-        <Route path="CreateJobs" element={<CreateJobs />} />
+        <Route path="Jobs" element={<Jobs userData={userData}/>} />
+        <Route path="CreateJobs" element={<CreateJobs userData={userData}/>} />
         <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
         <Route path="JobDescp/:id" element={<JobDescp />} />
     </>

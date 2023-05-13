@@ -95,7 +95,7 @@ const Signupstartup = () => {
                   linkedInLink: "",
                   PImageUrl: null,
                   domains: [],
-                  jobs: null,
+                  jobs: [],
                   notification: [noteRef.id],
                   verification: {
                     isVerified: false,
