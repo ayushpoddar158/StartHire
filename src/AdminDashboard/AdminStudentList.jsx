@@ -7,10 +7,92 @@ import FormLabel from "@mui/material/FormLabel";
 import "./css/AdminStudentList.css";
 import { Button } from "@mui/material";
 import { green } from "@mui/material/colors";
+import { useEffect } from "react";
+
+// Data setup 
+import { db } from "../Firebase";
+import {
+  query,
+  getDocs,
+  collection,
+  addDoc,
+  where
+} from "firebase/firestore";
+
+
+
+
 
 const AdminStudentLists = (props) => {
   var allStudents = props.allData.user;
-  console.log(allStudents);
+  var [select, setSelect] = React.useState();
+  var [pending, setPending] = React.useState();
+  var [available, setAvailable] = React.useState();
+  var [selected, setSelected] = React.useState();
+  var [rejected, setRejected] = React.useState();
+
+
+  var handleChange = (e) => {
+    setSelect(e.target.value)
+  }
+
+  useEffect(() => {
+    var getData = async () => {
+      const Availq = query(
+        collection(db, "users"),
+        where("VerifIsConfirmed", "==", false),
+        where("VerifIsRejected", "==", true),
+        where("VerifIsVerified", "==", false)
+      );
+      await getDocs(Availq)
+        .then((availableStd) => {
+          setAvailable(availableStd.docs)
+        })
+      const Selectedq = query(
+        collection(db, "users"),
+        where("VerifIsConfirmed", "==", true),
+        where("VerifIsRejected", "==", false),
+        where("VerifIsVerified", "==", true)
+      );
+      await getDocs(Selectedq)
+        .then((SelectedStd) => {
+          setSelected(SelectedStd.docs)
+        })
+      const Rejectedq = query(
+        collection(db, "users"),
+        where("VerifIsConfirmed", "==", false),
+        where("VerifIsRejected", "==", true),
+        where("VerifIsVerified", "==", true)
+      );
+      await getDocs(Rejectedq)
+        .then((rejectedStd) => {
+          setRejected(rejectedStd.docs)
+        });
+      const pendingq = query(
+        collection(db, "users"),
+        where("VerifIsConfirmed", "==", false),
+        where("VerifIsRejected", "==", false),
+        where("VerifIsVerified", "==", true)
+      );
+      await getDocs(pendingq)
+        .then((pendingStd) => {
+          setPending(pendingStd.docs)
+        })
+    }
+    getData();
+  }, [])
+
+  useEffect(() => {
+    if (pending) {
+      console.log("pending",pending[0].data())
+    }
+  }, [pending])
+
+
+
+  useEffect(() => {
+    console.log(select)
+  }, [select])
 
   return (
     <>
@@ -22,10 +104,13 @@ const AdminStudentLists = (props) => {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
+              value={select}
+              onChange={handleChange}
+              defaultValue={"available"}
             >
               <FormControlLabel
                 className="Admindstudentlistradio"
-                value="female"
+                value="available"
                 control={
                   <Radio
                     sx={{
@@ -43,7 +128,7 @@ const AdminStudentLists = (props) => {
               />
               <FormControlLabel
                 className="Admindstudentlistradio"
-                value="male"
+                value="pending"
                 control={
                   <Radio
                     sx={{
@@ -57,11 +142,29 @@ const AdminStudentLists = (props) => {
                     }}
                   />
                 }
-                label="Verified"
+                label="Pending"
               />
               <FormControlLabel
                 className="Admindstudentlistradio"
-                value="other"
+                value="accepted"
+                control={
+                  <Radio
+                    sx={{
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 28,
+                        color: green[800],
+                        "&.Mui-checked": {
+                          color: green[600],
+                        },
+                      },
+                    }}
+                  />
+                }
+                label="Accepted"
+              />
+              <FormControlLabel
+                className="Admindstudentlistradio"
+                value="rejected"
                 control={
                   <Radio
                     sx={{
@@ -79,10 +182,9 @@ const AdminStudentLists = (props) => {
               />
             </RadioGroup>
           </FormControl>
-        </div>
+        </div >
         {allStudents?.map((item) => {
           if (item?.data().desgn === "student" && item?.data().updatedProfile) {
-            console.log(item.data())
             return (
               <div className="box3">
                 <div className="studentList">
@@ -136,7 +238,7 @@ const AdminStudentLists = (props) => {
             );
           }
         })}
-      </div>
+      </div >
     </>
   );
 };
