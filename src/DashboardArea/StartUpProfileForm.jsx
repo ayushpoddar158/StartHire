@@ -53,11 +53,11 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 
-const StartUpProfileForm = () => {
+const StartUpProfileForm = (props) => {
+  let userDataRef = props.userData;
+  let userData = userDataRef.data();
+  console.log("userData", userData)
   const { currentUser } = React.useContext(AuthContext);
-  const [data, setData] = useState();
-  const [docRef, setDocRef] = useState();
-  const [isUser, setIsUser] = useState(false);
   const [StartUpImg, setStartUpImg] = useState(null)
   const [localImageUrl, setLocalImageUrl] = useState(null);
   const [showImageUrl, setShowImageUrl] = useState(null);
@@ -66,60 +66,21 @@ const StartUpProfileForm = () => {
   const navigate = useNavigate();
   const [StartUpData, setStartUpData] = useState(
     {
-      StartUpName: "",
-      StartUpEmail: "",
-      location: "",
-      FounderName: "",
-      ContactNumber: "",
-      websiteLink: "",
-      linkedInLink: "",
-      PImageUrl: null,
-      domains: []
+      StartUpName: userData.StartUpName,
+      StartUpEmail: userData.StartUpEmail,
+      location: userData.location,
+      FounderName: userData.FounderName,
+      ContactNumber: userData.ContactNumber,
+      websiteLink: userData.websiteLink,
+      linkedInLink: userData.linkedInLink,
+      PImageUrl: userData.PImageUrl,
+      domains: userData.domains
     }
   )
 
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const q = query(collection(db, "startups"), where("uid", "==", currentUser.uid));
-        const docs = await getDocs(q);
-        const doc = docs.docs[0];
-        setDocRef(doc);
-        setData(doc.data());
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [currentUser])
-
-  useEffect(() => {
-    const loadData = async () => {
-      if (currentUser) {
-        if (data) {
-          if (data.updatedProfile) {
-            // console.log(data.details.PImageUrl);
-            setStartUpData({
-              StartUpName: data.details.StartUpName,
-              StartUpEmail: data.details.StartUpEmail,
-              location: data.details.location,
-              FounderName: data.details.FounderName,
-              ContactNumber: data.details.ContactNumber,
-              websiteLink: data.details.websiteLink,
-              linkedInLink: data.details.linkedInLink,
-              PImageUrl: data.details.PImageUrl,
-              domains: data.details.domains
-            });
-            setLinkImageUrl(data.details.PImageUrl);
-          }
-        }
-      }
-    };
-    loadData();
-  }, [data]);
-
+  useEffect(() =>{
+    setLinkImageUrl(userData.PImageUrl)
+  })
 
 
   const getData = (e) => {
@@ -165,31 +126,47 @@ const StartUpProfileForm = () => {
     });
     console.log(StartUpData)
   };
- useEffect(() =>{
-  console.log(StartUpData)
-  
- },[StartUpData])
+  useEffect(() => {
+    console.log(StartUpData)
+
+  }, [StartUpData])
 
 
 
   // tag functions end 
 
   const updateDocument = async (downloadURL) => {
-    if (docRef) {
+    if (StartUpData.StartUpName == "") {
+      alert("Please enter your startup name")
+    }
+    else if (StartUpData.StartUpEmail == "") {
+      alert("Please enter your startup email")
+    }
+    else if (StartUpData.location == "") {
+      alert("Please enter your startup location")
+    }
+    else if (StartUpData.FounderName == "") {
+      alert("Please enter your startup founder name")
+    }
+    else if (StartUpData.ContactNumber == "") {
+      alert("Please enter your startup contact number")
+    }
+    else if (StartUpData.domains.length == 0) {
+      alert("Please enter atleast one domain")
+    }
+    else {
       console.log("inside update if ");
-      await updateDoc(docRef.ref, {
+      await updateDoc(userDataRef.ref, {
         updatedProfile: true,
-        details: {
-          StartUpName: StartUpData.StartUpName,
-          StartUpEmail: StartUpData.StartUpEmail,
-          location: StartUpData.location,
-          FounderName: StartUpData.FounderName,
-          ContactNumber: StartUpData.ContactNumber,
-          websiteLink: StartUpData.websiteLink,
-          linkedInLink: StartUpData.linkedInLink,
-          PImageUrl: downloadURL,
-          domains: StartUpData.domains
-        }
+        StartUpName: StartUpData.StartUpName,
+        StartUpEmail: StartUpData.StartUpEmail,
+        location: StartUpData.location,
+        FounderName: StartUpData.FounderName,
+        ContactNumber: StartUpData.ContactNumber,
+        websiteLink: StartUpData.websiteLink,
+        linkedInLink: StartUpData.linkedInLink,
+        PImageUrl: downloadURL,
+        domains: StartUpData.domains
       }).then(() => {
         alert("Information successfully updated!");
         navigate("/dashboard");
@@ -203,36 +180,30 @@ const StartUpProfileForm = () => {
 
   const submitHandler = async () => {
     console.log("inside submit handler");
-    const doc = docRef;
-    if (doc) {
-      if (StartUpImg) {
-        const fileRef = ref(storage, `images/userImages/${StartUpImg.name}`);
-        try {
-          const snap = await uploadBytes(fileRef, StartUpImg);
-          console.log("Uploaded", snap);
-          const downloadURL = await getDownloadURL(fileRef);
-          console.log("Download URL:", downloadURL);
-          setLinkImageUrl(downloadURL);
-          await updateDocument(downloadURL);
-        } catch (err) {
-          console.log(err);
-        }
+    if (StartUpImg) {
+      const fileRef = ref(storage, `images/userImages/${StartUpImg.name}`);
+      try {
+        const snap = await uploadBytes(fileRef, StartUpImg);
+        console.log("Uploaded", snap);
+        const downloadURL = await getDownloadURL(fileRef);
+        console.log("Download URL:", downloadURL);
+        setLinkImageUrl(downloadURL);
+        await updateDocument(downloadURL);
+      } catch (err) {
+        console.log(err);
       }
-      else {
-        try {
-          const downloadURL = StartUpData.PImageUrl;
-          setLinkImageUrl(downloadURL);
-          await updateDocument(downloadURL);
-          navigate("/dashboard");
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      console.log("updating document")
     }
+    else {
+      try {
+        const downloadURL = StartUpData.PImageUrl;
+        setLinkImageUrl(downloadURL);
+        await updateDocument(downloadURL);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    console.log("updating document")
   }
-
-
 
   if (currentUser) {
     return (
@@ -381,7 +352,7 @@ const StartUpProfileForm = () => {
 
                         <div class="col-xs-12">
                           <label for="Contact_Number"><h3>Contact Number</h3></label>
-                          <TextField type="text"
+                          <TextField type="number"
                             name='ContactNumber'
                             onChange={getData}
                             class="form-control"

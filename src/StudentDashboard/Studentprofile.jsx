@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../style/studentprofile.css";
-import { useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 // import Aside from "./Aside";
 import { useState } from "react";
 import { AuthContext } from "../Authorizer";
@@ -23,83 +23,24 @@ import {
 } from "firebase/storage";
 
 const Studentprofile = (props) => {
+  var userDataRef = props.userData;
+  var userData = userDataRef.data();
   const { currentUser } = React.useContext(AuthContext);
   const [data, setData] = useState();
   const [docRef, setDocRef] = useState();
   const [linkImageUrl, setLinkImageUrl] = useState(null);
 
   // getting data start
-  const [StudentData, setStudentData] = useState(
-    {
-      firstname: "",
-      lastname: "",
-      mobile: "",
-      location: "",
-      collname: "",
-      degree: "",
-      YOG: "",
-      githubLink: "",
-      linkedInLink: "",
-      PImageUrl: null,
-      skills: []
-
-    }
-  )
-
-
+    useEffect(() =>{
+      setLinkImageUrl(userData.PImageUrl)
+    },[])
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
-        const docs = await getDocs(q);
-        const doc = docs.docs[0];
-        setDocRef(doc);
-        setData(doc.data());
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [currentUser])
-
-  useEffect(() => {
-    const loadData = async () => {
-      if (currentUser) {
-        if (data) {
-          if (data.updatedProfile) {
-            // console.log(data.details.PImageUrl);
-            setStudentData({
-              firstname: data.details.firstname,
-              lastname: data.details.lastname,
-              mobile: data.details.mobile,
-              location: data.details.location,
-              collname: data.details.collname,
-              degree: data.details.degree,
-              YOG: data.details.YOG,
-              githubLink: data.details.githubLink,
-              linkedInLink: data.details.linkedInLink,
-              PImageUrl: data.details.PImageUrl,
-              skills: data.details.skills,
-            });
-            setLinkImageUrl(data.details.PImageUrl);
-          }
-        }
-      }
-    };
-    loadData();
-  }, [data]);
-
-  useEffect(() => {
-  console.log(StudentData)
-  }, [StudentData])
+  console.log(userData)
+  }, [userData])
   
   // getting data end
-
-  const navigate = useNavigate();
-  const navigateEdit = () => {
-    props.changemenufun();
-  };
+  
   return (
     <>
       <div>
@@ -109,13 +50,14 @@ const Studentprofile = (props) => {
             {/* <Dashboard/> */}
             <div class="col main pt-5 mt-3  StudentDivSectionabv">
               <section class="bg-light studentmaindiv2">
+                <Link to="/studentprofileform">
                 <button
                   id="studentrofileedit"
-                  onClick={navigateEdit}
                   className="btn btn-primary"
                 >
                   Edit
                 </button>
+                </Link>
                 <div class="container ">
                   <div class="row">
                     <div class="col-lg-12 mb-4 mb-sm-5">
@@ -124,59 +66,58 @@ const Studentprofile = (props) => {
                           <div class="row align-items-center">
                             <div class="col-lg-6 mb-4 mb-lg-0  studentImgDiv">
                               <img className="studentImg" 
-                                src={StudentData.PImageUrl}
+                                src={userData.PImageUrl}
                                 alt="..."
                               />
                             </div>
 
                             <div className="col-lg-6 px-xl-10 studentDetails">
                               <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                <h3 class="h2 text-white mb-0">{StudentData.firstname} {StudentData.lastname}</h3>
-
+                                <h3 class="h2 text-white mb-0">{userData.firstName + " " + userData.lastName}</h3>
                               </div>
                               <ul class="list-unstyled mb-1-9">
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Contact no:
                                   </span>
-                                 {StudentData.mobile}
+                                 {userData.Mobile}
                                 </li>
                              
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     github:
                                   </span>
-                                 {StudentData.githubLink}
+                                 {userData.githubLink}
                                 </li>
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     linkedin:
                                   </span>
-                                 {StudentData.linkedInLink}
+                                 {userData.linkedInLink}
                                 </li>
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Address:
                                   </span>
-                                  {StudentData.location}
+                                  {userData.location}
                                 </li>
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     College:
                                   </span>
-                                 {StudentData.collname}
+                                 {userData.College}
                                 </li>
                                 <li class="mb-2 mb-xl-3 display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Degree:
                                   </span>
-                                  {StudentData.degree}
+                                  {userData.Degree}
                                 </li>
                                 <li class="display-28">
                                   <span class="display-26 text-secondary me-2 font-weight-600">
                                     Year of Passing:
                                   </span>
-                                  {StudentData.YOG}
+                                  {userData.YOG}
                                   <li class="mb-2 mb-xl-3 display-28">
                             <span class="display-26 text-secondary me-2 font-weight-600">
                               Skills
@@ -185,7 +126,8 @@ const Studentprofile = (props) => {
                           </li>
                                 </li>
 
-                                {StudentData.skills.map((item) => {
+                                {userData.skills.map((item) => {
+                                  console.log("skill",item);
                             return (
                               <>
                                 <li class="mb-2 mb-xl-3 display-28">
