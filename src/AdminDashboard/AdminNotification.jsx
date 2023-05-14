@@ -41,61 +41,51 @@ const AdminNotification = (props) => {
 
   var sendMessage = async (notiSelect, notifTextArea) => {
     if (notiSelect == "student") {
-      const myCollectionRef = collection(db, 'users');
-      const MessageRef = collection(db, 'notification');
-      const messageDoc = await addDoc(MessageRef, {
-        isRead: false,
-        message: notifTextArea,
-        recieverId: "all Students",
-        senderId: "Admin",
-        senderName: "Admin",
-        sentTime: serverTimestamp()
-      })
-        .then((messageDoc) => {
-          getDocs(myCollectionRef).then((querySnapshot) => {
-            // Update each document in the collection with the same value
-            querySnapshot.forEach((student) => {
-              const docRef = doc(myCollectionRef, student.id);
-              updateDoc(docRef, { notification: arrayUnion(messageDoc.id) })
-                .then(() => {
-                  console.log("Document successfully written!");
-                })
-            });
-          }).catch((error) => {
-            console.error('Error getting documents from the collection:', error);
-          });
-        })
-        .catch((error) => {
-          console.error('Error adding document:', error);
-        })
+      const myCollectionRef = query(collection(db, 'users'), where("desgn", "==", "student"));
+      getDocs(myCollectionRef).then((querySnapshot) => {
+        // Update each document in the collection with the same value
+        querySnapshot.forEach(async (student) => {
+          const MessageRef = collection(db, 'notification');
+          const messageDoc = await addDoc(MessageRef, {
+            isRead: false,
+            message: notifTextArea,
+            recieverId: "all Students",
+            senderId: "Admin",
+            senderName: "Admin",
+            sentTime: serverTimestamp()
+          })
+          const docRef = doc(myCollectionRef, student.id);
+          updateDoc(docRef, { notification: arrayUnion(messageDoc.id) })
+            .then(() => {
+              console.log("Document successfully written!");
+            })
+        });
+      }).catch((error) => {
+        console.error('Error getting documents from the collection:', error);
+      });
     }
     else if (notiSelect == "startup") {
       const myCollectionRef = collection(db, 'startups');
-      const MessageRef = collection(db, 'notification');
-      const messageDoc = await addDoc(MessageRef, {
-        isRead: false,
-        message: notifTextArea,
-        recieverId: "all Students",
-        senderId: "Admin",
-        senderName: "Admin",
-        sentTime: serverTimestamp()
-      })
-        .then((messageDoc) => {
-          getDocs(myCollectionRef).then((querySnapshot) => {
-            querySnapshot.forEach((student) => {
-              const docRef = doc(myCollectionRef, student.id);
-              updateDoc(docRef, { notification: arrayUnion(messageDoc.id) })
-                .then(() => {
-                  console.log("Document successfully written!");
-                })
-            });
-          }).catch((error) => {
-            console.error('Error getting documents from the collection:', error);
-          });
-        })
-        .catch((error) => {
-          console.error('Error adding document:', error);
-        })
+      getDocs(myCollectionRef).then((querySnapshot) => {
+        querySnapshot.forEach(async (startup) => {
+          const MessageRef = collection(db, 'notification');
+          const messageDoc = await addDoc(MessageRef, {
+            isRead: false,
+            message: notifTextArea,
+            recieverId: "all Students",
+            senderId: "Admin",
+            senderName: "Admin",
+            sentTime: serverTimestamp()
+          })
+          const docRef = doc(myCollectionRef, startup.id);
+          updateDoc(docRef, { notification: arrayUnion(messageDoc.id) })
+            .then(() => {
+              console.log("Document successfully written!");
+            })
+        });
+      }).catch((error) => {
+        console.error('Error getting documents from the collection:', error);
+      });
     }
   }
 

@@ -4,19 +4,38 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
 import Card from '../Components/Card/Card'
 import { TextField } from "@mui/material";
+import { useEffect } from "react";
 
 
 
 const StartUpLists = (props) => {
 
   var startUpRefs = props.allData.startup;
-  // usesates  
+  // usestates
   const [inpdata, setInpdata] = useState("")
+  const [container, setContainer] = useState([])
 
   const getdata = (e) => {
     setInpdata(e.target.value)
-    console.log(inpdata)
+    console.log("inpData", inpdata)
   }
+
+  useEffect(() => {
+    setContainer(startUpRefs)
+  }, [startUpRefs])
+
+  useEffect(() => {
+    if (inpdata === "") {
+      setContainer(startUpRefs);
+    }
+    else{
+      var filter = startUpRefs.filter((item) => {
+        return item.data().name.toLowerCase().includes(inpdata.toLowerCase())
+      })
+      setContainer(filter)
+    }
+  }, [inpdata])
+
 
 
   return (
@@ -31,8 +50,9 @@ const StartUpLists = (props) => {
             value={inpdata}
           />
         </div>
-        {startUpRefs?.map((item) => {
-          return <Card data={item.data()}/>
+        {container?.map((item) => {
+          console.log("container", item.data());
+          return <Card data={item.data()} />
         })}
       </div>
     </>
