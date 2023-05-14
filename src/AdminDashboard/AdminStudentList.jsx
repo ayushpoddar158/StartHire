@@ -17,7 +17,9 @@ import {
   collection,
   addDoc,
   where,
-  updateDoc
+  updateDoc,
+  arrayUnion,
+  serverTimestamp
 } from "firebase/firestore";
 import { TextField } from "@mui/material";
 
@@ -39,7 +41,7 @@ const AdminStudentLists = (props) => {
     setSelect(e.target.value)
   }
 
-  const getInpData= (e) => {
+  const getInpData = (e) => {
     setInpdata(e.target.value)
     console.log("inpData", inpdata)
   }
@@ -48,13 +50,14 @@ const AdminStudentLists = (props) => {
     var getData = async () => {
       const Availq = query(
         collection(db, "users"),
-        where("VerifIsConfirmed", "==", false),
+        where("VerifIsConfirmed", "==",false),
         where("VerifIsRejected", "==", false),
-        where("VerifIsVerified", "==", false)
+        where("VerifIsVerified", "==", true)
       );
       await getDocs(Availq)
         .then((availableStd) => {
           setAvailable(availableStd.docs)
+          setContainer(availableStd.docs)
         })
       const Selectedq = query(
         collection(db, "users"),
@@ -76,24 +79,11 @@ const AdminStudentLists = (props) => {
     getData();
   }, [])
 
-
-  const ConfirmStd = async (item) => {
-    await updateDoc(item.ref, {
-      VerifIsConfirmed: true,
-      VerifIsRejected: false
-    }).then(() => {
-      window.location.reload();
-    })
-  }
-
-  const RejectStd = async (item) => {
-    await updateDoc(item.ref, {
-      VerifIsConfirmed: false,
-      VerifIsRejected: true
-    }).then(() => {
-      window.location.reload();
-    })
-  }
+  useEffect(() => {
+    if (available) {
+      console.log("avail", available)
+    }
+  }, [available])
 
   useEffect(() => {
     if (select === "available") {
@@ -107,19 +97,78 @@ const AdminStudentLists = (props) => {
     }
   }, [select])
 
-  useEffect(() =>{
-    if(inpdata === ""){
+  useEffect(() => {
+    if (inpdata === "") {
       setFiltered(container)
     }
-    else{
+    else {
       var filter = container.filter((item) => {
-        return item.data().firstName.toLowerCase().includes(inpdata.toLowerCase()) 
-        || item.data().email.toLowerCase().includes(inpdata.toLowerCase()) 
+        return item.data().firstName.toLowerCase().includes(inpdata.toLowerCase())
+          || item.data().email.toLowerCase().includes(inpdata.toLowerCase())
       })
       setFiltered(filter)
     }
   }
-  ,[inpdata,container])
+  , [inpdata, container])
+
+  const ConfirmStd = async (item) => {
+    await updateDoc(item.ref, {
+      VerifIsConfirmed: true,
+      VerifIsRejected: false
+    }).then(async () => {
+      var notifRef = query(collection(db, "notification"));
+      await addDoc(notifRef, {
+        isRead: false,
+        message: "Congratulations!" + item.data().firstName + "You have been selected for the collaboration program !",
+        recieverId: item.id,
+        senderId: "Admin",
+        senderName: "Admin",
+        sentTime: serverTimestamp()
+      }).then((newNotfId) => {
+        console.log("newNotfId", newNotfId.id)
+        updateDoc(item.ref, {
+          notification: arrayUnion(newNotfId.id)
+        }).then(() => {
+          window.location.reload();
+        }).catch((err) => {
+          console.log("couldnot add notification", err)
+        });
+      })
+        .catch((err) => {
+          console.log("couldnot add notification", err)
+        });
+    }
+    )
+  }
+
+  const RejectStd = async (item) => {
+    await updateDoc(item.ref, {
+      VerifIsConfirmed: false,
+      VerifIsRejected: true
+    }).then(async () => {
+      var notifRef = query(collection(db, "notification"));
+      await addDoc(notifRef, {
+        isRead: false,
+        message: "Alert!" + item.data().firstName + "You have been rejected for the collaboration program ! You will be informed for upcoming oppertunities",
+        recieverId: item.id,
+        senderId: "Admin",
+        senderName: "Admin",
+        sentTime: serverTimestamp()
+      }).then((newNotfId) => {
+        console.log("newNotfId", newNotfId.id)
+        updateDoc(item.ref, {
+          notification: arrayUnion(newNotfId.id)
+        }).then(() => {
+          window.location.reload();
+        }).catch((err) => {
+          console.log("couldnot add notification", err)
+        });
+      })
+        .catch((err) => {
+          console.log("couldnot add notification", err)
+        });
+    });
+  }
 
   return (
     <>
@@ -191,14 +240,14 @@ const AdminStudentLists = (props) => {
               />
             </RadioGroup>
           </FormControl>
-          <div style={{"background-color" : "white", "padding": "10px 0"}}>
-          <TextField
-            id="outlined-read-only-input"
-            label="Search"
-            defaultValue="Hello World"
-            onChange={getInpData}
-            value={inpdata}
-          />
+          <div style={{ "background-color": "white", "padding": "10px 0" }}>
+            <TextField
+              id="outlined-read-only-input"
+              label="Search"
+              defaultValue="Hello World"
+              onChange={getInpData}
+              value={inpdata}
+            />
           </div>
         </div >
         {filtered?.map((item) => {
