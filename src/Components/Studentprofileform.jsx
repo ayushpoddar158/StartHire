@@ -218,11 +218,10 @@ const Studentprofileform = (props) => {
   if (currentUser) {
     return (
       <>
-        <div className="maindivform">
-          <div class="container-fluid" id="main">
+       
             <div class="container bootstrap snippet" id='studentformmain'>
               {/* profile form stART */}
-              <div class="row row-offcanvas row-offcanvas-left Studentprofileform">
+              <div class="">
                 <div class="row mt-2">
                   <div class="col-sm-3">
                     {/* <!--left col--> */}
@@ -291,7 +290,7 @@ const Studentprofileform = (props) => {
                         <hr />
                         <form class="form" onSubmit={submitHandler} id="registrationForm">
                           <div className="container maindivstudent">
-                            <div class="form-group ">
+                            <div class="form-group Studentformdivs">
                               <div class="col-xs-12">
                                 <label className="firstnamecls" for="first_name"><h3>First Name</h3></label>
                                 <input type="text"
@@ -304,7 +303,7 @@ const Studentprofileform = (props) => {
                                   title="enter your first name if any." />
                               </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group Studentformdivs">
 
                               <div class="col-xs-12">
                                 <label for="last_name"><h3>Last Name</h3></label>
@@ -321,7 +320,7 @@ const Studentprofileform = (props) => {
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group Studentformdivs">
                               <div class="col-xs-12">
                                 <label for="mobile"><h3>Mobile</h3></label>
                                 <input type="number"
@@ -335,7 +334,7 @@ const Studentprofileform = (props) => {
                               </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group Studentformdivs">
 
                               <div class="col-xs-12">
                                 <label for="location"><h3>Location</h3></label>
@@ -349,10 +348,10 @@ const Studentprofileform = (props) => {
                                   title="enter a location" />
                               </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group Studentformdivs">
 
                               <div class="col-xs-12">
-                                <label for="collname"><h3>College/University Name</h3></label>
+                                <label for="collname"><h3>College Name</h3></label>
                                 <input type="text"
                                   name='collname'
                                   onChange={getData}
@@ -364,7 +363,7 @@ const Studentprofileform = (props) => {
                                   title="enter a location" />
                               </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group Studentformdivs">
 
                               <div class="col-xs-12">
                                 <label for="degree"><h3>Degree</h3></label>
@@ -380,7 +379,7 @@ const Studentprofileform = (props) => {
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group Studentformdivs">
 
                               <div class="col-xs-12 YearOf" >
                                 <label for="YOG"><h3>Year of Graduation</h3></label>
@@ -397,8 +396,8 @@ const Studentprofileform = (props) => {
                             </div>
 
 
-                            <div class="form-group selectDiv" >
-                              <div class="col-xs-12 YearOf">
+                            <div class="form-group selectDiv Studentformdivs" >
+                              <div class="col-xs-12 YearOf ">
                                 <label for="YOG">
                                   <h3>Add Skills</h3>
                                 </label>
@@ -442,8 +441,7 @@ const Studentprofileform = (props) => {
 
               </div>
             </div>
-          </div>
-        </div>
+       
 
       </>
     )

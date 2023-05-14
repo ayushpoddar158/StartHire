@@ -80,6 +80,11 @@ const Login = () => {
 
   return (
     <>
+   
+
+
+
+      <section class="vh-100 my-5" id='loginId'>
       <div className="container" id='Loginchangediv'>
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
           <li class="nav-item" role="presentation">
@@ -92,11 +97,7 @@ const Login = () => {
           </li>
         </ul>
       </div>
-
-
-
-      <section class="vh-100 my-5" id='loginId'>
-
+      
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10" id='loginmain'>

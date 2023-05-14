@@ -54,12 +54,17 @@ border-radius: 10Px;
 
 
 #studentrofileedit {
-    position: absolute;
-    right: 77px;
+    position: sticky;
+  left: 100%;
     z-index: 1000;
-    width: 100px;
+    width: 75px;
     padding: 10px;
     font-size: 4rem;
+    background-color: #ceaa4d !important;
+    color: white !important;
+    border: none;
+
+    margin: 0px;
 }
 
 
@@ -113,19 +118,7 @@ border-radius: 10Px;
 }
 
 
-#stuprofileedit {
-    position: sticky;
-  left: 100%;
-    z-index: 1000;
-    width: 75px;
-    padding: 10px;
-    font-size: 4rem;
-    background-color: #ceaa4d !important;
-    color: white !important;
-    border: none;
 
-    margin: 0px;
-}
 
 
 .startUpImgDiv {
@@ -163,7 +156,7 @@ border-radius: 10Px;
     object-fit: cover;
 }
 .student1main{
-    background-color: #ceaa4d !important;
+    /* background-color: #4dce81 !important; */
     display: flex;
     flex-direction: column; 
 }
@@ -320,6 +313,17 @@ border-radius: 10Px;
 
 
 @media only screen and (max-width: 600px) {
+.studentmaindiv2{
+    width: 90vw;
+    left: 0%;
+    margin: auto;
+}  
+#studentrofileedit{
+    left: 88.56%;
+    width: 54px;
+    margin-bottom: 10px;
+}
+
 #stuprofileedit{
     left: 88.56%;
     width: 54px;
@@ -349,9 +353,13 @@ flex-direction: column;
     position: static;
 left: 0px;
 }
+
 .studentDetails{
     position: static;
 left: 0px;
+}
+.studentImgDiv{
+    position: static;
 }
 .startUpImgDiv{
     position: static;

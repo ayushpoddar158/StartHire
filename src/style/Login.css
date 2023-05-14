@@ -1,13 +1,13 @@
 #Loginchangediv{
     /* z-index: 100000; */
-    margin-top: 40px;
+    /* margin-top: 40px; */
     position: relative;
-    width: 73.5vw;
-    /* background-color: red; */
+    width: 60% !important;
+    background-color: rgb(0, 255, 64);
     /* margin-left: 250px; */
-    margin-left: auto;
-    margin-top: 50px;
-    margin-bottom: -90px;
+    /* margin-left: auto !important; */
+    margin-bottom: 20px;
+  
 }
 .Loginchangebtn1{
     background-color: grey !important;
@@ -15,4 +15,17 @@
 .Loginchangebtn2{
  
     color: orangered !important;
+}
+
+#loginId{
+    background-color: aqua;
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+.loginmain{
+    background-color: bisque !important;
 }
