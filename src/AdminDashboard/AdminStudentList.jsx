@@ -19,7 +19,7 @@ import {
   where,
   updateDoc
 } from "firebase/firestore";
-
+import { TextField } from "@mui/material";
 
 
 
@@ -32,9 +32,16 @@ const AdminStudentLists = (props) => {
   var [selected, setSelected] = React.useState([]);
   var [rejected, setRejected] = React.useState([]);
   var [container, setContainer] = React.useState([]);
+  var [filtered, setFiltered] = React.useState([]);
+  var [inpdata, setInpdata] = React.useState("");
 
   var handleChange = (e) => {
     setSelect(e.target.value)
+  }
+
+  const getInpData= (e) => {
+    setInpdata(e.target.value)
+    console.log("inpData", inpdata)
   }
 
   useEffect(() => {
@@ -69,11 +76,6 @@ const AdminStudentLists = (props) => {
     getData();
   }, [])
 
-  useEffect(() => {
-    if (available) {
-      setContainer(available)
-    }
-  }, [available])
 
   const ConfirmStd = async (item) => {
     await updateDoc(item.ref, {
@@ -104,6 +106,20 @@ const AdminStudentLists = (props) => {
       setContainer(rejected)
     }
   }, [select])
+
+  useEffect(() =>{
+    if(inpdata === ""){
+      setFiltered(container)
+    }
+    else{
+      var filter = container.filter((item) => {
+        return item.data().firstName.toLowerCase().includes(inpdata.toLowerCase()) 
+        || item.data().email.toLowerCase().includes(inpdata.toLowerCase()) 
+      })
+      setFiltered(filter)
+    }
+  }
+  ,[inpdata,container])
 
   return (
     <>
@@ -175,8 +191,17 @@ const AdminStudentLists = (props) => {
               />
             </RadioGroup>
           </FormControl>
+          <div style={{"background-color" : "white", "padding": "10px 0"}}>
+          <TextField
+            id="outlined-read-only-input"
+            label="Search"
+            defaultValue="Hello World"
+            onChange={getInpData}
+            value={inpdata}
+          />
+          </div>
         </div >
-        {container?.map((item) => {
+        {filtered?.map((item) => {
           if (item?.data().desgn === "student" && item?.data().updatedProfile) {
             return (
               <div className="box3">

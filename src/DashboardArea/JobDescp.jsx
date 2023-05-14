@@ -107,18 +107,22 @@ const JobDescp = () => {
     }
 
     const getAllData = async () => {
-      const userq = query(collection(db, "users"));
+      const userq = query(collection(db, "users"),
+                    where("VerifIsConfirmed","==",true));
       const user_docs = await getDocs(userq);
       var stdData = user_docs.docs
       return stdData;
     }
     var stdData = await getAllData();
     console.log("studentdata", stdData)
-    console.log(jobData.skills)
+    console.log(jobData.details.skills)
+    setSelectedStudents([]);
     stdData.map((student) => {
       var matchVal = getPer(student.data().skills, jobSkillList)
       var contains = false;
       assignedStudents.map((item) => {
+        // console.log("assign",item.data())
+        // console.log("student",student.data())
         contains = item.data().uid === student.data().uid ? true : contains;
       })
       if (matchVal >= 0.5 && !contains) {
@@ -126,6 +130,7 @@ const JobDescp = () => {
       }
     })
   }
+
   const addStudent = async (student) => {
     console.log(student);
     setAssignIds(assignedIds => [...assignedIds, student.id])

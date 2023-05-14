@@ -60,9 +60,9 @@ const AsideMain = (props) => {
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/AdminDashboard"> <FontAwesomeIcon icon={faFile} /><span className="ml-3" >Dashboard</span></NavLink></li>
                                     <li class="nav-item mb-2 "
-                                    ><NavLink class="nav-link text-secondary" to="/AdminStudentLists"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >StudentList</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/AdminStudentLists"><FontAwesomeIcon icon={faUser} /><span className="ml-3" >Student List</span></NavLink></li>
                                     <li class="nav-item mb-2"
-                                    ><NavLink class="nav-link text-secondary" to="/StartUpLists" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Jobs</span></NavLink></li>
+                                    ><NavLink class="nav-link text-secondary" to="/StartUpLists" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >StartUp List</span></NavLink></li>
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/AdminNotification" ><FontAwesomeIcon icon={faBriefcase} /> <span className="ml-3" >Notification</span></NavLink></li>
                                     {/* <button>Hide</button> */}
