@@ -303,6 +303,12 @@ const AdminStudentLists = (props) => {
                       onClick={() => { RejectStd(item) }}>
                       Reject
                     </Button>
+                   <Link  > 
+                    <Button className="viewbtn Adminviewbtnrej"
+                      variant="contained" >
+                      View 
+                    </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
