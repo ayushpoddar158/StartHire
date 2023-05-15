@@ -1,6 +1,10 @@
 body {
     font-family: 'Roboto';
 }
+.Aboutcontainer{
+    /* background-color: red; */
+    padding: 30px;
+}
 
 .aboutus-section {
     padding: 90px 0;
