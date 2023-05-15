@@ -104,21 +104,16 @@ const App = (props) => {
                     }
                   }
                 })
-                .finally(() => {
-                  setLoading(false);
-                });
+
             }
           })
-          .finally(() =>{
-            setLoading(false)
-          })
-        }
+      }
       catch (err) {
         console.log(err);
       }
-      finally {
-        setLoading(false)
-      }
+      // finally {
+      //   setLoading(false)
+      // }
     }
     if (currentUser) {
       getUserData(currentUser);
@@ -131,7 +126,7 @@ const App = (props) => {
 
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     var fetchNotif = async (notifIds) => {
       console.log("user: ", userData)
       let UnReadCount = 0;
