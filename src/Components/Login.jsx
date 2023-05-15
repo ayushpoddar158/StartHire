@@ -101,7 +101,7 @@ const Login = () => {
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10" id='loginmain'>
-              <div class="card" style={{ borderRadius: " 1rem", padding: "30px" }}>
+              <div class="cardLogin" style={{ borderRadius: " 1rem", padding: "30px" }}>
                 <div class="row g-0">
                   <div class="col-md-6 col-lg-5 d-none d-md-block">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img2.webp"

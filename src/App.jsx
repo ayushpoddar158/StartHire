@@ -187,7 +187,7 @@ const App = (props) => {
           isAdmin={isAdmin}
           allData={allData}
           notifObj={notifObj.reverse()} />
-        <Footer />
+        {/* <Footer /> */}
       </Suspense>
     </>
   );
