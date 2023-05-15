@@ -10,6 +10,21 @@
   border-radius: 10px;
 }
 
+.sign1maini{
+  /* background-color: red; */
+  width: 70%;
+  /* margin-left: auto !important; */
+ 
+}
+.signupmaindiv{
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .Signupafterchangediv{
   /* background-color: rgb(1, 0, 5); */
   background-color: white;
@@ -32,14 +47,14 @@
 
 
 #sign1main{
-     /* background-color: aqua; */
-     width: 80% !important;
-     margin: auto;
-     display: flex;
-     flex-direction: column;
-     /* justify-content: space-around; */
+     /* background-color: rgb(167, 206, 28); */
+     /* width: 80% !important; */
+     /* margin: auto; */
+     /* display: flex; */
+     /* flex-direction: column;
+     justify-content: space-around;
      align-items: center;
-     padding: 20px;
+     padding: 20px; */
 }
 
 HTML CSSResult Skip Results Iframe
