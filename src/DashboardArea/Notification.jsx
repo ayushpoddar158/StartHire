@@ -43,7 +43,7 @@ const Notification = (props) => {
                     <div class="">
                         <div class="col StartNotimain pt-5 mt-3">
                             <section class="Startsection-50">
-                                <div class="container ">
+                                <div class=" ">
                                     <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
                                 </div>
                                 {notifObj.map((item) => {
