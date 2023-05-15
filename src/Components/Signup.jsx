@@ -155,7 +155,6 @@ const Signup = (props) => {
 
   return (
     <>
-     
       <section className="vh-100 my-5 " id='sign1main' >
       <div className="" id='Signupchangediv'>
         {/* <!-- Pills navs --> */}
@@ -174,6 +173,7 @@ const Signup = (props) => {
       {!studentSignUpOpen ? 
       <h1>Student Registration is closed !</h1>
       :
+      <>
         <section className="vh-90" id='sign1main' >
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
@@ -246,7 +246,9 @@ const Signup = (props) => {
             </div>
           </div>
         </section>
+        </>
       }
+      </section>
     </>
   )
 }
