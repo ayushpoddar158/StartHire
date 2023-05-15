@@ -36,6 +36,13 @@ const App = (props) => {
   const [userData, setUserData] = useState(null);
   const [isStartUp, setIsStartUp] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
+  const [studentSignUpOpen, setStudentSignUpOpen] = useState(true);
+  const [startupSignUpOpen, setStartupSignUpOpen] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  // // setting up notification
+  var [notifObj, setNotifObj] = useState([]);
+  var [unReadCount, setUnreadCount] = useState(0);
 
   // conditional routing for navbar and sidebar
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
@@ -45,10 +52,6 @@ const App = (props) => {
     startup: null,
     job: null
   });
-
-  useEffect(() => {
-    onRouteChanged();
-  }, []);
 
   useEffect(() => {
     onRouteChanged();
@@ -68,38 +71,8 @@ const App = (props) => {
     }
   }
 
-  // setting up notification
-  var [notifObj, setNotifObj] = useState([]);
-  var [unReadCount, setUnreadCount] = useState(0);
-
   useEffect(() => {
-    var fetchNotif = async (notifIds) => {
-      console.log("user: ", userData)
-      let UnReadCount = 0;
-      for (let i = 0; i < notifIds?.length; i++) {
-        let notifRef = doc(db, "notification", notifIds[i]);
-        let note = await getDoc(notifRef);
-        if (note.data().isRead === false) {
-          UnReadCount = UnReadCount + 1;
-        }
-        console.log("note",note)
-        setNotifObj(notif => [
-          ...notif,
-          note
-        ]);
-      }
-      setUnreadCount(UnReadCount);
-    }
-    const fetchNote = async (notifIds) => {
-      console.log("fetchnote is called")
-      await fetchNotif(notifIds);
-    }
-    fetchNote(userData?.data().notification);
-  }, [userData]);
-
-  console.log(userData);
-
-  useEffect(() => {
+    setLoading(true);
     const getUserData = async (currentUser) => {
       console.log("inside get user data")
       let id = await currentUser?.uid;
@@ -138,25 +111,70 @@ const App = (props) => {
     if (currentUser) {
       getUserData(currentUser);
     }
+    setLoading(false);
   }, [currentUser])
 
+
+
+
+
+
   useEffect(() => {
-    const getAllData = async () => {
-      if (isAdmin) {
-        const userq = query(collection(db, "users"));
-        const user_docs = await getDocs(userq);
-        const startupq = query(collection(db, "startups"));
-        const startup_docs = await getDocs(startupq);
-        const jobq = query(collection(db, "jobs"));
-        const job_docs = await getDocs(jobq);
-        setAllData({
-          user: user_docs.docs,
-          startup: startup_docs.docs,
-          job: job_docs.docs
-        })
+    setLoading(true);
+    var fetchNotif = async (notifIds) => {
+      console.log("user: ", userData)
+      let UnReadCount = 0;
+      for (let i = 0; i < notifIds?.length; i++) {
+        let notifRef = doc(db, "notification", notifIds[i]);
+        let note = await getDoc(notifRef);
+        if (note.data().isRead === false) {
+          UnReadCount = UnReadCount + 1;
+        }
+        setNotifObj(notif => [
+          ...notif,
+          note
+        ]);
       }
+      setUnreadCount(UnReadCount);
     }
+    const fetchNote = async (notifIds) => {
+      console.log("fetchnote is called")
+      await fetchNotif(notifIds);
+    }
+    fetchNote(userData?.data().notification);
+    setLoading(false);
+  }, [userData]);
+
+
+  useEffect(() => {
+    console.log("student open", studentSignUpOpen);
+    console.log("startup open", startupSignUpOpen);
+  }, [studentSignUpOpen])
+
+
+  useEffect(() => {
+    setLoading(true);
+    const getAllData = async () => {
+      try {
+        if (isAdmin) {
+          const userQuery = query(collection(db, "users"));
+          const userDocs = await getDocs(userQuery);
+          const startupQuery = query(collection(db, "startups"));
+          const startupDocs = await getDocs(startupQuery);
+          const jobQuery = query(collection(db, "jobs"));
+          const jobDocs = await getDocs(jobQuery);
+          setAllData({
+            user: userDocs.docs,
+            startup: startupDocs.docs,
+            job: jobDocs.docs,
+          });
+        }
+      } catch (err) {
+        console.log("error while fetching all data", err);
+      }
+    };
     getAllData();
+    setLoading(false);
   }, [isAdmin])
 
 
@@ -168,28 +186,34 @@ const App = (props) => {
     isVerified={isVerified}
     isAdmin={isAdmin}
     unReadCount={unReadCount} /> : '';
-  let footerComponent = isFullPageLayout ? <Footer/> : "" ;
+  let footerComponent = isFullPageLayout ? <Footer /> : "";
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <Navbar userData={userData}
-          isStartUp={isStartUp}
-          isStudent={isStudent}
-          isVerified={isVerified}
-          isAdmin={isAdmin} />
-        {sidebarComponent}
-        <AppRoutes
-          userData={userData}
-          isStartUp={isStartUp}
-          isStudent={isStudent}
-          isVerified={isVerified}
-          isAdmin={isAdmin}
-          allData={allData}
-          notifObj={notifObj} />
-        {footerComponent}
-      </Suspense>
+      {loading ? <Loading /> :
+        <>
+          <Suspense fallback={<Loading />}>
+            <Navbar userData={userData}
+              isStartUp={isStartUp}
+              isStudent={isStudent}
+              isVerified={isVerified}
+              isAdmin={isAdmin} />
+            {sidebarComponent}
+            <AppRoutes
+              userData={userData}
+              isStartUp={isStartUp}
+              isStudent={isStudent}
+              isVerified={isVerified}
+              isAdmin={isAdmin}
+              allData={allData}
+              notifObj={notifObj}
+              startupSignUpOpen={startupSignUpOpen}
+              studentSignUpOpen={studentSignUpOpen} />
+            {footerComponent}
+          </Suspense>
+        </>
+      }
     </>
   );
 };

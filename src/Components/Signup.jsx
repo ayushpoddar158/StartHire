@@ -25,9 +25,10 @@ import Login from './Login';
 import '../style/SignUp.css'
 import { useContext } from "react";
 
-const Signup = () => {
+const Signup = (props) => {
   // const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const studentSignUpOpen = props.studentSignUpOpen;
   const [inpVal, setInpVal] = useState({
     name: "",
     email: "",
@@ -100,12 +101,12 @@ const Signup = () => {
                   updatedProfile: false,
                   firstName: "",
                   lastName: "",
-                  Mobile:"",
+                  Mobile: "",
                   location: "",
                   College: "",
                   Degree: "",
-                  YOG:"", 
-                  githubLink:"",
+                  YOG: "",
+                  githubLink: "",
                   linkedInLink: "",
                   PImageUrl: null,
                   skills: [],
@@ -170,79 +171,82 @@ const Signup = () => {
         </ul>
         {/* <!-- Pills navs --> */}
       </div>
-        <div className=" h-100 Signupafterchangediv">
-          <div className="d-flex justify-content-center align-items-center h-100">
-            <div className="col-lg-12 col-xl-11  signupcardinfo">
-              <div id='signup1card' className=" text-black" >
-                <div className="card-body p-md-5">
-                  <div className="row justify-content-center">
-                    <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+      {!studentSignUpOpen ? 
+      <h1>Student Registration is closed !</h1>
+      :
+        <section className="vh-90" id='sign1main' >
+          <div className="container h-100">
+            <div className="row d-flex justify-content-center align-items-center h-100">
+              <div className="col-lg-12 col-xl-11">
+                <div id='signup1card' className="card text-black" >
+                  <div className="card-body p-md-5">
+                    <div className="row justify-content-center">
+                      <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                      <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up as Student</p>
+                        <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up as Student</p>
 
-                      <form className="mx-1 mx-md-4" >
+                        <form className="mx-1 mx-md-4" >
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <i id='signupicons' className="zmdi zmdi-account"></i>
-                          <div className="form-outline flex-fill mb-0">
-                            <input type="text" name="name" onChange={getdata} id="form3Example1c" className="form-control" />
-                            <label className="form-label" htmlFor="form3Example1c">Your Name</label>
+                          <div className="d-flex flex-row align-items-center mb-4">
+                            <i id='signupicons' className="zmdi zmdi-account"></i>
+                            <div className="form-outline flex-fill mb-0">
+                              <input type="text" name="name" onChange={getdata} id="form3Example1c" className="form-control" />
+                              <label className="form-label" htmlFor="form3Example1c">Your Name</label>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <i id='signupicons' className="zmdi zmdi-email"></i>
-                          <div className="form-outline flex-fill mb-0">
-                            <input type="email" name="email" id="form3Example3c" onChange={getdata} className="form-control" />
-                            <label className="form-label" htmlFor="form3Example3c">Your Email</label>
+                          <div className="d-flex flex-row align-items-center mb-4">
+                            <i id='signupicons' className="zmdi zmdi-email"></i>
+                            <div className="form-outline flex-fill mb-0">
+                              <input type="email" name="email" id="form3Example3c" onChange={getdata} className="form-control" />
+                              <label className="form-label" htmlFor="form3Example3c">Your Email</label>
+                            </div>
                           </div>
-                        </div>
 
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <i id='signupicons' className="zmdi zmdi-lock"></i>
-                          <div className="form-outline flex-fill mb-0">
-                            <input type="password" name="password" id="form3Example4c" onChange={getdata} className="form-control" />
-                            <label className="form-label" htmlFor="form3Example4c">Password</label>
+                          <div className="d-flex flex-row align-items-center mb-4">
+                            <i id='signupicons' className="zmdi zmdi-lock"></i>
+                            <div className="form-outline flex-fill mb-0">
+                              <input type="password" name="password" id="form3Example4c" onChange={getdata} className="form-control" />
+                              <label className="form-label" htmlFor="form3Example4c">Password</label>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <i id='signupicons' className="zmdi zmdi-key"></i>
-                          <div className="form-outline flex-fill mb-0">
-                            <input type="password" name="repeatpassword" id="form3Example4cd" onChange={getdata} className="form-control" />
-                            <label className="form-label" htmlFor="form3Example4cd">Repeat your password</label>
+                          <div className="d-flex flex-row align-items-center mb-4">
+                            <i id='signupicons' className="zmdi zmdi-key"></i>
+                            <div className="form-outline flex-fill mb-0">
+                              <input type="password" name="repeatpassword" id="form3Example4cd" onChange={getdata} className="form-control" />
+                              <label className="form-label" htmlFor="form3Example4cd">Repeat your password</label>
+                            </div>
                           </div>
-                        </div>
 
-                        {/* <div className="form-check d-flex justify-content-center mb-5">
+                          {/* <div className="form-check d-flex justify-content-center mb-5">
                     <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                     <label className="form-check-label" htmlFor="form2Example3">
                       I agree all statements in <Link to="#!">Terms of service</Link>
                     </label>
                   </div> */}
 
-                        <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="button" onClick={addData} className="btn btn-primary btn-lg">Register</button>
-                        </div>
-                      </form>
+                          <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                            <button type="button" onClick={addData} className="btn btn-primary btn-lg">Register</button>
+                          </div>
+                        </form>
 
-                    </div>
-                    <div className="float-area col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                      </div>
+                      <div className="float-area col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                        className="img-fluid floating-img" alt="Sample image" />
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                          className="img-fluid floating-img" alt="Sample image" />
 
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-
+        </section>
+      }
     </>
   )
 }

@@ -158,7 +158,9 @@ const Studentprofileform = (props) => {
       alert("Please enter your qualification")
     }
     else if (StudentData.YOG === "") {
-      alert("Please enter your year of graduation")
+      if (StudentData.YOG < 2016 || StudentData.YOG > 2023) {
+        alert("Please enter a valid year of graduation")
+      }
     }
     else if (StudentData.skills.length === 0) {
       alert("Please enter at least one skill")
@@ -218,230 +220,230 @@ const Studentprofileform = (props) => {
   if (currentUser) {
     return (
       <>
-       
-            <div class=" bootstrap snippet" id='studentformmain'>
-              {/* profile form stART */}
-              <div class="">
-                <div class="row mt-2">
-                  <div class="col-sm-3">
-                    {/* <!--left col--> */}
+
+        <div class=" bootstrap snippet" id='studentformmain'>
+          {/* profile form stART */}
+          <div class="">
+            <div class="row mt-2">
+              <div class="col-sm-3">
+                {/* <!--left col--> */}
 
 
-                    <div class="text-center">
-                      {StudentImg ? <Box mt={2} textAlign="center">
-                        {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
-                        <div id="StudentImage">
-                          <img src={URL.createObjectURL(StudentImg)} alt="" height="100px" /> </div>
-                      </Box> :
-                        <Box mt={2} textAlign="center">
-                          {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
-                          <div id="StudentImage">
-                            <img src={showImageUrl} alt="" height="100px" />
-                          </div>
-                        </Box>}
-                      <h6></h6>
-                      <label id='fileupload'> Upload Your Photo
-                        <input accept="image/" type="file" onChange={handleImageUpload} size="60" />
-                      </label>
-                    </div><hr /><br />
+                <div class="text-center">
+                  {StudentImg ? <Box mt={2} textAlign="center">
+                    {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
+                    <div id="StudentImage">
+                      <img src={URL.createObjectURL(StudentImg)} alt="" height="100px" /> </div>
+                  </Box> :
+                    <Box mt={2} textAlign="center">
+                      {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
+                      <div id="StudentImage">
+                        <img src={showImageUrl} alt="" height="100px" />
+                      </div>
+                    </Box>}
+                  <h6></h6>
+                  <label id='fileupload'> Upload Your Photo
+                    <input accept="image/" type="file" onChange={handleImageUpload} size="60" />
+                  </label>
+                </div><hr /><br />
 
-                    <br />
-                    <div class="panel panel-default">
-                      <div class="panel-heading">Links<i class="fa fa-link fa-1x"></i></div>
-                      <hr />
-                      <div class="panel-body">
-                        <div class="form-group">
+                <br />
+                <div class="panel panel-default">
+                  <div class="panel-heading">Links<i class="fa fa-link fa-1x"></i></div>
+                  <hr />
+                  <div class="panel-body">
+                    <div class="form-group">
 
-                          <div class="col-xs-12">
-                            <label for="last_name"><h6>Github Link</h6></label>
-                            <input type="text" class="form-control"
-                              onChange={getData}
-                              name="githubLink"
-                              id="githubLink"
-                              defaultValue={StudentData.githubLink}
-                              placeholder="Github lInk"
-                              title="enter your last name if any." />
-                          </div>
-                        </div>
-                        <div class="form-group">
-
-                          <div class="col-xs-12">
-                            <label for="last_name"><h6>Linkedin</h6></label>
-                            <input type="text"
-                              class="form-control" onChange={getData}
-                              name="linkedInLink"
-                              id="linkedInLink"
-                              defaultValue={StudentData.linkedInLink}
-                              placeholder="Linkedin Link"
-                              title="enter your last name if any." />
-                          </div>
-                        </div>
+                      <div class="col-xs-12">
+                        <label for="last_name"><h6>Github Link</h6></label>
+                        <input type="text" class="form-control"
+                          onChange={getData}
+                          name="githubLink"
+                          id="githubLink"
+                          defaultValue={StudentData.githubLink}
+                          placeholder="Github lInk"
+                          title="enter your last name if any." />
                       </div>
                     </div>
+                    <div class="form-group">
 
-
-
-
-                  </div>
-                  {/* <!--/col-3--> */}
-                  <div class="col-sm-9">
-                    <div class="tab-content">
-                      <div class="tab-pane active" id="home">
-                        <hr />
-                        <form class="form" onSubmit={submitHandler} id="registrationForm">
-                          <div className="container maindivstudent">
-                            <div class="form-group Studentformdivs">
-                              <div class="col-xs-12">
-                                <label className="firstnamecls" for="first_name"><h3>First Name</h3></label>
-                                <input type="text"
-                                  onChange={getData}
-                                  class="form-control"
-                                  required name="firstname"
-                                  id="first_name"
-                                  defaultValue={StudentData.firstname}
-                                  placeholder="first name"
-                                  title="enter your first name if any." />
-                              </div>
-                            </div>
-                            <div class="form-group Studentformdivs">
-
-                              <div class="col-xs-12">
-                                <label for="last_name"><h3>Last Name</h3></label>
-                                <input type="text"
-                                  onChange={getData}
-                                  class="form-control"
-                                  name="lastname"
-                                  id="last_name"
-                                  defaultValue={StudentData.lastname}
-                                  placeholder="last name"
-                                  title="enter your last name if any."
-                                  required />
-                              </div>
-                            </div>
-
-
-                            <div class="form-group Studentformdivs">
-                              <div class="col-xs-12">
-                                <label for="mobile"><h3>Mobile</h3></label>
-                                <input type="number"
-                                  onChange={getData}
-                                  class="form-control"
-                                  required name="mobile"
-                                  id="mobile"
-                                  defaultValue={StudentData.mobile}
-                                  placeholder="enter mobile number"
-                                  title="enter your mobile number if any." />
-                              </div>
-                            </div>
-
-                            <div class="form-group Studentformdivs">
-
-                              <div class="col-xs-12">
-                                <label for="location"><h3>Location</h3></label>
-                                <input type="text"
-                                  onChange={getData}
-                                  name='location'
-                                  class="form-control"
-                                  required id="location"
-                                  defaultValue={StudentData.location}
-                                  placeholder="somewhere"
-                                  title="enter a location" />
-                              </div>
-                            </div>
-                            <div class="form-group Studentformdivs">
-
-                              <div class="col-xs-12">
-                                <label for="collname"><h3>College Name</h3></label>
-                                <input type="text"
-                                  name='collname'
-                                  onChange={getData}
-                                  class="form-control"
-                                  required
-                                  id=""
-                                  defaultValue={StudentData.collname}
-                                  placeholder="college/University "
-                                  title="enter a location" />
-                              </div>
-                            </div>
-                            <div class="form-group Studentformdivs">
-
-                              <div class="col-xs-12">
-                                <label for="degree"><h3>Degree</h3></label>
-                                <input type="text"
-                                  name='degree'
-                                  onChange={getData}
-                                  class="form-control"
-                                  required id="dergree"
-                                  defaultValue={StudentData.degree}
-                                  placeholder="Name of Degree"
-                                  title="enter degree" />
-                              </div>
-                            </div>
-
-
-                            <div class="form-group Studentformdivs">
-
-                              <div class="col-xs-12 YearOf" >
-                                <label for="YOG"><h3>Year of Graduation</h3></label>
-                                <input type="number"
-                                  name='YOG'
-                                  onChange={getData}
-                                  class="form-control"
-                                  required
-                                  id="YOG"
-                                  defaultValue={StudentData.YOG}
-                                  placeholder="Year of Graduation"
-                                  title="enter year of passing" />
-                              </div>
-                            </div>
-
-
-                            <div class="form-group selectDiv Studentformdivs" >
-                              <div class="col-xs-12 YearOf ">
-                                <label for="YOG">
-                                  <h3>Add Skills</h3>
-                                </label>
-                                <Select onChange={handleAddition}
-
-                                  isMulti
-                                  name="colors"
-                                  options={Codinglanginfo}
-                                  className="basic-multi-select"
-                                  classNamePrefix="select"
-                                  placeholder="Enter Your Skills"
-
-                                  value={StudentData.skills}
-
-
-                                />
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <div class="col-xs-12">
-                                <br />
-                                <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
-                                {/* <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> */}
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-
-                        <hr />
-
+                      <div class="col-xs-12">
+                        <label for="last_name"><h6>Linkedin</h6></label>
+                        <input type="text"
+                          class="form-control" onChange={getData}
+                          name="linkedInLink"
+                          id="linkedInLink"
+                          defaultValue={StudentData.linkedInLink}
+                          placeholder="Linkedin Link"
+                          title="enter your last name if any." />
                       </div>
-
-
                     </div>
-                    {/* <!--/tab-pane--> */}
                   </div>
-                  {/* <!--/tab-content--> */}
-
                 </div>
-                {/* PROFILE FORM END */}
+
+
+
 
               </div>
+              {/* <!--/col-3--> */}
+              <div class="col-sm-9">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="home">
+                    <hr />
+                    <form class="form" onSubmit={submitHandler} id="registrationForm">
+                      <div className="container maindivstudent">
+                        <div class="form-group Studentformdivs">
+                          <div class="col-xs-12">
+                            <label className="firstnamecls" for="first_name"><h3>First Name</h3></label>
+                            <input type="text"
+                              onChange={getData}
+                              class="form-control"
+                              required name="firstname"
+                              id="first_name"
+                              defaultValue={StudentData.firstname}
+                              placeholder="first name"
+                              title="enter your first name if any." />
+                          </div>
+                        </div>
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12">
+                            <label for="last_name"><h3>Last Name</h3></label>
+                            <input type="text"
+                              onChange={getData}
+                              class="form-control"
+                              name="lastname"
+                              id="last_name"
+                              defaultValue={StudentData.lastname}
+                              placeholder="last name"
+                              title="enter your last name if any."
+                              required />
+                          </div>
+                        </div>
+
+
+                        <div class="form-group Studentformdivs">
+                          <div class="col-xs-12">
+                            <label for="mobile"><h3>Mobile</h3></label>
+                            <input type="number"
+                              onChange={getData}
+                              class="form-control"
+                              required name="mobile"
+                              id="mobile"
+                              defaultValue={StudentData.mobile}
+                              placeholder="enter mobile number"
+                              title="enter your mobile number if any." />
+                          </div>
+                        </div>
+
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12">
+                            <label for="location"><h3>Location</h3></label>
+                            <input type="text"
+                              onChange={getData}
+                              name='location'
+                              class="form-control"
+                              required id="location"
+                              defaultValue={StudentData.location}
+                              placeholder="somewhere"
+                              title="enter a location" />
+                          </div>
+                        </div>
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12">
+                            <label for="collname"><h3>College Name</h3></label>
+                            <input type="text"
+                              name='collname'
+                              onChange={getData}
+                              class="form-control"
+                              required
+                              id=""
+                              defaultValue={StudentData.collname}
+                              placeholder="college/University "
+                              title="enter a location" />
+                          </div>
+                        </div>
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12">
+                            <label for="degree"><h3>Degree</h3></label>
+                            <input type="text"
+                              name='degree'
+                              onChange={getData}
+                              class="form-control"
+                              required id="dergree"
+                              defaultValue={StudentData.degree}
+                              placeholder="Name of Degree"
+                              title="enter degree" />
+                          </div>
+                        </div>
+
+
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12 YearOf" >
+                            <label for="YOG"><h3>Year of Graduation</h3></label>
+                            <input type="number"
+                              name='YOG'
+                              onChange={getData}
+                              class="form-control"
+                              required
+                              id="YOG"
+                              defaultValue={StudentData.YOG}
+                              placeholder="Year of Graduation"
+                              title="enter year of passing" />
+                          </div>
+                        </div>
+
+
+                        <div class="form-group selectDiv Studentformdivs" >
+                          <div class="col-xs-12 YearOf ">
+                            <label for="YOG">
+                              <h3>Add Skills</h3>
+                            </label>
+                            <Select onChange={handleAddition}
+
+                              isMulti
+                              name="colors"
+                              options={Codinglanginfo}
+                              className="basic-multi-select"
+                              classNamePrefix="select"
+                              placeholder="Enter Your Skills"
+
+                              value={StudentData.skills}
+
+
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-xs-12">
+                            <br />
+                            <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
+                            {/* <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> */}
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+
+                    <hr />
+
+                  </div>
+
+
+                </div>
+                {/* <!--/tab-pane--> */}
+              </div>
+              {/* <!--/tab-content--> */}
+
             </div>
-       
+            {/* PROFILE FORM END */}
+
+          </div>
+        </div>
+
 
       </>
     )

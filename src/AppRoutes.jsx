@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Suspense } from "react";
 
 // Data setup 
@@ -60,6 +60,8 @@ import AdminStudentView from "./AdminDashboard/AdminStudentView";
 
 
 const AppRoutes = (props) => {
+    // console.log("inside app routes") 
+    // console.log(props)
     let userData = props.userData;
     let isStudent = props.isStudent;
     let isStartUp = props.isStartUp;
@@ -67,72 +69,85 @@ const AppRoutes = (props) => {
     let isAdmin = props.isAdmin;
     let allData = props.allData;
     let notifObj = props.notifObj;
-    
+    let studentSignUpOpen = props.studentSignUpOpen;
+    let startupSignUpOpen = props.startupSignUpOpen;
+
+    var [loading, setLoading] = useState()
+
+    useState(() => {
+        if (props) {
+            setLoading(false);
+        }
+    }, [props])
+
+
 
     const Basic = <>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
         <Route path="About" element={<About />} />
         <Route path="Contact" element={<Contact />} />
-        <Route path="*" element={<PageNotFound />} />
     </>
 
     const AuthPages = <>
         <Route path="Login" element={<Login />} />
         <Route path="LoginStartUp" element={<LoginStartUp />} />
-        <Route path="Signup" element={<Signup />} />
-        <Route path="Signupstartup" element={<Signupstartup />} />
+        <Route path="Signup" element={<Signup studentSignUpOpen={studentSignUpOpen} />} />
+        <Route path="Signupstartup" element={<Signupstartup startupSignUpOpen={startupSignUpOpen} />} />
         <Route path="ForgetPassword" element={<ForgetPassword />} />
     </>
 
     const StudentPages = <>
-        <Route path="/studentprofileform" element={<Studentprofileform userData={userData}/>} />
-        <Route path="/Studentprofile" element={<Studentprofile userData={userData}/>} />
-        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData}/>} />
+        <Route path="/studentprofileform" element={<Studentprofileform userData={userData} />} />
+        <Route path="/Studentprofile" element={<Studentprofile userData={userData} />} />
+        <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
         <Route path="/VerifyEmail" element={<VerifyEmail />} />
-        <Route path="/StudentNotification" element={<StudentNotification notifObj ={notifObj } />} />
+        <Route path="/StudentNotification" element={<StudentNotification notifObj={notifObj} />} />
+        <Route path="*" element={<PageNotFound />} />
     </>
 
     const StartUpPages = <>
-        <Route path="Filteredstudentlist" element={<Filteredstudentlist userData={userData}/>} />
-        <Route path="Dashboard" element={<Dashboard userData={userData}/>} />
-        <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData}/>} />
-        <Route path="StartUpProfile" element={<StartUpProfile userData={userData}/>} />
-        <Route path="VerifyEmail" element={<VerifyEmail/>} />
-        <Route path="StartUpBlog" element={<StartupBlog userData={userData}/>} />
-        <Route path="Notification" element={<Notification 
-        notifObj ={notifObj} />} />
+        <Route path="Filteredstudentlist" element={<Filteredstudentlist userData={userData} />} />
+        <Route path="Dashboard" element={<Dashboard userData={userData} />} />
+        <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData} />} />
+        <Route path="StartUpProfile" element={<StartUpProfile userData={userData} />} />
+        <Route path="VerifyEmail" element={<VerifyEmail />} />
+        <Route path="StartUpBlog" element={<StartupBlog userData={userData} />} />
+        <Route path="Notification" element={<Notification
+            notifObj={notifObj} />} />
         {/* //jobs routes */}
-        <Route path="Jobs" element={<Jobs userData={userData}/>} />
-        <Route path="CreateJobs" element={<CreateJobs userData={userData}/>} />
-        <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin}/>} />
-        <Route path="JobDescp/:id" element={<JobDescp isAdmin={isAdmin}/>} />
+        <Route path="Jobs" element={<Jobs userData={userData} />} />
+        <Route path="CreateJobs" element={<CreateJobs userData={userData} />} />
+        <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin} />} />
+        <Route path="JobDescp/:id" element={<JobDescp isAdmin={isAdmin} />} />
     </>
 
     const AdminPages = <>
         <Route path="/AdminDashboard" element={<AdminDashboard allData={allData} />} />
-        <Route path="/AdminJobs" element={<AdminJobs allData={allData}/>} />
-        <Route path="/SearchInterns" element={<SearchInterns allData={allData}/>} />
-        <Route path="/AdminStudentLists" element={<AdminStudentLists allData={allData}/>} />
-        <Route path="/StartUpLists" element={<StartUpLists allData={allData}/>} />
-        <Route path="/AdminNotification" element={<AdminNotification allData={allData}/>} />
+        <Route path="/AdminJobs" element={<AdminJobs allData={allData} />} />
+        <Route path="/SearchInterns" element={<SearchInterns allData={allData} />} />
+        <Route path="/AdminStudentLists" element={<AdminStudentLists allData={allData} />} />
+        <Route path="/StartUpLists" element={<StartUpLists allData={allData} />} />
+        <Route path="/AdminNotification" element={<AdminNotification allData={allData} />} />
         <Route path="/AdminStartupData/:id" element={<AdminStartupData />} />
-        <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin}/>} />
-        <Route path="JobDescp/:id" element={<JobDescp isAdmin={isAdmin}/>} />
-        <Route path="AdminUpdateJobs/:id" element={<AdminUpdateJobs/>} />
+        <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin} />} />
+        <Route path="JobDescp/:id" element={<JobDescp isAdmin={isAdmin} />} />
+        <Route path="AdminUpdateJobs/:id" element={<AdminUpdateJobs />} />
         <Route path="AdminStudentView/:id" element={<AdminStudentView />} />
     </>
 
     if (isAdmin) {
         return (
             <>
-                <Suspense fallback={<Loading />}>
-                    <Routes>
-                        {Basic}
-                        {AuthPages}
-                        {AdminPages}
-                    </Routes>
-                </Suspense>
+                {loading ? <Loading /> :
+                    <Suspense fallback={<Loading />}>
+                        <Routes>
+                            {AuthPages}
+                            {AdminPages}
+                            {Basic}
+                        </Routes>
+                    </Suspense>
+                }
             </>
         )
     }
@@ -140,24 +155,30 @@ const AppRoutes = (props) => {
     if (!isStartUp && !isStudent) {
         return (
             <>
-                <Suspense fallback={<Loading />}>
-                    <Routes>
-                        {Basic}
-                        {AuthPages}
-                    </Routes>
-                </Suspense>
+                {loading ? <Loading /> :
+                    <Suspense fallback={<Loading />}>
+                        <Routes>
+                            {AuthPages}
+                            {Basic}
+                            <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                    </Suspense>
+                }
             </>
         );
     }
     else if (isStartUp && !isStudent && isVerified) {
         return (
             <>
-                <Suspense fallback={<Loading />}>
-                    <Routes>
-                        {Basic}
-                        {StartUpPages}
-                    </Routes>
-                </Suspense>
+                {loading ? <Loading /> :
+                    <Suspense fallback={<Loading />}>
+                        <Routes>
+                            {StartUpPages}
+                            {Basic}
+                            <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                    </Suspense>
+                }
             </>
         );
     }
@@ -165,26 +186,32 @@ const AppRoutes = (props) => {
     else if (isStartUp && !isStudent && !isVerified) {
         return (
             <>
-                <Suspense fallback={<Loading />}>
-                    <Routes>
-                        {Basic}
-                        {AuthPages}
-                        <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData}/>} />
-                        <Route path="VerifyEmail" element={<VerifyEmail />} />
-                    </Routes>
-                </Suspense>
+                {loading ? <Loading /> :
+                    <Suspense fallback={<Loading />}>
+                        <Routes>
+                            {AuthPages}
+                            <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData} />} />
+                            <Route path="VerifyEmail" element={<VerifyEmail />} />
+                            {Basic}
+                            <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                    </Suspense>
+                }
             </>
         );
     }
     else if (isStudent && isVerified) {
         return (
             <>
-                <Suspense fallback={<Loading />}>
-                    <Routes>
-                        {Basic}
-                        {StudentPages}
-                    </Routes>
-                </Suspense>
+                {loading ? <Loading /> :
+                    <Suspense fallback={<Loading />}>
+                        <Routes>
+                            {StudentPages}
+                            {Basic}
+                            <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                    </Suspense>
+                }
             </>
         );
     }
@@ -193,14 +220,17 @@ const AppRoutes = (props) => {
     else if (isStudent && !isVerified) {
         return (
             <>
-                <Suspense fallback={<Loading />}>
-                    <Routes>
-                        {Basic}
-                        {AuthPages}
-                        <Route path="/studentprofileform" element={<Studentprofileform userData={userData}/>} />
-                        <Route path="VerifyEmail" element={<VerifyEmail />} />
-                    </Routes>
-                </Suspense>
+                {loading ? <Loading /> :
+                    <Suspense fallback={<Loading />}>
+                        <Routes>
+                            {AuthPages}
+                            <Route path="/studentprofileform" element={<Studentprofileform userData={userData} />} />
+                            <Route path="VerifyEmail" element={<VerifyEmail />} />
+                            {Basic}
+                            <Route path="*" element={<PageNotFound />} />
+                        </Routes>
+                    </Suspense>
+                }
             </>
         );
     }
