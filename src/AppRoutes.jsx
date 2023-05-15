@@ -56,6 +56,7 @@ import StartUpLists from "./AdminDashboard/StartUpLists";
 import AdminNotification from "./AdminDashboard/AdminNotification";
 import AdminStartupData from "./AdminDashboard/AdminStartupData";
 import AdminUpdateJobs from "./AdminDashboard/AdminUpdateJobs";
+import AdminStudentView from "./AdminDashboard/AdminStudentView";
 
 
 const AppRoutes = (props) => {
@@ -118,6 +119,7 @@ const AppRoutes = (props) => {
         <Route path="/AdminStartupData/:id" element={<AdminStartupData />} />
         <Route path="JobDescp/:id" element={<JobDescp />} />
         <Route path="AdminUpdateJobs/:id" element={<AdminUpdateJobs/>} />
+        <Route path="AdminStudentView/:id" element={<AdminStudentView />} />
     </>
 
     if (isAdmin) {

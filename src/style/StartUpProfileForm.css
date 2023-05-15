@@ -1,109 +1,118 @@
-Example Styles for React Tags
-.app {
-    padding: 40px;
-    text-align: center;
-  }
-  /* changes */
-  #StartUpformmain{
-    position: relative;
-    width: 75% !important;
-    padding: 40px !important;
-background-color: rgb(1, 1, 6);
-    border-radius: 20px 20px ;
-   margin-top: 30px !important;
-   margin-bottom: 30px !important;
-   /* border-radius: 20px; */
-   /* box-shadow: 0px 0px 15px 1px rgb(199, 197, 197); */
-   left: 15%;
-   
-  }
-  /* Example Styles for React Tags*/
-  
-#registrationForm{
+Example Styles for React Tags .app {
+  padding: 40px;
+  text-align: center;
+}
+
+/* changes */
+#StartUpformmain {
+  position: relative;
+  width: 75% !important;
+  padding: 40px !important;
+  background-color: rgb(1, 1, 6);
+  border-radius: 20px 20px;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
+  /* border-radius: 20px; */
+  /* box-shadow: 0px 0px 15px 1px rgb(199, 197, 197); */
+  left: 15%;
+
+}
+
+/* Example Styles for React Tags*/
+
+#registrationForm {
   background-color: rgb(157, 155, 155);
   padding: 20px;
   border-radius: 20px;
 
 }
-.maindivStartUp{
+
+.maindivStartUp {
   /* background-color: blue; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-input::placeholder{
+
+input::placeholder {
   font-size: 1.3rem;
 }
-.YearOf{
+
+.YearOf {
   padding: 15px;
 }
-.skills{
+
+.skills {
   /* padding-left: 15px; */
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.skilllabel{
+
+.skilllabel {
   margin-bottom: 15px;
 }
-  #fileupload{
-    padding: 6px 20px;
-    background: red; 
-    display: table;
-    color: #fff;
-    margin: auto;
-    border-radius: 3px;
-    cursor: pointer;
-     }
-.tab-content input{
+
+#fileupload {
+  padding: 6px 20px;
+  background: red;
+  display: table;
+  color: #fff;
+  margin: auto;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.tab-content input {
   width: 35vw;
 }
 
 
-#addskills{
+#addskills {
   margin-top: 40px !important;
 }
 
 
-.firstnamecls{
-margin-top: 13px;
-/* z-index: 100000 !important; */
+.firstnamecls {
+  margin-top: 13px;
+  /* z-index: 100000 !important; */
 }
 
-.StartUpformsavebtn{
+.StartUpformsavebtn {
   margin-left: 15px;
 }
+
 input[type="file"] {
-    display: none;
+  display: none;
 }
 
-  .ReactTags__tags {
-    position: relative;
-  }
-  
-  /* Styles for the input */
-  .ReactTags__tagInput {
-    width: 30vw;
-    border-radius: 2px;
-    display: inline-block;
-    margin-left: 15px;
-    word-wrap: break-word;
-   
-  }
-.selectDiv{
-    width: 40vw;
+.ReactTags__tags {
+  position: relative;
 }
 
-@media only screen and  (max-width:600px){
-  #StartUpformmain{
+/* Styles for the input */
+.ReactTags__tagInput {
+  width: 30vw;
+  border-radius: 2px;
+  display: inline-block;
+  margin-left: 15px;
+  word-wrap: break-word;
+
+}
+
+.selectDiv {
+  width: 40vw;
+}
+
+@media only screen and (max-width:600px) {
+  #StartUpformmain {
     width: 90% !important;
     left: 0% !important;
     margin-left: auto !important;
   }
 
-  .StartUpformdivs{
+  .StartUpformdivs {
     /* background-color: red; */
     width: 90% !important;
   }
 }
-
