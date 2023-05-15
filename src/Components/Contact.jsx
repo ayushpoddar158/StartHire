@@ -1,9 +1,14 @@
 import React from 'react'
+import '../style/Contact.css'
 
 const Contact = () => {
   return (
     <>
-    <div class="container contact-form" style={{height:"100vh",padding:"0px",marginBottom:"0px"}}>
+    <div className="Contactcontainer">
+
+  
+
+    <div class="contact-form" style={{padding:"0px",marginBottom:"0px"}}>
             <div class="contact-image">
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
             </div>
@@ -32,6 +37,7 @@ const Contact = () => {
                 </div>
             </form>
 </div>
+  </div>
     </>
   )
 }

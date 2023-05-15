@@ -84,23 +84,23 @@ const Login = () => {
 
 
 
-      <section class="vh-100 my-5" id='loginId'>
-      <div className="container" id='Loginchangediv'>
+      <section class="vh-100 my-5 " id='loginId'>
+      <div className="" id='Loginchangediv'>
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
           <li class="nav-item" role="presentation">
-            <Link class="nav-link active  Loginchangebtn1" id="tab-login" data-mdb-toggle="pill" to="/Login" role="tab"
+            <Link class="nav-link  active Loginchangebtn1 loginbtnbackcol" id="tab-login" data-mdb-toggle="pill" to="/Login" role="tab"
               aria-controls="pills-login" aria-selected="true">Student Login</Link>
           </li>
           <li class="nav-item" role="presentation">
-            <Link class="nav-link Loginchangebtn2" id="tab-register" data-mdb-toggle="pill" to="/LoginStartUp" role="tab"
+            <Link class="nav-link  Loginchangebtn2" id="tab-register" data-mdb-toggle="pill" to="/LoginStartUp" role="tab"
               aria-controls="pills-register" aria-selected="false">StartUp Login</Link>
           </li>
         </ul>
       </div>
       
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-xl-10" id='loginmain'>
+        <div class=" py-5 h-100 loginafterchangediv">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10" id=''>
               <div class="cardLogin" style={{ borderRadius: " 1rem", padding: "30px" }}>
                 <div class="row g-0">
                   <div class="col-md-6 col-lg-5 d-none d-md-block">

@@ -1,25 +1,45 @@
 #Signupchangediv{
-       z-index: 100;
-      
-       position: absolute;
-       width: 80vw;
-       /* background-color: red; */
-       /* margin-left: 250px; */
-    
-       margin-top: 119px;
-       left: 9.5%;
+ /* background-color: brown; */
+ width: 100%;
        
        
     }
-    .Signupchangebtn1{
+
+.signupcardinfo{
+  background-color: white;
+  border-radius: 10px;
+}
+
+.Signupafterchangediv{
+  /* background-color: rgb(1, 0, 5); */
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+}    
+    .signupbtncolor{
    
     background-color: grey !important;
    
 }
 .Signupchangebtn2{
-color: orangered !important;
+/* color: orangered !important; */
 
 /* background-color: red !important; */
+}
+
+
+
+#sign1main{
+     /* background-color: aqua; */
+     width: 80% !important;
+     margin: auto;
+     display: flex;
+     flex-direction: column;
+     /* justify-content: space-around; */
+     align-items: center;
+     padding: 20px;
 }
 
 HTML CSSResult Skip Results Iframe

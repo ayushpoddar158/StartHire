@@ -5,7 +5,9 @@ body {
     /* background-color: red; */
     padding: 30px;
 }
-
+.Aboutrow{
+    margin: auto !important;
+}
 .aboutus-section {
     padding: 90px 0;
 }
