@@ -87,6 +87,7 @@ const AppRoutes = (props) => {
         <Route path="/Home" element={<Home />} />
         <Route path="About" element={<About />} />
         <Route path="Contact" element={<Contact />} />
+        <Route path="*" element={<PageNotFound />} />
     </>
 
     const AuthPages = <>
@@ -103,7 +104,6 @@ const AppRoutes = (props) => {
         <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
         <Route path="/VerifyEmail" element={<VerifyEmail />} />
         <Route path="/StudentNotification" element={<StudentNotification notifObj={notifObj} />} />
-        <Route path="*" element={<PageNotFound />} />
     </>
 
     const StartUpPages = <>
@@ -160,7 +160,6 @@ const AppRoutes = (props) => {
                         <Routes>
                             {AuthPages}
                             {Basic}
-                            <Route path="*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
@@ -175,7 +174,6 @@ const AppRoutes = (props) => {
                         <Routes>
                             {StartUpPages}
                             {Basic}
-                            <Route path="*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
@@ -193,7 +191,6 @@ const AppRoutes = (props) => {
                             <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData} />} />
                             <Route path="VerifyEmail" element={<VerifyEmail />} />
                             {Basic}
-                            <Route path="*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
@@ -208,7 +205,6 @@ const AppRoutes = (props) => {
                         <Routes>
                             {StudentPages}
                             {Basic}
-                            <Route path="*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
@@ -227,7 +223,6 @@ const AppRoutes = (props) => {
                             <Route path="/studentprofileform" element={<Studentprofileform userData={userData} />} />
                             <Route path="VerifyEmail" element={<VerifyEmail />} />
                             {Basic}
-                            <Route path="*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
