@@ -1,5 +1,5 @@
 .StudentmainClass{
-     background-color: blue !important;
+     /* background-color: blue !important; */
      position: relative;
      width: 78vw !important;
      left: 20%;
@@ -13,7 +13,7 @@ padding: 10px;
 
 }
 .studentNotimain{
-    background-color: rgb(169, 36, 36);
+    background-color: rgb(169, 165, 165);
     /* height: 1000px; */
     /* margin-left: auto; */
     /* margin-top: 10px; */
@@ -35,6 +35,15 @@ padding: 10px;
     /* background-color: black; */
     /* width: 66vw !important; */
     /* display: flex; */
+    width: 100%;
+}
+
+.studentnotiboxes{
+    
+        /* background-color: aqua; */
+        width: 100% !important;
+        margin: auto !important;
+    
 }
 .mainStudent{
     background-color: #040203;
@@ -58,7 +67,7 @@ padding: 10px;
     content: "";
     height: 4px;
     width: 75px;
-    background-color: #29B6F6;
+    /* background-color: #29B6F6; */
     /* position: absolute; */
     bottom: 0;
     left: 0;
