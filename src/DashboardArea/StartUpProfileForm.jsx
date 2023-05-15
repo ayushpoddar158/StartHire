@@ -209,7 +209,7 @@ const StartUpProfileForm = (props) => {
   if (currentUser) {
     return (
       <>
-        <div class="container bootstrap snippet" id='StartUpformmain'>
+        <div class=" bootstrap snippet" id='StartUpformmain'>
           <div class="row mt-2">
             <div class="col-sm-3">
               {/* <!--left col--> */}
