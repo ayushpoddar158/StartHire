@@ -132,7 +132,10 @@ const Signupstartup = (props) => {
 
   return (
     <>
-      <section className="vh-100 my-5 " id='sign1main' >
+     <div className="signupmaindiv">
+
+ 
+      <section className="sign1maini " id='' >
       <div className="" id='Signupchangediv'>
         {/* <!-- Pills navs --> */}
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
@@ -148,11 +151,11 @@ const Signupstartup = (props) => {
         {/* <!-- Pills navs --> */}
       </div>
       {startupSignUpOpen ?
-        <section className="vh-90" id='sign1main' >
-          <div className="container h-100">
-            <div className="row d-flex justify-content-center align-items-center h-100">
+        <section className="  signupcardinfo" id='sign1main' >
+          <div className="">
+            <div className="d-flex justify-content-center align-items-center ">
               <div className="col-lg-12 col-xl-11">
-                <div id='signup1card' className="card text-black" >
+                <div id='signup1card' className="signupcardinfo text-black" >
                   <div className="card-body p-md-5">
                     <div className="row justify-content-center">
                       <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -221,6 +224,7 @@ const Signupstartup = (props) => {
         : ""
       }
       </section>
+      </div>
     </>
   )
 }
