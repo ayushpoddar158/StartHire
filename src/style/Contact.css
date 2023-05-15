@@ -1,0 +1,7 @@
+.Contactcontainer{
+    /* background-color: red; */
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+  padding-bottom: 50px !important;
+}

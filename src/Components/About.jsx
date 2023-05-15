@@ -8,7 +8,7 @@
 
 <div class="aboutus-section">
         <div class="Aboutcontainer">
-            <div class="row">
+            <div class="row Aboutrow">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="aboutus">
                         <h2 class="aboutus-title">About Us</h2>

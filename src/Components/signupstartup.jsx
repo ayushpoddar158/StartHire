@@ -132,15 +132,16 @@ const Signupstartup = (props) => {
 
   return (
     <>
-      <div className="container" id='Signupchangediv'>
+      <section className="vh-100 my-5 " id='sign1main' >
+      <div className="" id='Signupchangediv'>
         {/* <!-- Pills navs --> */}
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
           <li class="nav-item" role="presentation">
-            <Link class="nav-link active Signupchangebtn1" id="tab-login" data-mdb-toggle="pill" to="/Signup" role="tab"
+            <Link class="nav-link  Signupchangebtn1" id="tab-login" data-mdb-toggle="pill" to="/Signup" role="tab"
               aria-controls="pills-login" aria-selected="true">Student Signup</Link>
           </li>
           <li class="nav-item Signupchangebtn2" role="presentation">
-            <Link class="nav-link" id="tab-register" data-mdb-toggle="pill" to="/signupstartup" role="tab"
+            <Link class="nav-link active signupbtncolor" id="tab-register" data-mdb-toggle="pill" to="/signupstartup" role="tab"
               aria-controls="pills-register" aria-selected="false">Startup Signup</Link>
           </li>
         </ul>
@@ -219,6 +220,7 @@ const Signupstartup = (props) => {
         </section>
         : ""
       }
+      </section>
     </>
   )
 }

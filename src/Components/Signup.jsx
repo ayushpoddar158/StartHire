@@ -155,11 +155,12 @@ const Signup = (props) => {
 
   return (
     <>
-      <div className="container" id='Signupchangediv'>
+      <section className="vh-100 my-5 " id='sign1main' >
+      <div className="" id='Signupchangediv'>
         {/* <!-- Pills navs --> */}
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
           <li class="nav-item" role="presentation">
-            <Link class="nav-link active Signupchangebtn1" id="tab-login" data-mdb-toggle="pill" to="/Signup" role="tab"
+            <Link class="nav-link active Signupchangebtn1 signupbtncolor" id="tab-login" data-mdb-toggle="pill" to="/Signup" role="tab"
               aria-controls="pills-login" aria-selected="true">Student Signup</Link>
           </li>
           <li class="nav-item" role="presentation">
@@ -172,6 +173,7 @@ const Signup = (props) => {
       {!studentSignUpOpen ? 
       <h1>Student Registration is closed !</h1>
       :
+      <>
         <section className="vh-90" id='sign1main' >
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
@@ -244,7 +246,9 @@ const Signup = (props) => {
             </div>
           </div>
         </section>
+        </>
       }
+      </section>
     </>
   )
 }
