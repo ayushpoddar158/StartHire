@@ -3,10 +3,11 @@
     position: relative;
     width: 78vw !important;
     left: 20%;
-    height: 84vh;
+    /* height: 84vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 20px;
 }
 .StartNotimain {
     background-color: rgb(180, 180, 180);
