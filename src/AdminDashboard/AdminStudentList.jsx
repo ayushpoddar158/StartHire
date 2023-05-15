@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -303,7 +304,7 @@ const AdminStudentLists = (props) => {
                       onClick={() => { RejectStd(item) }}>
                       Reject
                     </Button>
-                   <Link  > 
+                   <Link to={`/AdminStudentView/${item.id}`} > 
                     <Button className="viewbtn Adminviewbtnrej"
                       variant="contained" >
                       View 

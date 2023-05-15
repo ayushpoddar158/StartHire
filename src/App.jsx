@@ -187,7 +187,7 @@ const App = (props) => {
           isVerified={isVerified}
           isAdmin={isAdmin}
           allData={allData}
-          notifObj={notifObj.reverse()} />
+          notifObj={notifObj} />
         {footerComponent}
       </Suspense>
     </>

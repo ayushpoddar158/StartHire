@@ -24,7 +24,8 @@ margin: 20px !important;
   border-radius: 20px;
 
 }
-.maindivStartUp{
+
+.maindivStartUp {
   /* background-color: blue; */
   display: flex;
   flex-direction: column;
@@ -33,78 +34,85 @@ margin: 20px !important;
   width: 100% !important;
   margin: auto !important;
 }
-input::placeholder{
+
+input::placeholder {
   font-size: 1.3rem;
 }
-.YearOf{
+
+.YearOf {
   padding: 15px;
 }
-.skills{
+
+.skills {
   /* padding-left: 15px; */
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.skilllabel{
+
+.skilllabel {
   margin-bottom: 15px;
 }
-  #fileupload{
-    padding: 6px 20px;
-    background: red; 
-    display: table;
-    color: #fff;
-    margin: auto;
-    border-radius: 3px;
-    cursor: pointer;
-     }
-.tab-content input{
+
+#fileupload {
+  padding: 6px 20px;
+  background: red;
+  display: table;
+  color: #fff;
+  margin: auto;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.tab-content input {
   width: 35vw;
 }
 
 
-#addskills{
+#addskills {
   margin-top: 40px !important;
 }
 
 
-.firstnamecls{
-margin-top: 13px;
-/* z-index: 100000 !important; */
+.firstnamecls {
+  margin-top: 13px;
+  /* z-index: 100000 !important; */
 }
 
-.StartUpformsavebtn{
+.StartUpformsavebtn {
   margin-left: 15px;
 }
+
 input[type="file"] {
-    display: none;
+  display: none;
 }
 
-  .ReactTags__tags {
-    position: relative;
-  }
-  
-  /* Styles for the input */
-  .ReactTags__tagInput {
-    width: 30vw;
-    border-radius: 2px;
-    display: inline-block;
-    margin-left: 15px;
-    word-wrap: break-word;
-   
-  }
-.selectDiv{
-    width: 40vw;
+.ReactTags__tags {
+  position: relative;
 }
 
-@media only screen and  (max-width:600px){
-  #StartUpformmain{
+/* Styles for the input */
+.ReactTags__tagInput {
+  width: 30vw;
+  border-radius: 2px;
+  display: inline-block;
+  margin-left: 15px;
+  word-wrap: break-word;
+
+}
+
+.selectDiv {
+  width: 40vw;
+}
+
+@media only screen and (max-width:600px) {
+  #StartUpformmain {
     width: 90% !important;
     left: 0% !important;
     margin-left: auto !important;
   }
 
-  .StartUpformdivs{
+  .StartUpformdivs {
     /* background-color: red; */
     width: 90% !important;
   }
 }
-
