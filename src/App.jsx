@@ -82,36 +82,47 @@ const App = (props) => {
       try {
         console.log("inside try")
         const q = query(collection(db, "startups"), where("uid", "==", id));
-        const docs = await getDocs(q);
-        if (docs.docs.length > 0) {
-          setIsStartUp(true);
-          setUserData(docs.docs[0]);
-        }
-        else {
-          console.log("inside catch")
-          const q = query(collection(db, "users"), where("uid", "==", id));
-          const docs = await getDocs(q);
-          if (docs.docs.length > 0) {
-            console.log(docs.docs[0].data())
-            if (docs.docs[0].data().desgn == "admin") {
-              setIsAdmin(true);
-            }
-            else {
-              setIsStudent(true);
+        const docs = await getDocs(q)
+          .then(async (docs) => {
+            if (docs.docs.length > 0) {
+              setIsStartUp(true);
               setUserData(docs.docs[0]);
             }
-          }
-
+            else {
+              console.log("inside catch")
+              const q = query(collection(db, "users"), where("uid", "==", id));
+              await getDocs(q)
+                .then((docs) => {
+                  if (docs.docs.length > 0) {
+                    console.log(docs.docs[0].data())
+                    if (docs.docs[0].data().desgn == "admin") {
+                      setIsAdmin(true);
+                    }
+                    else {
+                      setIsStudent(true);
+                      setUserData(docs.docs[0]);
+                    }
+                  }
+                })
+                .finally(() => {
+                  setLoading(false);
+                });
+            }
+          })
+          .finally(() =>{
+            setLoading(false)
+          })
         }
-      }
       catch (err) {
         console.log(err);
+      }
+      finally {
+        setLoading(false)
       }
     }
     if (currentUser) {
       getUserData(currentUser);
     }
-    setLoading(false);
   }, [currentUser])
 
 
@@ -139,10 +150,11 @@ const App = (props) => {
     }
     const fetchNote = async (notifIds) => {
       console.log("fetchnote is called")
-      await fetchNotif(notifIds);
+      await fetchNotif(notifIds).finally(() => {
+        setLoading(false);
+      })
     }
     fetchNote(userData?.data().notification);
-    setLoading(false);
   }, [userData]);
 
 
@@ -171,10 +183,11 @@ const App = (props) => {
         }
       } catch (err) {
         console.log("error while fetching all data", err);
+      } finally {
+        setLoading(false);
       }
     };
     getAllData();
-    setLoading(false);
   }, [isAdmin])
 
 
