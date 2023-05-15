@@ -169,7 +169,6 @@ const StartUpProfileForm = (props) => {
         domains: StartUpData.domains
       }).then(() => {
         alert("Information successfully updated!");
-        navigate("/dashboard");
       })
         .catch((error) => {
           console.log("Error updating document: ", error);
@@ -197,7 +196,9 @@ const StartUpProfileForm = (props) => {
       try {
         const downloadURL = StartUpData.PImageUrl;
         setLinkImageUrl(downloadURL);
-        await updateDocument(downloadURL);
+        await updateDocument(downloadURL).then(() =>{
+          window.location.replace("/studentprofile")
+        })
       } catch (err) {
         console.log(err);
       }

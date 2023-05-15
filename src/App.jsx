@@ -168,6 +168,7 @@ const App = (props) => {
     isVerified={isVerified}
     isAdmin={isAdmin}
     unReadCount={unReadCount} /> : '';
+  let footerComponent = isFullPageLayout ? <Footer/> : "" ;
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
   return (
@@ -187,7 +188,7 @@ const App = (props) => {
           isAdmin={isAdmin}
           allData={allData}
           notifObj={notifObj.reverse()} />
-        <Footer />
+        {footerComponent}
       </Suspense>
     </>
   );
