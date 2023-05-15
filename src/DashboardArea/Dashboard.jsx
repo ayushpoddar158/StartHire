@@ -36,75 +36,30 @@ import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import StartUpProfileForm from './StartUpProfileForm';
 
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+    const userData = props.userData;
     const navigate = useNavigate();
     const { currentUser } = useContext(AuthContext);
-    const [id, setId] = useState(null);
-    const [isVerified, setIsVerified] = useState(null);
-    const [userData, setUserData] = useState(null);
-    const [isStartUp, setIsStartUp] = useState(false);
-    const [activeMenu, setActiveMenu] = useState("main");
 
-    const LogOut = () => {
-        Auth.signOut();
-        navigate("/LoginStartUp");
-      }
 
-    
+    // useEffect(() => {
+    //     console.log(userData);
+    //     console.log("user", currentUser)
+    // }, [])
 
-    useEffect(() => {
-        const getUserData = async () => {
-            let id = await currentUser?.uid;
-            let isVerified = await currentUser?.emailVerified;
-            setId(id)
-            setIsVerified(isVerified);
-            const q = query(collection(db, "startups"), where("uid", "==", id));
-            const docs = await getDocs(q);
-            if (docs.docs.length > 0) {
-                setIsStartUp(true);
-                setUserData(docs.docs[0].data());
-            }
-        }
-        getUserData();
-    }, [currentUser])
 
-    const [record, setRecord] = useState([])
-
-    const menuNav = (menu) => {
-        setActiveMenu(menu);
-    }
-
-    const changemenuStartup=()=>{
-        // alert("hell")
-        menuNav("StartUpProfileForm")
-    }
-
-    const ChangeMenuJobDesc=()=>{
-        menuNav("JobDescp")
-    }
-
-    if (isVerified == false) {
+    if (currentUser.emailVerified == false) {
         navigate('/VerifyEmail');
-        return null;
     }
-    if (isStartUp && currentUser) {
-        return (
-            <>
-                <div className='DashboardmainDiv'>
-                    This is Dashboard Page
-                </div>
+    return (
+        <>
+            <div className='DashboardmainDiv'>
+                This is Dashboard Page
+            </div>
 
-            </>
+        </>
 
-        )
-    }
-    if (currentUser && !isStartUp) {
-        return (
-            <>
-                <h1>Unauthorized</h1>
-            </>
-        )
-    }
+    )
 }
 
 export default Dashboard
