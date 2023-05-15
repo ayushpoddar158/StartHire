@@ -219,7 +219,7 @@ const Studentprofileform = (props) => {
     return (
       <>
        
-            <div class="container bootstrap snippet" id='studentformmain'>
+            <div class=" bootstrap snippet" id='studentformmain'>
               {/* profile form stART */}
               <div class="">
                 <div class="row mt-2">

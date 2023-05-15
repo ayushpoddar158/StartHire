@@ -50,10 +50,14 @@ const StartUpLists = (props) => {
             value={inpdata}
           />
         </div>
+        <div className="Admincards">
+      
         {container?.map((item) => {
           console.log("container", item.data());
           return <Card data={item.data()} />
         })}
+            
+        </div>
       </div>
     </>
   );

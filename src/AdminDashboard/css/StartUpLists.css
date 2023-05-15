@@ -1,3 +1,10 @@
+.Admincards{
+    /* background-color: yellowgreen; */
+    display: flex;
+    margin: auto !important;
+    width: 80%;
+    
+}
 .mainCardDiv{
     /* background-color: red; */
     background-color: white;
@@ -32,5 +39,8 @@ justify-content: center;
     .mainCardDiv{
         left: 0px;
         width: 100% !important;
+    }
+    .Admincards{
+        flex-direction: column;
     }
 }

@@ -67,6 +67,19 @@ border-radius: 10Px;
     margin: 0px;
 }
 
+#stuprofileedit{
+    position: sticky;
+    left: 100%;
+      z-index: 1000;
+      width: 75px;
+      padding: 10px;
+      font-size: 4rem;
+      background-color: #ceaa4d !important;
+      color: white !important;
+      border: none;
+  
+      margin: 0px;
+}
 
 
 

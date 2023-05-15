@@ -34,7 +34,7 @@ const StartUpProfile = (props) => {
             Edit
           </button>
         </Link>
-        <div class="container">
+        <div class="">
           <div class="row">
             <div class="col-lg-12 mb-4 mb-sm-5">
               <div class="cardStartUpprofile card-style1 border-0">
