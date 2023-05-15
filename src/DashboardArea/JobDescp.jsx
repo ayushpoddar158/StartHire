@@ -22,7 +22,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-const JobDescp = () => {
+const JobDescp = (props) => {
   let [jobData, setJobData] = useState();
   let [jobDataRef, setJobDataRef] = useState();
   let [selStudent, setSelStudent] = useState([]);
@@ -31,6 +31,7 @@ const JobDescp = () => {
   let [assignIds, setAssignIds] = useState([]);
   let [selectedStudents, setSelectedStudents] = useState([]);
 
+  const isAdmin = props.isAdmin;
   const id = useParams().id;
   // console.log(id)
   useEffect(() => {
@@ -39,7 +40,7 @@ const JobDescp = () => {
       setJobDataRef(jobRef);
       await getDoc(jobRef)
         .then((jobVal) => {
-          console.log("job",jobVal.data())
+          console.log("job", jobVal.data())
           setJobData(jobVal.data());
           setAssignIds(jobVal.data().assign)
         })
@@ -49,6 +50,7 @@ const JobDescp = () => {
     }
     loadJob(id);
   }, [])
+
 
   useEffect(() => {
     console.log("assign useEffect is called", assignIds);
@@ -108,7 +110,7 @@ const JobDescp = () => {
 
     const getAllData = async () => {
       const userq = query(collection(db, "users"),
-                    where("VerifIsConfirmed","==",true));
+        where("VerifIsConfirmed", "==", true));
       const user_docs = await getDocs(userq);
       var stdData = user_docs.docs
       return stdData;
@@ -117,6 +119,7 @@ const JobDescp = () => {
     console.log("studentdata", stdData)
     console.log(jobData.details.skills)
     setSelectedStudents([]);
+    var tempStd = 0;
     stdData.map((student) => {
       var matchVal = getPer(student.data().skills, jobSkillList)
       var contains = false;
@@ -127,8 +130,12 @@ const JobDescp = () => {
       })
       if (matchVal >= 0.5 && !contains) {
         setSelectedStudents(students => [...students, student])
+        tempStd ++;
       }
     })
+    if (tempStd === 0) {
+      alert("there is no student matching these skills")
+    }
   }
 
   const addStudent = async (student) => {
@@ -165,9 +172,12 @@ const JobDescp = () => {
         <div className="JobDescmain">
           <div className="title onediv firstDiv">
             <h2 id="heading1">{jobData?.details.jobTitle}</h2>
-            <Link to={`/UpdateJobs/${id}`}>
-              <Button className="jObDecUpdateBtn" variant="contained ">Update</Button>
-            </Link>
+            {isAdmin ? "" :
+              <Link to={`/UpdateJobs/${id}`}>
+                <Button className="jObDecUpdateBtn" variant="contained ">Update</Button>
+              </Link>
+            }
+
             <hr />
           </div>
           <div className="description onediv">

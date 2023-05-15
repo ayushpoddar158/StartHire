@@ -101,12 +101,12 @@ const AppRoutes = (props) => {
         <Route path="VerifyEmail" element={<VerifyEmail/>} />
         <Route path="StartUpBlog" element={<StartupBlog userData={userData}/>} />
         <Route path="Notification" element={<Notification 
-        notifObj ={notifObj } />} />
+        notifObj ={notifObj} />} />
         {/* //jobs routes */}
         <Route path="Jobs" element={<Jobs userData={userData}/>} />
         <Route path="CreateJobs" element={<CreateJobs userData={userData}/>} />
-        <Route path="UpdateJobs/:id" element={<UpdateJobs />} />
-        <Route path="JobDescp/:id" element={<JobDescp />} />
+        <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin}/>} />
+        <Route path="JobDescp/:id" element={<JobDescp isAdmin={isAdmin}/>} />
     </>
 
     const AdminPages = <>
@@ -117,7 +117,8 @@ const AppRoutes = (props) => {
         <Route path="/StartUpLists" element={<StartUpLists allData={allData}/>} />
         <Route path="/AdminNotification" element={<AdminNotification allData={allData}/>} />
         <Route path="/AdminStartupData/:id" element={<AdminStartupData />} />
-        <Route path="JobDescp/:id" element={<JobDescp />} />
+        <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin}/>} />
+        <Route path="JobDescp/:id" element={<JobDescp isAdmin={isAdmin}/>} />
         <Route path="AdminUpdateJobs/:id" element={<AdminUpdateJobs/>} />
         <Route path="AdminStudentView/:id" element={<AdminStudentView />} />
     </>

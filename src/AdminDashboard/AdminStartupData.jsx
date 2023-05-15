@@ -110,9 +110,6 @@ const AdminStartupData= () => {
                             <p><b></b>{job.data.details.jobTitle}</p>
                             <p class="text-muted">{job.data.details.jobDescription}</p>
                             <p class="text-muted"><small>{job.data.details.jobLocation}</small></p>
-                            <Link to={`/AdminUpdateJobs/${job.id}`}>
-                              <Button variant="contained">Update Job</Button>
-                            </Link>
                             <Button variant="contained" color='error' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
                             <Link to={`/JobDescp/${job.id}`}>
                               <Button variant='contained' >Job Desc</Button>

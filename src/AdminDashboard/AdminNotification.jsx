@@ -54,8 +54,7 @@ const AdminNotification = (props) => {
             senderName: "Admin",
             sentTime: serverTimestamp()
           })
-          const docRef = doc(myCollectionRef, student.id);
-          updateDoc(docRef, { notification: arrayUnion(messageDoc.id) })
+          updateDoc(student.ref, { notification: arrayUnion(messageDoc.id) })
             .then(() => {
               console.log("Document successfully written!");
             })
@@ -77,8 +76,7 @@ const AdminNotification = (props) => {
             senderName: "Admin",
             sentTime: serverTimestamp()
           })
-          const docRef = doc(myCollectionRef, startup.id);
-          updateDoc(docRef, { notification: arrayUnion(messageDoc.id) })
+          updateDoc(startup.ref, { notification: arrayUnion(messageDoc.id) })
             .then(() => {
               console.log("Document successfully written!");
             })
