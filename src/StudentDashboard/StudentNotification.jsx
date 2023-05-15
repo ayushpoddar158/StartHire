@@ -35,7 +35,7 @@ const StudentNotification = (props) => {
                         <div class="col main pt-5 mt-3 studentNotimain">
                             <section class="Studentsection-50 ">
                                 <div class="container">
-                                    <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
+                                    <h3 class="m-b-50 heading-line">Notification <i class="fa fa-bell text-muted"></i></h3>
                                     {notifObj.map((item) => {
                                         UpdateRead(item)
                                         return (
