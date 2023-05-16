@@ -15,7 +15,7 @@ import {
   getDoc,
   updateDoc,
   where,
-  doc
+  doc,
 } from "firebase/firestore";
 
 // material ui components
@@ -23,6 +23,7 @@ import { Button } from '@mui/material';
 
 const Jobs = (props) => {
   var userDataRef = props.userData;
+  console.log("userRef",userDataRef)
   var userData = userDataRef.data();
   const { currentUser } = useContext(AuthContext);
   const [id, setId] = useState(null);
@@ -53,14 +54,30 @@ const Jobs = (props) => {
     }
   }, []);
 
-  const handleJobDelete = async (id) => {
-    let jobDelRef = doc(db, "jobs", id);
-    await deleteDoc(jobDelRef);
-    await updateDoc(userDataRef.ref, {
-      jobs: arrayRemove(id) 
-    })
-    console.log("updated user job array")
-    window.location.reload();
+  const handleJobDelete = async (job) => {
+    var jobDelRef = doc(db, "jobs", job.id);
+    let assign = job.data.assign;
+    let startUpId = job.data.creator;
+    console.log(assign, startUpId)
+    try {
+      await deleteDoc(jobDelRef);
+      await updateDoc(userDataRef.ref, {
+        jobs: arrayRemove(job.id)
+      })
+      assign.forEach(async (id) => {
+        let assignRef = doc(db, "users", id);
+        await updateDoc(assignRef, {
+          startups: arrayRemove(startUpId)
+        })
+      });
+    }
+    catch (e) {
+      console.log("error", e);
+    }
+    finally {
+      console.log("Updated The Jobs")
+      window.location.reload();
+    }
   }
 
   useEffect(() => {
@@ -73,51 +90,51 @@ const Jobs = (props) => {
     console.log(jobs)
   }, [jobs]);
 
-    return (
-      <>
-        <div className='Createmain1'>
-          <div class="container-fluid" id="main">
-            <div class="row row-offcanvas row-offcanvas-left">
-              {/* <Jobs/> strat */}
-              <h1>jobs</h1>
-              <div>
-                <Link to="/createjobs">
-                  <Button variant="contained" >Create Job</Button>
-                </Link>
-              </div>
-              {/* <Jobs/> end */}
-              <div class="container">
+  return (
+    <>
+      <div className='Createmain1'>
+        <div class="container-fluid" id="main">
+          <div class="row row-offcanvas row-offcanvas-left">
+            {/* <Jobs/> strat */}
+            <h1>jobs</h1>
+            <div>
+              <Link to="/createjobs">
+                <Button variant="contained" >Create Job</Button>
+              </Link>
+            </div>
+            {/* <Jobs/> end */}
+            <div class="container">
 
-                {jobs.map(job => {
-                  return (<div class="notification-ui_dd-content">
-                    <div class="notification-list notification-list--unread">
-                      <div class="notification-list_content">
-                        <div class="notification-list_detail">
-                          <div>
-                            <p><b></b>{job.data.details.jobTitle}</p>
-                            <p class="text-muted">{job.data.details.jobDescription}</p>
-                            <p class="text-muted"><small>{job.data.details.jobLocation}</small></p>
-                            <Link to={`/UpdateJobs/${job.id}`}>
-                              <Button variant="contained">Update Job</Button>
-                            </Link>
-                            <Button variant="contained" color='error' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
-                            <Link to={`/JobDescp/${job.id}`}>
-                              <Button variant='contained' >Job Desc</Button>
-                            </Link>
-                          </div>
+              {jobs.map(job => {
+                return (<div class="notification-ui_dd-content">
+                  <div class="notification-list notification-list--unread">
+                    <div class="notification-list_content">
+                      <div class="notification-list_detail">
+                        <div>
+                          <p><b></b>{job.data?.details.jobTitle}</p>
+                          <p class="text-muted">{job.data?.details.jobDescription}</p>
+                          <p class="text-muted"><small>{job.data?.details.jobLocation}</small></p>
+                          <Link to={`/UpdateJobs/${job.id}`}>
+                            <Button variant="contained">Update Job</Button>
+                          </Link>
+                          <Button variant="contained" color='error' onClick={() => { handleJobDelete(job) }}>Delete Job</Button>
+                          <Link to={`/JobDescp/${job.id}`}>
+                            <Button variant='contained' >Job Desc</Button>
+                          </Link>
                         </div>
                       </div>
                     </div>
                   </div>
-                  );
-                })}
-              </div>
+                </div>
+                );
+              })}
             </div>
           </div>
         </div>
+      </div>
 
-      </>
-    )
+    </>
+  )
 
 }
 
