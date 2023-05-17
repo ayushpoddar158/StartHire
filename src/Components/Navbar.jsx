@@ -161,14 +161,18 @@ function Navbar(props) {
           >
             StartHire
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', marginLeft: '50px' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', marginLeft: '50px' } }}   >
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+             
+
+                
               >
-                <Link style={{ textDecoration: 'none', color: 'white' }} to={`/${page}`} >{page}</Link>
+                <Link style={{ textDecoration: 'none', color: 'white' }}    value={0}
+                indicatorColor="secondary"   to={`/${page}`} >{page}</Link>
                 {/* {page} */}
               </Button>
             ))}

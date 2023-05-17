@@ -2,6 +2,10 @@ import React, { useEffect } from 'react'
 import Aside from '../DashboardArea/Aside'
 import '../style/Dashboard/Notification.css'
 
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 // Data setup 
 import { db } from "../Firebase";
 import {
@@ -39,12 +43,12 @@ const Notification = (props) => {
     return (
         <>
             <div className='MainNotiStart'>
-                <div class="container-fluid" id="">
+                <div class="container-fluid" id="notimainid">
                     <div class="">
                         <div class="col StartNotimain pt-5 mt-3">
                             <section class="Startsection-50">
                                 <div class=" ">
-                                    <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
+                                    <h3 class="m-b-50 heading-line">Notifications <FontAwesomeIcon icon={faBell} size="lg" /></h3>
                                 </div>
                                 {notifObj.map((item) => {
                                     UpdateRead(item)

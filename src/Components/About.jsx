@@ -2,6 +2,11 @@
  import '../style/Aboutus.css'
  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'></link>
  import { Link } from 'react-router-dom'
+
+// fontsweosme icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleUp, faArrowRight, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+
  const About = () => {
    return (
     <>
@@ -26,8 +31,10 @@
                     <div class="feature">
                         <div class="feature-box">
                             <div class="clearfix">
-                                <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
+                            <div class="iconset">
+                                    <span class="glyphicon   icon"> 
+      <FontAwesomeIcon icon={faArrowAltCircleUp} size="lg" />
+    </span>
                                 </div>
                                 <div class="feature-content">
                                     <h4>Work with heart</h4>
@@ -37,8 +44,10 @@
                         </div>
                         <div class="feature-box">
                             <div class="clearfix">
-                                <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
+                            <div class="iconset">
+                                    <span class="glyphicon   icon"> 
+      <FontAwesomeIcon icon={faArrowAltCircleUp} size="lg" />
+    </span>
                                 </div>
                                 <div class="feature-content">
                                     <h4>Reliable services</h4>
@@ -49,7 +58,9 @@
                         <div class="feature-box">
                             <div class="clearfix">
                                 <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
+                                    <span class="glyphicon   icon"> 
+      <FontAwesomeIcon icon={faArrowAltCircleUp} size="lg" />
+    </span>
                                 </div>
                                 <div class="feature-content">
                                     <h4>Great support</h4>
