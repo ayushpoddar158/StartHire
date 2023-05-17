@@ -29,6 +29,11 @@ import '../style/SignUp.css'
 const Signupstartup = (props) => {
   const navigate = useNavigate();
   const startupSignUpOpen = props.startupSignUpOpen;
+
+  useEffect(() =>{
+    console.log("openBool",startupSignUpOpen)
+  },[startupSignUpOpen])
+
   const [inpVal, setInpVal] = useState({
     sName: "",
     sEmail: "",

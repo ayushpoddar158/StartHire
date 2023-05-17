@@ -72,17 +72,19 @@ const AdminJobs = (props) => {
 
   const handleJobDelete = async (id) => {
     let jobDelRef = doc(db, "jobs", id);
-    await deleteDoc(jobDelRef);
-    // updating user job array
-    const jobA = userData.jobs;
-    const updateA = jobA.filter(item => item != id);
-    const q = query(collection(db, "startups"), where("uid", "==", currentUser?.uid));
-    const docs = await getDocs(q);
-    await updateDoc(docs.docs[0].ref, {
-      jobs: updateA
-    })
-    console.log("updated user job array")
-    window.location.reload();
+    console.log((await getDoc(jobDelRef)).data());
+    // await deleteDoc(jobDelRef);
+    // // updating user job array
+    // const jobA = userData.jobs;
+    // const updateA = jobA.filter(item => item != id);
+    // const q = query(collection(db, "startups"), where("uid", "==", currentUser?.uid));
+    // const docs = await getDocs(q);
+    // await updateDoc(docs.docs[0].ref, {
+    //   jobs: updateA
+    // })
+
+    // console.log("updated user job array")
+    // window.location.reload();
   }
 
   useEffect(() => {

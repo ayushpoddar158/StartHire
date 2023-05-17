@@ -78,7 +78,7 @@ const StartUpProfileForm = (props) => {
     }
   )
 
-  useEffect(() =>{
+  useEffect(() => {
     setLinkImageUrl(userData.PImageUrl)
   })
 
@@ -188,6 +188,7 @@ const StartUpProfileForm = (props) => {
         console.log("Download URL:", downloadURL);
         setLinkImageUrl(downloadURL);
         await updateDocument(downloadURL);
+        window.location.replace("/dashboard")
       } catch (err) {
         console.log(err);
       }
@@ -196,8 +197,8 @@ const StartUpProfileForm = (props) => {
       try {
         const downloadURL = StartUpData.PImageUrl;
         setLinkImageUrl(downloadURL);
-        await updateDocument(downloadURL).then(() =>{
-          window.location.replace("/studentprofile")
+        await updateDocument(downloadURL).then(() => {
+          window.location.replace("/dashboard")
         })
       } catch (err) {
         console.log(err);
@@ -273,7 +274,7 @@ const StartUpProfileForm = (props) => {
             </div>
             {/* <!--/col-3--> */}
             <div class="col-sm-9">
-           
+
 
 
               <div class="tab-content">

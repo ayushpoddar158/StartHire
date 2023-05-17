@@ -182,7 +182,7 @@ const Studentprofileform = (props) => {
         PImageUrl: downloadURL
       }).then(() => {
         alert("Information successfully updated!");
-        navigate("/studentdashboard");
+        window.location.replace("/studentdashboard");
       })
         .catch((error) => {
           console.log("Error updating document: ", error);
