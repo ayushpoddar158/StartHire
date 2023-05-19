@@ -6,6 +6,9 @@ import { Box } from "@mui/material";
 import Select from "react-select";
 import StudentAside from "../StudentDashboard/StudentAside";
 
+import Textarea from '@mui/joy/Textarea';
+
+
 // Data import @Firebase
 import { db } from "../Firebase";
 import { storage } from "../Firebase";
@@ -33,6 +36,21 @@ import "../style/Studentprofileform.css"
 import StudentLists from "../DashboardArea/StudentLists";
 import Aside from "../DashboardArea/Aside";
 
+// degree drop doen imports strt
+
+
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import CustomSelect from '@mui/material/Select';
+import Button from '@mui/material/Button';
+// degree drop doen imports ends
+
+
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 
 
@@ -53,6 +71,28 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 const Studentprofileform = (props) => {
+
+// degree fun and use starte start
+const [degree, setDegree] = React.useState('');
+const [open, setOpen] = React.useState(false);
+
+const handleChange = (event) => {
+  setDegree(event.target.value);
+  alert(degree)
+};
+
+const handleClose = () => {
+  setOpen(false);
+};
+
+const handleOpen = () => {
+  setOpen(true);
+};
+
+// degree fun and use starte end
+
+
+
   let userDataRef = props.userData;
   let userData = userDataRef.data();
   console.log("userRef", userData);
@@ -291,10 +331,10 @@ const Studentprofileform = (props) => {
                   <div class="tab-pane active" id="home">
                     <hr />
                     <form class="form" onSubmit={submitHandler} id="registrationForm">
-                      <div className="container maindivstudent">
+                      <div className=" maindivstudent">
                         <div class="form-group Studentformdivs">
                           <div class="col-xs-12">
-                            <label className="firstnamecls" for="first_name"><h3>First Name</h3></label>
+                            <label className="firstnamecls" for="first_name"><h3> Name</h3></label>
                             <input type="text"
                               onChange={getData}
                               class="form-control"
@@ -308,15 +348,15 @@ const Studentprofileform = (props) => {
                         <div class="form-group Studentformdivs">
 
                           <div class="col-xs-12">
-                            <label for="last_name"><h3>Last Name</h3></label>
-                            <input type="text"
+                            <label for="last_name"><h3>Email</h3></label>
+                            <input type="email"
                               onChange={getData}
                               class="form-control"
                               name="lastname"
                               id="last_name"
                               defaultValue={StudentData.lastname}
-                              placeholder="last name"
-                              title="enter your last name if any."
+                              placeholder="email address"
+                              title="enter your email ."
                               required />
                           </div>
                         </div>
@@ -368,18 +408,66 @@ const Studentprofileform = (props) => {
                         <div class="form-group Studentformdivs">
 
                           <div class="col-xs-12">
-                            <label for="degree"><h3>Degree</h3></label>
-                            <input type="text"
-                              name='degree'
-                              onChange={getData}
-                              class="form-control"
-                              required id="dergree"
-                              defaultValue={StudentData.degree}
-                              placeholder="Name of Degree"
-                              title="enter degree" />
+                            <label for="degree"><h3>Choose Degree</h3></label>
+                            <div className="col-xs-12 p-0">
+     
+      <FormControl className="fayu" >
+        <InputLabel className="sonf" id="demo-controlled-open-select-label">Choose Degree</InputLabel>
+        <CustomSelect className="cus"
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={degree}
+          label="Degree"
+          onChange={handleChange}
+          required
+        >
+          {/* <MenuItem value="">
+            <em>None</em>
+          </MenuItem> */}
+          <MenuItem value={"B-Tech"}>B-Tech</MenuItem>
+          <MenuItem value={"BCA"}>BCA</MenuItem>
+          <MenuItem value={"MBA"}>MBA</MenuItem>
+          <MenuItem value={"M-Tech"}>M-Tech</MenuItem>
+          <MenuItem value={"MCA"}>MCA</MenuItem>
+          <MenuItem value={"BBA"}>BBA</MenuItem>
+          <MenuItem value={"MBA"}>MBA</MenuItem>
+          <MenuItem value={"BSc"}>BSc</MenuItem>
+          <MenuItem value={"MSc"}>MSc</MenuItem>
+        </CustomSelect>
+      </FormControl>
+    </div>
+
                           </div>
                         </div>
 
+
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12 YearOf" >
+                            <label for="YOG"><h3>Degree Status</h3></label>
+<div className="col-xs-12 p-0">
+<FormControl>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <FormControlLabel
+          value="female"
+          control={<Radio />}
+          label="Completed"
+        />
+        <FormControlLabel value="male" control={<Radio />} label="Persuing" />
+  
+      </RadioGroup>
+   
+    </FormControl>
+</div>
+                          </div>
+                        </div>
 
                         <div class="form-group Studentformdivs">
 
@@ -397,6 +485,34 @@ const Studentprofileform = (props) => {
                           </div>
                         </div>
 
+                     
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12 YearOf" >
+                            <label for="YOG"><h3>Awards and Certifications</h3></label>
+                            <Textarea
+  // color="primary"
+  disabled={false}
+  minRows={2}
+  size="lg"
+  placeholder="Write your Certificates and awards names if any "
+/>
+                          </div>
+                        </div>
+
+                        <div class="form-group Studentformdivs">
+
+<div class="col-xs-12 " >
+  <label for="YOG"><h3>About You</h3></label>
+  <Textarea
+  // color="primary"
+  disabled={false}
+  minRows={2}
+  size="lg"
+  placeholder="Write About Yourself "
+/>
+</div>
+</div>
 
                         <div class="form-group selectDiv Studentformdivs" >
                           <div class="col-xs-12 YearOf ">
