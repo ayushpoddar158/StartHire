@@ -1,3 +1,30 @@
+.jobdescbutnsection{
+    display: flex;
+    flex-direction: column;
+}
+
+.ViewdetailsJObDesc{
+    font-size: 1rem !important;
+    /* background-color: rgb(1, 1, 12) !important; */
+    background-color: red;
+    color: white !important;
+    margin-top: 5px !important;
+}
+
+
+.JobDecStudListMainDiv{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(214, 209, 209);
+    justify-content: space-around;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px #474646;
+    padding: 10px;
+}
+
+.JobDescStudDetails{
+    /* background-color: aqua; */
+}
 .mainJobDesc{
     background-color: rgb(5, 0, 9) !important;
     /* height: 80vh !important; */
@@ -16,6 +43,9 @@
     /* align-items: center; */
     
     
+}
+.containerhell{
+    position: relative;
 }
 .JobDescmain{
     background-color: rgb(244, 244, 249);
@@ -71,10 +101,10 @@
     display: flex;
 
     /* background-color: rgb(6, 81, 146); */
-    background-color: rgb(214, 209, 209);
+    /* background-color: rgb(232, 38, 38); */
     justify-content: space-around;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 2px #474646;
+    /* border-radius: 10px; */
+    /* box-shadow: 0px 0px 10px 2px #474646; */
     padding: 10px;
 
 }

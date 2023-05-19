@@ -57,7 +57,8 @@ import AdminNotification from "./AdminDashboard/AdminNotification";
 import AdminStartupData from "./AdminDashboard/AdminStartupData";
 import AdminUpdateJobs from "./AdminDashboard/AdminUpdateJobs";
 import AdminStudentView from "./AdminDashboard/AdminStudentView";
-
+import Model from "./Components/Model/Model";
+import { Mode } from "@mui/icons-material";
 
 const AppRoutes = (props) => {
     // console.log("inside app routes") 
@@ -103,7 +104,9 @@ const AppRoutes = (props) => {
         <Route path="/Studentprofile" element={<Studentprofile userData={userData} />} />
         <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
         <Route path="/VerifyEmail" element={<VerifyEmail />} />
+     
         <Route path="/StudentNotification" element={<StudentNotification notifObj={notifObj} />} />
+        
     </>
 
     const StartUpPages = <>
@@ -116,6 +119,7 @@ const AppRoutes = (props) => {
         <Route path="Notification" element={<Notification
             notifObj={notifObj} />} />
         {/* //jobs routes */}
+        <Route path="/Model" element={<Model/>} />
         <Route path="Jobs" element={<Jobs userData={userData} />} />
         <Route path="CreateJobs" element={<CreateJobs userData={userData} />} />
         <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin} />} />
