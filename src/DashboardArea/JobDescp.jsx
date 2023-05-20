@@ -251,7 +251,7 @@ const uname=useState("ayush")
            
 
            
-              <div className="JobDecStudListMainDiv">
+              {/* <div className="JobDecStudListMainDiv"> */}
               <div className="studentList">
                 <div className="stdlistmian2_1 firstdivig">
                   <img
@@ -283,67 +283,9 @@ const uname=useState("ayush")
                   <Model uname={uname}/>
                 </div>
                 </div>
-                <div className="JobDescStudDetails">
-                <ul class="list-unstyled mb-1-9">
-                <li class="mb-2 mb-xl-3 display-28">
-                                <span class="display-26 text-secondary me-2 font-weight-600">
-                                 Address:
-                                </span>
-                                <span class="display-26 text-primary me-2 font-weight-600">
-                                 Bbsr
-                                </span>
-                                
-                                <hr />
-
-                              </li>
-                <li class="mb-2 mb-xl-3 display-28">
-                                <span class="display-26 text-secondary me-2 font-weight-600">
-                                 College/University:
-                                </span>
-                                <span class="display-26 text-primary me-2 font-weight-600">
-                                 Nalanda 
-                                </span>
-                                
-                                <hr />
-
-                              </li>
-                <li class="mb-2 mb-xl-3 display-28">
-                                <span class="display-26 text-secondary me-2 font-weight-600">
-                                 Degree:
-                                </span>
-                                <span class="display-26 text-primary me-2 font-weight-600">
-                                 B-Tech
-                                </span>
-                                
-                                <hr />
-
-                              </li>
-                <li class="mb-2 mb-xl-3 display-28">
-                                <span class="display-26 text-secondary me-2 font-weight-600">
-                                 Degree Status:
-                                </span>
-                                <span class="display-26 text-primary me-2 font-weight-600">
-                                 Completed
-                                </span>
-                                
-                                <hr />
-
-                              </li>
-                <li class="mb-2 mb-xl-3 display-28">
-                                <span class="display-26 text-secondary me-2 font-weight-600">
-                                 Year Of Passing
-                                </span>
-                                <span class="display-26 text-primary me-2 font-weight-600">
-                                 2023
-                                </span>
-                                
-                                <hr />
-
-                              </li>
-                </ul>
-                </div>
+              
                 
-              </div>
+              {/* </div> */}
 
             
             </>

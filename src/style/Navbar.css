@@ -1,4 +1,7 @@
 #Navbar{
     position: sticky;
     z-index: 1000000;
+    opacity: 0.9 !important;
+    height: 20vh;
+    padding-top: 20px;
 }

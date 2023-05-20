@@ -102,9 +102,10 @@
 
     /* background-color: rgb(6, 81, 146); */
     /* background-color: rgb(232, 38, 38); */
+    background-color: rgb(244, 244, 249);
     justify-content: space-around;
-    /* border-radius: 10px; */
-    /* box-shadow: 0px 0px 10px 2px #474646; */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px #474646;
     padding: 10px;
 
 }
