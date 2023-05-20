@@ -120,7 +120,20 @@ const App = (props) => {
     }
   }, [currentUser])
 
-
+  useEffect(() => {
+    const getAdminParams = async () =>{
+      const q = collection(db, "adminParams");
+      await getDocs(q)
+      .then((adminDoc) =>{
+        var resData = adminDoc.docs[0].data();
+        setStartupSignUpOpen(resData.StartUpRegOpen);
+        setStudentSignUpOpen(resData.StdRegOpen);
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
+    getAdminParams();
+  },[])
 
 
 

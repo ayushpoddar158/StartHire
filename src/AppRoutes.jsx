@@ -123,7 +123,9 @@ const AppRoutes = (props) => {
     </>
 
     const AdminPages = <>
-        <Route path="/AdminDashboard" element={<AdminDashboard allData={allData} />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard allData={allData} 
+        studentSignUpOpen={studentSignUpOpen} 
+        startupSignUpOpen={startupSignUpOpen}  />} />
         <Route path="/AdminJobs" element={<AdminJobs allData={allData} />} />
         <Route path="/SearchInterns" element={<SearchInterns allData={allData} />} />
         <Route path="/AdminStudentLists" element={<AdminStudentLists allData={allData} />} />

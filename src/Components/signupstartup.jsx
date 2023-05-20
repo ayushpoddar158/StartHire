@@ -226,7 +226,7 @@ const Signupstartup = (props) => {
             </div>
           </div>
         </section>
-        : ""
+        : <h1>Student Registration is closed !</h1>
       }
       </section>
       </div>
