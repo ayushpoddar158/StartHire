@@ -1,42 +1,59 @@
-import { useEffect, useState, useContext } from 'react';
 import { NavLink, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import './css/AdminDashboard.css'
 
 // Authentication Setup
-import { Auth } from "../Firebase";
+import { Auth, db } from "../Firebase";
 import { AuthContext } from '../Authorizer';
 
-
-// Data setup 
-import { db } from "../Firebase";
-import {
-    query,
-    getDocs,
-    collection,
-    addDoc,
-    where
-} from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import { collection, updateDoc, getDocs } from "firebase/firestore";
 
-// font awesome setup
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faFile } from '@fortawesome/free-solid-svg-icons';
-import { Button } from '@mui/material';
-import { faBlog } from '@fortawesome/free-solid-svg-icons';
-import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const AdminDashboard = (props) => {
     const navigate = useNavigate();
     let allData = props.allData;
+    let studentSignUpOpen = props.studentSignUpOpen;
+    let startupSignUpOpen = props.startupSignUpOpen;
     console.log(allData)
 
     const LogOut = () => {
         Auth.signOut();
         navigate("/LoginStartUp");
+    }
+
+    const ChangeStudentSignUp = async (signUpBool) => {
+        const q = collection(db, "adminParams");
+        await getDocs(q).then(async (docs) => {
+            console.log("admindocs", docs.docs[0].data())
+            await updateDoc(docs.docs[0].ref, {
+                StdRegOpen: !signUpBool
+            })
+                .then(() => {
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        })
+
+    }
+
+    const ChangeStartUpSignUp = async (signUpBool) => {
+        const q = collection(db, "adminParams");
+        await getDocs(q).then(async (docs) => {
+            console.log("admindocs", docs.docs[0].data())
+            await updateDoc(docs.docs[0].ref, {
+                StartUpRegOpen: !signUpBool
+            })
+                .then(() => {
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        })
     }
 
     return (
@@ -55,6 +72,25 @@ const AdminDashboard = (props) => {
                     <h2>No of Jobs</h2>
                 </div>
             </div>
+            {studentSignUpOpen ?
+                <div>
+                    <button onClick={() => { ChangeStudentSignUp(studentSignUpOpen) }}>Close Student Registration</button>
+                </div>
+                :
+                <div>
+                    <button onClick={() => { ChangeStudentSignUp(studentSignUpOpen) }}>Open Student Registration</button>
+                </div>
+            }
+
+            {startupSignUpOpen ?
+                <div>
+                    <button onClick={() => { ChangeStartUpSignUp(startupSignUpOpen) }}>Close StartUp Registration</button>
+                </div>
+                :
+                <div>
+                    <button onClick={() => { ChangeStartUpSignUp(startupSignUpOpen) }}>Open StartUp Registration</button>
+                </div>
+            }
 
         </>
     )
