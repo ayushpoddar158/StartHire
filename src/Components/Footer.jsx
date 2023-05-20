@@ -1,6 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FaPhone } from 'react-icons/fa';
+
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 const Footer = () => {
   return (
   <>
@@ -33,8 +38,13 @@ const Footer = () => {
 Buddhist Villa, Chandaka
 Bhubaneswar, Odisha-754005
       </li>
-      <li><span>@</span> +91-8249585065</li>
-      <li><span>Eml:</span><Link mailto={"incmgr@aicnalanda.com"} >incmgr@aicnalanda.com</Link></li>
+      <li><span>  <FontAwesomeIcon icon={faPhone} size="lg" /></span> +91-8249585065</li>
+      <li><span>     
+                                    <FontAwesomeIcon
+                                      icon={faEnvelope}
+                                      size="lg"
+                                    />
+                                  </span><Link mailto={"incmgr@aicnalanda.com"} >inr@aicnalanda.com</Link></li>
     </ul>
   </div>
   <div className="col">

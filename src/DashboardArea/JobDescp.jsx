@@ -1,4 +1,6 @@
 import { db } from "../Firebase";
+import { useRef } from "react";
+import Model from "../Components/Model/Model";
 import {
   query,
   getDocs,
@@ -15,12 +17,13 @@ import {
 
 import React from "react";
 import { Button } from "@material-ui/core";
-import { TextField } from "@mui/material";
+import { Modal, TextField } from "@mui/material";
 import "./css/JobDescp.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { Mode } from "@mui/icons-material";
 
 const JobDescp = (props) => {
   let [jobData, setJobData] = useState();
@@ -165,10 +168,14 @@ const JobDescp = (props) => {
     console.log("assignees", assignedStudents);
   }, [selectedStudents])
 
+const uname=useState("ayush")
   return (
     <>
-      <div className="mainJobDesc">
 
+
+    {/* <Model ref={ref}/> */}
+      <div className="mainJobDesc">
+      
         <div className="JobDescmain">
           <div className="title onediv firstDiv">
             <h2 id="heading1">{jobData?.details.jobTitle}</h2>
@@ -203,6 +210,7 @@ const JobDescp = (props) => {
           return (
             <>
               <div className="studentList">
+            
                 <div className="stdlistmian2_1 firstdivig">
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
@@ -240,6 +248,10 @@ const JobDescp = (props) => {
         {selectedStudents.map((item) => {
           return (
             <>
+           
+
+           
+              <div className="JobDecStudListMainDiv">
               <div className="studentList">
                 <div className="stdlistmian2_1 firstdivig">
                   <img
@@ -262,12 +274,78 @@ const JobDescp = (props) => {
                     })}
                   </div>
                 </div>
-                <div className="stdlistmian2_1">
+                <div className="stdlistmian2_1 jobdescbutnsection">
                   <Button className="viewbtn JObDescSelbtn" variant="contained" onClick={() => { addStudent(item) }}>
                     Select
                   </Button>
+                  
+                  {/* <Button className="ViewdetailsJObDesc" varient="contained" >View</Button> */}
+                  <Model uname={uname}/>
                 </div>
+                </div>
+                <div className="JobDescStudDetails">
+                <ul class="list-unstyled mb-1-9">
+                <li class="mb-2 mb-xl-3 display-28">
+                                <span class="display-26 text-secondary me-2 font-weight-600">
+                                 Address:
+                                </span>
+                                <span class="display-26 text-primary me-2 font-weight-600">
+                                 Bbsr
+                                </span>
+                                
+                                <hr />
+
+                              </li>
+                <li class="mb-2 mb-xl-3 display-28">
+                                <span class="display-26 text-secondary me-2 font-weight-600">
+                                 College/University:
+                                </span>
+                                <span class="display-26 text-primary me-2 font-weight-600">
+                                 Nalanda 
+                                </span>
+                                
+                                <hr />
+
+                              </li>
+                <li class="mb-2 mb-xl-3 display-28">
+                                <span class="display-26 text-secondary me-2 font-weight-600">
+                                 Degree:
+                                </span>
+                                <span class="display-26 text-primary me-2 font-weight-600">
+                                 B-Tech
+                                </span>
+                                
+                                <hr />
+
+                              </li>
+                <li class="mb-2 mb-xl-3 display-28">
+                                <span class="display-26 text-secondary me-2 font-weight-600">
+                                 Degree Status:
+                                </span>
+                                <span class="display-26 text-primary me-2 font-weight-600">
+                                 Completed
+                                </span>
+                                
+                                <hr />
+
+                              </li>
+                <li class="mb-2 mb-xl-3 display-28">
+                                <span class="display-26 text-secondary me-2 font-weight-600">
+                                 Year Of Passing
+                                </span>
+                                <span class="display-26 text-primary me-2 font-weight-600">
+                                 2023
+                                </span>
+                                
+                                <hr />
+
+                              </li>
+                </ul>
+                </div>
+                
               </div>
+
+            
             </>
           )
         })}

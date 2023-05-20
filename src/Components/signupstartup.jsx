@@ -2,6 +2,13 @@
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { Auth } from "../Firebase";
 
+// fontawesome icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faIndustry } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+
+
 // Data import @Firebase
 import { db } from "../Firebase";
 import {
@@ -171,7 +178,9 @@ const Signupstartup = (props) => {
 
 
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i id='signupicons' className="zmdi zmdi-account"></i>
+                          <div className="StartUpsignupicondiv">
+      <FontAwesomeIcon icon={faIndustry} size="lg" />
+    </div>
                             <div className="form-outline flex-fill mb-0">
                               <input type="text" name="sName" id="form3Example1c" onChange={getdata} className="form-control" />
                               <label className="form-label" HtmlFor="form3Example1c">StartUp Name</label>
@@ -179,21 +188,30 @@ const Signupstartup = (props) => {
                           </div>
 
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i id='signupicons' className="zmdi zmdi-email"></i>
+                          <div className="StartUpsignupicondiv">
+                                    <FontAwesomeIcon
+                                      icon={faEnvelope}
+                                      size="lg"
+                                    />
+                                  </div>
                             <div className="form-outline flex-fill mb-0">
                               <input type="email" id="form3Example3c" name="sEmail" onChange={getdata} className="form-control" />
                               <label className="form-label" HtmlFor="form3Example3c">StartUp Official Email</label>
                             </div>
                           </div>
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i id='signupicons' className="zmdi zmdi-lock"></i>
+                          <div className="StartUpsignupicondiv">
+                                    <FontAwesomeIcon icon={faLock} size="lg" />
+                                  </div>
                             <div className="form-outline flex-fill mb-0">
                               <input type="password" id="form3Example4c" name="password" onChange={getdata} className="form-control" />
                               <label className="form-label" HtmlFor="form3Example4c">Password</label>
                             </div>
                           </div>
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i id='signupicons' className="zmdi zmdi-key"></i>
+                          <div className="StartUpsignupicondiv">
+                                    <FontAwesomeIcon icon={faLock} size="lg" />
+                                  </div>
                             <div className="form-outline flex-fill mb-0">
                               <input type="password" id="form3Example4cd" name="repeatpassword" onChange={getdata} className="form-control" />
                               <label className="form-label" HtmlFor="form3Example4cd">Repeat your password</label>

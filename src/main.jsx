@@ -5,6 +5,7 @@ import './index.css'
 import { BrowserRouter } from "react-router-dom"
 
 import { AuthProvider } from "./Authorizer";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
