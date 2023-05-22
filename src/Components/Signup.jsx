@@ -102,23 +102,24 @@ const Signup = (props) => {
                   desgn: "student",
                   updatedProfile: false,
                   ProfileName: "",
-                  Gender: "",
+                  gender: "",
                   Mobile: "",
                   location: "",
                   College: "",
                   Degree: "",
                   DegreeStatus: "",
                   YOG: "",
+                  awardsAndCert: "completed",
                   githubLink: "",
                   linkedInLink: "",
                   PImageUrl: null,
                   skills: [],
+                  about: "",
                   VerifIsVerified: false,
                   VerifIsRejected: false,
                   VerifIsConfirmed: false,
                   startups: [],
-                  notification: [noteRef.id],
-                })
+                  notification: [noteRef.id]})
                   .then(() => {
                     console.log("insdie the add notif setup");
                   })

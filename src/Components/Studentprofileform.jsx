@@ -71,25 +71,17 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 const Studentprofileform = (props) => {
+ 
 
-// degree fun and use starte start
-const [degree, setDegree] = React.useState('');
-const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-const handleChange = (event) => {
-  setDegree(event.target.value);
-  alert(degree)
-};
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
-const handleClose = () => {
-  setOpen(false);
-};
-
-const handleOpen = () => {
-  setOpen(true);
-};
-
-// degree fun and use starte end
+  // degree fun and use starte end
 
 
 
@@ -104,17 +96,20 @@ const handleOpen = () => {
   const navigate = useNavigate();
   const [StudentData, setStudentData] = useState(
     {
-      firstname: userData.firstName,
-      lastname: userData.lastName,
+      ProfileName: userData.ProfileName,
       mobile: userData.Mobile,
       location: userData.location,
       collname: userData.College,
       degree: userData.Degree,
+      DegreStatus: userData.DegreStatus,
       YOG: userData.YOG,
+      awardsAndCert: userData.awardsAndCert,
       githubLink: userData.githubLink,
       linkedInLink: userData.linkedInLink,
       PImageUrl: userData.PImageUrl,
-      skills: userData.skills
+      skills: userData.skills,
+      about: userData.about,
+      gender: userData.gender
     }
   )
 
@@ -209,14 +204,17 @@ const handleOpen = () => {
       console.log("inside update else");
       await updateDoc(userDataRef.ref, {
         updatedProfile: true,
-        firstName: StudentData.firstname,
-        lastName: StudentData.lastname,
+        ProfileName: StudentData.ProfileName,
         Mobile: StudentData.mobile,
         location: StudentData.location,
         College: StudentData.collname,
         Degree: StudentData.degree,
+        DegreStatus: StudentData.DegreStatus,
         YOG: StudentData.YOG,
+        awardsAndCert: StudentData.awardsAndCert,
         skills: StudentData.skills,
+        about: StudentData.about,
+        gender: StudentData.gender,
         githubLink: StudentData.githubLink,
         linkedInLink: StudentData.linkedInLink,
         PImageUrl: downloadURL
@@ -293,7 +291,6 @@ const handleOpen = () => {
                   <hr />
                   <div class="panel-body">
                     <div class="form-group">
-
                       <div class="col-xs-12">
                         <label for="last_name"><h6>Github Link</h6></label>
                         <input type="text" class="form-control"
@@ -306,7 +303,6 @@ const handleOpen = () => {
                       </div>
                     </div>
                     <div class="form-group">
-
                       <div class="col-xs-12">
                         <label for="last_name"><h6>Linkedin</h6></label>
                         <input type="text"
@@ -320,8 +316,6 @@ const handleOpen = () => {
                     </div>
                   </div>
                 </div>
-
-
 
 
               </div>
@@ -345,23 +339,7 @@ const handleOpen = () => {
                               title="enter your first name if any." />
                           </div>
                         </div>
-                        <div class="form-group Studentformdivs">
-
-                          <div class="col-xs-12">
-                            <label for="last_name"><h3>Email</h3></label>
-                            <input type="email"
-                              onChange={getData}
-                              class="form-control"
-                              name="lastname"
-                              id="last_name"
-                              defaultValue={StudentData.lastname}
-                              placeholder="email address"
-                              title="enter your email ."
-                              required />
-                          </div>
-                        </div>
-
-
+                        
                         <div class="form-group Studentformdivs">
                           <div class="col-xs-12">
                             <label for="mobile"><h3>Mobile</h3></label>
@@ -391,7 +369,6 @@ const handleOpen = () => {
                           </div>
                         </div>
                         <div class="form-group Studentformdivs">
-
                           <div class="col-xs-12">
                             <label for="collname"><h3>College Name</h3></label>
                             <input type="text"
@@ -410,36 +387,32 @@ const handleOpen = () => {
                           <div class="col-xs-12">
                             <label for="degree"><h3>Choose Degree</h3></label>
                             <div className="col-xs-12 p-0">
-     
-      <FormControl className="fayu" >
-        <InputLabel className="sonf" id="demo-controlled-open-select-label">Choose Degree</InputLabel>
-        <CustomSelect className="cus"
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={degree}
-          label="Degree"
-          onChange={handleChange}
-          required
-        >
-          {/* <MenuItem value="">
-            <em>None</em>
-          </MenuItem> */}
-          <MenuItem value={"B-Tech"}>B-Tech</MenuItem>
-          <MenuItem value={"BCA"}>BCA</MenuItem>
-          <MenuItem value={"MBA"}>MBA</MenuItem>
-          <MenuItem value={"M-Tech"}>M-Tech</MenuItem>
-          <MenuItem value={"MCA"}>MCA</MenuItem>
-          <MenuItem value={"BBA"}>BBA</MenuItem>
-          <MenuItem value={"MBA"}>MBA</MenuItem>
-          <MenuItem value={"BSc"}>BSc</MenuItem>
-          <MenuItem value={"MSc"}>MSc</MenuItem>
-        </CustomSelect>
-      </FormControl>
-    </div>
-
+                              <FormControl className="fayu" >
+                                <InputLabel className="sonf" id="demo-controlled-open-select-label">Choose Degree</InputLabel>
+                                <CustomSelect className="cus"
+                                  labelId="demo-controlled-open-select-label"
+                                  id="demo-controlled-open-select"
+                                  open={open}
+                                  onClose={handleClose}
+                                  onOpen={handleOpen}
+                                  value={degree}
+                                  label="Degree"
+                                  name="degree"
+                                  onChange={getData}
+                                  required
+                                >
+                                  <MenuItem value={"B-Tech"}>B-Tech</MenuItem>
+                                  <MenuItem value={"BCA"}>BCA</MenuItem>
+                                  <MenuItem value={"MBA"}>MBA</MenuItem>
+                                  <MenuItem value={"M-Tech"}>M-Tech</MenuItem>
+                                  <MenuItem value={"MCA"}>MCA</MenuItem>
+                                  <MenuItem value={"BBA"}>BBA</MenuItem>
+                                  <MenuItem value={"MBA"}>MBA</MenuItem>
+                                  <MenuItem value={"BSc"}>BSc</MenuItem>
+                                  <MenuItem value={"MSc"}>MSc</MenuItem>
+                                </CustomSelect>
+                              </FormControl>
+                            </div>
                           </div>
                         </div>
 
@@ -448,29 +421,28 @@ const handleOpen = () => {
 
                           <div class="col-xs-12 YearOf" >
                             <label for="YOG"><h3>Degree Status</h3></label>
-<div className="col-xs-12 p-0">
-<FormControl>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel
-          value="female"
-          control={<Radio />}
-          label="Completed"
-        />
-        <FormControlLabel value="male" control={<Radio />} label="Persuing" />
-  
-      </RadioGroup>
-   
-    </FormControl>
-</div>
+                            <div className="col-xs-12 p-0">
+                              <FormControl>
+                                <RadioGroup
+                                  row
+                                  aria-labelledby="demo-row-radio-buttons-group-label"
+                                  name="DegreStatus"
+                                  defaultValue={"completed"}
+                                  onChange={getData}
+                                >
+                                  <FormControlLabel
+                                    value="completed"
+                                    control={<Radio />}
+                                    label="Completed"
+                                  />
+                                  <FormControlLabel value="Persuing" control={<Radio />} label="Persuing" />
+                                </RadioGroup>
+                              </FormControl>
+                            </div>
                           </div>
                         </div>
 
                         <div class="form-group Studentformdivs">
-
                           <div class="col-xs-12 YearOf" >
                             <label for="YOG"><h3>Year of Graduation</h3></label>
                             <input type="number"
@@ -485,34 +457,37 @@ const handleOpen = () => {
                           </div>
                         </div>
 
-                     
-                        <div class="form-group Studentformdivs">
 
+                        <div class="form-group Studentformdivs">
                           <div class="col-xs-12 YearOf" >
                             <label for="YOG"><h3>Awards and Certifications</h3></label>
                             <Textarea
-  // color="primary"
-  disabled={false}
-  minRows={2}
-  size="lg"
-  placeholder="Write your Certificates and awards names if any "
-/>
+                              // color="primary"
+                              disabled={false}
+                              minRows={2}
+                              size="lg"
+                              placeholder="Write your Certificates and awards names if any "
+                              name = "awardsAndCert"
+                              onChange={getData}
+                            />
                           </div>
                         </div>
 
                         <div class="form-group Studentformdivs">
 
-<div class="col-xs-12 " >
-  <label for="YOG"><h3>About You</h3></label>
-  <Textarea
-  // color="primary"
-  disabled={false}
-  minRows={2}
-  size="lg"
-  placeholder="Write About Yourself "
-/>
-</div>
-</div>
+                          <div class="col-xs-12 " >
+                            <label for="YOG"><h3>About You</h3></label>
+                            <Textarea
+                              // color="primary"
+                              disabled={false}
+                              minRows={2}
+                              size="lg"
+                              placeholder="Write About Yourself "
+                              name="about"
+                              onChange={getData}
+                            />
+                          </div>
+                        </div>
 
                         <div class="form-group selectDiv Studentformdivs" >
                           <div class="col-xs-12 YearOf ">
@@ -552,11 +527,7 @@ const handleOpen = () => {
                 </div>
                 {/* <!--/tab-pane--> */}
               </div>
-              {/* <!--/tab-content--> */}
-
             </div>
-            {/* PROFILE FORM END */}
-
           </div>
         </div>
 
