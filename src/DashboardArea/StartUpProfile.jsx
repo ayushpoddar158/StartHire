@@ -58,7 +58,7 @@ const StartUpProfile = (props) => {
                           Founder:{userData.FounderName}
                         </span>
                       </div>
-                      <ul class="list-unstyled mb-1-9">
+                      <ul class="list-unstyled mb-1-9 StartUpUl">
                         <li class="mb-2 mb-xl-3 display-28">
                           <span class="display-26 text-secondary me-2 font-weight-600">
                             Contact no:

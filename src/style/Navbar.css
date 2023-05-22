@@ -1,4 +1,20 @@
 #Navbar{
     position: sticky;
-    z-index: 1000000;
+    /* z-index: 10000; */
+    opacity: 0.9 !important;
+    height: 20vh;
+    padding-top: 20px;
+    /* background-color: red !important; */
+
+}
+.css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper{
+    /* top: 75px !important; */
+    z-index: 200000000000000000 !important;
+    /* background-color: red !important; */
+  
+}
+
+.css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper{
+    /* top: 72px !important; */
+   
 }

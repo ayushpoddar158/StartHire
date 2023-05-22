@@ -1,0 +1,60 @@
+.mainConatainerHome{
+    overflow: hidden;
+    /* position: absolute; */
+    /* top: 0px; */
+}
+.poster1{
+    width: 100vw;
+    height: 50vh;
+    background-color: red;
+    margin: auto;
+    /* background-image: url(); */
+    background-size: contain;
+    /* background-repeat: no-repeat; */
+
+}
+
+.homediv2{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    height: 50vh;
+    
+}
+.homediv2 h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(158, 155, 155); */
+    color: rgb(7, 7, 10);
+    padding: 20px;
+    font-size: 3.5rem;
+    
+}
+.horizontalhr{
+    border-bottom: 2px solid black;
+    width: 50vw;
+    /* margin: auto; */
+    /* margin-left: auto; */
+    /* background-color: blue !important; */
+}
+.homediv2about1{
+    /* background-color: red; */
+    margin-top: 10px;
+    /* padding: 20px; */
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+.homediv2about1 p{
+    /* background-color: rgb(72, 255, 0); */
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+    width: 60%;
+    color: rgb(129, 127, 127);
+}

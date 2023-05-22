@@ -136,11 +136,11 @@ border-radius: 10Px;
 
 .startUpImgDiv {
     position: absolute;
-    padding: 0 3rem;
-    margin: 0;
-    height: 24rem;
-    width: 30rem;
-    /* background-color: red; */
+    padding: 0 3rem !important;
+    margin: 0 !important;
+    height: 24rem !important;
+    width: 30rem !important;
+    /* background-color: rgb(0, 8, 255); */
 }
 
 
@@ -155,11 +155,13 @@ border-radius: 10Px;
 .studentDetails{
     position: relative;
     left: 40rem;
+    background-color: #15395A !important;
 }
 
 .startUpDetails{
     position: relative;
     left: 40rem;
+    /* background-color: red; */
     
 }
 
@@ -365,6 +367,9 @@ flex-direction: column;
 .startUpDetails{
     position: static;
 left: 0px;
+/* margin: 7px !important; */
+/* padding: 5px !important; */
+
 }
 
 .studentDetails{
@@ -376,7 +381,18 @@ left: 0px;
 }
 .startUpImgDiv{
     position: static;
+    /* position: absolute; */
+    padding: 0 3rem !important;
+    margin: 0 !important;
+    height: 24rem !important;
+    width: 40rem !important;
+    margin: auto !important;
+    /* background-color: rgb(0, 8, 255); */
 }
+.StartUpUl{
+    /* background-color: #15395A !important; */
+}
+
 }
 
 
