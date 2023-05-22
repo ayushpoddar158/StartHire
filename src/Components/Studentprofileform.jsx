@@ -345,6 +345,32 @@ const handleOpen = () => {
                               title="enter your first name if any." />
                           </div>
                         </div>
+
+                        
+                        <div class="form-group Studentformdivs">
+
+                          <div class="col-xs-12 YearOf" >
+                            <label for="YOG"><h3>Gender</h3></label>
+<div className="col-xs-12 p-0">
+<FormControl>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <FormControlLabel
+          value="female"
+          control={<Radio />}
+          label="Male"
+        />
+        <FormControlLabel value="male" control={<Radio />} label="Female" />
+  
+      </RadioGroup>
+   
+    </FormControl>
+</div>
+                          </div>
+                        </div>
                         <div class="form-group Studentformdivs">
 
                           <div class="col-xs-12">
