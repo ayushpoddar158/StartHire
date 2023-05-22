@@ -50,7 +50,7 @@ function Navbar(props) {
           window.location.replace("/Login")
         })
     }
-    else{
+    else {
       await Auth.signOut()
         .then(() => {
           window.location.replace("/Loginstartup")
@@ -77,7 +77,7 @@ function Navbar(props) {
 
 
   return (
-    <AppBar  position="sticky" id='Navbar' sx={{ background: '#070617', }} >
+    <AppBar position="sticky" id='Navbar' sx={{ background: '#070617', }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -167,12 +167,12 @@ function Navbar(props) {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-             
 
-                
+
+
               >
-                <Link style={{ textDecoration: 'none', color: 'white' }}    value={0}
-                indicatorColor="secondary"   to={`/${page}`} >{page}</Link>
+                <Link style={{ textDecoration: 'none', color: 'white' }} value={0}
+                  indicatorColor="secondary" to={`/${page}`} >{page}</Link>
                 {/* {page} */}
               </Button>
             ))}
@@ -183,7 +183,7 @@ function Navbar(props) {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src={userData.data().PImageUrl ? userData.data().PImageUrl : "avtar1.png"} />
+                    <Avatar src={userData.data().PImageUrl ? userData.data().PImageUrl : "avtar1.png"} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -202,26 +202,40 @@ function Navbar(props) {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    setting === 'Logout' ?
+                  {isStudent ?
+                    <>
+                      <MenuItem >
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/studentdashboard"}>Dashboard</Link></Typography>
+                      </MenuItem>
+                      <MenuItem >
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/StudentProfile"}>Profile</Link></Typography>
+                      </MenuItem>
+                      <MenuItem >
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/StudentNotification"}>Notification</Link></Typography>
+                      </MenuItem>
                       <MenuItem onClick={() => logouthandler(isStudent)}>
                         <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>Log Out</Link></Typography>
                       </MenuItem>
-                      :
-                      setting === "Dashboard" ?
-                        isStudent ?
-                          <MenuItem >
-                            <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/studentdashboard"}>Dashboard</Link></Typography>
-                          </MenuItem>
-                          :
-                          <MenuItem >
-                            <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/dashboard"}>Dashboard</Link></Typography>
-                          </MenuItem>
-                        :
-                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                          <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/${setting}`} >{setting}</Link></Typography>
-                        </MenuItem>
-                  ))}
+                    </>
+                    :
+                    <>
+                      <MenuItem >
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/dashboard"}>Dashboard</Link></Typography>
+                      </MenuItem>
+                      <MenuItem >
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/StartUpProfile"}>Profile</Link></Typography>
+                      </MenuItem>
+                      <MenuItem >
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/Notification"}>Notification</Link></Typography>
+                      </MenuItem>
+                      <MenuItem >
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }} to={"/Jobs"}>Jobs</Link></Typography>
+                      </MenuItem>
+                      <MenuItem onClick={() => logouthandler(isStudent)}>
+                        <Typography style={{ color: "grey", padding: '5px', fontSize: "1.2rem" }} textAlign="center"><Link style={{ textDecoration: 'none', color: 'black' }}>Log Out</Link></Typography>
+                      </MenuItem>
+                    </>
+                  }
                 </Menu>
               </Box>
               :

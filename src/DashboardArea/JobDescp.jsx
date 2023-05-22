@@ -217,8 +217,7 @@ const uname=useState("ayush")
                     alt="avatar 1"
                     style={{ width: "45px", height: "auto" }}
                   />
-                  <div class="ms-2">{item.data().firstName + " " + item.data().lastName}</div>
-                  <div class="ms-2">{item.data().email}</div>
+                  <div class="ms-2">{item.data().ProfileName}</div>
                 </div>
                 <div className=" skillmaindiv">
                   <div className="conatainer skilltextdiv">
@@ -236,6 +235,7 @@ const uname=useState("ayush")
                   <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
                     Reject
                   </Button>
+                  <Model data={item.data()}/>
                 </div>
               </div>
             </>
@@ -259,8 +259,7 @@ const uname=useState("ayush")
                     alt="avatar 1"
                     style={{ width: "45px", height: "auto" }}
                   />
-                  <div class="ms-2">{item.data().firstName + " " + item.data().lastName}</div>
-                  <div class="ms-2">{item.data().email}</div>
+                  <div class="ms-2">{item.data().ProfileName}</div>
                 </div>
                 <div className=" skillmaindiv">
                   <div className="conatainer skilltextdiv">
@@ -280,7 +279,7 @@ const uname=useState("ayush")
                   </Button>
                   
                   {/* <Button className="ViewdetailsJObDesc" varient="contained" >View</Button> */}
-                  <Model uname={uname}/>
+                  <Model data={item.data()}/>
                 </div>
                 </div>
               

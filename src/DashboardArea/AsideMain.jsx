@@ -77,7 +77,7 @@ const AsideMain = (props) => {
         )
     }
 
-    if (isStartUp && isVerified) {
+    if (isStartUp && isVerified && userData.data().updatedProfile) {
         return (
             <>
                 <div >
@@ -108,7 +108,7 @@ const AsideMain = (props) => {
             </>
         )
     }
-    else if (isStudent && isVerified) {
+    else if (isStudent && isVerified && userData.data().updatedProfile) {
         console.log("isStudent")
         return (
             <>

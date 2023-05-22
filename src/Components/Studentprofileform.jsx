@@ -71,7 +71,8 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 const Studentprofileform = (props) => {
- 
+
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -101,7 +102,7 @@ const Studentprofileform = (props) => {
       location: userData.location,
       collname: userData.College,
       degree: userData.Degree,
-      DegreStatus: userData.DegreStatus,
+      DegreeStatus: userData.DegreeStatus,
       YOG: userData.YOG,
       awardsAndCert: userData.awardsAndCert,
       githubLink: userData.githubLink,
@@ -200,6 +201,9 @@ const Studentprofileform = (props) => {
     else if (StudentData.skills.length === 0) {
       alert("Please enter at least one skill")
     }
+    else if (StudentData.about === "") {
+      alert("Please enter something about you")
+    }
     else {
       console.log("inside update else");
       await updateDoc(userDataRef.ref, {
@@ -209,7 +213,7 @@ const Studentprofileform = (props) => {
         location: StudentData.location,
         College: StudentData.collname,
         Degree: StudentData.degree,
-        DegreStatus: StudentData.DegreStatus,
+        DegreeStatus: StudentData.DegreeStatus,
         YOG: StudentData.YOG,
         awardsAndCert: StudentData.awardsAndCert,
         skills: StudentData.skills,
@@ -332,56 +336,39 @@ const Studentprofileform = (props) => {
                             <input type="text"
                               onChange={getData}
                               class="form-control"
-                              required name="firstname"
+                              required name="ProfileName"
                               id="first_name"
-                              defaultValue={StudentData.firstname}
-                              placeholder="first name"
+                              defaultValue={StudentData.ProfileName}
+                              placeholder="Profile Name"
                               title="enter your first name if any." />
                           </div>
                         </div>
 
-                        
+
                         <div class="form-group Studentformdivs">
 
                           <div class="col-xs-12 YearOf" >
                             <label for="YOG"><h3>Gender</h3></label>
-<div className="col-xs-12 p-0">
-<FormControl>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-      >
-        <FormControlLabel
-          value="female"
-          control={<Radio />}
-          label="Male"
-        />
-        <FormControlLabel value="male" control={<Radio />} label="Female" />
-  
-      </RadioGroup>
-   
-    </FormControl>
-</div>
+                            <div className="col-xs-12 p-0">
+                              <FormControl>
+                                <RadioGroup
+                                  row
+                                  aria-labelledby="demo-row-radio-buttons-group-label"
+                                  name="gender"
+                                  onChange={getData}
+                                  value={StudentData.gender}
+                                >
+                                  <FormControlLabel
+                                    value="Male"
+                                    control={<Radio />}
+                                    label="Male"
+                                  />
+                                  <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                                </RadioGroup>
+                              </FormControl>
+                            </div>
                           </div>
                         </div>
-                        <div class="form-group Studentformdivs">
-
-                          <div class="col-xs-12">
-                            <label for="last_name"><h3>Email</h3></label>
-                            <input type="email"
-                              onChange={getData}
-                              class="form-control"
-                              name="lastname"
-                              id="last_name"
-                              defaultValue={StudentData.lastname}
-                              placeholder="email address"
-                              title="enter your email ."
-                              required />
-                          </div>
-                        </div>
-
-
                         <div class="form-group Studentformdivs">
                           <div class="col-xs-12">
                             <label for="mobile"><h3>Mobile</h3></label>
@@ -437,10 +424,10 @@ const Studentprofileform = (props) => {
                                   open={open}
                                   onClose={handleClose}
                                   onOpen={handleOpen}
-                                  value={degree}
                                   label="Degree"
                                   name="degree"
                                   onChange={getData}
+                                  value={StudentData.degree}
                                   required
                                 >
                                   <MenuItem value={"B-Tech"}>B-Tech</MenuItem>
@@ -468,12 +455,12 @@ const Studentprofileform = (props) => {
                                 <RadioGroup
                                   row
                                   aria-labelledby="demo-row-radio-buttons-group-label"
-                                  name="DegreStatus"
-                                  defaultValue={"completed"}
+                                  name="DegreeStatus"
+                                  value = {StudentData.DegreeStatus}
                                   onChange={getData}
                                 >
                                   <FormControlLabel
-                                    value="completed"
+                                    value="Completed"
                                     control={<Radio />}
                                     label="Completed"
                                   />
@@ -509,8 +496,9 @@ const Studentprofileform = (props) => {
                               minRows={2}
                               size="lg"
                               placeholder="Write your Certificates and awards names if any "
-                              name = "awardsAndCert"
+                              name="awardsAndCert"
                               onChange={getData}
+                              value={StudentData.awardsAndCert}
                             />
                           </div>
                         </div>
@@ -527,6 +515,7 @@ const Studentprofileform = (props) => {
                               placeholder="Write About Yourself "
                               name="about"
                               onChange={getData}
+                              value={StudentData.about}
                             />
                           </div>
                         </div>
