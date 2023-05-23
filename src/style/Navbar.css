@@ -1,10 +1,31 @@
+
+.NavLogInbtn{
+    font-size: 1.5rem !important;
+}
+
+/*  */
+
 #Navbar{
     position: sticky;
     /* z-index: 10000; */
-    opacity: 0.9 !important;
-    height: 20vh;
-    padding-top: 20px;
-    /* background-color: red !important; */
+    /* opacity: 0.7 !important; */
+    /* background: transparent !important;
+    backdrop-filter: blur(1000px)  brightness(75%) saturate(70%) !important;
+   color: black !important; */
+   background-color: rgba(0, 0, 0,0,6) !important;
+   backdrop-filter: blur(8px) !important;
+   
+    height: 15vh;
+    /* width: 98vw !important; */
+    padding-top: 10px;
+    /* margin-top: 5% !important; */
+    top: 20px;
+    /* background-color: rgb(224, 219, 219) !important; */
+    /* margin: 10px; */
+    width: 95vw !important;
+    margin: auto !important;
+    border-radius: 10px !important;
+    
 
 }
 .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper{
@@ -17,4 +38,8 @@
 .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper{
     /* top: 72px !important; */
    
+}
+
+@media only  screen and (max-width:600px) {
+    
 }
