@@ -85,11 +85,11 @@ border-radius: 10Px;
 
 .studentImgDiv{
     position: absolute;
-    padding: 0 3rem;
-    margin: 0;
-    height: 24rem;
-    width: 30rem;
-    /* background-color: red; */
+    padding: 0 3rem !important;
+    margin: 0 !important;
+    height: 24rem !important;
+    width: 30rem !important;
+    /* background-color: rgb(0, 8, 255); */
 }
 
 
@@ -104,7 +104,7 @@ border-radius: 10Px;
     width: 82.22vw !important;
 }
 .StudentDivSectionabv{
-    background-color: #15395A !important;
+    /* background-color: #15395A !important; */
     
 }
 
@@ -155,7 +155,7 @@ border-radius: 10Px;
 .studentDetails{
     position: relative;
     left: 40rem;
-    background-color: #15395A !important;
+    /* background-color: #255a15 !important; */
 }
 
 .startUpDetails{

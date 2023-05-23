@@ -2,12 +2,16 @@
     overflow: hidden;
     /* position: absolute; */
     /* top: 0px; */
+    position: relative;
+    top: -109px !important;
 }
 .poster1{
+
     width: 100vw;
-    height: 90vh;
-    background-color: red;
-    margin: auto;
+    height: 100vh;
+    /* background-color: red; */
+    /* margin: auto; */
+    margin-top: 0px;
     /* background-image: url(); */
     background-size: contain;
     /* background-repeat: no-repeat; */

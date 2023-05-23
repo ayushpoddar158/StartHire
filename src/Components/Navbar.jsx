@@ -77,7 +77,7 @@ function Navbar(props) {
 
 
   return (
-    <AppBar position="sticky" id='Navbar' sx={{ background: '#070617', }} >
+    <AppBar position="sticky" id='Navbar' >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
