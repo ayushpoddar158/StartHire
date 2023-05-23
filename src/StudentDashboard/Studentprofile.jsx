@@ -51,6 +51,10 @@ const Studentprofile = (props) => {
 
                             <div className="col-lg-6 px-xl-10 studentDetails">
                               <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                <h3 class="h2 text-white mb-0">Student Id : {userData.sid}</h3>
+                              </div>
+                              <br/> 
+                              <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                                 <h3 class="h2 text-white mb-0">{userData.ProfileName}</h3>
                               </div>
                               <ul class="list-unstyled mb-1-9">

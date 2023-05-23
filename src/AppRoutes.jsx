@@ -72,6 +72,7 @@ const AppRoutes = (props) => {
     let notifObj = props.notifObj;
     let studentSignUpOpen = props.studentSignUpOpen;
     let startupSignUpOpen = props.startupSignUpOpen;
+    let userCount = props.userCount;
 
     var [loading, setLoading] = useState()
 
@@ -94,7 +95,7 @@ const AppRoutes = (props) => {
     const AuthPages = <>
         <Route path="Login" element={<Login />} />
         <Route path="LoginStartUp" element={<LoginStartUp />} />
-        <Route path="Signup" element={<Signup studentSignUpOpen={studentSignUpOpen} />} />
+        <Route path="Signup" element={<Signup studentSignUpOpen={studentSignUpOpen} userCount={userCount}/>} />
         <Route path="Signupstartup" element={<Signupstartup startupSignUpOpen={startupSignUpOpen} />} />
         <Route path="ForgetPassword" element={<ForgetPassword />} />
     </>

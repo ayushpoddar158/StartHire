@@ -38,6 +38,7 @@ const App = (props) => {
   const [isStudent, setIsStudent] = useState(false);
   const [studentSignUpOpen, setStudentSignUpOpen] = useState(true);
   const [startupSignUpOpen, setStartupSignUpOpen] = useState(true);
+  const [userCount, setUserCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   // // setting up notification
@@ -121,19 +122,20 @@ const App = (props) => {
   }, [currentUser])
 
   useEffect(() => {
-    const getAdminParams = async () =>{
+    const getAdminParams = async () => {
       const q = collection(db, "adminParams");
       await getDocs(q)
-      .then((adminDoc) =>{
-        var resData = adminDoc.docs[0].data();
-        setStartupSignUpOpen(resData.StartUpRegOpen);
-        setStudentSignUpOpen(resData.StdRegOpen);
-      }).catch((err)=>{
-        console.log(err);
-      })
+        .then((adminDoc) => {
+          var resData = adminDoc.docs[0].data();
+          setStartupSignUpOpen(resData.StartUpRegOpen);
+          setStudentSignUpOpen(resData.StdRegOpen);
+          setUserCount(resData.allTimeUserCount);
+        }).catch((err) => {
+          console.log(err);
+        })
     }
     getAdminParams();
-  },[])
+  }, [])
 
 
 
@@ -230,7 +232,8 @@ const App = (props) => {
               allData={allData}
               notifObj={notifObj}
               startupSignUpOpen={startupSignUpOpen}
-              studentSignUpOpen={studentSignUpOpen} />
+              studentSignUpOpen={studentSignUpOpen} 
+              userCount={userCount}/>
             {footerComponent}
           </Suspense>
         </>

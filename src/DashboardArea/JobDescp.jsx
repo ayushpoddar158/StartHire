@@ -217,7 +217,7 @@ const uname=useState("ayush")
                     alt="avatar 1"
                     style={{ width: "45px", height: "auto" }}
                   />
-                  <div class="ms-2">{item.data().ProfileName}</div>
+                  <div class="ms-2">{item.data().sid}</div>
                 </div>
                 <div className=" skillmaindiv">
                   <div className="conatainer skilltextdiv">
@@ -259,7 +259,7 @@ const uname=useState("ayush")
                     alt="avatar 1"
                     style={{ width: "45px", height: "auto" }}
                   />
-                  <div class="ms-2">{item.data().ProfileName}</div>
+                  <div class="ms-2">{item.data().sid}</div>
                 </div>
                 <div className=" skillmaindiv">
                   <div className="conatainer skilltextdiv">

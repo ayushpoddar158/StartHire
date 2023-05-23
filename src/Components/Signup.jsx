@@ -23,6 +23,7 @@ import {
   serverTimestamp,
   updateDoc,
   doc,
+  FieldValue,
 } from "firebase/firestore";
 
 import React, { useEffect, useState } from "react";
@@ -37,6 +38,7 @@ const Signup = (props) => {
   // const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const studentSignUpOpen = props.studentSignUpOpen;
+  const userCount = props.userCount;
   const [inpVal, setInpVal] = useState({
     name: "",
     email: "",
@@ -96,6 +98,7 @@ const Signup = (props) => {
               var addNotif = async () => {
                 await addDoc(collection(db, "users"), {
                   uid: user.uid,
+                  sid: `SH23/${(userCount + 1).toString().padStart(4, "0")}`,
                   name: name,
                   authProvider: "email",
                   email: user.email,
@@ -119,7 +122,8 @@ const Signup = (props) => {
                   VerifIsRejected: false,
                   VerifIsConfirmed: false,
                   startups: [],
-                  notification: [noteRef.id]})
+                  notification: [noteRef.id]
+                })
                   .then(() => {
                     console.log("insdie the add notif setup");
                   })
@@ -127,6 +131,18 @@ const Signup = (props) => {
                     console.log("inside error function");
                     console.log(err);
                   });
+                // modifying the admin allUser count value
+                const adminQ = query(collection(db, "adminParams"))
+                await getDocs(adminQ)
+                  .then(adminSnapshot => {
+                    console.log(adminSnapshot.docs[0].ref)
+                    updateDoc(adminSnapshot.docs[0].ref, {
+                      allTimeUserCount: adminSnapshot.docs[0].data().allTimeUserCount + 1
+                    })
+                  })
+                  .catch(err => {
+                    console.log(err)
+                  })
               };
               await addNotif();
             })
@@ -146,12 +162,16 @@ const Signup = (props) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorMessage, errorCode);
-        });
+          if (errorCode === "auth/email-already-in-use") {
+            alert("Email is already in use")
+          }
+        }
+        );
       // console.log(Auth.currentUser);
     }
   };
 
-  useEffect(() => {}, [notifId]);
+  useEffect(() => { }, [notifId]);
 
   return (
     <>
@@ -282,7 +302,7 @@ const Signup = (props) => {
                                 </div>
 
                                 <div className="d-flex flex-row align-items-center mb-4">
-                                <div className="signupicondiv">
+                                  <div className="signupicondiv">
                                     <FontAwesomeIcon icon={faLock} size="lg" />
                                   </div>
                                   <div className="form-outline flex-fill mb-0">
