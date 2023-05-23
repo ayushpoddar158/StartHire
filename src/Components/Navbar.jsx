@@ -183,15 +183,31 @@ function Navbar(props) {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    {!userData.data().updatedProfile ?
-                      <Avatar src="sample_neutral.jpg" />
+                    {userData.data().desgn == "startup" ?
+                      <>
+                        {!userData.data().updatedProfile ?
+                          <Avatar src="sample_neutral.jpg" />
+                          :
+                          <>
+                            {
+                                < Avatar src={userData.data().PImageUrl} />
+                            }
+                          </>
+                        }
+                      </>
                       :
                       <>
-                        {
-                          userData.data().gender === "Male" ?
-                            < Avatar src="sample_male.jpg" />
-                            :
-                            < Avatar src="sample_female.jpg" />
+                        {!userData.data().updatedProfile ?
+                          <Avatar src="sample_neutral.jpg" />
+                          :
+                          <>
+                            {
+                              userData.data().gender === "Male" ?
+                                < Avatar src="sample_male.jpg" />
+                                :
+                                < Avatar src="sample_female.jpg" />
+                            }
+                          </>
                         }
                       </>
                     }
