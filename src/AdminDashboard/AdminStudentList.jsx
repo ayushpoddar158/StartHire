@@ -120,7 +120,7 @@ const AdminStudentLists = (props) => {
       var notifRef = query(collection(db, "notification"));
       await addDoc(notifRef, {
         isRead: false,
-        message: "Congratulations!" + item.data().firstName + "You have been selected for the collaboration program !",
+        message: "Congratulations!" + item.data().ProfileName+ "You have been selected for the collaboration program !",
         recieverId: item.id,
         senderId: "Admin",
         senderName: "Admin",
@@ -150,7 +150,7 @@ const AdminStudentLists = (props) => {
       var notifRef = query(collection(db, "notification"));
       await addDoc(notifRef, {
         isRead: false,
-        message: "Alert!" + item.data().firstName + "You have been rejected for the collaboration program ! You will be informed for upcoming oppertunities",
+        message: "Alert!" + item.data().ProfileName+ "You have been rejected for the collaboration program ! You will be informed for upcoming oppertunities",
         recieverId: item.id,
         senderId: "Admin",
         senderName: "Admin",
@@ -264,9 +264,7 @@ const AdminStudentLists = (props) => {
                     />
                     <div class="ms-2">
                       <span>
-                        {item?.data().firstName +
-                          "  " +
-                          item?.data().lastName}
+                        {item?.data().ProfileName}
                       </span>
                     </div>
                     <div class="ms-2">

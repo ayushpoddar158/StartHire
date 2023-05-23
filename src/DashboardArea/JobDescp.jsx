@@ -55,6 +55,14 @@ const JobDescp = (props) => {
   }, [])
 
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   useEffect(() => {
     console.log("assign useEffect is called", assignIds);
     const updateStd = async (jobUpdateRef) => {
@@ -121,21 +129,42 @@ const JobDescp = (props) => {
     var stdData = await getAllData();
     console.log("studentdata", stdData)
     console.log(jobData.details.skills)
+    // setSelectedStudents([]);
+    // var tempStd = 0;
+    // stdData.map((student) => {
+    //   var matchVal = getPer(student.data().skills, jobSkillList)
+    //   var contains = false;
+    //   assignedStudents.map((item) => {
+    //     // console.log("assign",item.data())
+    //     // console.log("student",student.data())
+    //     contains = item.data().uid === student.data().uid ? true : contains;
+    //   })
+    //   if (matchVal >= 0.5 && !contains) {
+    //     setSelectedStudents(students => [...students, student])
+    //     tempStd++;
+    //   }
+    // })
     setSelectedStudents([]);
     var tempStd = 0;
-    stdData.map((student) => {
-      var matchVal = getPer(student.data().skills, jobSkillList)
+    stdData.forEach((student) => {
+      var matchVal = getPer(student.data().skills, jobSkillList);
       var contains = false;
-      assignedStudents.map((item) => {
-        // console.log("assign",item.data())
-        // console.log("student",student.data())
+      assignedStudents.forEach((item) => {
         contains = item.data().uid === student.data().uid ? true : contains;
-      })
+      });
       if (matchVal >= 0.5 && !contains) {
-        setSelectedStudents(students => [...students, student])
-        tempStd ++;
+        setSelectedStudents(students => [...students, student]);
+        tempStd++;
       }
-    })
+    });
+
+    // Sort selectedStudents based on matchVal
+    setSelectedStudents(students => students.sort((a, b) => {
+      const matchValA = getPer(a.data().skills, jobSkillList);
+      const matchValB = getPer(b.data().skills, jobSkillList);
+      return matchValB - matchValA;
+    }));
+
     if (tempStd === 0) {
       alert("there is no student matching these skills")
     }
@@ -168,14 +197,14 @@ const JobDescp = (props) => {
     console.log("assignees", assignedStudents);
   }, [selectedStudents])
 
-const uname=useState("ayush")
+  const uname = useState("ayush")
   return (
     <>
 
 
-    {/* <Model ref={ref}/> */}
+      {/* <Model ref={ref}/> */}
       <div className="mainJobDesc">
-      
+
         <div className="JobDescmain">
           <div className="title onediv firstDiv">
             <h2 id="heading1">{jobData?.details.jobTitle}</h2>
@@ -210,7 +239,7 @@ const uname=useState("ayush")
           return (
             <>
               <div className="studentList">
-            
+
                 <div className="stdlistmian2_1 firstdivig">
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
@@ -235,7 +264,7 @@ const uname=useState("ayush")
                   <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
                     Reject
                   </Button>
-                  <Model data={item.data()}/>
+                  <Model data={item.data()} />
                 </div>
               </div>
             </>
@@ -248,9 +277,6 @@ const uname=useState("ayush")
         {selectedStudents.map((item) => {
           return (
             <>
-           
-
-           
               {/* <div className="JobDecStudListMainDiv"> */}
               <div className="studentList">
                 <div className="stdlistmian2_1 firstdivig">
@@ -277,16 +303,16 @@ const uname=useState("ayush")
                   <Button className="viewbtn JObDescSelbtn" variant="contained" onClick={() => { addStudent(item) }}>
                     Select
                   </Button>
-                  
+
                   {/* <Button className="ViewdetailsJObDesc" varient="contained" >View</Button> */}
-                  <Model data={item.data()}/>
+                  <Model data={item.data()} />
                 </div>
-                </div>
-              
-                
+              </div>
+
+
               {/* </div> */}
 
-            
+
             </>
           )
         })}
