@@ -42,12 +42,12 @@ const Studentprofile = (props) => {
                       <div class="cardStudentprofile card-style1 border-0">
                         <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7 student1main">
                           <div class="row align-items-center">
-                            <div class="col-lg-6 mb-4 mb-lg-0  studentImgDiv">
+                            {/* <div class="col-lg-6 mb-4 mb-lg-0  studentImgDiv">
                               <img className="studentImg" 
                                 src={userData.PImageUrl}
                                 alt="..."
                               />
-                            </div>
+                            </div> */}
 
                             <div className="col-lg-6 px-xl-10 studentDetails">
                               <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
