@@ -91,9 +91,9 @@ const Studentprofileform = (props) => {
   console.log("userRef", userData);
   const { currentUser } = React.useContext(AuthContext);
   const [StudentImg, SetStudentImg] = useState(null)
-  const [localImageUrl, setLocalImageUrl] = useState(null);
-  const [showImageUrl, setShowImageUrl] = useState(null);
-  const [linkImageUrl, setLinkImageUrl] = useState(null);
+  // const [localImageUrl, setLocalImageUrl] = useState(null);
+  // const [showImageUrl, setShowImageUrl] = useState(null);
+  // const [linkImageUrl, setLinkImageUrl] = useState(null);
   const navigate = useNavigate();
   const [StudentData, setStudentData] = useState(
     {
@@ -107,7 +107,7 @@ const Studentprofileform = (props) => {
       awardsAndCert: userData.awardsAndCert,
       githubLink: userData.githubLink,
       linkedInLink: userData.linkedInLink,
-      PImageUrl: userData.PImageUrl,
+      // PImageUrl: userData.PImageUrl,
       skills: userData.skills,
       about: userData.about,
       gender: userData.gender
@@ -115,9 +115,9 @@ const Studentprofileform = (props) => {
   )
 
 
-  useEffect(() => {
-    setLinkImageUrl(userData.PImageUrl);
-  })
+  // useEffect(() => {
+  //   setLinkImageUrl(userData.PImageUrl);
+  // })
 
   const getData = (e) => {
     // console.log(e.target.value)
@@ -133,21 +133,21 @@ const Studentprofileform = (props) => {
   }
 
 
-  const handleImageUpload = async (e) => {
-    SetStudentImg(e.target.files[0]);
-    setLocalImageUrl(URL.createObjectURL(StudentImg));
-  }
+  // const handleImageUpload = async (e) => {
+  //   SetStudentImg(e.target.files[0]);
+  //   setLocalImageUrl(URL.createObjectURL(StudentImg));
+  // }
 
   // useEffect(() => {
   //   setShowImageUrl(localImageUrl);
   // }, [localImageUrl])
 
-  useEffect(() => {
-    if (linkImageUrl) {
-      console.log("link", linkImageUrl)
-      setShowImageUrl(linkImageUrl);
-    }
-  }, [linkImageUrl])
+  // useEffect(() => {
+  //   if (linkImageUrl) {
+  //     console.log("link", linkImageUrl)
+  //     setShowImageUrl(linkImageUrl);
+  //   }
+  // }, [linkImageUrl])
 
   // useEffect(() => {
   //   console.log("show", showImageUrl)
@@ -170,11 +170,10 @@ const Studentprofileform = (props) => {
   };
 
 
-
-
   // tag functions end 
 
-  const updateDocument = async (downloadURL) => {
+  const updateDocument = async () => {
+    console.log("YOG",StudentData.YOG)
     if (StudentData.firstname === "") {
       alert("Please enter your first name")
     }
@@ -193,8 +192,10 @@ const Studentprofileform = (props) => {
     else if (StudentData.degree === "") {
       alert("Please enter your qualification")
     }
-    else if (StudentData.YOG === "") {
-      if (StudentData.YOG < 2016 || StudentData.YOG > 2023) {
+    else if (StudentData.YOG === "" ) {
+      console.log("inside yog if")
+      console.log("yog type",typeof(Number(StudentData.YOG)))
+      if (Number(StudentData.YOG) < 2016 || Number(StudentData.YOG) > 2023) {
         alert("Please enter a valid year of graduation")
       }
     }
@@ -221,7 +222,7 @@ const Studentprofileform = (props) => {
         gender: StudentData.gender,
         githubLink: StudentData.githubLink,
         linkedInLink: StudentData.linkedInLink,
-        PImageUrl: downloadURL
+        // PImageUrl: downloadURL
       }).then(() => {
         alert("Information successfully updated!");
         window.location.replace("/studentdashboard");
@@ -236,23 +237,23 @@ const Studentprofileform = (props) => {
   const submitHandler = async () => {
     console.log("inside submit handler");
     if (StudentImg) {
-      const fileRef = ref(storage, `images/userImages/${StudentImg.name}`);
+      // const fileRef = ref(storage, `images/userImages/${StudentImg.name}`);
       try {
-        const snap = await uploadBytes(fileRef, StudentImg);
-        console.log("Uploaded", snap);
-        const downloadURL = await getDownloadURL(fileRef);
-        console.log("Download URL:", downloadURL);
-        setLinkImageUrl(downloadURL);
-        await updateDocument(downloadURL);
+        // const snap = await uploadBytes(fileRef, StudentImg);
+        // console.log("Uploaded", snap);
+        // const downloadURL = await getDownloadURL(fileRef);
+        // console.log("Download URL:", downloadURL);
+        // setLinkImageUrl(downloadURL);
+        await updateDocument();
       } catch (err) {
         console.log(err);
       }
     }
     else {
       console.log("inside else")
-      const downloadURL = StudentData.PImageUrl;
-      setLinkImageUrl(downloadURL);
-      await updateDocument(downloadURL)
+      // const downloadURL = StudentData.PImageUrl;
+      // setLinkImageUrl(downloadURL);
+      await updateDocument()
         .catch(err => {
           console.log(err);
         })
@@ -274,19 +275,18 @@ const Studentprofileform = (props) => {
                 <div class="text-center">
                   {StudentImg ? <Box mt={2} textAlign="center">
                     {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
-                    <div id="StudentImage">
-                      <img src={URL.createObjectURL(StudentImg)} alt="" height="100px" /> </div>
+                    
                   </Box> :
                     <Box mt={2} textAlign="center">
                       {/* <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" /> */}
-                      <div id="StudentImage">
+                      {/* <div id="StudentImage">
                         <img src={showImageUrl} alt="" height="100px" />
-                      </div>
+                      </div> */}
                     </Box>}
                   <h6></h6>
-                  <label id='fileupload'> Upload Your Photo
+                  {/* <label id='fileupload'> Upload Your Photo
                     <input accept="image/" type="file" onChange={handleImageUpload} size="60" />
-                  </label>
+                  </label> */}
                 </div><hr /><br />
 
                 <br />

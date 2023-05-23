@@ -27,12 +27,8 @@ import {
 } from "firebase/firestore";
 
 import React, { useEffect, useState } from "react";
-import Signup1 from "../assets/signup1.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import Login from "./Login";
 import "../style/SignUp.css";
-import { useContext } from "react";
 
 const Signup = (props) => {
   // const { currentUser } = useContext(AuthContext);
@@ -115,7 +111,7 @@ const Signup = (props) => {
                   awardsAndCert: "",
                   githubLink: "",
                   linkedInLink: "",
-                  PImageUrl: null,
+                  // PImageUrl: null,
                   skills: [],
                   about: "",
                   VerifIsVerified: false,
