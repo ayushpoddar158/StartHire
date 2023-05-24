@@ -145,7 +145,7 @@ const App = (props) => {
     var fetchNotif = async (notifIds) => {
       console.log("user: ", userData)
       let UnReadCount = 0;
-      for (let i = 0; i < notifIds?.length; i++) {
+      for (let i = notifIds.length - 1; i >= 0; i--){
         let notifRef = doc(db, "notification", notifIds[i]);
         let note = await getDoc(notifRef);
         if (note.data().isRead === false) {

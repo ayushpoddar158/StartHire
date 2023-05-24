@@ -2,18 +2,22 @@
 .studentmaindiv2{
         /* padding: 120px 0; */
         position: relative;
-        left: 20%;
+        left: 22%;
        margin: 20px;
-       padding: 20px;
+       margin-top: 40px;
+       /* padding: 20px; */
         /* overflow: hidden; */
         /* position: relative; */
-        background: #010004 !important;
+        /* background: #010004 !important; */
         width: 70vw;
         /* height: 100vh; */
         border-radius: 10px;
+        background-color: rgb(236, 235, 235)!important;
 }
 
-
+.studentDetails ul li span{
+    margin-right: 6px !important;
+}
 
 .card-style1 {
     box-shadow: 0px 0px 10px 0px rgb(89 75 128 / 9%);
@@ -46,7 +50,8 @@
   border: 1px solid rgba(0, 0, 0, .125);
   border-radius: 0.25rem;
   width: 100%;
-background-color: white;
+/* background-color: white; */
+background-color: rgb(236, 235, 235)!important;
 border-radius: 10Px;
   /* position: absolute; */
   /* height: 49vh; */
@@ -152,10 +157,49 @@ border-radius: 10Px;
     display: flex;
     flex-direction: column;
 }
+
+.studentImgDiviiii{
+    left: 0rem !important;
+    top: 0;
+    position: relative;
+    height: 100% !important;
+    padding: 10px;
+    /* background-color: red; */
+
+}
+
+.skillsdivv{
+    /* background-color: #15395A; */
+    height: 100% !important;
+    padding: 5px;
+}
+.skillsdivv h2{
+    /* padding-left: 10px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* background-color: aqua; */
+    /* background-color: #15395A; */
+    color: #15395A;
+    font-weight: 800;
+    /* text-align: center; */
+}
+.btnskill{
+    font-size: 0.7rem !important;
+    margin-right: 5px !important;
+    margin-top: 5px !important;
+    background-color: green !important;
+}
+.studentinfo{
+    background-color: rgb(236, 235, 235)!important;
+    /* background-color: transparent; */
+    /* opacity: 0.5; */
+    
+}
 .studentDetails{
     position: relative;
-    left: 40rem;
+    /* left: 20rem; */
     /* background-color: #255a15 !important; */
+    width: 100% !important;
 }
 
 .startUpDetails{
@@ -328,10 +372,14 @@ border-radius: 10Px;
 
 
 @media only screen and (max-width: 600px) {
+    
 .studentmaindiv2{
     width: 90vw;
     left: 0%;
-    margin: auto;
+    margin-top: 20px !;
+    margin-bottom: 20px !important;
+    margin-left: auto !important;
+    /* background-color: red !important; */
 }  
 #studentrofileedit{
     left: 88.56%;

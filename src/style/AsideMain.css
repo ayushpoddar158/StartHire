@@ -1,9 +1,22 @@
+
+
+.iconnoti{
+  color: rgb(9, 2, 36) !important;
+}
+.mainAside .ml-3{
+  color: white !important;
+}
 .studentUpnotispan{
-  background-color: red !important;
+  position: fixed !important;
+  /* background-color: red !important; */
+  left: 35px;
+  bottom: 74px;
+  color: red !important;
+
 }
 
 .mainAside{
-    background-color: red;
+    /* background-color: red; */
     /* display: flex; */
     /* flex-direction: row; */
   /* width: 15%; */
@@ -31,12 +44,10 @@
 }
 
 .Usernameaside{
-color: greenyellow;
+color: white;
   /* background-color: red !important; */
 }
-.mainAside span{
-  color: white !important;
-}
+
 
 
 @media only screen and (max-width: 600px) {
@@ -46,7 +57,10 @@ color: greenyellow;
   }
   #sidebar{
     /* background-color: red !important; */
+    width: 80vw !important;
+    margin: auto;
     height: auto;
+    left: 0;
     /* position:s; */
   }
 

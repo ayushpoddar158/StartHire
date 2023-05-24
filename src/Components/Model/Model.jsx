@@ -27,7 +27,7 @@ const Model = (props) => {
         >
           <div className="modelhead">
             <Modal.Header closeButton>
-              <Modal.Title>{data?.ProfileName}</Modal.Title>
+              <Modal.Title>{data?.sid}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="JobDescStudDetails">

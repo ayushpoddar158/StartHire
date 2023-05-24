@@ -4,6 +4,7 @@ import { Link} from "react-router-dom";
 // import Aside from "./Aside";
 import { useState } from "react";
 import { AuthContext } from "../Authorizer";
+import { Button } from "@mui/material";
 
 const Studentprofile = (props) => {
   var userDataRef = props.userData;
@@ -41,7 +42,7 @@ const Studentprofile = (props) => {
                     <div class="col-lg-12 mb-4 mb-sm-5">
                       <div class="cardStudentprofile card-style1 border-0">
                         <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7 student1main">
-                          <div class="row align-items-center">
+                          <div class="row  studentinfo">
                             {/* <div class="col-lg-6 mb-4 mb-lg-0  studentImgDiv">
                               <img className="studentImg" 
                                 src={userData.PImageUrl}
@@ -101,29 +102,36 @@ const Studentprofile = (props) => {
                                   </span>
                                   {userData.YOG}
                                   <li class="mb-2 mb-xl-3 display-28">
-                            <span class="display-26 text-secondary me-2 font-weight-600">
-                              Skills
-                            </span>
-                            <hr />
+                           
                           </li>
                                 </li>
 
-                                {userData.skills.map((item) => {
+                        
+                              </ul>
+                            
+                            </div>
+                             <div class="col-lg-6 mb-4 mb-lg-0  studentImgDiviiii">
+                            <div className="skillsdivv">
+                              <h2>skills</h2>
+                            <hr />
+                              <div className="skillsbttuns">
+                              {userData.skills.map((item) => {
                                   console.log("skill",item);
                             return (
                               <>
-                                <li class="mb-2 mb-xl-3 display-28">
-                                  <span class="display-26 text-primary me-2 font-weight-600">
+                              
+                                  <Button  variant="contained" className="btnskill">
                                     {item.value}
-                                  </span>
-                                  <hr />
+                                  </Button>
+                                  
                                  
-                                </li>
+                               
                               </>
                             );
                           })}
-                              </ul>
-                            
+                              </div>
+
+                            </div>
                             </div>
                           </div>
                         </div>

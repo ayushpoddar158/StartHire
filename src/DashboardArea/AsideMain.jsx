@@ -76,7 +76,7 @@ const AsideMain = (props) => {
                       to="/AdminDashboard"
                     >
                       {" "}
-                      <FontAwesomeIcon icon={faFile} />
+                      <FontAwesomeIcon className="iconnoti" icon={faFile} />
                       <span className="ml-3">Dashboard</span>
                     </NavLink>
                   </li>
@@ -85,13 +85,13 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary"
                       to="/AdminStudentLists"
                     >
-                      <FontAwesomeIcon icon={faUser} />
+                      <FontAwesomeIcon className="iconnoti" icon={faUser} />
                       <span className="ml-3">Student List</span>
                     </NavLink>
                   </li>
                   <li class="nav-item mb-2">
                     <NavLink class="nav-link text-secondary" to="/StartUpLists">
-                      <FontAwesomeIcon icon={faBriefcase} />{" "}
+                      <FontAwesomeIcon className="iconnoti" icon={faBriefcase} />{" "}
                       <span className="ml-3">StartUp List</span>
                     </NavLink>
                   </li>
@@ -100,7 +100,7 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary"
                       to="/AdminNotification"
                     >
-                      <FontAwesomeIcon icon={faBriefcase} />{" "}
+                      <FontAwesomeIcon className="iconnoti" icon={faBriefcase} />{" "}
                       <span className="ml-3">Notification</span>
                     </NavLink>
                   </li>
@@ -139,7 +139,7 @@ const AsideMain = (props) => {
                   <li class="nav-item mb-2">
                     <NavLink class="nav-link text-secondary" to="/Dashboard">
                       {" "}
-                      <FontAwesomeIcon icon={faFile} />
+                      <FontAwesomeIcon className="iconnoti" icon={faFile} />
                       <span className="ml-3">Dashboard</span>
                     </NavLink>
                   </li>
@@ -148,25 +148,25 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary"
                       to="/StartUpProfile"
                     >
-                      <FontAwesomeIcon icon={faUser} />
+                      <FontAwesomeIcon className="iconnoti" icon={faUser} />
                       <span className="ml-3">Profile</span>
                     </NavLink>
                   </li>
                   <li class="nav-item mb-2">
                     <NavLink class="nav-link text-secondary" to="/Jobs">
-                      <FontAwesomeIcon icon={faBriefcase} />{" "}
+                      <FontAwesomeIcon className="iconnoti" icon={faBriefcase} />{" "}
                       <span className="ml-3">Jobs</span>
                     </NavLink>
                   </li>
                   <li class="nav-item mb-2">
                     <NavLink class="nav-link text-secondary" to="/StartUpBlog">
-                      <FontAwesomeIcon icon={faBlog} />
+                      <FontAwesomeIcon className="iconnoti" icon={faBlog} />
                       <span className="ml-3">Blog</span>
                     </NavLink>
                   </li>
                   <li class="nav-item mb-2">
                     <NavLink class="nav-link text-secondary" to="/Notification">
-                      <FontAwesomeIcon icon={faBell} />
+                      <FontAwesomeIcon className="iconnoti" icon={faBell} />
                       <span className="ml-3">Notifications</span>
                       <span className="studentUpnotispan">
                         {unReadCount === 0 ? "" : unReadCount}
@@ -178,7 +178,7 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary LogoutbtnAsilde"
                       onClick={LogOut}
                     >
-                      LogOut
+                   Log Out
                     </button>
                   </li>
                   {/* <button>Hide</button> */}
@@ -216,7 +216,7 @@ const AsideMain = (props) => {
                       to="/StudentDashboard"
                     >
                       {" "}
-                      <FontAwesomeIcon icon={faFile} />
+                      <FontAwesomeIcon className="iconnoti" icon={faFile} />
                       <span className="ml-3">Dashboard</span>
                     </NavLink>
                   </li>
@@ -225,7 +225,7 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary"
                       to="/StudentProfile"
                     >
-                      <FontAwesomeIcon icon={faUser} />
+                      <FontAwesomeIcon className="iconnoti" icon={faUser} />
                       <span className="ml-3">Profile</span>
                     </NavLink>
                   </li>
@@ -234,11 +234,12 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary"
                       to="/StudentNotification"
                     >
-                      <FontAwesomeIcon icon={faBell} />
-                      <span className="ml-3">Notifications </span>
+                      <FontAwesomeIcon  className="iconnoti" icon={faBell} />
                       <span className="studentUpnotispan">
                         {unReadCount === 0 ? "" : unReadCount}
                       </span>
+                      <span className="ml-3">Notifications </span>
+                      
                     </NavLink>
                   </li>
                   <li class="nav-item mb-2">
@@ -246,7 +247,7 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary LogoutbtnAsilde"
                       onClick={LogOut}
                     >
-                      LogOut
+                      Log Out
                     </button>
                   </li>
                   {/* <button>Hide</button> */}
