@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useRef } from "react";
 import {
   NavLink,
   BrowserRouter as Router,
@@ -33,6 +33,8 @@ import { faBlog } from "@fortawesome/free-solid-svg-icons";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import StartUpProfileForm from "./StartUpProfileForm";
 
+import { gsap } from "gsap";
+
 const AsideMain = (props) => {
   const navigate = useNavigate();
   let userData = props.userData;
@@ -41,6 +43,17 @@ const AsideMain = (props) => {
   let isVerified = props.isVerified;
   let isAdmin = props.isAdmin;
   let unReadCount = props.unReadCount;
+  const asideRef = useRef(null);
+
+  useEffect(() => {
+    gsap.from(asideRef.current, {
+      y: 50,
+      duration: 1,
+      delay: 0.6,
+      opacity: 0,
+      ease: "power3.out",
+    });
+  },[]);
 
   const LogOut = async () => {
     await Auth.signOut().then(() => {
@@ -51,7 +64,7 @@ const AsideMain = (props) => {
     console.log("admin", isAdmin);
     return (
       <>
-        <div>
+        <div ref={asideRef}>
           <div
             class="container-fluid mainAside"
             id="main"
@@ -117,7 +130,7 @@ const AsideMain = (props) => {
   if (isStartUp && isVerified && userData.data().updatedProfile) {
     return (
       <>
-        <div>
+        <div ref={asideRef}>
           <div
             class="container-fluid mainAside"
             id="main"
@@ -193,7 +206,7 @@ const AsideMain = (props) => {
     console.log("isStudent");
     return (
       <>
-        <div>
+        <div ref={asideRef}>
           <div class="container-fluid mainAside" id="main">
             <div class="row row-offcanvas row-offcanvas-left">
               <div
