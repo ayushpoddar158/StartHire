@@ -56,7 +56,7 @@ const AsideMain = (props) => {
                         <div class="row row-offcanvas row-offcanvas-left">
                             <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
                                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3   " >
-                                    <li class="nav-item mb-2 mt-3" ><a class="nav-link text-secondary" href="#"><h2 >some name</h2></a></li>
+                                    <li class="nav-item mb-2 mt-3" ><a class="nav-link text-secondary" href="#"><h2 className='Usernameaside' >some name</h2></a></li>
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/AdminDashboard"> <FontAwesomeIcon icon={faFile} /><span className="ml-3" >Dashboard</span></NavLink></li>
                                     <li class="nav-item mb-2 "
@@ -86,7 +86,7 @@ const AsideMain = (props) => {
                         <div class="row row-offcanvas row-offcanvas-left">
                             <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
                                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3   " >
-                                    <li class="nav-item mb-2 mt-3" ><a class="nav-link text-secondary" href="#"><h2 >{userData.name}</h2></a></li>
+                                    <li class="nav-item mb-2 mt-3" ><a class="nav-link text-secondary" href="#"><h2 className='Usernameaside' >{userData.data().name}</h2></a></li>
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/Dashboard"> <FontAwesomeIcon icon={faFile} /><span className="ml-3" >Dashboard</span></NavLink></li>
                                     <li class="nav-item mb-2 "
@@ -117,7 +117,7 @@ const AsideMain = (props) => {
                         <div class="row row-offcanvas row-offcanvas-left">
                             <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ backgroundColor: "#e9ecef" }}>
                                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
-                                    <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h2>{userData.name}</h2></a></li>
+                                    <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h2 className='Usernameaside'>{userData.data().ProfileName}</h2></a></li>
                                     <li class="nav-item mb-2"
                                     ><NavLink class="nav-link text-secondary" to="/StudentDashboard"> <FontAwesomeIcon icon={faFile} /><span className="ml-3" >Dashboard</span></NavLink></li>
                                     <li class="nav-item mb-2 "
