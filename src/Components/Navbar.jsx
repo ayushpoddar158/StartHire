@@ -79,7 +79,7 @@ function Navbar(props) {
   };
 
   /// gsap animation
-  useEffect(() =>{
+  useEffect(() => {
     gsap.from(navRef.current, {
       opacity: 0,
       y: 50,
@@ -87,12 +87,12 @@ function Navbar(props) {
       delay: 0.3,
       ease: 'power3.out'
     });
-  },[])
+  }, [])
 
 
 
   return (
-    <AppBar position="sticky" id='Navbar'  ref={navRef}>
+    <AppBar position="sticky" id='Navbar' ref={navRef}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -146,14 +146,44 @@ function Navbar(props) {
 
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              <>
+                <MenuItem key="Home" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/${page}`} >{page}</Link>
+                    <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/Home`} >Home</Link>
                     {/* {page} */}
                   </Typography>
                 </MenuItem>
-              ))}
+                <MenuItem key="About" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/About`} >About</Link>
+                    {/* {page} */}
+                  </Typography>
+                </MenuItem>
+                <MenuItem key="Contact" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/Contact`} >Contact</Link>
+                    {/* {page} */}
+                  </Typography>
+                </MenuItem>
+              </>
+              {Auth.currentUser ?  "" :
+                <>
+                  <MenuItem key="Login" onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/Login`} >Login</Link>
+                      {/* {page} */}
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem key="SignUp" onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link style={{ textDecoration: 'none', color: 'grey', padding: '25px', fontSize: "1.28rem" }} to={`/SignUp`} >SignUp</Link>
+                      {/* {page} */}
+                    </Typography>
+                  </MenuItem>
+                </>
+                
+              }
+
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -177,9 +207,9 @@ function Navbar(props) {
             StartHire
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', marginLeft: '50px' } }}   >
-            {pages.map((page) => (
+            <>
               <Button
-                key={page}
+                key="Home"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
 
@@ -187,10 +217,64 @@ function Navbar(props) {
 
               >
                 <Link style={{ textDecoration: 'none', color: 'white' }} value={0}
-                  indicatorColor="secondary" to={`/${page}`} >{page}</Link>
+                  indicatorColor="secondary" to={`/Home`} >Home</Link>
                 {/* {page} */}
               </Button>
-            ))}
+
+              <Button
+                key="About"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+
+
+
+              >
+                <Link style={{ textDecoration: 'none', color: 'white' }} value={0}
+                  indicatorColor="secondary" to={`/About`} >About</Link>
+                {/* {page} */}
+              </Button>
+              <Button
+                key="Contact"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+
+
+
+              >
+                <Link style={{ textDecoration: 'none', color: 'white' }} value={0}
+                  indicatorColor="secondary" to={`/Contact`} >Contact</Link>
+                {/* {page} */}
+              </Button>
+              {Auth.currentUser ? "" :
+                <>
+                  <Button
+                    key="Login"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+
+
+
+                  >
+                    <Link style={{ textDecoration: 'none', color: 'white' }} value={0}
+                      indicatorColor="secondary" to={`/Login`} >Login</Link>
+                    {/* {page} */}
+                  </Button>
+                  <Button
+                    key="SignUp"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+
+
+
+                  >
+                    <Link style={{ textDecoration: 'none', color: 'white' }} value={0}
+                      indicatorColor="secondary" to={`/SignUp`} >SignUp</Link>
+                    {/* {page} */}
+                  </Button>
+                </>
+              }
+
+            </>
           </Box>
 
           {userData ? <>
@@ -205,7 +289,7 @@ function Navbar(props) {
                           :
                           <>
                             {
-                                < Avatar src={userData.data().PImageUrl} />
+                              < Avatar src={userData.data().PImageUrl} />
                             }
                           </>
                         }
