@@ -82,9 +82,9 @@ function Navbar(props) {
   useEffect(() =>{
     gsap.from(navRef.current, {
       opacity: 0,
-      y: -50,
+      y: 50,
       duration: 1,
-      delay: 0.5,
+      delay: 0.3,
       ease: 'power3.out'
     });
   },[])
