@@ -34,6 +34,21 @@ const JobDescp = (props) => {
   let [assignIds, setAssignIds] = useState([]);
   let [selectedStudents, setSelectedStudents] = useState([]);
 
+  const pageSize = 5; // Number of students to display per page
+  const totalPages = Math.ceil(selectedStudents.length / pageSize);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Calculate the start and end index for the current page
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+
+  // Get the students to display for the current page
+  const currentStudents = selectedStudents.slice(startIndex, endIndex);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   const isAdmin = props.isAdmin;
   const id = useParams().id;
   // console.log(id)
@@ -54,14 +69,6 @@ const JobDescp = (props) => {
     loadJob(id);
   }, [])
 
-
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
 
   useEffect(() => {
     console.log("assign useEffect is called", assignIds);
@@ -274,7 +281,7 @@ const JobDescp = (props) => {
         <div className="suggestStudentbtndiv">
           <Button className="suggestStudentbtn" variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
         </div>
-        {selectedStudents.map((item) => {
+        {currentStudents.map((item) => {
           return (
             <>
               {/* <div className="JobDecStudListMainDiv"> */}
@@ -316,7 +323,23 @@ const JobDescp = (props) => {
             </>
           )
         })}
-
+        <div>
+          {currentPage > 1 && (
+            <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+          )}
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              disabled={pageNumber === currentPage}
+            >
+              {pageNumber}
+            </button>
+          ))}
+          {currentPage < totalPages && (
+            <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+          )}
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
@@ -19,8 +19,11 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import '../style/Navbar.css'
 
+import { gsap } from 'gsap';
+
 // Authentication setup
 import { Auth } from "../Firebase";
+import { useEffect } from 'react';
 const pages = ['Home', 'About', 'Contact', 'Login', 'signup'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -28,6 +31,7 @@ function Navbar(props) {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navRef = useRef(null);
 
   let userData = props.userData;
   let isStudent = props.isStudent;
@@ -74,10 +78,21 @@ function Navbar(props) {
     setAnchorElUser(null);
   };
 
+  /// gsap animation
+  useEffect(() =>{
+    gsap.from(navRef.current, {
+      opacity: 0,
+      y: -50,
+      duration: 1,
+      delay: 0.5,
+      ease: 'power3.out'
+    });
+  },[])
+
 
 
   return (
-    <AppBar position="sticky" id='Navbar' >
+    <AppBar position="sticky" id='Navbar'  ref={navRef}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
