@@ -3,6 +3,9 @@
 
 .NavLogInbtn {
     font-size: 1.5rem !important;
+    background-color: rgba(10, 10, 10, 0.5) !important;
+    background: transparent !important;
+    backdrop-filter: blur(8px) !important ;
 }
 
 /*  */
@@ -13,17 +16,16 @@
     /* background: transparent !important; */
     backdrop-filter: blur(8px) !important;
 
-    height: 15vh;
-    /* width: 98vw !important; */
-    padding-top: 10px;
-    /* margin-top: 5% !important; */
-    top: 20px;
+    height: 12vh;
 
-    /* background-color: rgb(224, 219, 219) !important; */
-    /* margin: 10px; */
+    top: 20px;
+    display: flex;
+    justify-content: center !important;
+
+
     width: 95vw !important;
     margin-bottom: 20px !important;
-    /* margin: auto !important; */
+
     border-radius: 10px !important;
     margin-bottom: 10px !important;
     margin: auto;

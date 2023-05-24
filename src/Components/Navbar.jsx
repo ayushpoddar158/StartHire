@@ -372,7 +372,7 @@ function Navbar(props) {
           </>
             :
             <MenuItem onClick={logInHandler}>
-              <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Button variant='contained' style={{ textDecoration: 'none', color: 'white' }}>Log In</Button></Typography>
+              <Typography style={{ color: "red", padding: '5px', fontSize: "2rem" }} textAlign="center"><Button variant='contained' className='NavLogInbtn' style={{ textDecoration: 'none', color: 'white' }}>Log In</Button></Typography>
             </MenuItem>
           }
         </Toolbar>
