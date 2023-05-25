@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "../style/studentprofile.css";
 import { Link} from "react-router-dom";
+// @import 'const.css'
 // import Aside from "./Aside";
 import { useState } from "react";
 import { AuthContext } from "../Authorizer";
@@ -51,12 +52,12 @@ const Studentprofile = (props) => {
                             </div> */}
 
                             <div className="col-lg-6 px-xl-10 studentDetails">
-                              <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                <h3 class="h2 text-white mb-0">Student Id : {userData.sid}</h3>
+                              <div class="bg-secondary studentiddiv d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                <h3 class="h2 studentidh3 text-white mb-0">Student Id : {userData.sid}</h3>
                               </div>
                               <br/> 
-                              <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                <h3 class="h2 text-white mb-0">{userData.ProfileName}</h3>
+                              <div class="bg-secondary studentprofnamediv d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                <h3 class="h2 studentprofilenameh3 text-white mb-0">{userData.ProfileName}</h3>
                               </div>
                               <ul class="list-unstyled mb-1-9">
                                 <li class="mb-2 mb-xl-3 display-28">

@@ -1,4 +1,6 @@
 
+@import "../const.css";
+
 .studentmaindiv2{
         /* padding: 120px 0; */
         position: relative;
@@ -8,11 +10,15 @@
        /* padding: 20px; */
         /* overflow: hidden; */
         /* position: relative; */
-        /* background: #010004 !important; */
+        background: var(--color-primary) !important;
         width: 70vw;
+        padding: 20px;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
         /* height: 100vh; */
         border-radius: 10px;
-        background-color: rgb(236, 235, 235)!important;
+        /* background-color: rgb(236, 235, 235)!important; */
+        /* width: 0vw !important; */
 }
 
 .studentDetails ul li span{
@@ -65,7 +71,7 @@ border-radius: 10Px;
     width: 75px;
     padding: 10px;
     font-size: 4rem;
-    background-color: #ceaa4d !important;
+    background-color: var(--color-back) !important;
     color: white !important;
     border: none;
 
@@ -187,7 +193,7 @@ border-radius: 10Px;
     font-size: 0.7rem !important;
     margin-right: 5px !important;
     margin-top: 5px !important;
-    background-color: green !important;
+    background-color: var(--color-primary) !important
 }
 .studentinfo{
     background-color: rgb(236, 235, 235)!important;
@@ -303,10 +309,19 @@ border-radius: 10Px;
     padding: 1.9rem;
 }
 
-.bg-secondary {
-    background: #15395A !important;
+.studentiddiv{
+  background-color: var(--color-primary) !important;
 }
 
+.studentprofnamediv{
+    background-color: rgb(236, 235, 235)!important;
+    
+}
+.studentprofnamediv .studentprofilenameh3{
+    color: var(--color-primary) !important;
+    font-weight: 900;
+    font-size: 2.5rem;
+}
 @media screen and (min-width: 576px) {
 
     .pe-sm-6,
