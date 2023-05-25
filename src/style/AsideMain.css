@@ -21,7 +21,7 @@
     /* flex-direction: row; */
   /* width: 15%; */
  
-  position: fixed;
+  position: fixed !important;
   /* z-index: 10000; */
   /* width: 95vw !important; */
   /* background-color: red; */
@@ -31,7 +31,7 @@
 }
 #sidebar{
   
-   /* position: sticky; */
+   /* position: fixed !important; */
     /* height: 100vh; */
     background-color: var(--color-nav) !important;
     /* background: transparent !important; */
