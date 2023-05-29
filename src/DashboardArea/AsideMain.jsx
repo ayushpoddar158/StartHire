@@ -55,7 +55,7 @@ const AsideMain = (props) => {
           <div
             class="container-fluid mainAside"
             id="main"
-            style={{ backgroundColor: "white" }}
+            
           >
             <div class="row row-offcanvas row-offcanvas-left">
               <div
@@ -204,7 +204,7 @@ const AsideMain = (props) => {
               >
                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
                   <li class="nav-item mb-2 mt-3">
-                    <a class="nav-link text-secondary" href="#">
+                    <a class="nav-link text-secondary asidenameanchor btn disable" href="#">
                       <h2 className="Usernameaside">
                         {userData.data().ProfileName}
                       </h2>
@@ -212,7 +212,7 @@ const AsideMain = (props) => {
                   </li>
                   <li class="nav-item mb-2">
                     <NavLink
-                      class="nav-link text-secondary"
+                      class="nav-link text-secondary "
                       to="/StudentDashboard"
                     >
                       {" "}
@@ -222,7 +222,7 @@ const AsideMain = (props) => {
                   </li>
                   <li class="nav-item mb-2 ">
                     <NavLink
-                      class="nav-link text-secondary"
+                      class="nav-link text-secondary "
                       to="/StudentProfile"
                     >
                       <FontAwesomeIcon className="iconnoti" icon={faUser} />
@@ -231,7 +231,7 @@ const AsideMain = (props) => {
                   </li>
                   <li class="nav-item mb-2">
                     <NavLink
-                      class="nav-link text-secondary"
+                      class="nav-link text-secondary "
                       to="/StudentNotification"
                     >
                       <FontAwesomeIcon  className="iconnoti" icon={faBell} />

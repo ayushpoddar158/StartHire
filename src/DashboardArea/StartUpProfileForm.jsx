@@ -7,6 +7,10 @@ import Select from "react-select";
 import { TextField } from "@material-ui/core";
 
 
+// icon import
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+
 // Data import @Firebase
 import { db } from "../Firebase";
 import { storage } from "../Firebase";
@@ -236,7 +240,7 @@ const StartUpProfileForm = (props) => {
 
               <br />
               <div class="panel panel-default">
-                <div class="panel-heading">Links<i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-heading">Links<FontAwesomeIcon icon={faLink} /></div>
                 <hr />
                 <div class="panel-body">
                   <div class="form-group">
@@ -392,8 +396,8 @@ const StartUpProfileForm = (props) => {
                       <div class="form-group">
                         <div class="col-xs-12">
                           <br />
-                          <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
-                          {/* <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> */}
+                          <button class="btn StartUpformsavebtn btn-lg" onClick={submitHandler} type="button"> Save</button>
+                        
                         </div>
                       </div>
                     </div>

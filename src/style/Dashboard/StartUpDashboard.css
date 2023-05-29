@@ -2,7 +2,7 @@
     width: 50%;
     display: inline-block;
     margin: auto;
-    background-color: red;
+    background-color: red !important;
     color: white !important;
    
     padding: 5px;
@@ -14,18 +14,26 @@
     transform: scale(0.9);
 }
 .DashboardmainDiv{
-    /* background-color: red; */
+    background-color: red;
     position: relative;
-    width: 83.3%;
-    left: 16.69%;
+    width: 70vw;
+    top: 50px;
+    left: 23.69%;
+    height: 50vh;
+}
+.StartUpinnnderdiv{
+    width: 60vw;
+    background-color: blue;
 }
 
 @media only screen and (max-width:600px){
     .DashboardmainDiv{
         /* background-color: red; */
         position: relative;
-      width: 100%;
+      width: 80vw;
         left: 0px;
-        height: 100vh;
+        margin: auto;
+        
+     
     }
 }

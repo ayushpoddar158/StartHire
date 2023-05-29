@@ -1,4 +1,5 @@
-Example Styles for React Tags
+/* Example Styles for React Tags */
+@import '../const.css';
 .app {
     padding: 40px;
     text-align: center;
@@ -8,7 +9,8 @@ Example Styles for React Tags
     position: relative;
     width: 75% !important;
     padding: 40px !important;
-background-color: rgb(1, 1, 6);
+background-color: var(--color-nav) !important;
+top: 10px !important;
     border-radius: 20px 20px ;
 margin: 20px !important;
    /* border-radius: 20px; */
@@ -55,12 +57,15 @@ input::placeholder {
 
 #fileupload {
   padding: 6px 20px;
-  background: red;
+  background: var(--color-primary) !important;
   display: table;
   color: #fff;
   margin: auto;
   border-radius: 3px;
   cursor: pointer;
+}
+#fileupload:hover{
+  transform: scale(0.9);
 }
 
 .tab-content input {
@@ -79,7 +84,15 @@ input::placeholder {
 }
 
 .StartUpformsavebtn {
-  margin-left: 15px;
+  /* margin-left: 15px; */
+  background-color: var(--color-primary) !important;
+ color: white !important; 
+ width: 25vw; 
+ font-size: 1.8rem !important;
+}
+.StartUpformsavebtn:hover{
+  transform: scale(0.9);
+
 }
 
 input[type="file"] {

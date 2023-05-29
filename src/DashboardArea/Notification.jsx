@@ -47,7 +47,7 @@ const Notification = (props) => {
                     <div class="">
                         <div class="col StartNotimain pt-5 mt-3">
                             <section class="Startsection-50">
-                                <div class=" ">
+                                <div class="StartUpNotiheaderdiv">
                                     <h3 class="m-b-50 heading-line">Notifications <FontAwesomeIcon icon={faBell} size="lg" /></h3>
                                 </div>
                                 {notifObj.map((item) => {

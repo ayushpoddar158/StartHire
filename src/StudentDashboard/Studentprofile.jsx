@@ -52,7 +52,7 @@ const Studentprofile = (props) => {
                             </div> */}
 
                             <div className="col-lg-6 px-xl-10 studentDetails">
-                              <div class="bg-secondary studentiddiv d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                              <div class="bg-secondary studentiddiv d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 ">
                                 <h3 class="h2 studentidh3 text-white mb-0">Student Id : {userData.sid}</h3>
                               </div>
                               <br/> 
@@ -113,7 +113,7 @@ const Studentprofile = (props) => {
                             </div>
                              <div class="col-lg-6 mb-4 mb-lg-0  studentImgDiviiii">
                             <div className="skillsdivv">
-                              <h2>skills</h2>
+                              <h2>Skills</h2>
                             <hr />
                               <div className="skillsbttuns">
                               {userData.skills.map((item) => {

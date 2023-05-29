@@ -99,20 +99,23 @@ const AdminStartupData= () => {
               {/* <Jobs/> strat */}
               <h1>jobs</h1>
               {/* <Jobs/> end */}
-              <div class="container">
+              <div class=" AdminStartUpdatalist">
 
                 {jobs.map(job => {
-                  return (<div class="notification-ui_dd-content">
+                  return (<div class="notification-ui_dd-content col-12">
                     <div class="notification-list notification-list--unread">
-                      <div class="notification-list_content">
-                        <div class="notification-list_detail">
+                      <div class="notification-list_content outerstartupbtndivide">
+                        <div class="notification-list_detail innerstartupdatabtndivide">
                           <div>
                             <p><b></b>{job.data.details.jobTitle}</p>
                             <p class="text-muted">{job.data.details.jobDescription}</p>
                             <p class="text-muted"><small>{job.data.details.jobLocation}</small></p>
-                            <Button variant="contained" color='error' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
+                          
+                          </div>
+                          <div>
+                          <Button variant="contained" color='error' className='admindatabtn' onClick={() => { handleJobDelete(job.id) }}>Delete Job</Button>
                             <Link to={`/JobDescp/${job.id}`}>
-                              <Button variant='contained' >Job Desc</Button>
+                              <Button variant='contained' className='admindatabtn' >Job Desc</Button>
                             </Link>
                           </div>
                         </div>

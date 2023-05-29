@@ -1,25 +1,56 @@
-Example Styles for React Tags
+
+@import '../const.css';
+
 .app {
     padding: 40px;
     text-align: center;
   }
   
+.CreateJobInnercard{
+  display: flex;
+  justify-content: center;
+}  
+.studentFormsubbtn{
+  background-color: var(--color-primary);
+  color: white;
+width:30vw;
+padding: 5px;
+  font-size: 2rem !important;
+  border-radius: 10px;
+}  
+.studentFormsubbtn:hover{
+color: white;
+transform: scale(0.9);
+
+}
+.panelmain{
+  border-radius: 10px;
+}
+.studentpanelhead {
+  background-color: var(--color-back) !important;
+  border-radius: 10px 10px 0 0;
+} 
+.studentpanelbody{
+  background-color: var(--color-back) !important;
+  border-radius: 0 0 10px 10px;
+}
   #studentformmain{
     position: relative;
     width: 75% !important;
     padding: 40px !important;
-background-color: rgb(1, 1, 6);
+background-color: var(--color-nav);
     border-radius: 20px 20px ;
 margin: 20px !important;
    /* border-radius: 20px; */
    /* box-shadow: 0px 0px 15px 1px rgb(199, 197, 197); */
-   left: 15%;
+   left: 20%;
+   top: 10px;
    
   }
   /* Example Styles for React Tags*/
   
 #registrationForm{
-  background-color: rgb(170, 167, 167);
+  background-color: var(--color-back) !important;
   padding: 20px;
   border-radius: 20px;
 

@@ -323,7 +323,7 @@ const JobDescp = (props) => {
             </>
           )
         })}
-        <div>
+        <div className="paginationdivJobdesc">
           {currentPage > 1 && (
             <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
           )}

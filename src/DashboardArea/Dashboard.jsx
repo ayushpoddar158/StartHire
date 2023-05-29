@@ -54,7 +54,9 @@ const Dashboard = (props) => {
     return (
         <>
             <div className='DashboardmainDiv'>
-                This is Dashboard Page
+                <div className="StartUpinnnderdiv">
+                    This is Dashboard
+                </div>
             </div>
 
         </>

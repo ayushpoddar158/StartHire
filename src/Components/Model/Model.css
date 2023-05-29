@@ -1,3 +1,5 @@
+@import '../../const.css';
+
 
 body{
     margin: 0px !important;
@@ -11,6 +13,14 @@ body.modal-open {
   
     
  
+}
+
+.ViewdetailsJObDesc{
+background-color: var(--color-primary) !important;
+border: unset;
+width: 100%;
+
+
 }
 .modal-dialog{
     position: absolute!important;

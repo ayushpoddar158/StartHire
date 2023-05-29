@@ -1,3 +1,5 @@
+@import '../../const.css';
+
 .jobdescbutnsection{
     display: flex;
     flex-direction: column;
@@ -26,14 +28,14 @@
     /* background-color: aqua; */
 }
 .mainJobDesc{
-    background-color: rgb(5, 0, 9) !important;
+    background-color: var(--color-nav);
     /* height: 80vh !important; */
     position: relative;
     width: 60vw;
 
     left: 30%;
-    top: 20%;
-    margin-top: 20px;
+top: 10px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -48,7 +50,7 @@
     position: relative;
 }
 .JobDescmain{
-    background-color: rgb(244, 244, 249);
+    background-color: var(--color-back);
     /* position: relative; */
   /* left: 10.5%; */
     /* width: 50vw !important; */
@@ -72,7 +74,7 @@
 
 .Skillreq{
     margin: 5px !important;
-    background-color: rgb(7, 110, 28) !important;
+    background-color:  var(--color-primary) !important;
     font-size: 10px !important;
     color: white !important;
    
@@ -87,7 +89,7 @@
     margin-left: 5px;
 }
 .suggestStudentbtn{
-    background-color: rgba(100, 97, 96, 0.934) !important;
+    background-color: var(--color-primary) !important;
     color: white !important;
 }
 /* .studentList{
@@ -102,12 +104,18 @@
 
     /* background-color: rgb(6, 81, 146); */
     /* background-color: rgb(232, 38, 38); */
-    background-color: rgb(244, 244, 249);
+    background-color: var(--color-back) !important;
     justify-content: space-around;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 2px #474646;
     padding: 10px;
+    margin-bottom: 15px;
 
+}
+
+.paginationdivJobdesc{
+    display: flex;
+    justify-content: center;
 }
 .skillspan{
     margin: 5px;
@@ -161,6 +169,8 @@ width: 100%;
 .skillbtns{
   margin: 5px !important;
     font-size: 0.9rem !important;
+    /* width: 100%; */
+    /* padding: 10px !important; */
     background-color: rgb(4, 35, 35) !important;
     color: white !important;
    
@@ -171,11 +181,11 @@ width: 100%;
 }    
 
 .JObDescSelbtn{
-    background-color: green !important;
+    background-color: var(--color-primary) !important;
     color: white !important;
 }
 .jObDecUpdateBtn{
-    background-color: #080101 !important;
+    background-color: var(--color-primary) !important;
     color: white !important;
 }
 .viewbtn{
@@ -194,14 +204,16 @@ width: 90%;
 }
 
 .JobDescSelStudenth2{
-    color: green;
+    color: var(--color-back);
     margin: 10px;
 }
 @media only screen and (max-width: 600px) {
+    
     .mainJobDesc{
         width: 95%;
         left: 0%;
         margin: 10px;
+        top: 20px;
     }
     .skillmaindiv{
         width: 100%;

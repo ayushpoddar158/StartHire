@@ -1,10 +1,109 @@
+
+@import '../../const.css';
+
+
+
+.AdminStartUpdatalist{
+  /* background-color: rebeccapurple; */
+  width: 80% !important;
+  margin: auto;
+
+ 
+}
+.innerstartupdatabtndivide{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.outerstartupbtndivide{
+  width: 100%;
+}
+
+.admindatabtn{
+  background-color: var(--color-primary) !important;
+  font-size: 1rem !important;
+  margin-right: 2px !important;
+}
+
+
+
+
+
+
+
+
+.CreateJobmain{
+/* background-color: aqua; */
+background-color: var(--color-back);
+width: 30%;
+height: 30vh;
+border-radius: 10px;
+}
+
+.CreateJobmain h1{
+/* background-color: red; */
+padding: 5px;
+  color: black;
+  font-weight: 700;
+}
+
+
+
+.JObTitle{
+  font-size: 2.5rem !important;
+  font-weight: 700;
+}
+.jobDesc{
+  font-weight: 400;
+}
+.joblocation{
+
+}
+
+.jobslistsbtn{
+  background-color: var(--color-primary) !important;
+  margin-right: 5px !important;
+  font-size: 1.2rem !important;
+}
+.jobslistsbtn:hover{
+  transform: scale(0.9);
+ 
+}
+.Createbtn{
+  background-color: var(--color-primary) !important;
+  font-size: 1.2rem !important;
+ 
+}
+.createbtndiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 100%; */
+  /* background-color: red; */
+  
+}
+.Createbtn:hover{
+  transform: scale(0.9);
+}
+.JobsListStartUp{
+  /* background-color: blue; */
+  width: 60%;
+  height: auto;
+}
 .Createmain1{
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-around;
     position: relative;
-    width: 800px;
-    /* background-color: red !important; */
-    margin-left: 20%;
-    margin-top: 10px;
-    /* margin-bottom: 10px; */
+    /* width: 800px; */
+    width: 70vw;
+    /* margin-top: 10px !important; */
+    background-color: var(--color-nav);
+    top: 25px !important;
+    border-radius: 10px;
+    left: 24%;
+    margin-bottom: 30px !important;
     padding: 10px;
 }
 #main{
@@ -14,15 +113,21 @@
 
 
 @media only screen and (max-width: 600px) {
+  .jobslistsbtn{
+    width: 100% !important;
+    margin-top: 5px !important;
+  }
     .Createmain1{
         position: static;
-        width: 800px;
+        /* width: 800px; */
         /* background-color: red !important; */
         /* margin-left: 20%; */
-        margin-left: auto;
-        width: auto;
-        margin-top: 10px;
+        
+        /* width: auto; */
+       width: auto;
+        margin-top: 40px;
         /* margin-bottom: 10px; */
+        /* background-color: red; */
         padding: 20px;
       height: 100%;
     }

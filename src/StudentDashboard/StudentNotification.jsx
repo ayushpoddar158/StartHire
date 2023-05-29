@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style/StudentDashboard/StudentNotification.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Data setup 
 import { db } from "../Firebase";
 import {
@@ -13,6 +13,9 @@ import {
     where,
     doc
 } from "firebase/firestore";
+
+
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const StudentNotification = (props) => {
     var notifObj = props.notifObj;
@@ -35,7 +38,7 @@ const StudentNotification = (props) => {
                         <div class="col main pt-5 mt-3 studentNotimain">
                             <section class="Studentsection-50 ">
                                 <div class=" studentnotiboxes">
-                                    <h3 class="m-b-50 heading-line">Notification <i class="fa fa-bell text-muted"></i></h3>
+                                    <h3 class="m-b-50 heading-line">Notification  <FontAwesomeIcon className="iconnoti" icon={faBell} /></h3>
                                     {notifObj.map((item) => {
                                         UpdateRead(item)
                                         return (

@@ -93,17 +93,11 @@ const Jobs = (props) => {
   return (
     <>
       <div className='Createmain1'>
-        <div class="container-fluid" id="main">
-          <div class="row row-offcanvas row-offcanvas-left">
-            {/* <Jobs/> strat */}
-            <h1>jobs</h1>
-            <div>
-              <Link to="/createjobs">
-                <Button variant="contained" >Create Job</Button>
-              </Link>
-            </div>
+       
+       
+           
             {/* <Jobs/> end */}
-            <div class="container">
+            <div class=" JobsListStartUp">
 
               {jobs.map(job => {
                 return (<div class="notification-ui_dd-content">
@@ -111,15 +105,15 @@ const Jobs = (props) => {
                     <div class="notification-list_content">
                       <div class="notification-list_detail">
                         <div>
-                          <p><b></b>{job.data?.details.jobTitle}</p>
-                          <p class="text-muted">{job.data?.details.jobDescription}</p>
-                          <p class="text-muted"><small>{job.data?.details.jobLocation}</small></p>
+                          <p className='JObTitle'><b></b>{job.data?.details.jobTitle}</p>
+                          <p className='jobDesc' class="text-muted"><span>Desc:</span>{job.data?.details.jobDescription}</p>
+                          <p  class="text-muted joblocation"><small><span>Location:</span>{job.data?.details.jobLocation}</small></p>
                           <Link to={`/UpdateJobs/${job.id}`}>
-                            <Button variant="contained">Update Job</Button>
+                            <Button className='jobslistsbtn' variant="contained">Update Job</Button>
                           </Link>
-                          <Button variant="contained" color='error' onClick={() => { handleJobDelete(job) }}>Delete Job</Button>
+                          <Button className='jobslistsbtn' variant="contained" color='error' onClick={() => { handleJobDelete(job) }}>Delete Job</Button>
                           <Link to={`/JobDescp/${job.id}`}>
-                            <Button variant='contained' >Job Desc</Button>
+                            <Button className='jobslistsbtn' variant='contained' >Job Desc</Button>
                           </Link>
                         </div>
                       </div>
@@ -129,8 +123,22 @@ const Jobs = (props) => {
                 );
               })}
             </div>
-          </div>
-        </div>
+            <div class="CreateJobmain">
+            {/* <Jobs/> strat */}
+            
+            <h1>Create Jobs</h1>
+            <hr />
+            <div className='createbtndiv'>
+
+            
+              <Link to="/createjobs">
+                <Button className='Createbtn' variant="contained" >Create Job</Button>
+              </Link>
+              </div>
+            </div>
+
+      
+       
       </div>
 
     </>

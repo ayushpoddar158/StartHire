@@ -1,25 +1,69 @@
 
+.AdminStudentclosebtn{
+    position: relative;
+    /* background-color: red; */
+    display:flex;
+    justify-content:center;
+    /* margin-top :20px; */
+    padding:5px;
+}
 
+.AdminStudentOpenBtn{
+    position: relative;
+/* background-color: red; */
+display:flex;
+justify-content:center;
+margin-top: 46px;
+padding:5px;
+}
+.AdminStartUpclosebtn{
+    position: relative;
+    /* background-color: blue; */
+    display:flex;
+    justify-content:center;
+    /* margin: top 6px; */
+    padding:5px;
+    
+}
+.AdminStartUpOpenBtn{
+    position: relative;
+    /* background-color: blue; */
+    display:flex;
+    justify-content:center;
+    margin: top 6px;
+    padding:5px;
+}
 .AdminDashboardmainDiv{
     /* background-color: rgb(255, 0, 162); */
     position: relative;
-    width: 83.3%;
-    left: 16.69%;
+    width: 76.3%;
+    left: 20.69%;
+    top: 25px;
     display: flex;
     justify-content: space-around;
-    height: 85vh !important;
+    height: 69vh !important;
     align-items: center;
   
    
+}
+.adminbtn{
+    background-color: var(--color-primary) !important;
+    color: white !important;
 }
 
 @media only screen and (max-width:600px){
     .AdminDashboardmainDiv{
      
         position: relative;
-      width: 100%;
+      width: 90vw;
         left: 0px;
-        height: 100vh;
+        /* height: 100vh; */
+        /* height: 20vh; */
+        margin: auto;
+        /* padding: 10px; */
+
+        /* top: 60px; */
+
     }
 }
 

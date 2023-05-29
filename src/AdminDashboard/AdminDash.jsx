@@ -8,7 +8,7 @@ import { AuthContext } from '../Authorizer';
 import { useNavigate } from 'react-router-dom';
 import { collection, updateDoc, getDocs } from "firebase/firestore";
 
-
+import { Button } from "@mui/material";
 
 
 const AdminDashboard = (props) => {
@@ -73,22 +73,22 @@ const AdminDashboard = (props) => {
                 </div>
             </div>
             {studentSignUpOpen ?
-                <div>
-                    <button onClick={() => { ChangeStudentSignUp(studentSignUpOpen) }}>Close Student Registration</button>
+                <div className="AdminStudentclosebtn">
+                    <Button className="adminbtn btn"  onClick={() => { ChangeStudentSignUp(studentSignUpOpen) }}>Close Student Registration</Button>
                 </div>
                 :
-                <div>
-                    <button onClick={() => { ChangeStudentSignUp(studentSignUpOpen) }}>Open Student Registration</button>
+                <div className="AdminStudentOpenBtn">
+                    <Button className="adminbtn btn" onClick={() => { ChangeStudentSignUp(studentSignUpOpen) }}>Open Student Registration</Button>
                 </div>
             }
 
             {startupSignUpOpen ?
-                <div>
-                    <button onClick={() => { ChangeStartUpSignUp(startupSignUpOpen) }}>Close StartUp Registration</button>
+                <div className="AdminStartUpclosebtn">
+                    <Button className="adminbtn btn" onClick={() => { ChangeStartUpSignUp(startupSignUpOpen) }}>Close StartUp Registration</Button>
                 </div>
                 :
-                <div>
-                    <button onClick={() => { ChangeStartUpSignUp(startupSignUpOpen) }}>Open StartUp Registration</button>
+                <div className="AdminStartUpOpenBtn">
+                    <Button className="adminbtn btn"  onClick={() => { ChangeStartUpSignUp(startupSignUpOpen) }}>Open StartUp Registration</Button>
                 </div>
             }
 

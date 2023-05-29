@@ -7,7 +7,8 @@ import Select from "react-select";
 import StudentAside from "../StudentDashboard/StudentAside";
 
 import Textarea from '@mui/joy/Textarea';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 // Data import @Firebase
 import { db } from "../Firebase";
@@ -290,10 +291,10 @@ const Studentprofileform = (props) => {
                 </div><hr /><br />
 
                 <br />
-                <div class="panel panel-default">
-                  <div class="panel-heading">Links<i class="fa fa-link fa-1x"></i></div>
-                  <hr />
-                  <div class="panel-body">
+                <div class="panel panel-default panelmain">
+                  <div class="panel-heading studentpanelhead">Links<FontAwesomeIcon icon={faLink} /></div>
+                  {/* <hr /> */}
+                  <div class="panel-body studentpanelbody">
                     <div class="form-group">
                       <div class="col-xs-12">
                         <label for="last_name"><h6>Github Link</h6></label>
@@ -543,7 +544,7 @@ const Studentprofileform = (props) => {
                         <div class="form-group">
                           <div class="col-xs-12">
                             <br />
-                            <button class="btn btn-lg btn-success" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
+                            <button class="btn btn-lg studentFormsubbtn" onClick={submitHandler} type="button"><i className="fa-regular fa-folder-arrow-up"></i> Save</button>
                             {/* <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> */}
                           </div>
                         </div>

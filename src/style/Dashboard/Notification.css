@@ -1,21 +1,26 @@
 .MainNotiStart{
     /* background-color: red !important; */
     position: relative;
-    width: 78vw !important;
+    width: 75vw !important;
     left: 20%;
+    top: 10px;
     /* height: 84vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 20px !important;
-    padding: 10px !important;
+    /* padding: 10px !important; */
 }
 #notimainid{
     /* background-color: #29B6F6 !important; */
     padding: 10px !important;
 }
+
+.StartUpNotiheaderdiv h3{
+    color: var(--color-back) !important;
+}
 .StartNotimain {
-    background-color: rgb(180, 180, 180);
+    background-color: var(--color-nav) !important;
     /* height: 1000px; */
     /* margin-left: auto; */
     /* margin-top: 10px; */
@@ -23,6 +28,8 @@
     /* width: 70vw; */
     /* height: 90vh; */
     /* padding: 20px; */
+    top: -17px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;

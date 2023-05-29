@@ -1,7 +1,26 @@
+
+@import '../../const.css';
+
 .Admincardmain{
   /* background-color: red; */
 margin: 10px;
 
+}
+
+.mainCardDiv .search{
+  background-color: var(--color-back);
+}
+.mainCardDiv {
+  /* background-color: red !important; */
+  /* background-color: white; */
+  background-color: unset;
+  position: relative;
+  width: 73%;
+  z-index: 0;
+  /* width: 60%; */
+  left: 22%;
+  padding: 10px;
+  top: 20px;
 }
 .container {
   width: 400px !important;
@@ -58,13 +77,14 @@ margin: 10px;
   line-height: 60px;
 }
 
-.card {
+.cardi {
   max-width: 550px;
   border: 0;
   width: 100%;
   margin-inline: auto;
 
   height: auto !important;
+  background-color: unset;
 
 }
 
@@ -131,4 +151,19 @@ margin: 10px;
   color: hsla(0, 0%, 100%, 0.5);
   font-size: 16px;
   max-width: 470px;
+}
+
+.cardbtnadmin{
+  background-color: var(--color-primary) !important;
+}
+@media only  screen and (max-width:600px) {
+  .mainCardDiv{
+    width: 50vw;
+    /* background-color: red !important; */
+
+    margin: auto;
+    width: 90vw !important;
+    top: 30px;
+    left :0 !important;
+  }
 }

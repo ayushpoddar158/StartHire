@@ -1,0 +1,6 @@
+@import '../../const.css';
+
+.createjobssavebtn{
+    background-color:var(--color-primary)  !important;
+    color: white;
+}

@@ -1,10 +1,10 @@
 
-
+@import '../const.css';
 .iconnoti{
-  color: rgb(9, 2, 36) !important;
+  color: var(--color-back) !important;
 }
 .mainAside .ml-3{
-  color: white !important;
+  color: var(--color-back) !important;
 }
 .studentUpnotispan{
   position: fixed !important;
@@ -16,7 +16,7 @@
 }
 
 .mainAside{
-    /* background-color: red; */
+    background-color: var(--color-back) !important;
     /* display: flex; */
     /* flex-direction: row; */
   /* width: 15%; */
@@ -33,7 +33,7 @@
   
    /* position: fixed !important; */
     /* height: 100vh; */
-    background-color: rgba(0, 0, 0, 0.5) !important;
+    background-color: var(--color-nav) !important;
     /* background: transparent !important; */
     backdrop-filter: blur(8px) !important ;
     top: 20px;
@@ -44,19 +44,44 @@
 }
 
 .Usernameaside{
-color: white;
+color: var(--color-back);
   /* background-color: red !important; */
 }
 
 
 
+.nav>li>a:hover{
+background-color: var(--color-primary);
+letter-spacing: 2px;
+}
+.asidenameanchor{
+  pointer-events: none !important;
+}
+
+  .nav>li>a:active{
+    background-color: var(--color-primary) !important;
+    color: unset !important;
+  }
+  .nav>li>a:focus{
+    background-color: var(--color-primary) !important;
+  }
+
+.LogoutbtnAsilde{
+  background-color: var(--color-primary) !important;
+  color: white;
+}  
+
 @media only screen and (max-width: 600px) {
   .mainAside{
     height: auto;
-    position: static;
+    position: relative !important;
   }
   #sidebar{
     /* background-color: red !important; */
+    position: re
+    
+    
+    ative;
     width: 80vw !important;
     margin: auto;
     height: auto;
