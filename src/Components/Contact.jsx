@@ -8,7 +8,7 @@ const Contact = () => {
 
   
 
-    <div class="contact-form" style={{padding:"0px",marginBottom:"0px"}}>
+    <div class="contact-form contcatformmain" style={{padding:"0px",marginBottom:"0px"}}>
             <div class="contact-image">
                 <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
             </div>

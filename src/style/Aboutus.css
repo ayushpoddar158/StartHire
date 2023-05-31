@@ -1,115 +1,176 @@
-body {
-    font-family: 'Roboto';
+@import '../const.css';
+
+.mianAbourSection{
+    /* background-color: aqua; */
+    height: 450vh;
+    position: relative;
+    top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.Aboutcontainer{
+.maininermain{
+    /* background-color: blueviolet; */
+    /* height: 90vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+}
+.about{
+    /* background-color: aquamarine; */
+    width: 98vw;
+  margin: 10px;
+    /* height: 25vh; */
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around !important;
+   
+}
+.about img{
+    width: 25vw;
+    border-radius: 100%;
+    border: 5px solid white;
+}
+.innermain1_1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+    align-items: center;
+    /* background-color: rgb(54, 53, 53); */
+    padding: 10px;
+}
+.innermain1_1 p{
+    font-size: 2.5rem;
+    padding: 20px;
     /* background-color: red; */
-    padding: 30px;
+    font-weight: 300;
 }
-.Aboutrow{
-    margin: auto !important;
+.innermain1_1 p span{
+    font-weight: 400;
 }
-.aboutus-section {
-    padding: 90px 0;
+.innermain1_2{
+    /* background-color: chartreuse; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
-.aboutus-title {
-    font-size: 30px;
-    letter-spacing: 0;
-    line-height: 32px;
-    margin: 0 0 39px;
-    padding: 0 0 11px;
-    position: relative;
-    text-transform: uppercase;
-    color: #000;
+
+.maininner2{
+    /* background-color: red; */
 }
-.aboutus-title::after {
-    background: red none repeat scroll 0 0;
-    bottom: 0;
-    content: "";
+.takeaways{
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+}
+.takeaways h1{
+font-size: 3.2rem;
+padding: 5px;
+
+}
+.hrtake{
+    border-bottom: 2px solid rgb(3, 93, 153);
     height: 2px;
-    left: 0;
-    position: absolute;
-    width: 54px;
+    width: 60vw;
 }
-.aboutus-text {
-    color: #606060;
-    font-size: 13px;
-    line-height: 22px;
-    margin: 0 0 35px;
+.takeaways p{
+    padding: 7px;
+    font-weight: 500;
+    /* background-color: red; */
+    margin-top: 4px;
 }
-
-a:hover, a:active {
-    color: #ffb901;
-    text-decoration: none;
-    outline: 0;
+.takeawaysection{
+    /* background-color: red; */
+    /* height: 50vh; */
 }
-.aboutus-more {
-    border: 1px solid red;
-    border-radius: 25px;
-    color:red;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0;
-    padding: 7px 20px;
-    text-transform: uppercase;
+.TakeAwaysForStart{
+    background-color: var(--color-nav);
+    width: 94.8vw;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
-.feature .feature-box .iconset {
-    /* background: #fff none repeat scroll 0 0; */
-    background-color: whitesmoke !important;
-    float: left;
-    position: relative;
-    width: 18%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.feature .feature-box .iconset::after {
-    background: red none repeat scroll 0 0;
-    content: "";
-    height: 175%;
-    left: 49%;
-    position: absolute;
-    top: 100%;
-    width: 1px;
+.TakeAwaysForstudent{
+    background-color: var(--color-nav);
+    width: 94.8vw;
+    margin: auto;
+    border-radius: 10px;
 }
 
-.feature .feature-box .feature-content h4 {
-    color: #0f0f0f;
-    font-size: 18px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin: 0 0 5px;
+.starttakeleft{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.starttakeleft h1{
+    /* background-color: blue; */
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 3rem;
+    color: rgb(190, 187, 187);
+}
+.starttakeleft ul li{
+    list-style: square;
+    font-weight: 400;
+    color: rgb(194, 190, 190);
+}
+.starttakeright{
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.starttakeright img{
+    width: 25vw;
+    border-radius: 100%;
+    border: 5px solid white;
 }
 
-
-.feature .feature-box .feature-content {
-    float: left;
-    padding-left: 28px;
-    width: 78%;
+.whocanapllydiv{
+    /* background-color: red; */
+   
+    /* width: 94.8vw; */
+    /* margin: auto; */
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
-.feature .feature-box .feature-content h4 {
-    color: #0f0f0f;
-    font-size: 18px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin: 0 0 5px;
-}
-.feature .feature-box .feature-content p {
-    color: #606060;
-    font-size: 13px;
-    line-height: 22px;
-}
-.icon {
-    color : red;
-    padding:0px;
-    font-size:40px;
-    border: 1px solid red;
-    border-radius: 100px;
-    color: red;
-    font-size: 28px;
-    height: 70px;
-    line-height: 70px;
+.innerwhoapply{
+    /* background-color: white; */
+    width: 94.8vw;
+    margin: auto;
     text-align: center;
-    width: 70px;
+    padding: 10px;
+    
+}
+.innerwhoapply h1{
+    font-size: 3.3rem;
+}
+.whoapplyregister{
+    display: flex;
+    /* background-color: red; */
+    align-items: center;
+    justify-content: center;
+    /* padding: 10px; */
+}
+.whoapplyregister h4{
+    margin-right: 5px;
+    color: rgb(81, 81, 82);
+}
+.whoapplyregister p{
+    background-color: rgb(164, 163, 161);
 }

@@ -19,13 +19,16 @@
 }
 
 .homediv2{
+    position: relative;
     /* background-color: aqua; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
-    height: 50vh;
+    /* background-color: aliceblue; */
+    /* height: 50vh; */
+    padding: 30px;
+    /* margin-top: 50px; */
     
 }
 .homediv2 h1{
@@ -60,5 +63,8 @@
     /* align-items: center;
     justify-content: center; */
     width: 60%;
+    font-size: 2.5rem;
     color: rgb(129, 127, 127);
+    text-align: center;
+    font-family: cursive !important;
 }

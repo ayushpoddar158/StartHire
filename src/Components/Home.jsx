@@ -12,14 +12,10 @@ const Home = () => {
         <div className="poster1" style={{backgroundImage:`url(${poster1})`}}>
         </div>
         <div className="homediv2">
-          <h1>
-            About StartHire
-          </h1>
-        <div className="horizontalhr">
          
-        </div>
+       
           <div className="homediv2about1">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis optio magni maxime dicta. Perferendis est maiores quam commodi ipsam! Temporibus perferendis cupiditate molestiae assumenda eveniet explicabo possimus modi quod odio.</p>
+            <p>"Welcome to a ground-breaking platform meticulously crafted to revolutionize the way dedicated students and dynamic startups connect!"</p>
           </div>
         </div>
       </div>

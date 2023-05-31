@@ -1,7 +1,22 @@
+
+@import '../const.css';
 .Contactcontainer{
+  /* position: relative; */
     /* background-color: red; */
     display: flex;
     align-items: center !important;
     justify-content: center !important;
   padding-bottom: 50px !important;
+  top: 30px;
+  margin: 30px;
+}
+.contcatformmain{
+  background-color:var(--color-nav) !important ;
+  border-radius: 10px;
+}
+.contcatformmain h3{
+  color: var(--color-back) !important;
+}
+.btnContact{
+  background-color: var(--color-primary) !important;
 }

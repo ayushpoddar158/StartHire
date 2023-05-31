@@ -1,7 +1,10 @@
 .footer{
-/* background-color: rgb(239, 239, 57); */
-width: 82.2vw !important;
-margin-left: 16.7%;
+/* background-color: rgb(239, 239, 57) !important; */
+/* width: 82.2vw !important; */
+/* margin-left: 16.7%; */
+/* position: static; */
+position: relative;
+/* top: 600px; */
 }
 .footermain{
     display: flex;
@@ -11,4 +14,5 @@ margin-left: 16.7%;
     /* width: 55%; */
     width: 100%;
     justify-content: flex-end;
+    height: 50vh;
 }
