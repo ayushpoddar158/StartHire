@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import "../style/Aboutus.css";
 import { gsap } from "gsap";
 import { useEffect } from "react";
+import Signup from '../Components/Signup';
 <link
   href="https://fonts.googleapis.com/css?family=Roboto"
   rel="stylesheet"
@@ -178,7 +179,7 @@ const About = () => {
                   potential{" "}
                 </h4>
                 <Button className="whoregisterbtn" variant="contained">
-                  REGISTER NOW
+                  <Link className="Registerlinkabout" to={"/Signup"} >REGISTER NOW</Link>
                 </Button>
               </div>
             </div>

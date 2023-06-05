@@ -3,6 +3,12 @@ body{
     /* overflow: hidden;  */
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
+.Registerlinkabout{
+    color: unset;
+}
+.Registerlinkabout:hover{
+    color: unset;
+}
 
 .mianAbourSection{
     /* background-color: aqua; */
@@ -188,4 +194,7 @@ padding: 5px;
     /* width: ; */
     background-color: var(--color-primary) !important;
     color: white !important;
+}
+.whoregisterbtn:hover{
+    transform: scale(0.9);
 }

@@ -35,8 +35,10 @@ padding: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  top: 20px;
+  position: relative;
 }
 
 .Signupafterchangediv{
