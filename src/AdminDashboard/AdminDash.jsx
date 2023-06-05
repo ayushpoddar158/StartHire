@@ -59,19 +59,24 @@ const AdminDashboard = (props) => {
     return (
         <>
             <div className='AdminDashboardmainDiv'>
-                <div className="NoOfStudents">
+                <div className="NoOfStudents onecardadmindash">
                     <span >{allData.user?.length - 1}</span>
                     <h2>No of Students</h2>
                 </div>
-                <div className="NoOfStartUps">
+                <div className="NoOfStartUps onecardadmindash">
                     <span >{allData.startup?.length}</span>
                     <h2>No of StartUp</h2>
                 </div>
-                <div className="NoOfJobDesc">
+                <div className="NoOfJobDesc onecardadmindash">
                     <span >{allData.job?.length}</span>
                     <h2>No of Jobs</h2>
                 </div>
             </div>
+
+
+            <div className="adminregonOffBtndiv">
+
+          
             {studentSignUpOpen ?
                 <div className="AdminStudentclosebtn">
                     <Button className="adminbtn btn"  onClick={() => { ChangeStudentSignUp(studentSignUpOpen) }}>Close Student Registration</Button>
@@ -91,6 +96,7 @@ const AdminDashboard = (props) => {
                     <Button className="adminbtn btn"  onClick={() => { ChangeStartUpSignUp(startupSignUpOpen) }}>Open StartUp Registration</Button>
                 </div>
             }
+            </div>
 
         </>
     )

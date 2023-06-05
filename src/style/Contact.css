@@ -19,4 +19,27 @@
 }
 .btnContact{
   background-color: var(--color-primary) !important;
+width: 150px !important;
+padding: 6px !important;
+}
+
+.contact_rocket_icon{
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 40px;
+  left: 0px;
+
+}
+.inner_con_rocket{
+  font-size: 30px;
+}
+.contact-image{
+  /* background-color: red; */
 }

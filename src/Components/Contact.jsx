@@ -1,6 +1,7 @@
 import React from 'react'
 import '../style/Contact.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRocket } from '@fortawesome/free-solid-svg-icons';
 const Contact = () => {
   return (
     <>
@@ -10,7 +11,11 @@ const Contact = () => {
 
     <div class="contact-form contcatformmain" style={{padding:"0px",marginBottom:"0px"}}>
             <div class="contact-image">
-                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+                {/* <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/> */}
+                <div className='contact_rocket_icon'>
+
+                <FontAwesomeIcon className='inner_con_rocket' icon={faRocket} />
+                </div>
             </div>
             <form method="post">
                 <h3>Drop Us a Message</h3>

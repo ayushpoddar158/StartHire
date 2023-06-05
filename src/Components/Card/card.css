@@ -91,7 +91,8 @@ margin: 10px;
 .container-card {
   position: relative;
   border: 2px solid transparent;
-  background: linear-gradient(71deg, #080509, #1a171c, #080509);
+  /* background: linear-gradient(71deg, #080509, #1a171c, #080509); */
+  background-color: var(--color-nav) !important;
   background-clip: padding-box;
   border-radius: 45px;
   padding: 40px;
@@ -120,7 +121,7 @@ margin: 10px;
 }
 
 .bg-green-box::after {
-  background: linear-gradient(71deg, #0d1212, #3da077, #0d1212);
+  /* background: linear-gradient(71deg, #0d1212, #3da077, #0d1212); */
 }
 
 .bg-white-box::after {

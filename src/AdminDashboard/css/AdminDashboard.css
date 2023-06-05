@@ -50,6 +50,9 @@ padding:5px;
     background-color: var(--color-primary) !important;
     color: white !important;
 }
+.onecardadmindash{
+    background-color: var(--color-nav) !important;
+}
 
 @media only screen and (max-width:600px){
     .AdminDashboardmainDiv{
@@ -63,6 +66,7 @@ padding:5px;
         /* padding: 10px; */
 
         /* top: 60px; */
+        height: auto !important;
 
     }
 }
@@ -112,10 +116,24 @@ padding:5px;
     font-size: 3rem;
     padding: 10px;
     /* color: rgb(5, 5, 39); */
-    color: rgb(34, 249, 5);
+    /* color: rgb(34, 249, 5); */
+    color: var(--color-primary) !important;
+
 }
 .AdminDashboardmainDiv h2{
-    color: white;
+    /* color: white; */
+    color: var(--color-back) !important;
+}
+
+.adminregonOffBtndiv{
+    /* background-color: red !important; */
+    position: relative;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    width: 70vw;
+    /* margin: auto; */
+    left: 25%;
 }
 @media  only screen and (max-width:600px){
     .AdminDashboardmainDiv{
@@ -133,5 +151,10 @@ padding:5px;
     .NoOfJobDesc{
 width: 100%;
 margin: 10px;
+    }
+    .adminregonOffBtndiv{
+        flex-direction: column;
+        left: 0;
+        margin: auto;
     }
 }

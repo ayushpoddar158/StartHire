@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "@material-ui/core";
 import "../style/Aboutus.css";
+import { gsap } from "gsap";
+import { useEffect } from "react";
 <link
   href="https://fonts.googleapis.com/css?family=Roboto"
   rel="stylesheet"
@@ -9,6 +11,25 @@ import { Link } from "react-router-dom";
 import poster1 from "../assets/posterimg1.jpg";
 
 const About = () => {
+  const imgRef = useRef(null);
+  useEffect(() => {
+    gsap.from(".imggsapright", {
+      opacity: 0.2,
+      x: 60,
+      duration: 1,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+    gsap.from(".imggsapleft", {
+      opacity: 0.2,
+      x: -60,
+      duration: 1,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+   
+  }, []);
+
   return (
     <>
       <div className="mianAbourSection">
@@ -21,12 +42,12 @@ const About = () => {
                 chance to experience the vibrant world of entrepreneurship.
               </p>
             </div>
-            <div className="innermain1_2 col-sm-6">
+            <div className="innermain1_2 col-sm-6 imggsapright">
               <img src={poster1} alt="ge" />
             </div>
           </div>
           <div className="innermain2 row  about">
-            <div className="innermain1_2 col-sm-6">
+            <div  className="innermain1_2 col-sm-6 imggsapleft">
               <img src={poster1} alt="ge" />
             </div>
             <div className="innermain1_1 col-sm-6">
@@ -48,12 +69,12 @@ const About = () => {
                 that align with their interests and needs.
               </p>
             </div>
-            <div className="innermain1_2 col-sm-6">
+            <div className="innermain1_2 col-sm-6 imggsapright">
               <img src={poster1} alt="ge" />
             </div>
           </div>
           <div className="innermain2 row  about">
-            <div className="innermain1_2 col-sm-6">
+            <div className="innermain1_2 col-sm-6 imggsapleft">
               <img src={poster1} alt="ge" />
             </div>
             <div className="innermain1_1 col-sm-6">
@@ -143,16 +164,23 @@ const About = () => {
 
           <div className="whocanapllydiv">
             <div className="innerwhoapply">
-            <h1>Who can apply ?</h1>
-            <ul>
-              <li>
-              Students pursuing any Graduation or Post-Graduation Course
-              </li>
-            </ul>
+              <h1>Who can apply ?</h1>
+              <ul>
+                <li>
+                  Students pursuing any Graduation or Post-Graduation Course
+                </li>
+              </ul>
 
-            <div className="whoapplyregister">
-<h4>To secure your place at this immersive gathering, where students converge with startups to unleash their untapped potential </h4><Button variant="contained">REGISTER NOW</Button>
-            </div>
+              <div className="whoapplyregister">
+                <h4>
+                  To secure your place at this immersive gathering, where
+                  students converge with startups to unleash their untapped
+                  potential{" "}
+                </h4>
+                <Button className="whoregisterbtn" variant="contained">
+                  REGISTER NOW
+                </Button>
+              </div>
             </div>
           </div>
         </div>

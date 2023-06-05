@@ -4,7 +4,7 @@ margin: 5px;
 .notimainDiv{
     position: relative;
     left: 30%;
-    background-color: rgb(18, 3, 36) !important;
+  background-color: var(--color-nav) !important;
     /* height: 100vh; */
     width: 55%;
     display: flex;
@@ -21,7 +21,7 @@ margin: 5px;
 .notimainDiv .notiHeader{
 display: flex;
 align-items: center;
-background-color: rgb(3, 36, 36);
+/* background-color: rgb(3, 36, 36); */
 justify-content: center;
 padding: 10px;
 color: white;
@@ -61,7 +61,9 @@ border-radius: 10px;
     width: 50%;
 }
 
-
+#notibtn{
+    background-color: var(--color-primary) !important;
+}
 @media screen and (max-width: 600px) {
 .notimainDiv{
     width: 90%;

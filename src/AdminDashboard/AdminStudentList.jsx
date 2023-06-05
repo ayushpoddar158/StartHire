@@ -254,10 +254,11 @@ const AdminStudentLists = (props) => {
         {filtered?.map((item) => {
           if (item?.data().desgn === "student" && item?.data().updatedProfile) {
             return (
-              <div className="box3">
+              <div className="studentlistadminbox3">
+              <div className="box3 ">
                 <div className="studentList">
                   <div className="stdlistmian2_1 firstdivig">
-                    <img
+                    <img className="avtarimg"
                       src={item?.data().PImageUrl}
                       alt="avatar 1"
                       style={{ width: "45px", height: "auto" }}
@@ -278,12 +279,12 @@ const AdminStudentLists = (props) => {
                     <div className="conatainer skilltextdiv">
                       <h3>Skills</h3>
                     </div>
-                    <div className="skillbtn">
+                    <div className="skillbtn row">
                       {item?.data().skills.map((skill) => {
                         return (
-                          <Button
+                          <Button 
                             variant="contained"
-                            className=" skillbtns AdminSkillbtns ms-2"
+                            className=" skillbtns AdminSkillbtns ms-2 col-sm-3"
                           >
                             {skill.label}
                           </Button>
@@ -291,25 +292,26 @@ const AdminStudentLists = (props) => {
                       })}
                     </div>
                   </div>
-                  <div className="stdlistmian2_1 Adminstdlistmian2_1">
-                    <Button className="viewbtn Adminviewbtnver "
+                  <div className="stdlistmian2_1 Adminstdlistmian2_1 adminselectionbtns">
+                    <Button className="viewbtn Adminviewbtnver adminviewbtns"
                       variant="contained"
                       onClick={() => { ConfirmStd(item) }}>
                       Confirm
                     </Button>
-                    <Button className="viewbtn Adminviewbtnrej"
+                    <Button className="viewbtn Adminviewbtnrej adminviewbtns"
                       variant="contained"
                       onClick={() => { RejectStd(item) }}>
                       Reject
                     </Button>
                    <Link to={`/AdminStudentView/${item.id}`} > 
-                    <Button className="viewbtn Adminviewbtnrej"
+                    <Button className="viewbtn Adminviewbtnrej adminviewbtns"
                       variant="contained" >
                       View 
                     </Button>
                     </Link>
                   </div>
                 </div>
+              </div>
               </div>
             );
           }
