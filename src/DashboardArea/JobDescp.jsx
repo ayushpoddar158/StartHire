@@ -287,11 +287,20 @@ const JobDescp = (props) => {
               {/* <div className="JobDecStudListMainDiv"> */}
               <div className="studentList">
                 <div className="stdlistmian2_1 firstdivig">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                  {item.data().gender === "Male" ? 
+                   <img
+                    src="../../public/sample_male.jpg"
                     alt="avatar 1"
                     style={{ width: "45px", height: "auto" }}
                   />
+                  :
+                   <img
+                    src="../../public/sample_female.jpg"
+                    alt="avatar 1"
+                    style={{ width: "45px", height: "auto" }}
+                  />
+                }
+                 
                   <div class="ms-2">{item.data().sid}</div>
                 </div>
                 <div className=" skillmaindiv">
