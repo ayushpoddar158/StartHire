@@ -258,11 +258,20 @@ const AdminStudentLists = (props) => {
               <div className="box3 ">
                 <div className="studentList">
                   <div className="stdlistmian2_1 firstdivig">
-                    <img className="avtarimg"
-                      src={item?.data().PImageUrl}
+                    {item?.data().gender === "Male" ?
+                     <img className="avtarimg"
+                      src= "sample_male.jpg"
+                      alt="avtar"
+                      style={{ width: "45px", height: "auto" }}
+                    /> 
+                    : 
+                     <img className="avtarimg"
+                      src= "sample_female.jpg"
                       alt="avtar"
                       style={{ width: "45px", height: "auto" }}
                     />
+                  }
+                 
                     <div class="ms-2">
                       <span>
                         {item?.data().ProfileName}
