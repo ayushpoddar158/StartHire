@@ -260,7 +260,7 @@ const AdminStudentLists = (props) => {
                   <div className="stdlistmian2_1 firstdivig">
                     <img className="avtarimg"
                       src={item?.data().PImageUrl}
-                      alt="avatar 1"
+                      alt="avtar"
                       style={{ width: "45px", height: "auto" }}
                     />
                     <div class="ms-2">
