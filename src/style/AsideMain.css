@@ -71,6 +71,7 @@ letter-spacing: 2px;
   color: white;
 }  
 
+
 @media only screen and (max-width: 600px) {
   .mainAside{
     height: auto;
@@ -78,10 +79,7 @@ letter-spacing: 2px;
   }
   #sidebar{
     /* background-color: red !important; */
-    position: re
-    
-    
-    ative;
+    position: relative;
     width: 80vw !important;
     margin: auto;
     height: auto;

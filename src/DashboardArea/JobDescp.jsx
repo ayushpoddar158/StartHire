@@ -333,11 +333,15 @@ const JobDescp = (props) => {
           )
         })}
         <div className="paginationdivJobdesc">
+        <div className="innerpaginationdiv">
+
+       
           {currentPage > 1 && (
             <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
           )}
           {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
             <button
+            className="pagesbtnsjobdesc"
               key={pageNumber}
               onClick={() => handlePageChange(pageNumber)}
               disabled={pageNumber === currentPage}
@@ -348,6 +352,7 @@ const JobDescp = (props) => {
           {currentPage < totalPages && (
             <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
           )}
+          </div>
         </div>
       </div>
     </>

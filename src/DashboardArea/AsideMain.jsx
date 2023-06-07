@@ -66,7 +66,7 @@ const AsideMain = (props) => {
               >
                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3   ">
                   <li class="nav-item mb-2 mt-3">
-                    <a class="nav-link text-secondary" href="#">
+                    <a class="nav-link text-secondary asidenameanchor btn disable " href="#">
                       <h2 className="Usernameaside">some name</h2>
                     </a>
                   </li>
@@ -104,6 +104,14 @@ const AsideMain = (props) => {
                       <span className="ml-3">Notification</span>
                     </NavLink>
                   </li>
+                  <li class="nav-item mb-2">
+                    <button
+                      class="nav-link text-secondary LogoutbtnAsilde"
+                      onClick={LogOut}
+                    >
+                   Log Out
+                    </button>
+                  </li>
                   {/* <button>Hide</button> */}
                 </ul>
               </div>
@@ -132,17 +140,17 @@ const AsideMain = (props) => {
               >
                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3   ">
                   <li class="nav-item mb-2 mt-3">
-                    <a class="nav-link text-secondary" href="#">
+                    <a class="nav-link text-secondary asidenameanchor btn disable " href="#">
                       <h2 className="Usernameaside">{userData.data().name}</h2>
                     </a>
                   </li>
-                  <li class="nav-item mb-2">
+                  {/* <li class="nav-item mb-2">
                     <NavLink class="nav-link text-secondary" to="/Dashboard">
                       {" "}
                       <FontAwesomeIcon className="iconnoti" icon={faFile} />
                       <span className="ml-3">Dashboard</span>
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li class="nav-item mb-2 ">
                     <NavLink
                       class="nav-link text-secondary"
@@ -204,7 +212,7 @@ const AsideMain = (props) => {
               >
                 <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 ">
                   <li class="nav-item mb-2 mt-3">
-                    <a class="nav-link text-secondary asidenameanchor btn disable" href="#">
+                    <a class="nav-link text-secondary asidenameanchor btn disable " href="#">
                       <h2 className="Usernameaside">
                         {userData.data().ProfileName}
                       </h2>
