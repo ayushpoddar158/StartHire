@@ -126,7 +126,7 @@ const Login = () => {
                         </div>
 
                         <div class="pt-1 mb-4">
-                          <button class="btn btn-dark btn-lg btn-block" type="button" onClick={LoginEvent}>Login</button>
+                          <button class="btn btn-dark btn-lg btn-block loginbtndefault" type="button" onClick={LoginEvent}>Login</button>
                         </div>
 
                         <Link class="small text-muted" to="/Forgetpassword">Forgot password?</Link>
