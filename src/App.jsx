@@ -60,8 +60,11 @@ const App = (props) => {
 
   function onRouteChanged() {
     console.log("ROUTE CHANGED");
-    // window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/', '/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "/VerifyEmail"];
+    // // window.scrollTo(0, 0);
+    // const halfPageLayoutRoutes = ["/studentprofileform","/Studentprofile","/StudentDashboard","/StudentNotification",
+    //                               "/Filteredstudentlist","/Dashboard","/StartUpprofileForm","/StartUpProfile","/StartUpBlog","/Notification","/Model",
+    //                               "/Jobs","/CreateJobs","/UpdateJobs/]
+    const fullPageLayoutRoutes = ['/', '/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "/VerifyEmail","/ForgetPassword","/VerifyEmail"];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (location.pathname.toLocaleLowerCase() === fullPageLayoutRoutes[i].toLocaleLowerCase()) {
         setIsFullPageLayout(true);
@@ -216,7 +219,7 @@ const App = (props) => {
     <>
       {loading ? <Loading /> :
         <>
-          <Suspense fallback={<Loading />}>
+          <Suspense >
             <Navbar userData={userData}
               isStartUp={isStartUp}
               isStudent={isStudent}

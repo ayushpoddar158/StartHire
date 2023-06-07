@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Suspense } from "react";
+import { Navigate } from "react-router-dom";
 
 // Data setup 
 import { db } from "./Firebase";
@@ -87,17 +88,16 @@ const AppRoutes = (props) => {
     const Basic = <>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
-        <Route path="About" element={<About />} />
-        <Route path="Contact" element={<Contact />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
     </>
 
     const AuthPages = <>
-        <Route path="Login" element={<Login />} />
-        <Route path="LoginStartUp" element={<LoginStartUp />} />
-        <Route path="Signup" element={<Signup studentSignUpOpen={studentSignUpOpen} userCount={userCount}/>} />
-        <Route path="Signupstartup" element={<Signupstartup startupSignUpOpen={startupSignUpOpen} />} />
-        <Route path="ForgetPassword" element={<ForgetPassword />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/LoginStartUp" element={<LoginStartUp />} />
+        <Route path="/Signup" element={<Signup studentSignUpOpen={studentSignUpOpen} userCount={userCount} />} />
+        <Route path="/Signupstartup" element={<Signupstartup startupSignUpOpen={startupSignUpOpen} />} />
+        <Route path="/ForgetPassword" element={<ForgetPassword />} />
     </>
 
     const StudentPages = <>
@@ -105,32 +105,30 @@ const AppRoutes = (props) => {
         <Route path="/Studentprofile" element={<Studentprofile userData={userData} />} />
         <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
         <Route path="/VerifyEmail" element={<VerifyEmail />} />
-     
         <Route path="/StudentNotification" element={<StudentNotification notifObj={notifObj} />} />
-        
     </>
 
     const StartUpPages = <>
-        <Route path="Filteredstudentlist" element={<Filteredstudentlist userData={userData} />} />
-        <Route path="Dashboard" element={<Dashboard userData={userData} />} />
-        <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData} />} />
-        <Route path="StartUpProfile" element={<StartUpProfile userData={userData} />} />
-        <Route path="VerifyEmail" element={<VerifyEmail />} />
-        <Route path="StartUpBlog" element={<StartupBlog userData={userData} />} />
-        <Route path="Notification" element={<Notification
+        <Route path="/Filteredstudentlist" element={<Filteredstudentlist userData={userData} />} />
+        <Route path="/Dashboard" element={<Dashboard userData={userData} />} />
+        <Route path="/StartUpprofileForm" element={<StartUpprofileForm userData={userData} />} />
+        <Route path="/StartUpProfile" element={<StartUpProfile userData={userData} />} />
+        <Route path="/VerifyEmail" element={<VerifyEmail />} />
+        <Route path="/StartUpBlog" element={<StartupBlog userData={userData} />} />
+        <Route path="/Notification" element={<Notification
             notifObj={notifObj} />} />
         {/* //jobs routes */}
-        <Route path="/Model" element={<Model/>} />
-        <Route path="Jobs" element={<Jobs userData={userData} />} />
-        <Route path="CreateJobs" element={<CreateJobs userData={userData} />} />
-        <Route path="UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin} />} />
-        <Route path="JobDescp/:id" element={<JobDescp isAdmin={isAdmin} />} />
+        <Route path="/Model" element={<Model />} />
+        <Route path="/Jobs" element={<Jobs userData={userData} />} />
+        <Route path="/CreateJobs" element={<CreateJobs userData={userData} />} />
+        <Route path="/UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin} />} />
+        <Route path="/JobDescp/:id" element={<JobDescp isAdmin={isAdmin} />} />
     </>
 
     const AdminPages = <>
-        <Route path="/AdminDashboard" element={<AdminDashboard allData={allData} 
-        studentSignUpOpen={studentSignUpOpen} 
-        startupSignUpOpen={startupSignUpOpen}  />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard allData={allData}
+            studentSignUpOpen={studentSignUpOpen}
+            startupSignUpOpen={startupSignUpOpen} />} />
         <Route path="/AdminJobs" element={<AdminJobs allData={allData} />} />
         <Route path="/SearchInterns" element={<SearchInterns allData={allData} />} />
         <Route path="/AdminStudentLists" element={<AdminStudentLists allData={allData} />} />
@@ -147,11 +145,12 @@ const AppRoutes = (props) => {
         return (
             <>
                 {loading ? <Loading /> :
-                    <Suspense fallback={<Loading />}>
+                    <Suspense >
                         <Routes>
                             {AuthPages}
                             {AdminPages}
                             {Basic}
+                            <Route path="*" element={<Navigate to="/AdminDashboard" replace/>} />
                         </Routes>
                     </Suspense>
                 }
@@ -163,10 +162,11 @@ const AppRoutes = (props) => {
         return (
             <>
                 {loading ? <Loading /> :
-                    <Suspense fallback={<Loading />}>
+                    <Suspense >
                         <Routes>
                             {AuthPages}
                             {Basic}
+                            <Route path="/*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
@@ -177,10 +177,11 @@ const AppRoutes = (props) => {
         return (
             <>
                 {loading ? <Loading /> :
-                    <Suspense fallback={<Loading />}>
+                    <Suspense >
                         <Routes>
                             {StartUpPages}
                             {Basic}
+                            <Route path="*" element={<Navigate to="/Dashboard" replace/>} />
                         </Routes>
                     </Suspense>
                 }
@@ -192,12 +193,13 @@ const AppRoutes = (props) => {
         return (
             <>
                 {loading ? <Loading /> :
-                    <Suspense fallback={<Loading />}>
+                    <Suspense >
                         <Routes>
                             {AuthPages}
                             <Route path="StartUpprofileForm" element={<StartUpprofileForm userData={userData} />} />
                             <Route path="VerifyEmail" element={<VerifyEmail />} />
                             {Basic}
+                            <Route path="/*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
@@ -208,10 +210,12 @@ const AppRoutes = (props) => {
         return (
             <>
                 {loading ? <Loading /> :
-                    <Suspense fallback={<Loading />}>
+                    <Suspense >
                         <Routes>
                             {StudentPages}
                             {Basic}
+                            <Route path="*" element={<Navigate to="/StudentDashboard" replace/>} />
+                            {/* <Route path="/*" element={<PageNotFound />} /> */}
                         </Routes>
                     </Suspense>
                 }
@@ -224,12 +228,13 @@ const AppRoutes = (props) => {
         return (
             <>
                 {loading ? <Loading /> :
-                    <Suspense fallback={<Loading />}>
+                    <Suspense >
                         <Routes>
                             {AuthPages}
                             <Route path="/studentprofileform" element={<Studentprofileform userData={userData} />} />
-                            <Route path="VerifyEmail" element={<VerifyEmail />} />
+                            <Route path="/VerifyEmail" element={<VerifyEmail />} />
                             {Basic}
+                            <Route path="/*" element={<PageNotFound />} />
                         </Routes>
                     </Suspense>
                 }
