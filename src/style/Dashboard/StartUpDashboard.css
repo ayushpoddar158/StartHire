@@ -14,7 +14,7 @@
     transform: scale(0.9);
 }
 .DashboardmainDiv{
-    background-color: red;
+    /* background-color: red; */
     position: relative;
     width: 70vw;
     top: 50px;
@@ -23,7 +23,7 @@
 }
 .StartUpinnnderdiv{
     width: 60vw;
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 @media only screen and (max-width:600px){

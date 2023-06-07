@@ -16,7 +16,7 @@ font-size: 16px !important;
   background-color: #e5e5f7;
 /* opacity: 0.2; */
 background-size: 4px 4px;
-background-image: repeating-linear-gradient(45deg, #444df7af 0, #444df7b7 0.4px, #e5e5f7 0, #e5e5f7 50%);
+background-image: repeating-linear-gradient(45deg, #6666679a 0, #cececfa2 0.4px, #e5e5f7 0, #e5e5f7 50%);
 }
 button{
   font-size: 15px !important;
