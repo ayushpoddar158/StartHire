@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
 
 //component
 import Navbar from "./Components/Navbar";
@@ -8,7 +8,7 @@ import Footer from "./Components/Footer";
 import AppRoutes from "./AppRoutes";
 import Loading from "./Components/Loading/Loading";
 import AsideMain from "./DashboardArea/AsideMain";
-
+import PageNotFound from "./Components/PagenotFound/PageNotFound";
 
 // Authorizer 
 import { AuthContext, AuthProvider } from "./Authorizer";
@@ -44,6 +44,7 @@ const App = (props) => {
   // // setting up notification
   var [notifObj, setNotifObj] = useState([]);
   var [unReadCount, setUnreadCount] = useState(0);
+  var [returnBool, setReturnBool] = useState(false)
 
   // conditional routing for navbar and sidebar
   const [isFullPageLayout, setIsFullPageLayout] = useState(false);
@@ -60,8 +61,11 @@ const App = (props) => {
 
   function onRouteChanged() {
     console.log("ROUTE CHANGED");
-    // window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['/', '/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "/VerifyEmail"];
+    // // window.scrollTo(0, 0);
+    // const halfPageLayoutRoutes = ["/studentprofileform","/Studentprofile","/StudentDashboard","/StudentNotification",
+    //                               "/Filteredstudentlist","/Dashboard","/StartUpprofileForm","/StartUpProfile","/StartUpBlog","/Notification","/Model",
+    //                               "/Jobs","/CreateJobs","/UpdateJobs/]
+    const fullPageLayoutRoutes = ['/', '/Home', '/About', '/Contact', "/LoginStartUp", "/Login", "/Signup", "/Signupstartup", "/ForgetPassword", "/VerifyEmail"];
     for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
       if (location.pathname.toLocaleLowerCase() === fullPageLayoutRoutes[i].toLocaleLowerCase()) {
         setIsFullPageLayout(true);
@@ -119,9 +123,13 @@ const App = (props) => {
     if (currentUser) {
       getUserData(currentUser);
     }
+    else {
+      setLoading(false);
+    }
   }, [currentUser])
 
   useEffect(() => {
+    setLoading(true);
     const getAdminParams = async () => {
       const q = collection(db, "adminParams");
       await getDocs(q)
@@ -139,65 +147,75 @@ const App = (props) => {
 
 
 
-
   useEffect(() => {
-    // setLoading(true);
-    var fetchNotif = async (notifIds) => {
-      console.log("user: ", userData)
-      let UnReadCount = 0;
-      for (let i = notifIds.length - 1; i >= 0; i--){
-        let notifRef = doc(db, "notification", notifIds[i]);
-        let note = await getDoc(notifRef);
-        if (note.data().isRead === false) {
-          UnReadCount = UnReadCount + 1;
+    if (userData) {
+      var fetchNotif = async (notifIds) => {
+        console.log("user: ", userData)
+        let UnReadCount = 0;
+        for (let i = notifIds.length - 1; i >= 0; i--) {
+          let notifRef = doc(db, "notification", notifIds[i]);
+          let note = await getDoc(notifRef);
+          if (note.data().isRead === false) {
+            UnReadCount = UnReadCount + 1;
+          }
+          setNotifObj(notif => [
+            ...notif,
+            note
+          ]);
         }
-        setNotifObj(notif => [
-          ...notif,
-          note
-        ]);
+        setUnreadCount(UnReadCount);
       }
-      setUnreadCount(UnReadCount);
+      const fetchNote = async (notifIds) => {
+        console.log("fetchnote is called")
+        await fetchNotif(notifIds).finally(() => {
+          setLoading(false);
+        })
+      }
+      fetchNote(userData?.data().notification);
     }
-    const fetchNote = async (notifIds) => {
-      console.log("fetchnote is called")
-      await fetchNotif(notifIds).finally(() => {
-        setLoading(false);
-      })
+    else {
+      setLoading(false);
+      setReturnBool(true);
     }
-    fetchNote(userData?.data().notification);
   }, [userData]);
 
 
-  useEffect(() => {
-    console.log("student open", studentSignUpOpen);
-    console.log("startup open", startupSignUpOpen);
-  }, [studentSignUpOpen])
+  // useEffect(() => {
+  //   console.log("student open", studentSignUpOpen);
+  //   console.log("startup open", startupSignUpOpen);
+  // }, [studentSignUpOpen])
 
 
   useEffect(() => {
-    setLoading(true);
-    const getAllData = async () => {
-      try {
-        if (isAdmin) {
-          const userQuery = query(collection(db, "users"));
-          const userDocs = await getDocs(userQuery);
-          const startupQuery = query(collection(db, "startups"));
-          const startupDocs = await getDocs(startupQuery);
-          const jobQuery = query(collection(db, "jobs"));
-          const jobDocs = await getDocs(jobQuery);
-          setAllData({
-            user: userDocs.docs,
-            startup: startupDocs.docs,
-            job: jobDocs.docs,
-          });
+    if (isAdmin) {
+      const getAllData = async () => {
+        try {
+          if (isAdmin) {
+            const userQuery = query(collection(db, "users"));
+            const userDocs = await getDocs(userQuery);
+            const startupQuery = query(collection(db, "startups"));
+            const startupDocs = await getDocs(startupQuery);
+            const jobQuery = query(collection(db, "jobs"));
+            const jobDocs = await getDocs(jobQuery);
+            setAllData({
+              user: userDocs.docs,
+              startup: startupDocs.docs,
+              job: jobDocs.docs,
+            });
+          }
+        } catch (err) {
+          console.log("error while fetching all data", err);
+        } finally {
+          setLoading(false);
+          setReturnBool(true);
         }
-      } catch (err) {
-        console.log("error while fetching all data", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getAllData();
+      };
+      getAllData();
+    }
+    else {
+      setLoading(false);
+      setReturnBool(true);
+    }
   }, [isAdmin])
 
 
@@ -212,34 +230,37 @@ const App = (props) => {
   let footerComponent = isFullPageLayout ? <Footer /> : "";
   // let footerComponent = !this.state.isFullPageLayout ? <Footer /> : '';
 
-  return (
-    <>
-      {loading ? <Loading /> :
+  if (!returnBool && loading) {
+    console.log("return bool in loading")
+    return (<Loading />);
+  }
+  else if (returnBool) {
+    console.log("return bool in non loading")
+    return (
+      <>
         <>
-          <Suspense fallback={<Loading />}>
-            <Navbar userData={userData}
-              isStartUp={isStartUp}
-              isStudent={isStudent}
-              isVerified={isVerified}
-              isAdmin={isAdmin} />
-            {sidebarComponent}
-            <AppRoutes
-              userData={userData}
-              isStartUp={isStartUp}
-              isStudent={isStudent}
-              isVerified={isVerified}
-              isAdmin={isAdmin}
-              allData={allData}
-              notifObj={notifObj}
-              startupSignUpOpen={startupSignUpOpen}
-              studentSignUpOpen={studentSignUpOpen} 
-              userCount={userCount}/>
-            {footerComponent}
-          </Suspense>
+          <Navbar userData={userData}
+            isStartUp={isStartUp}
+            isStudent={isStudent}
+            isVerified={isVerified}
+            isAdmin={isAdmin} />
+          {sidebarComponent}
+          <AppRoutes
+            userData={userData}
+            isStartUp={isStartUp}
+            isStudent={isStudent}
+            isVerified={isVerified}
+            isAdmin={isAdmin}
+            allData={allData}
+            notifObj={notifObj}
+            startupSignUpOpen={startupSignUpOpen}
+            studentSignUpOpen={studentSignUpOpen}
+            userCount={userCount} />
+          {footerComponent}
         </>
-      }
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default App;
