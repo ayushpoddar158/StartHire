@@ -12,7 +12,7 @@
 
 #Navbar {
     position: sticky;
-    background-color: var(--color-nav) !important;
+    background-color: var(--color-navbar) !important;
     /* background: transparent !important; */
     backdrop-filter: blur(8px) !important;
 

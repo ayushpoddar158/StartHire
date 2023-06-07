@@ -9,9 +9,14 @@
   font-family: 'Roboto', sans-serif !important;
 }  
 body{
-  font-size: 16px !important;
+
  
   /* background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%); */
+font-size: 16px !important;
+  background-color: #e5e5f7;
+/* opacity: 0.2; */
+background-size: 4px 4px;
+background-image: repeating-linear-gradient(45deg, #444df7af 0, #444df7b7 0.4px, #e5e5f7 0, #e5e5f7 50%);
 }
 button{
   font-size: 15px !important;

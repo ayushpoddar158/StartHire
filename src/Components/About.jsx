@@ -37,7 +37,7 @@ const About = () => {
         <div className="maininermain">
           <div className="innermain1 about row">
             <div className="innermain1_1 col-sm-6">
-              <p>
+              <p className="leftpara">
                 Prepare to embark on a transformative journey as AIC-Nalanda
                 unveils an exceptional occasion where aspiring individuals get a
                 chance to experience the vibrant world of entrepreneurship.
@@ -52,7 +52,7 @@ const About = () => {
               <img src={poster1} alt="ge" />
             </div>
             <div className="innermain1_1 col-sm-6">
-              <p>
+              <p className="rightpara">
                 StartHire aims to serve as a powerful nexus, bridging the gap
                 between academia and the startup ecosystem, granting able
                 students a golden opportunity to engage with startups at the
@@ -62,7 +62,7 @@ const About = () => {
           </div>
           <div className="innermain1 about row">
             <div className="innermain1_1 col-sm-6">
-              <p>
+              <p className="leftpara">
                 With a strong focus on internships, StartHire provides a
                 seamless experience for students to explore exciting
                 opportunities in the startup ecosystem and, also allows the
@@ -79,7 +79,7 @@ const About = () => {
               <img src={poster1} alt="ge" />
             </div>
             <div className="innermain1_1 col-sm-6">
-              <p>
+              <p className="rightpara">
                 StartHire goes beyond traditional job listings by offering a
                 unique feature called <span>“The Collaboration Day”</span>,
                 where students and startups come together in an immersive

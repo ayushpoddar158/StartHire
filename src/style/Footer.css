@@ -9,7 +9,7 @@ position: relative;
 display: flex;
 
 padding: 10px;
-background-color: var(--color-nav) !important;
+background-color: var(--color-footer) !important;
 }
 .footermain{
     display: flex;
@@ -36,7 +36,7 @@ background-color: var(--color-nav) !important;
     padding: 10px;
 }
 .eachcol3 ul h1{
-color: var(--color-primary);
+color: var(--color-text2);
 margin-bottom: 5px;
 margin-bottom: 10px;
 /* background-color: red; */
