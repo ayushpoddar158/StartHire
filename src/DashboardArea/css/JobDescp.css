@@ -116,7 +116,30 @@ top: 10px;
 .paginationdivJobdesc{
     display: flex;
     justify-content: center;
+    /* background-color: red; */
+    /* width: 50%; */
+    /* padding: 5px; */
+    /* margin-top: 10px; */
+ 
 }
+.innerpaginationdiv{
+    background-color: rgb(216, 212, 212);
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    border-radius: 5px;
+}
+.innerpaginationdiv button{
+    margin-right: 8px !important;
+    border: none;
+    border-radius: 5px;
+    /* background-color: var(--color-nav) !important;
+    color: white; */
+}
+
+
 .skillspan{
     margin: 5px;
 }

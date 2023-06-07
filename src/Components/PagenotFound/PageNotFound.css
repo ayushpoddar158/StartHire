@@ -1,0 +1,53 @@
+.main404{
+    /* background-color: red; */
+    width: 80vw;
+    margin: auto;
+    position: relative;
+    top: 20px;
+    min-height: 60vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.innerright404{
+    /* background-color: aqua; */
+    width: 70%;
+}
+.innerright404 h1{
+    font-size: 4rem;
+    text-align: center;
+}
+.e404h1{
+    color: rgb(97, 96, 96);
+    font-size: 6.5rem !important;
+}
+.innerright404 p{
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 5px;
+}
+.buttonsection{
+    margin-top: 6px;
+}
+.buttonsection button{
+    border: none;
+    background-color: white;
+    box-shadow: 0 0 10px 0.5px black;
+    border-radius: 5px;
+
+    padding: 6px;
+}
+.buttonsection button:hover{
+    transform: scale(0.9);
+}
+.page404Link{
+    color: rgb(35, 35, 35);
+    font-weight: 400;
+}
+.page404Link:hover{
+    color: unset;
+   
+}
