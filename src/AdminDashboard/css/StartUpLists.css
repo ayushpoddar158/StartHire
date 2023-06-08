@@ -17,10 +17,17 @@
   
 }
 .mainCardDiv .search{
-    /* background-color: blue; */
-    padding: 10px;
-width: auto;
+    background-color: #e5e5f7;
+    /* opacity: 0.2; */
+    background-size: 4px 4px;
+    background-image: repeating-linear-gradient(45deg, #6666679a 0, #cececfa2 0.4px, #e5e5f7 0, #e5e5f7 50%) !important;
+    /* padding: 10px; */
+    padding:0px !important;
+    padding-left: 0px !important;
+    /* width: ; */
+/* width: auto; */
 display: flex;
+box-shadow: inset;
 
 justify-content: center;
 }

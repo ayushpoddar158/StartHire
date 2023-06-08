@@ -50,7 +50,7 @@ const StartUpProfile = (props) => {
 
                     <div className="col-lg-6 px-xl-10 startUpDetails">
                    <div className="sectionstartup">
-                   <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                   <div class="bg-secondary starupfoundernamediv d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                         <h3 class="h2 text-white mb-0">
                           StartUp Name : {userData.StartUpName}
                         </h3>

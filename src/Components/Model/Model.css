@@ -37,14 +37,17 @@ width: 100%;
 .modelbtn{
     /* background-color: red !important; */
 }
-.model{
- 
+.JobDescStudDetails .span1{
 
-
-    
+    color: var(--color-primary) !important;
 }
-.modelhead{
-  
+.JobDescStudDetails .span2{
+    margin-left: 5px;
+color: var(--color-footer);
+}
+.closebtnmodel{
+    background-color: var(--color-primary) !important;
+    color: white !important;
 }
 @media only screen and (max-width:600px) {
     .modal-dialog{
