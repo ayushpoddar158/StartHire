@@ -37,7 +37,7 @@ const StartUpDetailModel = (props) => {
                       StartUp Name:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.gender}  */}
+                     {data?.StartUpName} 
                     </span>
 
                     <hr />
@@ -48,7 +48,7 @@ const StartUpDetailModel = (props) => {
                       Founder Name:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.location}  */}
+                     {data?.FounderName} 
                     </span>
 
                     <hr />
@@ -59,7 +59,7 @@ const StartUpDetailModel = (props) => {
                       Contact No:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.College}  */}
+                     {data?.ContactNumber} 
                     </span>
 
                     <hr />
@@ -70,7 +70,7 @@ const StartUpDetailModel = (props) => {
                       Email:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                      {/* {data?.Degree}  */}
+                      {data?.StartUpEmail} 
                     </span>
 
                     <hr />
@@ -81,7 +81,7 @@ const StartUpDetailModel = (props) => {
                       Website:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.DegreeStatus}  */}
+                     {data?.websiteLink} 
                     </span>
 
                     <hr />
@@ -92,7 +92,7 @@ const StartUpDetailModel = (props) => {
                       Address:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.YOG}  */}
+                     {data?.location} 
                     </span>
 
                     <hr />
@@ -103,9 +103,7 @@ const StartUpDetailModel = (props) => {
                       Domain:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.about}  */}
                     </span>
-
                     {/* <hr /> */}
 
                   </li>
