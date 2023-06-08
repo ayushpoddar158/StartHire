@@ -94,7 +94,7 @@ margin: 10px;
   /* background: linear-gradient(71deg, #080509, #1a171c, #080509); */
   background-color: var(--color-nav) !important;
   background-clip: padding-box;
-  border-radius: 45px;
+  border-radius: 10px;
   padding: 40px;
 
 }
