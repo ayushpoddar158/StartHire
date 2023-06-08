@@ -33,10 +33,10 @@ const Model = (props) => {
               <div className="JobDescStudDetails">
                 <ul class="list-unstyled mb-1-9">
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
-                      Gender
+                    <span class="display-26 span1  me-2 font-weight-600">
+                      Gender:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                      {data?.gender} 
                     </span>
 
@@ -44,10 +44,10 @@ const Model = (props) => {
 
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
+                    <span class="display-26 span1 me-2 font-weight-600">
                       Location:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                      {data?.location} 
                     </span>
 
@@ -55,10 +55,10 @@ const Model = (props) => {
 
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
+                    <span class="display-26 span1 me-2 font-weight-600">
                       College/University:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                      {data?.College} 
                     </span>
 
@@ -66,10 +66,10 @@ const Model = (props) => {
 
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
+                    <span class="display-26 span1 me-2 font-weight-600">
                       Degree:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                       {data?.Degree} 
                     </span>
 
@@ -77,10 +77,10 @@ const Model = (props) => {
 
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
+                    <span class="display-26 span1 me-2 font-weight-600">
                       Degree Status:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                      {data?.DegreeStatus} 
                     </span>
 
@@ -88,10 +88,10 @@ const Model = (props) => {
 
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
-                      Year Of Passing
+                    <span class="display-26 span1 me-2 font-weight-600">
+                      Year Of Passing:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                      {data?.YOG} 
                     </span>
 
@@ -99,10 +99,10 @@ const Model = (props) => {
 
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
-                      About
+                    <span class="display-26 span1 me-2 font-weight-600">
+                      About:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                      {data?.about} 
                     </span>
 
@@ -110,21 +110,23 @@ const Model = (props) => {
 
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600">
-                      Certifications and Awards
+                    <span class="display-26 span1 me-2 font-weight-600">
+                      Certifications and Awards:
                     </span>
-                    <span class="display-26 text-primary me-2 font-weight-600">
+                    <span class="display-26 span2 me-2 font-weight-600">
                      {data?.awardsAndCert == "" ? "None" :  data?.awardsAndCert} 
                     </span>
 
-                    <hr />
+                    {/* <hr /> */}
 
                   </li>
+                  
                 </ul>
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+            {/* <hr /> */}
+              <Button variant="secondary" className='closebtnmodel' onClick={handleClose}>
                 Close
               </Button>
             </Modal.Footer>

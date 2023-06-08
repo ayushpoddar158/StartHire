@@ -275,7 +275,7 @@ const JobDescp = (props) => {
                     })}
                   </div>
                 </div>
-                <div className="stdlistmian2_1">
+                <div className="stdlistmian2_1 selectedstudeivindi">
                   <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
                     Reject
                   </Button>

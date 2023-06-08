@@ -195,7 +195,7 @@ const Signup = (props) => {
               </li>
               <li class="nav-item" role="presentation">
                 <Link
-                  class="nav-link Signupchangebtn2"
+                  class="nav-link Signupchangebtn2 "
                   id="tab-register"
                   data-mdb-toggle="pill"
                   to="/signupstartup"
@@ -329,7 +329,7 @@ const Signup = (props) => {
                                   <button
                                     type="button"
                                     onClick={addData}
-                                    className="btn btn-primary btn-lg"
+                                    className="btn btn-primary btn-lg signupregisterbtn"
                                   >
                                     Register
                                   </button>

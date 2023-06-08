@@ -51,11 +51,20 @@ padding: 3px;
 }    
     .signupbtncolor{
    
-    background-color: grey !important;
+    background-color: var(--color-footer) !important;
+  
    
 }
-.Signupchangebtn2{
+.signupregisterbtn{
+  background-color: var(--color-footer) !important;
+  width: 150px;
+}
+.Signupchangebtn1:hover{
+  color: white !important;
+}
+.Signupchangebtn2:hover{
 /* color: orangered !important; */
+color: white !important;
 
 /* background-color: red !important; */
 }

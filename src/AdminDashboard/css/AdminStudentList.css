@@ -38,12 +38,12 @@
     color: white;
 }
 .Admindstudentlistradio{
-    color: white;
+    color: white !important;
 }
 
 .AdminSkillbtns{
     font-size: 8px !important;
-    background-color: rgb(1, 10, 1) !important;
+    background-color: var(--color-primary) !important;
 }
 .AdminSkillbtns:hover{
     cursor: default;
