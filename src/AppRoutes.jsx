@@ -124,7 +124,7 @@ const AppRoutes = (props) => {
         <Route path="/Jobs" element={<Jobs userData={userData} />} />
         <Route path="/CreateJobs" element={<CreateJobs userData={userData} />} />
         <Route path="/UpdateJobs/:id" element={<UpdateJobs isAdmin={isAdmin} />} />
-        <Route path="/JobDescp/:id" element={<JobDescp isAdmin={isAdmin} />} />
+        <Route path="/JobDescp/:id" element={<JobDescp isAdmin={isAdmin} userData={userData} />} />
         <Route path="*" element={<Navigate to="/Dashboard" replace />} />
     </>
 
