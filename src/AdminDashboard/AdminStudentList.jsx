@@ -8,7 +8,7 @@ import FormLabel from "@mui/material/FormLabel";
 import "./css/AdminStudentList.css";
 import { Button } from "@mui/material";
 import { grey } from "@mui/material/colors";
-
+import AdminStuListModel from "../Components/Model/AdminStuListModel";
 import { useEffect } from "react";
 
 // Data setup 
@@ -330,12 +330,7 @@ const AdminStudentLists = (props) => {
                       onClick={() => { RejectStd(item) }}>
                       Reject
                     </Button>
-                   <Link to={`/AdminStudentView/${item.id}`} > 
-                    <Button className="viewbtn Adminviewbtnrej adminviewbtns"
-                      variant="contained" >
-                      View 
-                    </Button>
-                    </Link>
+              <AdminStuListModel/>
                   </div>
                 </div>
               </div>

@@ -43,6 +43,7 @@ const StartUpLists = (props) => {
       <div className="mainCardDiv">
         <div className="search">
           <TextField
+          className="StartUpsearch"
             id="outlined-read-only-input"
             label="Search"
             defaultValue="Hello World"
