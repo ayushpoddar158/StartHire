@@ -90,7 +90,7 @@ const StartUpProfile = (props) => {
                    </div>
                    <div className="section2StartUp">
                    <div className="skillsdivv">
-                              <h2>Skills</h2>
+                              <h2>Domain</h2>
                             <hr />
                               <div className="skillsbttuns">
                               {userData.domains.map((item) => {

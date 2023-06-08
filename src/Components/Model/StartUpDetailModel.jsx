@@ -34,7 +34,7 @@ const StartUpDetailModel = (props) => {
                 <ul class="list-unstyled mb-1-9">
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1  me-2 font-weight-600">
-                      Gender:
+                      StartUp Name:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                      {/* {data?.gender}  */}
@@ -45,7 +45,7 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Location:
+                      Founder Name:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                      {/* {data?.location}  */}
@@ -56,7 +56,7 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      College/University:
+                      Contact No:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                      {/* {data?.College}  */}
@@ -67,7 +67,7 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Degree:
+                      Email:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                       {/* {data?.Degree}  */}
@@ -78,7 +78,7 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Degree Status:
+                      Website:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                      {/* {data?.DegreeStatus}  */}
@@ -89,7 +89,7 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Year Of Passing:
+                      Address:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                      {/* {data?.YOG}  */}
@@ -100,32 +100,22 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      About:
+                      Domain:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                      {/* {data?.about}  */}
                     </span>
 
-                    <hr />
-
-                  </li>
-                  <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 span1 me-2 font-weight-600">
-                      Certifications and Awards:
-                    </span>
-                    <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.awardsAndCert == "" ? "None" :  data?.awardsAndCert}  */}
-                    </span>
-
                     {/* <hr /> */}
 
                   </li>
+          
                   
                 </ul>
               </div>
             </Modal.Body>
             <Modal.Footer>
-            {/* <hr /> */}
+         
               <Button variant="secondary" className='closebtnmodel' onClick={handleClose}>
                 Close
               </Button>
