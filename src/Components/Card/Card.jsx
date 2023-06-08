@@ -19,7 +19,7 @@ const Card = (props) => {
                 <Button variant="contained" className="cardbtnadmin" >Jobs</Button>
              
               </Link>
-              <StartUpDetailModel  />
+              <StartUpDetailModel sData={data} />
             </div>
           </div>
         </div>
