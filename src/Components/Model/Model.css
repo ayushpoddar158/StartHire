@@ -14,6 +14,18 @@ body.modal-open {
     
  
 }
+.starupmodedomain{
+    font-size: 0.8rem !important;
+    
+
+}
+.modelweblinkanchr{
+    color: var(--color-footer) !important;
+
+}
+.modelweblinkanchr:hover{
+    text-decoration: underline !important;
+}
 
 .ViewdetailsJObDesc{
 background-color: var(--color-primary) !important;

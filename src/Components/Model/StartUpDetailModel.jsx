@@ -81,7 +81,7 @@ const StartUpDetailModel = (props) => {
                       Website:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.DegreeStatus}  */}
+                  <a className='modelweblinkanchr' href="#">dummy</a>
                     </span>
 
                     <hr />
@@ -89,7 +89,7 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Address:
+                      Address: 
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
                      {/* {data?.YOG}  */}
@@ -100,10 +100,10 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Domain:
+                      Domain: 
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {/* {data?.about}  */}
+                     <Button className='starupmodedomain' variant='contained'>skil1</Button>
                     </span>
 
                     {/* <hr /> */}
