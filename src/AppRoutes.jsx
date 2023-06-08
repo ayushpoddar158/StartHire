@@ -103,7 +103,6 @@ const AppRoutes = (props) => {
     </>
 
     const StudentPages = <>
-        <Route path="/studentprofileform" element={<Studentprofileform userData={userData} />} />
         <Route path="/Studentprofile" element={<Studentprofile userData={userData} />} />
         <Route path="/StudentDashboard" element={<StudentDashboard userData={userData} />} />
         <Route path="/VerifyEmail" element={<VerifyEmail />} />
@@ -226,6 +225,9 @@ const AppRoutes = (props) => {
                             <Routes>
                                 {StudentPages}
                                 {Basic}
+                                {userData.data().VerifIsConfirmed ? null : 
+                                <Route path="/studentprofileform" element={<Studentprofileform userData={userData} />} /> 
+                                }
                                 {/* <Route path="/*" element={<PageNotFound />} /> */}
                             </Routes>
                         </Suspense>

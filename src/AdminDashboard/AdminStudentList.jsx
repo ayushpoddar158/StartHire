@@ -38,8 +38,24 @@ const AdminStudentLists = (props) => {
   var [filtered, setFiltered] = React.useState([]);
   var [inpdata, setInpdata] = React.useState("");
 
+  const pageSize = 5; // Number of students to display per page
+  const totalPages = Math.ceil(filtered.length / pageSize);
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  // Calculate the start and end index for the current page
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+
+  // Get the students to display for the current page
+  const currentStudents = filtered.slice(startIndex, endIndex);
+  
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   var handleChange = (e) => {
     setSelect(e.target.value)
+    setCurrentPage(1)
   }
 
   const getInpData = (e) => {
@@ -104,7 +120,7 @@ const AdminStudentLists = (props) => {
     }
     else {
       var filter = container.filter((item) => {
-        return item.data().firstName.toLowerCase().includes(inpdata.toLowerCase())
+        return item.data().ProfileName.toLowerCase().includes(inpdata.toLowerCase())
           || item.data().email.toLowerCase().includes(inpdata.toLowerCase())
       })
       setFiltered(filter)
@@ -120,7 +136,7 @@ const AdminStudentLists = (props) => {
       var notifRef = query(collection(db, "notification"));
       await addDoc(notifRef, {
         isRead: false,
-        message: "Congratulations!" + item.data().ProfileName+ "You have been selected for the collaboration program !",
+        message: "Congratulations!  " + item.data().ProfileName+ " You have been selected for the collaboration program ! Now your profile will no longer be editable.",
         recieverId: item.id,
         senderId: "Admin",
         senderName: "Admin",
@@ -251,7 +267,7 @@ const AdminStudentLists = (props) => {
             />
           </div>
         </div >
-        {filtered?.map((item) => {
+        {currentStudents?.map((item) => {
           if (item?.data().desgn === "student" && item?.data().updatedProfile) {
             return (
               <div className="studentlistadminbox3">
@@ -325,6 +341,27 @@ const AdminStudentLists = (props) => {
             );
           }
         })}
+        <div className="paginationdivJobdesc">
+          <div className="innerpaginationdiv">
+
+            {currentPage > 1 && (
+              <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+            )}
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+              <button
+                className="pagesbtnsjobdesc"
+                key={pageNumber}
+                onClick={() => handlePageChange(pageNumber)}
+                disabled={pageNumber === currentPage}
+              >
+                {pageNumber}
+              </button>
+            ))}
+            {currentPage < totalPages && (
+              <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+            )}
+          </div>
+        </div>
       </div >
     </>
   );

@@ -248,11 +248,19 @@ const JobDescp = (props) => {
               <div className="studentList">
 
                 <div className="stdlistmian2_1 firstdivig">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "auto" }}
-                  />
+                  {item.data().gender === "Male" ?
+                    <img
+                      src="../../public/sample_male.jpg"
+                      alt="avatar 1"
+                      style={{ width: "45px", height: "auto" }}
+                    />
+                    :
+                    <img
+                      src="../../public/sample_female.jpg"
+                      alt="avatar 1"
+                      style={{ width: "45px", height: "auto" }}
+                    />
+                  }
                   <div class="ms-2">{item.data().sid}</div>
                 </div>
                 <div className=" skillmaindiv">
@@ -287,20 +295,20 @@ const JobDescp = (props) => {
               {/* <div className="JobDecStudListMainDiv"> */}
               <div className="studentList">
                 <div className="stdlistmian2_1 firstdivig">
-                  {item.data().gender === "Male" ? 
-                   <img
-                    src="../../public/sample_male.jpg"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "auto" }}
-                  />
-                  :
-                   <img
-                    src="../../public/sample_female.jpg"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "auto" }}
-                  />
-                }
-                 
+                  {item.data().gender === "Male" ?
+                    <img
+                      src="../../public/sample_male.jpg"
+                      alt="avatar 1"
+                      style={{ width: "45px", height: "auto" }}
+                    />
+                    :
+                    <img
+                      src="../../public/sample_female.jpg"
+                      alt="avatar 1"
+                      style={{ width: "45px", height: "auto" }}
+                    />
+                  }
+
                   <div class="ms-2">{item.data().sid}</div>
                 </div>
                 <div className=" skillmaindiv">
@@ -333,25 +341,25 @@ const JobDescp = (props) => {
           )
         })}
         <div className="paginationdivJobdesc">
-        <div className="innerpaginationdiv">
+          <div className="innerpaginationdiv">
 
-       
-          {currentPage > 1 && (
-            <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
-          )}
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
-            <button
-            className="pagesbtnsjobdesc"
-              key={pageNumber}
-              onClick={() => handlePageChange(pageNumber)}
-              disabled={pageNumber === currentPage}
-            >
-              {pageNumber}
-            </button>
-          ))}
-          {currentPage < totalPages && (
-            <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-          )}
+
+            {currentPage > 1 && (
+              <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+            )}
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+              <button
+                className="pagesbtnsjobdesc"
+                key={pageNumber}
+                onClick={() => handlePageChange(pageNumber)}
+                disabled={pageNumber === currentPage}
+              >
+                {pageNumber}
+              </button>
+            ))}
+            {currentPage < totalPages && (
+              <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+            )}
           </div>
         </div>
       </div>
