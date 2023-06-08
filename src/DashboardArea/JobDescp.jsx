@@ -208,7 +208,7 @@ const JobDescp = (props) => {
     console.log("assignees", assignedStudents);
   }, [selectedStudents])
 
-  if (userData?.data().jobs.includes(id)){
+  if (userData?.data().jobs.includes(id) || isAdmin ){
     return (
       <>
         {/* <Model ref={ref}/> */}
