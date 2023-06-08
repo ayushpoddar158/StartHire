@@ -75,7 +75,7 @@ const AdminStudentView = () => {
 
                     <div className="col-lg-6 px-xl-10 studentDetails">
                       <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                        <h3 class="h2 text-white mb-0">{stdData?.data().firstName + " " + stdData?.data().lastName}</h3>
+                        <h3 class="h2 text-white mb-0">{stdData?.data().ProfileName}</h3>
                       </div>
                       <ul class="list-unstyled mb-1-9">
                         <li class="mb-2 mb-xl-3 display-28">

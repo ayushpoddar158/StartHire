@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import './Model.css'
 
 const StartUpDetailModel = (props) => {
-  const data = props.data;
+  const data = props.sData;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

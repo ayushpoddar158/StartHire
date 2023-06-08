@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import './Model.css'
 
 const AdminStuListModel = (props) => {
-  const data = props.data;
+  const data = props.userData;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -33,6 +33,14 @@ const AdminStuListModel = (props) => {
               <div className="JobDescStudDetails">
                 <ul class="list-unstyled mb-1-9">
                   <li class="mb-2 mb-xl-3 display-28">
+                    <span class="display-26 span1  me-2 font-weight-600">
+                      Name :
+                    </span>
+                    <span class="display-26 span2 me-2 font-weight-600">
+                     {data?.ProfileName} 
+                    </span>
+
+                    <hr />
                     <span class="display-26 span1  me-2 font-weight-600">
                       Gender:
                     </span>

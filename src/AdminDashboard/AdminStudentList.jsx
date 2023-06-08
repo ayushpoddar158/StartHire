@@ -330,7 +330,7 @@ const AdminStudentLists = (props) => {
                       onClick={() => { RejectStd(item) }}>
                       Reject
                     </Button>
-              <AdminStuListModel/>
+                    <AdminStuListModel userData={item?.data()}/>
                   </div>
                 </div>
               </div>
