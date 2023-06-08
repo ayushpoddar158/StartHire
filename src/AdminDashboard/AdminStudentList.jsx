@@ -7,7 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import "./css/AdminStudentList.css";
 import { Button } from "@mui/material";
-import { green } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
+
 import { useEffect } from "react";
 
 // Data setup 
@@ -205,13 +206,13 @@ const AdminStudentLists = (props) => {
                 className="Admindstudentlistradio"
                 value="available"
                 control={
-                  <Radio
+                  <Radio className="radiobtn"
                     sx={{
                       "& .MuiSvgIcon-root": {
                         fontSize: 28,
-                        color: green[800],
+                        color: grey[800],
                         "&.Mui-checked": {
-                          color: green[600],
+                          color: grey[600],
                         },
                       },
                     }}
@@ -227,9 +228,9 @@ const AdminStudentLists = (props) => {
                     sx={{
                       "& .MuiSvgIcon-root": {
                         fontSize: 28,
-                        color: green[800],
+                        color: grey[800],
                         "&.Mui-checked": {
-                          color: green[600],
+                          color: grey[600],
                         },
                       },
                     }}
@@ -245,9 +246,9 @@ const AdminStudentLists = (props) => {
                     sx={{
                       "& .MuiSvgIcon-root": {
                         fontSize: 28,
-                        color: green[800],
+                        color: grey[800],
                         "&.Mui-checked": {
-                          color: green[600],
+                          color: grey[600],
                         },
                       },
                     }}
@@ -257,13 +258,14 @@ const AdminStudentLists = (props) => {
               />
             </RadioGroup>
           </FormControl>
-          <div style={{ "background-color": "white", "padding": "10px 0" }}>
+          <div style={{ "background-color": "white", "padding": "0" }} className="searchbaradmin">
             <TextField
               id="outlined-read-only-input"
               label="Search"
               defaultValue="Hello World"
               onChange={getInpData}
               value={inpdata}
+              className="searchtextfield"
             />
           </div>
         </div >

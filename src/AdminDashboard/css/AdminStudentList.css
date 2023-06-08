@@ -1,11 +1,24 @@
 
 @import '../../const.css';
+
+.searchtextfield{
+    width: 100% !important;
+}
+
+.box2{
+    width: 100% !important;
+}
 .studentlistadminbox3{
     /* background-color: red; */
     width: 100%;
    margin-top: 20px;
    margin-left: auto !important;
    /* position: relative; */
+}
+
+.searchbaradmin{
+    width: 100% !important;
+    border-radius: 5px;
 }
 
 .avtarimg{
