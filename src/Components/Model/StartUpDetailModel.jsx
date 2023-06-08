@@ -37,7 +37,7 @@ const StartUpDetailModel = (props) => {
                       StartUp Name:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.StartUpName} 
+                      {data?.StartUpName}
                     </span>
 
                     <hr />
@@ -48,7 +48,7 @@ const StartUpDetailModel = (props) => {
                       Founder Name:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.FounderName} 
+                      {data?.FounderName}
                     </span>
 
                     <hr />
@@ -59,7 +59,7 @@ const StartUpDetailModel = (props) => {
                       Contact No:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.ContactNumber} 
+                      {data?.ContactNumber}
                     </span>
 
                     <hr />
@@ -70,7 +70,7 @@ const StartUpDetailModel = (props) => {
                       Email:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                      {data?.StartUpEmail} 
+                      {data?.StartUpEmail}
                     </span>
 
                     <hr />
@@ -81,7 +81,7 @@ const StartUpDetailModel = (props) => {
                       Website:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                  <a className='modelweblinkanchr' href="#">dummy</a>
+                      <a className='modelweblinkanchr' href={`${data?.websiteLink}`}>{data?.websiteLink}</a>
                     </span>
 
                     <hr />
@@ -89,10 +89,10 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Address: 
+                      Address:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.location} 
+                      {data?.location}
                     </span>
 
                     <hr />
@@ -100,21 +100,25 @@ const StartUpDetailModel = (props) => {
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
                     <span class="display-26 span1 me-2 font-weight-600">
-                      Domain: 
+                      Domain:
                     </span>
-                    <span class="display-26 span2 me-2 font-weight-600">
-                     <Button className='starupmodedomain' variant='contained'>skil1</Button>
-                    </span>
+                    {data?.domains.map((domain) => {
+                      return (
+                        <span class="display-26 span2 me-2 font-weight-600">
+                          <Button className='starupmodedomain' variant='contained'>{domain.label}</Button>
+                        </span>
+                      )
+                    })}
                     {/* <hr /> */}
 
                   </li>
-          
-                  
+
+
                 </ul>
               </div>
             </Modal.Body>
             <Modal.Footer>
-         
+
               <Button variant="secondary" className='closebtnmodel' onClick={handleClose}>
                 Close
               </Button>
