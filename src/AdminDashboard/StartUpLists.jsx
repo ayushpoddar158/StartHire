@@ -6,7 +6,7 @@ import Card from '../Components/Card/Card'
 import { TextField } from "@mui/material";
 import { useEffect } from "react";
 
-
+import StartUpDetailModel from "../Components/Model/StartUpDetailModel";
 
 const StartUpLists = (props) => {
 
@@ -43,6 +43,7 @@ const StartUpLists = (props) => {
       <div className="mainCardDiv">
         <div className="search">
           <TextField
+          className="StartUpsearch"
             id="outlined-read-only-input"
             label="Search"
             defaultValue="Hello World"
