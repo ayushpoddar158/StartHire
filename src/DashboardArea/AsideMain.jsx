@@ -104,14 +104,14 @@ const AsideMain = (props) => {
                       <span className="ml-3">Notification</span>
                     </NavLink>
                   </li>
-                  <li class="nav-item mb-2">
+                  {/* <li class="nav-item mb-2">
                     <button
                       class="nav-link text-secondary LogoutbtnAsilde"
                       onClick={LogOut}
                     >
                    Log Out
                     </button>
-                  </li>
+                  </li> */}
                   {/* <button>Hide</button> */}
                 </ul>
               </div>
@@ -181,14 +181,14 @@ const AsideMain = (props) => {
                       </span>
                     </NavLink>
                   </li>
-                  <li class="nav-item mb-2">
+                  {/* <li class="nav-item mb-2">
                     <button
                       class="nav-link text-secondary LogoutbtnAsilde"
                       onClick={LogOut}
                     >
                    Log Out
                     </button>
-                  </li>
+                  </li> */}
                   {/* <button>Hide</button> */}
                 </ul>
               </div>
@@ -250,14 +250,14 @@ const AsideMain = (props) => {
                       
                     </NavLink>
                   </li>
-                  <li class="nav-item mb-2">
+                  {/* <li class="nav-item mb-2">
                     <button
                       class="nav-link text-secondary LogoutbtnAsilde"
                       onClick={LogOut}
                     >
                       Log Out
                     </button>
-                  </li>
+                  </li> */}
                   {/* <button>Hide</button> */}
                 </ul>
               </div>

@@ -36,7 +36,7 @@ background-image: repeating-linear-gradient(45deg, #6666679a 0, #cececfa2 0.4px,
   
    /* position: fixed !important; */
     /* height: 100vh; */
-    background-color: var(--color-nav) !important;
+    background-color: var(--color-navbar) !important;
     /* background: transparent !important; */
     backdrop-filter: blur(8px) !important ;
     top: 20px;
