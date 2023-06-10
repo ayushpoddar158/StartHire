@@ -100,7 +100,7 @@ const AsideMain = (props) => {
                       class="nav-link text-secondary"
                       to="/AdminNotification"
                     >
-                      <FontAwesomeIcon className="iconnoti" icon={faBriefcase} />{" "}
+                        <FontAwesomeIcon className="iconnoti" icon={faBell} />
                       <span className="ml-3">Notification</span>
                     </NavLink>
                   </li>
