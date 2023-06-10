@@ -281,7 +281,7 @@ const JobDescp = (props) => {
                     <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
                       Reject
                     </Button>
-                    <Model data={item.data()} />
+                    <Model data={item.data()} isAdmin={isAdmin}/>
                   </div>
                 </div>
               </>
@@ -331,7 +331,7 @@ const JobDescp = (props) => {
                     </Button>
 
                     {/* <Button className="ViewdetailsJObDesc" varient="contained" >View</Button> */}
-                    <Model data={item.data()} />
+                    <Model data={item.data()} isAdmin={isAdmin}/>
                   </div>
                 </div>
 
