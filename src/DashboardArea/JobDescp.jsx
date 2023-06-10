@@ -24,8 +24,13 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Mode } from "@mui/icons-material";
+import PageNotFound from "../Components/PagenotFound/PageNotFound";
 
 const JobDescp = (props) => {
+  // # url path params
+  const id = useParams().id;
+
+  const userData = props.userData;
   let [jobData, setJobData] = useState();
   let [jobDataRef, setJobDataRef] = useState();
   let [selStudent, setSelStudent] = useState([]);
@@ -50,7 +55,6 @@ const JobDescp = (props) => {
   };
 
   const isAdmin = props.isAdmin;
-  const id = useParams().id;
   // console.log(id)
   useEffect(() => {
     const loadJob = async (id) => {
@@ -204,167 +208,171 @@ const JobDescp = (props) => {
     console.log("assignees", assignedStudents);
   }, [selectedStudents])
 
-  const uname = useState("ayush")
-  return (
+  if (userData?.data().jobs.includes(id) || isAdmin ){
+    return (
+      <>
+        {/* <Model ref={ref}/> */}
+        <div className="mainJobDesc">
+
+          <div className="JobDescmain">
+            <div className="title onediv firstDiv">
+              <h2 id="heading1">{jobData?.details.jobTitle}</h2>
+              {isAdmin ? "" :
+                <Link to={`/UpdateJobs/${id}`}>
+                  <Button className="jObDecUpdateBtn" variant="contained ">Update</Button>
+                </Link>
+              }
+
+              <hr />
+            </div>
+            <div className="description onediv">
+              <h2>Job Description</h2>
+              <hr />
+              <p>
+                {jobData?.details.jobDescription}
+              </p>
+            </div>
+            <div className="skills"></div>
+            <h2>Skills Required</h2>
+            <hr />
+            <div className="tags">
+              {jobData?.details.skills?.map((item) => {
+                return <Button className="Skillreq" variant="contained">
+                  {item.value}
+                </Button>
+              })}
+            </div>
+          </div>
+          <h2 className="JobDescSelStudenth2">Selected Students</h2>
+          {assignedStudents.map((item) => {
+            return (
+              <>
+                <div className="studentList">
+
+                  <div className="stdlistmian2_1 firstdivig">
+                    {item.data().gender === "Male" ?
+                      <img
+                        src="../../public/sample_male.jpg"
+                        alt="avatar 1"
+                        style={{ width: "45px", height: "auto" }}
+                      />
+                      :
+                      <img
+                        src="../../public/sample_female.jpg"
+                        alt="avatar 1"
+                        style={{ width: "45px", height: "auto" }}
+                      />
+                    }
+                    <div class="ms-2">{item.data().sid}</div>
+                  </div>
+                  <div className=" skillmaindiv">
+                    <div className="conatainer skilltextdiv">
+                      <h3>Skills</h3>
+                    </div>
+                    <div className="skillbtn">
+                      {item.data().skills.map((skill) => {
+                        return <Button variant="contained" className=" skillbtns ms-2">
+                          {skill.value}
+                        </Button>
+                      })}
+                    </div>
+                  </div>
+                  <div className="stdlistmian2_1 selectedstudeivindi">
+                    <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
+                      Reject
+                    </Button>
+                    <Model data={item.data()} />
+                  </div>
+                </div>
+              </>
+            )
+          })}
+          {/* <hr /> */}
+          <div className="suggestStudentbtndiv">
+            <Button className="suggestStudentbtn" variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
+          </div>
+          {currentStudents.map((item) => {
+            return (
+              <>
+                {/* <div className="JobDecStudListMainDiv"> */}
+                <div className="studentList">
+                  <div className="stdlistmian2_1 firstdivig">
+                    {item.data().gender === "Male" ?
+                      <img
+                        src="../../public/sample_male.jpg"
+                        alt="avatar 1"
+                        style={{ width: "45px", height: "auto" }}
+                      />
+                      :
+                      <img
+                        src="../../public/sample_female.jpg"
+                        alt="avatar 1"
+                        style={{ width: "45px", height: "auto" }}
+                      />
+                    }
+
+                    <div class="ms-2">{item.data().sid}</div>
+                  </div>
+                  <div className=" skillmaindiv">
+                    <div className="conatainer skilltextdiv">
+                      <h3>Skills</h3>
+                    </div>
+                    <div className="skillbtn">
+                      {item.data().skills.map((skill) => {
+                        return <Button variant="contained" className=" skillbtns ms-2">
+                          {skill.value}
+                        </Button>
+                      })}
+                    </div>
+                  </div>
+                  <div className="stdlistmian2_1 jobdescbutnsection">
+                    <Button className="viewbtn JObDescSelbtn" variant="contained" onClick={() => { addStudent(item) }}>
+                      Select
+                    </Button>
+
+                    {/* <Button className="ViewdetailsJObDesc" varient="contained" >View</Button> */}
+                    <Model data={item.data()} />
+                  </div>
+                </div>
+
+
+                {/* </div> */}
+
+
+              </>
+            )
+          })}
+          <div className="paginationdivJobdesc">
+            <div className="innerpaginationdiv">
+
+
+              {currentPage > 1 && (
+                <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+              )}
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+                <button
+                  className="pagesbtnsjobdesc"
+                  key={pageNumber}
+                  onClick={() => handlePageChange(pageNumber)}
+                  disabled={pageNumber === currentPage}
+                >
+                  {pageNumber}
+                </button>
+              ))}
+              {currentPage < totalPages && (
+                <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+              )}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+  return(
     <>
-
-
-      {/* <Model ref={ref}/> */}
-      <div className="mainJobDesc">
-
-        <div className="JobDescmain">
-          <div className="title onediv firstDiv">
-            <h2 id="heading1">{jobData?.details.jobTitle}</h2>
-            {isAdmin ? "" :
-              <Link to={`/UpdateJobs/${id}`}>
-                <Button className="jObDecUpdateBtn" variant="contained ">Update</Button>
-              </Link>
-            }
-
-            <hr />
-          </div>
-          <div className="description onediv">
-            <h2>Job Description</h2>
-            <hr />
-            <p>
-              {jobData?.details.jobDescription}
-            </p>
-          </div>
-          <div className="skills"></div>
-          <h2>Skills Required</h2>
-          <hr />
-          <div className="tags">
-            {jobData?.details.skills?.map((item) => {
-              return <Button className="Skillreq" variant="contained">
-                {item.value}
-              </Button>
-            })}
-          </div>
-        </div>
-        <h2 className="JobDescSelStudenth2">Selected Students</h2>
-        {assignedStudents.map((item) => {
-          return (
-            <>
-              <div className="studentList">
-
-                <div className="stdlistmian2_1 firstdivig">
-                  {item.data().gender === "Male" ?
-                    <img
-                      src="../../public/sample_male.jpg"
-                      alt="avatar 1"
-                      style={{ width: "45px", height: "auto" }}
-                    />
-                    :
-                    <img
-                      src="../../public/sample_female.jpg"
-                      alt="avatar 1"
-                      style={{ width: "45px", height: "auto" }}
-                    />
-                  }
-                  <div class="ms-2">{item.data().sid}</div>
-                </div>
-                <div className=" skillmaindiv">
-                  <div className="conatainer skilltextdiv">
-                    <h3>Skills</h3>
-                  </div>
-                  <div className="skillbtn">
-                    {item.data().skills.map((skill) => {
-                      return <Button variant="contained" className=" skillbtns ms-2">
-                        {skill.value}
-                      </Button>
-                    })}
-                  </div>
-                </div>
-                <div className="stdlistmian2_1 selectedstudeivindi">
-                  <Button className="viewbtn JObDescRejbtn" variant="contained" onClick={() => { removeStudent(item) }}>
-                    Reject
-                  </Button>
-                  <Model data={item.data()} />
-                </div>
-              </div>
-            </>
-          )
-        })}
-        {/* <hr /> */}
-        <div className="suggestStudentbtndiv">
-          <Button className="suggestStudentbtn" variant="contained" onClick={SuggestFunc}>Suggest Interns</Button>
-        </div>
-        {currentStudents.map((item) => {
-          return (
-            <>
-              {/* <div className="JobDecStudListMainDiv"> */}
-              <div className="studentList">
-                <div className="stdlistmian2_1 firstdivig">
-                  {item.data().gender === "Male" ?
-                    <img
-                      src="../../public/sample_male.jpg"
-                      alt="avatar 1"
-                      style={{ width: "45px", height: "auto" }}
-                    />
-                    :
-                    <img
-                      src="../../public/sample_female.jpg"
-                      alt="avatar 1"
-                      style={{ width: "45px", height: "auto" }}
-                    />
-                  }
-
-                  <div class="ms-2">{item.data().sid}</div>
-                </div>
-                <div className=" skillmaindiv">
-                  <div className="conatainer skilltextdiv">
-                    <h3>Skills</h3>
-                  </div>
-                  <div className="skillbtn">
-                    {item.data().skills.map((skill) => {
-                      return <Button variant="contained" className=" skillbtns ms-2">
-                        {skill.value}
-                      </Button>
-                    })}
-                  </div>
-                </div>
-                <div className="stdlistmian2_1 jobdescbutnsection">
-                  <Button className="viewbtn JObDescSelbtn" variant="contained" onClick={() => { addStudent(item) }}>
-                    Select
-                  </Button>
-
-                  {/* <Button className="ViewdetailsJObDesc" varient="contained" >View</Button> */}
-                  <Model data={item.data()} />
-                </div>
-              </div>
-
-
-              {/* </div> */}
-
-
-            </>
-          )
-        })}
-        <div className="paginationdivJobdesc">
-          <div className="innerpaginationdiv">
-
-
-            {currentPage > 1 && (
-              <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
-            )}
-            {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
-              <button
-                className="pagesbtnsjobdesc"
-                key={pageNumber}
-                onClick={() => handlePageChange(pageNumber)}
-                disabled={pageNumber === currentPage}
-              >
-                {pageNumber}
-              </button>
-            ))}
-            {currentPage < totalPages && (
-              <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-            )}
-          </div>
-        </div>
-      </div>
+      <PageNotFound />
     </>
-  );
+  )
 };
 
 export default JobDescp;
