@@ -5,6 +5,7 @@ import './Model.css'
 
 const Model = (props) => {
   const data = props.data;
+  const isAdmin = props.isAdmin;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,16 +15,11 @@ const Model = (props) => {
     <>
       <Button onClick={handleShow} className="ViewdetailsJObDesc" varient="contained" >View</Button>
       <div className="container666">
-
-
         <Modal className='model'
           show={show}
           onHide={handleClose}
           // backdrop="static"
           keyboard={false}
-
-
-
         >
           <div className="modelhead">
             <Modal.Header >
@@ -33,11 +29,22 @@ const Model = (props) => {
               <div className="JobDescStudDetails">
                 <ul class="list-unstyled mb-1-9">
                   <li class="mb-2 mb-xl-3 display-28">
+                    {isAdmin ?
+                      <>
+                        <span class="display-26 span1  me-2 font-weight-600">
+                          Name :
+                        </span>
+                        <span class="display-26 span2 me-2 font-weight-600">
+                          {data?.ProfileName}
+                        </span>
+                        <hr/>
+                      </>
+                      : ""}
                     <span class="display-26 span1  me-2 font-weight-600">
                       Gender:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.gender} 
+                      {data?.gender}
                     </span>
 
                     <hr />
@@ -48,7 +55,7 @@ const Model = (props) => {
                       Location:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.location} 
+                      {data?.location}
                     </span>
 
                     <hr />
@@ -59,7 +66,7 @@ const Model = (props) => {
                       College/University:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.College} 
+                      {data?.College}
                     </span>
 
                     <hr />
@@ -70,7 +77,7 @@ const Model = (props) => {
                       Degree:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                      {data?.Degree} 
+                      {data?.Degree}
                     </span>
 
                     <hr />
@@ -81,7 +88,7 @@ const Model = (props) => {
                       Degree Status:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.DegreeStatus} 
+                      {data?.DegreeStatus}
                     </span>
 
                     <hr />
@@ -92,7 +99,7 @@ const Model = (props) => {
                       Year Of Passing:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.YOG} 
+                      {data?.YOG}
                     </span>
 
                     <hr />
@@ -103,7 +110,7 @@ const Model = (props) => {
                       About:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.about} 
+                      {data?.about}
                     </span>
 
                     <hr />
@@ -114,18 +121,18 @@ const Model = (props) => {
                       Certifications and Awards:
                     </span>
                     <span class="display-26 span2 me-2 font-weight-600">
-                     {data?.awardsAndCert == "" ? "None" :  data?.awardsAndCert} 
+                      {data?.awardsAndCert == "" ? "None" : data?.awardsAndCert}
                     </span>
 
                     {/* <hr /> */}
 
                   </li>
-                  
+
                 </ul>
               </div>
             </Modal.Body>
             <Modal.Footer>
-            {/* <hr /> */}
+              {/* <hr /> */}
               <Button variant="secondary" className='closebtnmodel' onClick={handleClose}>
                 Close
               </Button>
